@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import "../lib/fontawesome";
 import Navigation from "@/components/Navigation";
 import { getMarkdownContent } from "@/lib/markdown";
 
