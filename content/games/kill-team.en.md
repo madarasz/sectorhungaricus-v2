@@ -1,7 +1,7 @@
 ---
-title: "Kill Team"
-description: "Fast-paced skirmish battles in the 41st Millennium"
-featuredImage: "/uploads/kill-team-hero.jpg"
+title: Kill Team
+description: Action-packed tactical skirmish combat in the war-torn 41st Millennium
+featuredImage: /uploads/killteam-budkvkd-.webp
 ---
 
 # Kill Team

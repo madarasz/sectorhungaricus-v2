@@ -1,7 +1,7 @@
 ---
-title: "Kill Team"
-description: "Gyors tempójú csatározások a 41. évezredben"
-featuredImage: "/uploads/kill-team-hero.jpg"
+title: Kill Team
+description: Akciódús taktikai harc a háború sújtotta 41. évezredben
+featuredImage: /uploads/killteam-budkvkd-.webp
 ---
 
 # Kill Team

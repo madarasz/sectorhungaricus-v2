@@ -36,3 +36,11 @@ export interface GalleryContent {
   }
   contentHtml: string
 }
+
+export interface PageContent {
+  slug: string
+  data: {
+    title: string
+  }
+  contentHtml: string
+}
