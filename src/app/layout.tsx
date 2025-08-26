@@ -3,6 +3,7 @@ import { Inter, Poppins } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
+import { getMarkdownContent } from "@/lib/markdown";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -68,15 +69,22 @@ export const metadata: Metadata = {
   description: "Hungarian skirmish gaming community focusing on Kill Team, Spearhead and other tabletop games",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Fetch navigation data from CMS
+  const calendarData = await getMarkdownContent('pages', 'calendar', 'hu')
+  const aboutData = await getMarkdownContent('pages', 'about-us', 'hu')
+  
+  const calendarTitle = calendarData?.data?.title
+  const aboutTitle = aboutData?.data?.title
+
   return (
     <html lang="en">
       <body className={`${inter.variable} ${poppins.variable} ${namdhinggo.variable} ${montserratSubrayada.variable} font-sans antialiased`} style={{backgroundColor: '#EAE9E9'}}>
-        <Navigation />
+        <Navigation calendarTitle={calendarTitle} aboutTitle={aboutTitle} />
         <main className="min-h-screen">
           {children}
         </main>

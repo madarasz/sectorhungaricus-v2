@@ -3,40 +3,47 @@
 import Link from 'next/link'
 import { useState } from 'react'
 
-export default function Navigation() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+interface NavigationProps {
+  calendarTitle: string
+  aboutTitle: string
+}
 
-  const navigation = [
-    { name: 'Ajándéktárgyak', href: '/gifts' },
-    { name: 'Naptár', href: '/tournaments' },
-    { name: 'Rólunk', href: '/about' },
-  ]
+export default function Navigation({ calendarTitle, aboutTitle }: NavigationProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
     <nav style={{backgroundColor: '#EAE9E9', height: '164px'}}>
-      <div className="w-[1440px] mx-auto px-16">
-        <div className="flex justify-between items-center h-full relative">
-          {/* Left Navigation */}
-          <div className="flex space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="font-poppins font-medium text-[18px] leading-[27px] text-[#1A1A1A] hover:text-[#1A1251] transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
+      <div className="w-[1024px] mx-auto px-16 h-full">
+        <div className="flex justify-between items-center h-full">
+          {/* Group 1: Calendar */}
+          <Link
+            href="/calendar"
+            className="font-poppins font-medium text-[18px] leading-[27px] text-[#1A1A1A] hover:text-[#1A1251] transition-colors"
+          >
+            {calendarTitle}
+          </Link>
 
-          {/* Center Logo */}
-          <Link href="/" className="absolute left-1/2 transform -translate-x-1/2">
-            <div className="font-montserrat-subrayada font-bold text-[32px] leading-[48px] text-[#1A1A1A] tracking-wide">
+          {/* Group 2: Logo and Title */}
+          <Link href="/" className="flex items-center space-x-4">
+            <img 
+              src="/uploads/sh-logo.png" 
+              alt="Sector Hungaricus Logo" 
+              className="max-w-[70px] max-h-[70px] object-contain"
+            />
+            <div className="font-montserrat-subrayada font-bold text-[36px] leading-[48px] text-[#1A1A1A] tracking-wide">
               SECTOR HUNGARICUS
             </div>
           </Link>
 
-          {/* Right Icons */}
+          {/* Group 3: About Us */}
+          <Link
+            href="/about-us"
+            className="font-poppins font-medium text-[18px] leading-[27px] text-[#1A1A1A] hover:text-[#1A1251] transition-colors"
+          >
+            {aboutTitle}
+          </Link>
+
+          {/* Group 4: Language and Dark Mode */}
           <div className="flex items-center space-x-6">
             {/* Language Icon */}
             <button className="w-10 h-10 flex items-center justify-center">
@@ -82,16 +89,20 @@ export default function Navigation() {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="block text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-base font-medium"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              <Link
+                href="/calendar"
+                className="block text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {calendarTitle}
+              </Link>
+              <Link
+                href="/about-us"
+                className="block text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {aboutTitle}
+              </Link>
               <div className="flex space-x-4 px-3 py-2">
                 <Link href="/" className="text-sm text-gray-600 hover:text-red-600">
                   EN
