@@ -1,0 +1,18 @@
+{
+  "nav": {
+    "home": "Home",
+    "games": "Games",
+    "tournaments": "Tournaments",
+    "gallery": "Gallery"
+  },
+  "games": {
+    "killTeam": "Kill Team",
+    "spearhead": "Spearhead"
+  },
+  "general": {
+    "readMore": "Read More",
+    "viewGallery": "View Gallery",
+    "upcoming": "Upcoming",
+    "past": "Past Events"
+  }
+}

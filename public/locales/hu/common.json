@@ -1,0 +1,18 @@
+{
+  "nav": {
+    "home": "Kezdőlap",
+    "games": "Játékok",
+    "tournaments": "Tornák",
+    "gallery": "Galéria"
+  },
+  "games": {
+    "killTeam": "Kill Team",
+    "spearhead": "Spearhead"
+  },
+  "general": {
+    "readMore": "Tovább olvas",
+    "viewGallery": "Galéria megtekintése",
+    "upcoming": "Közelgő",
+    "past": "Korábbi események"
+  }
+}
