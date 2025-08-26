@@ -31,7 +31,7 @@ export default function Navigation() {
 
           {/* Center Logo */}
           <Link href="/" className="absolute left-1/2 transform -translate-x-1/2">
-            <div className="font-poppins font-bold text-[32px] leading-[48px] text-[#1A1A1A] tracking-wide">
+            <div className="font-montserrat-subrayada font-bold text-[32px] leading-[48px] text-[#1A1A1A] tracking-wide">
               SECTOR HUNGARICUS
             </div>
           </Link>

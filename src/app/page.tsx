@@ -15,17 +15,19 @@ export default async function Home() {
       <section className="relative" style={{backgroundColor: '#1A1251', height: '390px'}}>
         <div className="w-[1440px] mx-auto relative h-full">
           {/* Welcome Title */}
-          <h1 className="absolute left-1/2 transform -translate-x-1/2 text-center font-poppins font-semibold text-[48px] leading-[60px] text-[#EAE9E9]" 
+          <h1 className="absolute left-1/2 transform -translate-x-1/2 text-center font-namdhinggo font-semibold text-[48px] leading-[60px] text-[#EAE9E9]" 
               style={{width: '693px', top: '48px'}}>
-            {homepageContent?.data.title || 'Üdvözlünk a Sector Hungaricuson!'}
+            {homepageContent?.data.title}
           </h1>
           
           {/* Description */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 text-center font-poppins font-light text-[18px] leading-[27px] text-[#EAE9E9]" 
-               style={{width: '1030px', top: '158px'}}
-               dangerouslySetInnerHTML={{
-                 __html: homepageContent?.contentHtml || 'Közösségünk Magyarország legnagyobb wargame skirmish társasága. Önszerveződő közösség vagyunk, független üzletektől és kluboktól.'
-               }} />
+          {homepageContent?.contentHtml && (
+            <div className="absolute left-1/2 transform -translate-x-1/2 text-center font-poppins font-light text-[18px] leading-[27px] text-[#EAE9E9]" 
+                 style={{width: '1030px', top: '158px'}}
+                 dangerouslySetInnerHTML={{
+                   __html: homepageContent.contentHtml
+                 }} />
+          )}
           
           {/* Buttons */}
           <div className="absolute flex" style={{left: '449.5px', top: '279.5px'}}>

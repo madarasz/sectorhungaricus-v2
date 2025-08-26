@@ -11,6 +11,7 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
   --font-poppins: var(--font-poppins);
+  --font-namdhinggo: var(--font-namdhinggo);
   --font-montserrat-subrayada: var(--font-montserrat-subrayada);
 }
 
@@ -40,6 +41,10 @@
 
 .font-montserrat-subrayada {
   font-family: var(--font-montserrat-subrayada), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+.font-namdhinggo {
+  font-family: var(--font-namdhinggo), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
 
 /* Fixed width design for Figma accuracy */
