@@ -66,6 +66,9 @@ const montserratSubrayada = localFont({
 export const metadata: Metadata = {
   title: "Sector Hungaricus - Skirmish Gaming Community",
   description: "Hungarian skirmish gaming community focusing on Kill Team, Spearhead and other tabletop games",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({

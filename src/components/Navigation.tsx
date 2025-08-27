@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLanguage, faSun } from '@fortawesome/free-solid-svg-icons'
+import { faSun } from '@fortawesome/free-solid-svg-icons'
 import { useLocale, getLocalizedPath } from '@/contexts/LocaleContext'
 import { usePathname, useRouter } from 'next/navigation'
 
@@ -74,17 +74,31 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
 
           {/* Group 4: Language and Dark Mode */}
           <div className="flex items-center space-x-6">
-            {/* Language Icon */}
-            <button 
-              onClick={handleLanguageSwitch}
-              className="w-10 h-10 flex items-center justify-center hover:bg-gray-200 rounded-lg transition-colors"
-              title={locale === 'hu' ? 'Switch to English' : 'Váltás magyarra'}
-              disabled={!mounted || !setLocale}
-            >
-              <span className="text-sm font-semibold text-[#1A1A1A]">
-                {locale === 'hu' ? 'EN' : 'HU'}
-              </span>
-            </button>
+            {/* Language Switch */}
+            <div className="flex bg-gray-200 rounded-lg p-1">
+              <button
+                onClick={() => locale !== 'hu' && handleLanguageSwitch()}
+                className={`px-3 py-1 text-sm font-semibold rounded-md transition-colors ${
+                  locale === 'hu' 
+                    ? 'bg-white text-[#1A1A1A] shadow-sm' 
+                    : 'text-gray-600 hover:text-[#1A1A1A]'
+                }`}
+                disabled={!mounted || !setLocale}
+              >
+                HU
+              </button>
+              <button
+                onClick={() => locale !== 'en' && handleLanguageSwitch()}
+                className={`px-3 py-1 text-sm font-semibold rounded-md transition-colors ${
+                  locale === 'en' 
+                    ? 'bg-white text-[#1A1A1A] shadow-sm' 
+                    : 'text-gray-600 hover:text-[#1A1A1A]'
+                }`}
+                disabled={!mounted || !setLocale}
+              >
+                EN
+              </button>
+            </div>
             
             {/* Dark Mode Toggle */}
             <button className="w-10 h-10 flex items-center justify-center">
@@ -130,14 +144,31 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
               <div className="block text-gray-700 px-3 py-2 rounded-md text-base font-medium">
                 {aboutTitle}
               </div>
-              <div className="flex space-x-4 px-3 py-2">
-                <button 
-                  onClick={handleLanguageSwitch}
-                  className="text-sm text-gray-600 hover:text-red-600"
-                  disabled={!mounted || !setLocale}
-                >
-                  {locale === 'hu' ? 'EN' : 'HU'}
-                </button>
+              <div className="px-3 py-2">
+                <div className="flex bg-gray-200 rounded-lg p-1 w-fit">
+                  <button
+                    onClick={() => locale !== 'hu' && handleLanguageSwitch()}
+                    className={`px-3 py-1 text-sm font-semibold rounded-md transition-colors ${
+                      locale === 'hu' 
+                        ? 'bg-white text-[#1A1A1A] shadow-sm' 
+                        : 'text-gray-600 hover:text-[#1A1A1A]'
+                    }`}
+                    disabled={!mounted || !setLocale}
+                  >
+                    HU
+                  </button>
+                  <button
+                    onClick={() => locale !== 'en' && handleLanguageSwitch()}
+                    className={`px-3 py-1 text-sm font-semibold rounded-md transition-colors ${
+                      locale === 'en' 
+                        ? 'bg-white text-[#1A1A1A] shadow-sm' 
+                        : 'text-gray-600 hover:text-[#1A1A1A]'
+                    }`}
+                    disabled={!mounted || !setLocale}
+                  >
+                    EN
+                  </button>
+                </div>
               </div>
             </div>
           </div>
