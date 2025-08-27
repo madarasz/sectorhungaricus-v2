@@ -31,19 +31,19 @@ export default async function HomePage({ params }: HomePageProps) {
   const games = allGames.filter(Boolean).sort((a, b) => a.data.title.localeCompare(b.data.title))
 
   return (
-    <div style={{backgroundColor: '#EAE9E9', minHeight: '100vh', overflowX: 'auto'}}>
+    <div style={{backgroundColor: 'var(--background)', minHeight: '100vh', overflowX: 'auto'}} className="transition-colors duration-300">
       {/* Hero Section */}
-      <section className="relative" style={{backgroundColor: '#1A1251', height: '390px'}}>
+      <section className="relative transition-colors duration-300" style={{backgroundColor: 'var(--hero-background)', height: '390px'}}>
         <div className="w-[1440px] mx-auto relative h-full">
           {/* Welcome Title */}
-          <h1 className="absolute left-1/2 transform -translate-x-1/2 text-center font-namdhinggo font-semibold text-[48px] leading-[60px] text-[#EAE9E9]" 
-              style={{width: '693px', top: '48px'}}>
+          <h1 className="absolute left-1/2 transform -translate-x-1/2 text-center font-namdhinggo font-semibold text-[48px] leading-[60px] transition-colors duration-300" 
+              style={{width: '693px', top: '48px', color: 'var(--hero-text)'}}>
             {homepageContent?.data.title}
           </h1>
           
           {/* Description */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 text-center font-poppins font-light text-[18px] leading-[27px] text-[#EAE9E9]" 
-               style={{width: '1030px', top: '158px'}}
+          <div className="absolute left-1/2 transform -translate-x-1/2 text-center font-poppins font-light text-[18px] leading-[27px] transition-colors duration-300" 
+               style={{width: '1030px', top: '158px', color: 'var(--hero-text)'}}
                dangerouslySetInnerHTML={{
                  __html: homepageContent?.contentHtml || ''
                }} />
@@ -51,26 +51,37 @@ export default async function HomePage({ params }: HomePageProps) {
           {/* Buttons */}
           <div className="absolute flex" style={{left: '449.5px', top: '279.5px'}}>
             {/* Calendar Button */}
-            <div className="flex items-center border-3 border-[#EAE9E9] rounded-[10px] px-6 py-4 mr-[91.5px]" 
-                  style={{width: '215px', height: '71px'}}>
+            <div className="flex items-center border-3 rounded-[10px] px-6 py-4 mr-[91.5px] transition-all duration-300" 
+                  style={{
+                    width: '215px', 
+                    height: '71px', 
+                    borderColor: 'var(--button-border)',
+                    backgroundColor: 'var(--button-secondary)'
+                  }}>
               <FontAwesomeIcon 
                 icon={faCalendarDays} 
-                className="text-4xl mr-4 text-[#EAE9E9]" 
+                className="text-4xl mr-4 transition-colors duration-300" 
+                style={{color: 'var(--button-secondary-text)'}}
               />
-              <span className="font-poppins font-medium text-[20px] leading-[30px] text-[#EAE9E9]">
+              <span className="font-poppins font-medium text-[20px] leading-[30px] transition-colors duration-300" style={{color: 'var(--button-secondary-text)'}}>
                 {calendarContent?.data.title}
               </span>
             </div>
             
             {/* Discord Button */}
             <Link href="https://discord.gg/sector-hungaricus" 
-                  className="flex items-center bg-[#EAE9E9] rounded-[10px] px-6 py-4 hover:bg-white transition-colors" 
-                  style={{width: '218px', height: '74px'}}>
+                  className="flex items-center rounded-[10px] px-6 py-4 transition-all duration-300 hover:opacity-90" 
+                  style={{
+                    width: '218px', 
+                    height: '74px',
+                    backgroundColor: 'var(--button-primary)'
+                  }}>
               <FontAwesomeIcon 
                 icon={faDiscord} 
-                className="text-4xl mr-4 text-[#1A1A1A]" 
+                className="text-4xl mr-4 transition-colors duration-300" 
+                style={{color: 'var(--button-primary-text)'}}
               />
-              <span className="font-poppins font-medium text-[20px] leading-[30px] text-[#1A1A1A]">
+              <span className="font-poppins font-medium text-[20px] leading-[30px] transition-colors duration-300" style={{color: 'var(--button-primary-text)'}}>
                 Discord
               </span>
             </Link>
@@ -85,7 +96,11 @@ export default async function HomePage({ params }: HomePageProps) {
             {games.map((game) => {
               return (
                 <div key={game.slug} className="w-[373px] h-[485px]">
-                  <div className="w-full h-full bg-[#DFDFDF] rounded-[15px] shadow-[4px_4px_5px_2px_rgba(0,0,0,0.25)] relative">
+                  <div className="w-full h-full rounded-[15px] relative transition-all duration-300" 
+                       style={{
+                         backgroundColor: 'var(--card-background)',
+                         boxShadow: `4px 4px 5px 2px var(--card-shadow)`
+                       }}>
                     {/* Background Image */}
                     {game.data.featuredImage ? (
                       <div 
@@ -98,10 +113,10 @@ export default async function HomePage({ params }: HomePageProps) {
                     
                     {/* Content */}
                     <div className="absolute left-[19px] top-[225px]">
-                      <h3 className="font-poppins font-semibold text-[36px] leading-[45px] text-[#EAE9E9] mb-2">
+                      <h3 className="font-poppins font-semibold text-[36px] leading-[45px] mb-2 transition-colors duration-300" style={{color: 'var(--card-title)'}}>
                         {game.data.title}
                       </h3>
-                      <p className="font-poppins font-normal text-[16px] leading-[24px] text-[#1A1A1A] w-[312px]">
+                      <p className="font-poppins font-normal text-[16px] leading-[24px] w-[312px] transition-colors duration-300" style={{color: 'var(--card-text)'}}>
                         {game.data.description}
                       </p>
                     </div>

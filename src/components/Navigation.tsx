@@ -3,8 +3,9 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSun } from '@fortawesome/free-solid-svg-icons'
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 import { useLocale, getLocalizedPath } from '@/contexts/LocaleContext'
+import { useTheme } from '@/contexts/ThemeContext'
 import { usePathname, useRouter } from 'next/navigation'
 
 interface NavigationProps {
@@ -31,6 +32,19 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
     locale = pathname.startsWith('/en') ? 'en' : 'hu'
   }
 
+  // Safe theme hook usage with fallback
+  let theme: 'light' | 'dark' = 'light'
+  let toggleTheme: (() => void) | undefined
+
+  try {
+    const themeContext = useTheme()
+    theme = themeContext.theme
+    toggleTheme = themeContext.toggleTheme
+  } catch {
+    // Fallback when not wrapped in ThemeProvider
+    theme = 'light'
+  }
+
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -45,13 +59,18 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
     router.push(newPath)
   }
 
+  const handleThemeSwitch = () => {
+    if (!toggleTheme || !mounted) return
+    toggleTheme()
+  }
+
 
   return (
-    <nav style={{backgroundColor: '#EAE9E9', height: '164px'}}>
+    <nav style={{backgroundColor: 'var(--navigation-background)', height: '164px'}} className="transition-colors duration-300">
       <div className="w-[1024px] mx-auto px-16 h-full">
         <div className="flex justify-between items-center h-full">
           {/* Group 1: Calendar */}
-          <div className="font-poppins font-medium text-[22px] leading-[27px] text-[#1A1A1A]">
+          <div className="font-poppins font-medium text-[22px] leading-[27px]" style={{color: 'var(--navigation-text)'}}>
             {calendarTitle}
           </div>
 
@@ -62,38 +81,38 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
               alt="Sector Hungaricus Logo" 
               className="max-w-[70px] max-h-[70px] object-contain"
             />
-            <div className="font-montserrat-subrayada font-bold text-[36px] leading-[48px] text-[#1A1A1A] tracking-wide">
+            <div className="font-montserrat-subrayada font-bold text-[36px] leading-[48px] tracking-wide" style={{color: 'var(--navigation-text)'}}>
               SECTOR HUNGARICUS
             </div>
           </Link>
 
           {/* Group 3: About Us */}
-          <div className="font-poppins font-medium text-[22px] leading-[27px] text-[#1A1A1A]">
+          <div className="font-poppins font-medium text-[22px] leading-[27px]" style={{color: 'var(--navigation-text)'}}>
             {aboutTitle}
           </div>
 
           {/* Group 4: Language and Dark Mode */}
           <div className="flex items-center space-x-6">
             {/* Language Switch */}
-            <div className="flex bg-gray-200 rounded-lg p-1">
+            <div className="flex rounded-lg p-1 transition-colors duration-300" style={{backgroundColor: 'var(--language-switch-background)'}}>
               <button
                 onClick={() => locale !== 'hu' && handleLanguageSwitch()}
-                className={`px-3 py-1 text-sm font-semibold rounded-md transition-colors ${
-                  locale === 'hu' 
-                    ? 'bg-white text-[#1A1A1A] shadow-sm' 
-                    : 'text-gray-600 hover:text-[#1A1A1A]'
-                }`}
+                className="px-3 py-1 text-sm font-semibold rounded-md transition-all duration-300 shadow-sm"
+                style={{
+                  backgroundColor: locale === 'hu' ? 'var(--language-switch-active)' : 'var(--language-switch-inactive)',
+                  color: locale === 'hu' ? 'var(--language-switch-active-text)' : 'var(--language-switch-inactive-text)'
+                }}
                 disabled={!mounted || !setLocale}
               >
                 HU
               </button>
               <button
                 onClick={() => locale !== 'en' && handleLanguageSwitch()}
-                className={`px-3 py-1 text-sm font-semibold rounded-md transition-colors ${
-                  locale === 'en' 
-                    ? 'bg-white text-[#1A1A1A] shadow-sm' 
-                    : 'text-gray-600 hover:text-[#1A1A1A]'
-                }`}
+                className="px-3 py-1 text-sm font-semibold rounded-md transition-all duration-300 shadow-sm"
+                style={{
+                  backgroundColor: locale === 'en' ? 'var(--language-switch-active)' : 'var(--language-switch-inactive)',
+                  color: locale === 'en' ? 'var(--language-switch-active-text)' : 'var(--language-switch-inactive-text)'
+                }}
                 disabled={!mounted || !setLocale}
               >
                 EN
@@ -101,10 +120,17 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
             </div>
             
             {/* Dark Mode Toggle */}
-            <button className="w-10 h-10 flex items-center justify-center">
+            <button 
+              onClick={handleThemeSwitch}
+              className="w-10 h-10 flex items-center justify-center transition-all duration-300 hover:scale-110"
+              disabled={!mounted || !toggleTheme}
+              data-testid="theme-toggle"
+              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+            >
               <FontAwesomeIcon 
-                icon={faSun} 
-                className="text-2xl text-[#1A1A1A]" 
+                icon={theme === 'light' ? faMoon : faSun} 
+                className="text-2xl transition-colors duration-300" 
+                style={{color: 'var(--navigation-text)'}}
               />
             </button>
           </div>
@@ -137,38 +163,53 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
-              <div className="block text-gray-700 px-3 py-2 rounded-md text-base font-medium">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-opacity-20" style={{borderColor: 'var(--navigation-text)'}}>
+              <div className="block px-3 py-2 rounded-md text-base font-medium" style={{color: 'var(--navigation-text)'}}>
                 {calendarTitle}
               </div>
-              <div className="block text-gray-700 px-3 py-2 rounded-md text-base font-medium">
+              <div className="block px-3 py-2 rounded-md text-base font-medium" style={{color: 'var(--navigation-text)'}}>
                 {aboutTitle}
               </div>
-              <div className="px-3 py-2">
-                <div className="flex bg-gray-200 rounded-lg p-1 w-fit">
+              <div className="px-3 py-2 flex items-center justify-between">
+                <div className="flex rounded-lg p-1 w-fit transition-colors duration-300" style={{backgroundColor: 'var(--language-switch-background)'}}>
                   <button
                     onClick={() => locale !== 'hu' && handleLanguageSwitch()}
-                    className={`px-3 py-1 text-sm font-semibold rounded-md transition-colors ${
-                      locale === 'hu' 
-                        ? 'bg-white text-[#1A1A1A] shadow-sm' 
-                        : 'text-gray-600 hover:text-[#1A1A1A]'
-                    }`}
+                    className="px-3 py-1 text-sm font-semibold rounded-md transition-all duration-300 shadow-sm"
+                    style={{
+                      backgroundColor: locale === 'hu' ? 'var(--language-switch-active)' : 'var(--language-switch-inactive)',
+                      color: locale === 'hu' ? 'var(--language-switch-active-text)' : 'var(--language-switch-inactive-text)'
+                    }}
                     disabled={!mounted || !setLocale}
                   >
                     HU
                   </button>
                   <button
                     onClick={() => locale !== 'en' && handleLanguageSwitch()}
-                    className={`px-3 py-1 text-sm font-semibold rounded-md transition-colors ${
-                      locale === 'en' 
-                        ? 'bg-white text-[#1A1A1A] shadow-sm' 
-                        : 'text-gray-600 hover:text-[#1A1A1A]'
-                    }`}
+                    className="px-3 py-1 text-sm font-semibold rounded-md transition-all duration-300 shadow-sm"
+                    style={{
+                      backgroundColor: locale === 'en' ? 'var(--language-switch-active)' : 'var(--language-switch-inactive)',
+                      color: locale === 'en' ? 'var(--language-switch-active-text)' : 'var(--language-switch-inactive-text)'
+                    }}
                     disabled={!mounted || !setLocale}
                   >
                     EN
                   </button>
                 </div>
+                
+                {/* Mobile Dark Mode Toggle */}
+                <button 
+                  onClick={handleThemeSwitch}
+                  className="w-10 h-10 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  disabled={!mounted || !toggleTheme}
+                  data-testid="mobile-theme-toggle"
+                  aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+                >
+                  <FontAwesomeIcon 
+                    icon={theme === 'light' ? faMoon : faSun} 
+                    className="text-xl transition-colors duration-300" 
+                    style={{color: 'var(--navigation-text)'}}
+                  />
+                </button>
               </div>
             </div>
           </div>

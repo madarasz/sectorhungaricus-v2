@@ -3,6 +3,7 @@ import { Inter, Poppins } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import "../lib/fontawesome";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -79,8 +80,10 @@ export default function RootLayout({
 
   return (
     <html lang="hu">
-      <body className={`${inter.variable} ${poppins.variable} ${namdhinggo.variable} ${montserratSubrayada.variable} font-sans antialiased`} style={{backgroundColor: '#EAE9E9'}}>
-        {children}
+      <body className={`${inter.variable} ${poppins.variable} ${namdhinggo.variable} ${montserratSubrayada.variable} font-sans antialiased`}>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

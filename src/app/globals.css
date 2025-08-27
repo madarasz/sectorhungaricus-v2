@@ -1,8 +1,51 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light theme (default) */
+  --background: #EAE9E9;
+  --foreground: #1A1A1A;
+  --navigation-background: #EAE9E9;
+  --navigation-text: #1A1A1A;
+  --hero-background: #1A1251;
+  --hero-text: #EAE9E9;
+  --button-primary: #EAE9E9;
+  --button-primary-text: #1A1A1A;
+  --button-secondary: transparent;
+  --button-secondary-text: #EAE9E9;
+  --button-border: #EAE9E9;
+  --card-background: #DFDFDF;
+  --card-text: #1A1A1A;
+  --card-title: #EAE9E9;
+  --card-shadow: rgba(0, 0, 0, 0.25);
+  --language-switch-background: #D1D5DB;
+  --language-switch-active: #FFFFFF;
+  --language-switch-active-text: #1A1A1A;
+  --language-switch-inactive: transparent;
+  --language-switch-inactive-text: #6B7280;
+}
+
+:root.dark {
+  /* Dark theme */
+  --background: #1A1A1A;
+  --foreground: #EAE9E9;
+  --navigation-background: #1A1A1A;
+  --navigation-text: #EAE9E9;
+  --hero-background: #1A1251;
+  --hero-text: #EAE9E9;
+  --button-primary: #EAE9E9;
+  --button-primary-text: #1A1A1A;
+  --button-secondary: transparent;
+  --button-secondary-text: #EAE9E9;
+  --button-border: #EAE9E9;
+  --card-background: #DFDFDF;
+  --card-text: #1A1251;
+  --card-title: #EAE9E9;
+  --card-shadow: rgba(0, 0, 0, 0.5);
+  --language-switch-background: #374151;
+  --language-switch-active: #1F2937;
+  --language-switch-active-text: #EDEDED;
+  --language-switch-inactive: transparent;
+  --language-switch-inactive-text: #9CA3AF;
 }
 
 @theme inline {
@@ -86,15 +129,9 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
