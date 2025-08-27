@@ -90,7 +90,7 @@ export default async function CalendarPage({ params }: CalendarPageProps) {
             {/* Google Calendar Embed */}
             <div className="h-[600px]">
               <iframe
-                src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FBudapest&showPrint=0&mode=AGENDA&src=OGY0Njg2NTg4YjM3NWE0ZTg0YWE3ZTA1ZjRhYjZhNDY0ZWQxMGVlZGQ4NjZhYTU4YmQ3ZjIxNjRmMTkxNjEyMUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23616161"
+                src={`https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FBudapest&showPrint=0&mode=AGENDA&src=OGY0Njg2NTg4YjM3NWE0ZTg0YWE3ZTA1ZjRhYjZhNDY0ZWQxMGVlZGQ4NjZhYTU4YmQ3ZjIxNjRmMTkxNjEyMUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23616161&hl=${validLocale}`}
                 style={{ border: 0 }}
                 width="100%"
                 height="100%"
