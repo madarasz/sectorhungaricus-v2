@@ -1,9 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLanguage, faSun } from '@fortawesome/free-solid-svg-icons'
+import { useLocale, getLocalizedPath } from '@/contexts/LocaleContext'
+import { usePathname, useRouter } from 'next/navigation'
 
 interface NavigationProps {
   calendarTitle: string
@@ -12,6 +14,51 @@ interface NavigationProps {
 
 export default function Navigation({ calendarTitle, aboutTitle }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
+
+  // Safe locale hook usage with fallback
+  let locale: 'hu' | 'en' = 'hu'
+  let setLocale: ((locale: 'hu' | 'en') => void) | undefined
+
+  try {
+    const localeContext = useLocale()
+    locale = localeContext.locale
+    setLocale = localeContext.setLocale
+  } catch {
+    // Fallback when not wrapped in LocaleProvider
+    locale = pathname.startsWith('/en') ? 'en' : 'hu'
+  }
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const handleLanguageSwitch = () => {
+    if (!setLocale || !mounted) return
+    
+    const newLocale = locale === 'hu' ? 'en' : 'hu'
+    const newPath = getLocalizedPath(pathname, newLocale)
+    setLocale(newLocale)
+    router.push(newPath)
+  }
+
+  // Use locale-aware titles with fallback
+  const getLocalizedTitles = () => {
+    if (locale === 'en') {
+      return {
+        calendar: 'Calendar',
+        about: 'About Us'
+      }
+    }
+    return {
+      calendar: calendarTitle || 'Naptár',
+      about: aboutTitle || 'Rólunk'
+    }
+  }
+
+  const titles = getLocalizedTitles()
 
   return (
     <nav style={{backgroundColor: '#EAE9E9', height: '164px'}}>
@@ -19,14 +66,14 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
         <div className="flex justify-between items-center h-full">
           {/* Group 1: Calendar */}
           <Link
-            href="/calendar"
+            href={getLocalizedPath("/calendar", locale)}
             className="font-poppins font-medium text-[22px] leading-[27px] text-[#1A1A1A] hover:text-[#1A1251] transition-colors"
           >
-            {calendarTitle}
+            {titles.calendar}
           </Link>
 
           {/* Group 2: Logo and Title */}
-          <Link href="/" className="flex items-center space-x-4">
+          <Link href={getLocalizedPath("/", locale)} className="flex items-center space-x-4">
             <img 
               src="/uploads/sh-logo.png" 
               alt="Sector Hungaricus Logo" 
@@ -39,7 +86,7 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
 
           {/* Group 3: About Us */}
           <Link
-            href="/about-us"
+            href={getLocalizedPath("/about-us", locale)}
             className="font-poppins font-medium text-[22px] leading-[27px] text-[#1A1A1A] hover:text-[#1A1251] transition-colors"
           >
             {aboutTitle}
@@ -48,11 +95,15 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
           {/* Group 4: Language and Dark Mode */}
           <div className="flex items-center space-x-6">
             {/* Language Icon */}
-            <button className="w-10 h-10 flex items-center justify-center">
-              <FontAwesomeIcon 
-                icon={faLanguage} 
-                className="text-2xl text-[#1A1A1A]" 
-              />
+            <button 
+              onClick={handleLanguageSwitch}
+              className="w-10 h-10 flex items-center justify-center hover:bg-gray-200 rounded-lg transition-colors"
+              title={locale === 'hu' ? 'Switch to English' : 'Váltás magyarra'}
+              disabled={!mounted || !setLocale}
+            >
+              <span className="text-sm font-semibold text-[#1A1A1A]">
+                {locale === 'hu' ? 'EN' : 'HU'}
+              </span>
             </button>
             
             {/* Dark Mode Toggle */}
@@ -94,26 +145,27 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
               <Link
-                href="/calendar"
+                href={getLocalizedPath("/calendar", locale)}
                 className="block text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {calendarTitle}
+                {titles.calendar}
               </Link>
               <Link
-                href="/about-us"
+                href={getLocalizedPath("/about-us", locale)}
                 className="block text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {aboutTitle}
+                {titles.about}
               </Link>
               <div className="flex space-x-4 px-3 py-2">
-                <Link href="/" className="text-sm text-gray-600 hover:text-red-600">
-                  EN
-                </Link>
-                <Link href="/hu" className="text-sm text-gray-600 hover:text-red-600">
-                  HU
-                </Link>
+                <button 
+                  onClick={handleLanguageSwitch}
+                  className="text-sm text-gray-600 hover:text-red-600"
+                  disabled={!mounted || !setLocale}
+                >
+                  {locale === 'hu' ? 'EN' : 'HU'}
+                </button>
               </div>
             </div>
           </div>

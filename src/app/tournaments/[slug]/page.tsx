@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 
 export default async function TournamentPage({ params }: TournamentPageProps) {
   const { slug } = await params
-  const tournament = await getMarkdownContent('tournaments', slug, 'en')
+  const tournament = await getMarkdownContent('tournaments', slug, 'hu')
   
   if (!tournament) {
     notFound()

@@ -3,7 +3,7 @@ import { getAllContent } from '@/lib/markdown'
 import { TournamentContent } from '@/types/content'
 
 export default async function TournamentsPage() {
-  const tournaments = await getAllContent('tournaments', 'en') as TournamentContent[]
+  const tournaments = await getAllContent('tournaments', 'hu') as TournamentContent[]
   
   const upcomingTournaments = tournaments.filter((t) => t?.data?.status === 'upcoming')
   const ongoingTournaments = tournaments.filter((t) => t?.data?.status === 'ongoing')

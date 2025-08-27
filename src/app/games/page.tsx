@@ -3,7 +3,7 @@ import { getAllContent } from '@/lib/markdown'
 import { GameContent } from '@/types/content'
 
 export default async function GamesPage() {
-  const games = await getAllContent('games', 'en') as GameContent[]
+  const games = await getAllContent('games', 'hu') as GameContent[]
 
   return (
     <div className="container mx-auto px-4 py-8">

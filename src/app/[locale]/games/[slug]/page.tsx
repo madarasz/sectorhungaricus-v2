@@ -1,22 +1,31 @@
 import { notFound } from 'next/navigation'
 import { getMarkdownContent, getAllSlugs } from '@/lib/markdown'
+import { Locale } from '@/contexts/LocaleContext'
 
 interface GamePageProps {
   params: Promise<{
     slug: string
+    locale: string
   }>
 }
 
 export async function generateStaticParams() {
   const slugs = getAllSlugs('games')
-  return slugs.map((slug) => ({
-    slug,
-  }))
+  const locales: Locale[] = ['en']
+  
+  // Generate params for English only (Hungarian is default at root)
+  return slugs.flatMap((slug) =>
+    locales.map((locale) => ({
+      slug,
+      locale,
+    }))
+  )
 }
 
 export default async function GamePage({ params }: GamePageProps) {
-  const { slug } = await params
-  const game = await getMarkdownContent('games', slug, 'hu')
+  const { slug, locale } = await params
+  const validLocale = locale as Locale
+  const game = await getMarkdownContent('games', slug, validLocale)
   
   if (!game) {
     notFound()
