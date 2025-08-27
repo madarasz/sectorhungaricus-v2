@@ -70,9 +70,9 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
       <div className="w-[1024px] mx-auto px-16 h-full">
         <div className="flex justify-between items-center h-full">
           {/* Group 1: Calendar */}
-          <div className="font-poppins font-medium text-[22px] leading-[27px]" style={{color: 'var(--navigation-text)'}}>
+          <Link href={getLocalizedPath("/calendar", locale)} className="font-poppins font-medium text-[22px] leading-[27px] transition-colors duration-300 hover:opacity-80" style={{color: 'var(--navigation-text)'}}>
             {calendarTitle}
-          </div>
+          </Link>
 
           {/* Group 2: Logo and Title */}
           <Link href={getLocalizedPath("/", locale)} className="flex items-center space-x-4">
@@ -164,9 +164,9 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-opacity-20" style={{borderColor: 'var(--navigation-text)'}}>
-              <div className="block px-3 py-2 rounded-md text-base font-medium" style={{color: 'var(--navigation-text)'}}>
+              <Link href={getLocalizedPath("/calendar", locale)} className="block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 hover:opacity-80" style={{color: 'var(--navigation-text)'}}>
                 {calendarTitle}
-              </div>
+              </Link>
               <div className="block px-3 py-2 rounded-md text-base font-medium" style={{color: 'var(--navigation-text)'}}>
                 {aboutTitle}
               </div>

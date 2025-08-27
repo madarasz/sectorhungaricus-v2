@@ -22,6 +22,7 @@
   --language-switch-active-text: #1A1A1A;
   --language-switch-inactive: transparent;
   --language-switch-inactive-text: #6B7280;
+  --text: #1A1A1A;
 }
 
 :root.dark {
@@ -46,6 +47,7 @@
   --language-switch-active-text: #EDEDED;
   --language-switch-inactive: transparent;
   --language-switch-inactive-text: #9CA3AF;
+  --text: #EAE9E9;
 }
 
 @theme inline {
@@ -134,4 +136,69 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Calendar page markdown content styling */
+.prose h3 {
+  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.prose h3:first-child {
+  margin-top: 0;
+}
+
+.prose a {
+  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  color: #3B82F6;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.prose a:hover {
+  color: #2563EB;
+  text-decoration: none;
+}
+
+:root.dark .prose a {
+  color: #60A5FA;
+}
+
+:root.dark .prose a:hover {
+  color: #93C5FD;
+}
+
+.prose ul {
+  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  color: var(--text);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  list-style-type: disc;
+  transition: color 0.3s ease;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.prose li strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.prose p {
+  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
 }
