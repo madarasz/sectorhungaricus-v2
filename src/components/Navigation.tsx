@@ -35,15 +35,6 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
     setMounted(true)
   }, [])
 
-  const handleLanguageSwitch = () => {
-    if (!setLocale || !mounted) return
-    
-    const newLocale = locale === 'hu' ? 'en' : 'hu'
-    const newPath = getLocalizedPath(pathname, newLocale)
-    setLocale(newLocale)
-    router.push(newPath)
-  }
-
   // Use locale-aware titles with fallback
   const getLocalizedTitles = () => {
     if (locale === 'en') {
@@ -60,17 +51,24 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
 
   const titles = getLocalizedTitles()
 
+  const handleLanguageSwitch = () => {
+    if (!setLocale || !mounted) return
+    
+    const newLocale = locale === 'hu' ? 'en' : 'hu'
+    const newPath = getLocalizedPath(pathname, newLocale)
+    setLocale(newLocale)
+    router.push(newPath)
+  }
+
+
   return (
     <nav style={{backgroundColor: '#EAE9E9', height: '164px'}}>
       <div className="w-[1024px] mx-auto px-16 h-full">
         <div className="flex justify-between items-center h-full">
           {/* Group 1: Calendar */}
-          <Link
-            href={getLocalizedPath("/calendar", locale)}
-            className="font-poppins font-medium text-[22px] leading-[27px] text-[#1A1A1A] hover:text-[#1A1251] transition-colors"
-          >
+          <div className="font-poppins font-medium text-[22px] leading-[27px] text-[#1A1A1A]">
             {titles.calendar}
-          </Link>
+          </div>
 
           {/* Group 2: Logo and Title */}
           <Link href={getLocalizedPath("/", locale)} className="flex items-center space-x-4">
@@ -85,12 +83,9 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
           </Link>
 
           {/* Group 3: About Us */}
-          <Link
-            href={getLocalizedPath("/about-us", locale)}
-            className="font-poppins font-medium text-[22px] leading-[27px] text-[#1A1A1A] hover:text-[#1A1251] transition-colors"
-          >
-            {aboutTitle}
-          </Link>
+          <div className="font-poppins font-medium text-[22px] leading-[27px] text-[#1A1A1A]">
+            {titles.about}
+          </div>
 
           {/* Group 4: Language and Dark Mode */}
           <div className="flex items-center space-x-6">
@@ -144,20 +139,12 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
-              <Link
-                href={getLocalizedPath("/calendar", locale)}
-                className="block text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
+              <div className="block text-gray-700 px-3 py-2 rounded-md text-base font-medium">
                 {titles.calendar}
-              </Link>
-              <Link
-                href={getLocalizedPath("/about-us", locale)}
-                className="block text-gray-700 hover:text-red-600 px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
+              </div>
+              <div className="block text-gray-700 px-3 py-2 rounded-md text-base font-medium">
                 {titles.about}
-              </Link>
+              </div>
               <div className="flex space-x-4 px-3 py-2">
                 <button 
                   onClick={handleLanguageSwitch}

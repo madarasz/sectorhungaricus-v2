@@ -35,14 +35,14 @@ export default async function Home() {
           {/* Buttons */}
           <div className="absolute flex" style={{left: '449.5px', top: '279.5px'}}>
             {/* Calendar Button */}
-            <Link href="/tournaments" className="flex items-center border-3 border-[#EAE9E9] rounded-[10px] px-6 py-4 hover:bg-[#EAE9E9] hover:text-[#1A1251] transition-colors group mr-[91.5px]" 
+            <div className="flex items-center border-3 border-[#EAE9E9] rounded-[10px] px-6 py-4 mr-[91.5px]" 
                   style={{width: '215px', height: '71px'}}>
               <FontAwesomeIcon 
                 icon={faCalendarDays} 
-                className="text-4xl mr-4 text-[#EAE9E9] group-hover:text-[#1A1251]" 
+                className="text-4xl mr-4 text-[#EAE9E9]" 
               />
-              <span className="font-poppins font-medium text-[20px] leading-[30px] text-[#EAE9E9] group-hover:text-[#1A1251]">Naptár</span>
-            </Link>
+              <span className="font-poppins font-medium text-[20px] leading-[30px] text-[#EAE9E9]">Naptár</span>
+            </div>
             
             {/* Discord Button */}
             <Link href="https://discord.gg/sector-hungaricus" className="flex items-center bg-[#EAE9E9] rounded-[10px] px-6 py-4 hover:bg-white transition-colors" 
