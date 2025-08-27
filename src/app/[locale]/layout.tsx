@@ -21,8 +21,8 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const calendarData = await getMarkdownContent('pages', 'calendar', validLocale)
   const aboutData = await getMarkdownContent('pages', 'about-us', validLocale)
   
-  const calendarTitle = calendarData?.data?.title || (validLocale === 'hu' ? 'Naptár' : 'Calendar')
-  const aboutTitle = aboutData?.data?.title || (validLocale === 'hu' ? 'Rólunk' : 'About Us')
+  const calendarTitle = calendarData?.data?.title || ''
+  const aboutTitle = aboutData?.data?.title || ''
 
   return (
     <LocaleProvider initialLocale={validLocale}>

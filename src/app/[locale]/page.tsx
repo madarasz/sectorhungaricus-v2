@@ -23,17 +23,12 @@ export default async function HomePage({ params }: HomePageProps) {
   // Load homepage content
   const homepageContent = await getMarkdownContent('pages', 'welcome-to-sector-hungaricus', validLocale) as PageContent | null
   
+  // Load calendar content for button text
+  const calendarContent = await getMarkdownContent('pages', 'calendar', validLocale) as PageContent | null
+  
   // Load games content and sort alphabetically  
   const allGames = await getAllContent('games', validLocale) as GameContent[]
   const games = allGames.filter(Boolean).sort((a, b) => a.data.title.localeCompare(b.data.title))
-
-  // Get translations
-  const getTranslations = (locale: Locale) => ({
-    calendar: locale === 'hu' ? 'Naptár' : 'Calendar',
-    discord: 'Discord'
-  })
-
-  const t = getTranslations(validLocale)
 
   return (
     <div style={{backgroundColor: '#EAE9E9', minHeight: '100vh', overflowX: 'auto'}}>
@@ -43,25 +38,15 @@ export default async function HomePage({ params }: HomePageProps) {
           {/* Welcome Title */}
           <h1 className="absolute left-1/2 transform -translate-x-1/2 text-center font-namdhinggo font-semibold text-[48px] leading-[60px] text-[#EAE9E9]" 
               style={{width: '693px', top: '48px'}}>
-            {homepageContent?.data.title || (validLocale === 'hu' ? 'Üdvözöljük a Sector Hungaricus-ban!' : 'Welcome to Sector Hungaricus!')}
+            {homepageContent?.data.title}
           </h1>
           
           {/* Description */}
-          {homepageContent?.contentHtml ? (
-            <div className="absolute left-1/2 transform -translate-x-1/2 text-center font-poppins font-light text-[18px] leading-[27px] text-[#EAE9E9]" 
-                 style={{width: '1030px', top: '158px'}}
-                 dangerouslySetInnerHTML={{
-                   __html: homepageContent.contentHtml
-                 }} />
-          ) : (
-            <div className="absolute left-1/2 transform -translate-x-1/2 text-center font-poppins font-light text-[18px] leading-[27px] text-[#EAE9E9]" 
-                 style={{width: '1030px', top: '158px'}}>
-              {validLocale === 'hu' 
-                ? 'Csatlakozz a magyar skirmish gaming közösséghez! Kill Team, Spearhead és más miniatúra játékok várnak rád.'
-                : 'Join the Hungarian skirmish gaming community! Kill Team, Spearhead and other miniature games await you.'
-              }
-            </div>
-          )}
+          <div className="absolute left-1/2 transform -translate-x-1/2 text-center font-poppins font-light text-[18px] leading-[27px] text-[#EAE9E9]" 
+               style={{width: '1030px', top: '158px'}}
+               dangerouslySetInnerHTML={{
+                 __html: homepageContent?.contentHtml || ''
+               }} />
           
           {/* Buttons */}
           <div className="absolute flex" style={{left: '449.5px', top: '279.5px'}}>
@@ -73,7 +58,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 className="text-4xl mr-4 text-[#EAE9E9]" 
               />
               <span className="font-poppins font-medium text-[20px] leading-[30px] text-[#EAE9E9]">
-                {t.calendar}
+                {calendarContent?.data.title}
               </span>
             </div>
             
@@ -86,7 +71,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 className="text-4xl mr-4 text-[#1A1A1A]" 
               />
               <span className="font-poppins font-medium text-[20px] leading-[30px] text-[#1A1A1A]">
-                {t.discord}
+                Discord
               </span>
             </Link>
           </div>

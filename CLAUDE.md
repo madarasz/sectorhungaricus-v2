@@ -75,4 +75,4 @@ The `src/lib/markdown.ts` utilities handle:
 - Markdown to HTML conversion
 - Frontmatter parsing
 - Locale-specific content retrieval
-- never use default values for data coming from the CMS
+- DO NOT EVER use default values for data coming from the CMS. DO NOT use locale dependant magic strings either.
