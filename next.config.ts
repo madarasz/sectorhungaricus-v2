@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  // Note: redirects() doesn't work with output: 'export'
+  // Production redirects are handled by public/_redirects (Netlify)
+  // Development fallback is handled by not-found.tsx
 };
 
 export default nextConfig;

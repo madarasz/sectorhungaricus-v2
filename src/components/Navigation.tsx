@@ -35,21 +35,6 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
     setMounted(true)
   }, [])
 
-  // Use locale-aware titles with fallback
-  const getLocalizedTitles = () => {
-    if (locale === 'en') {
-      return {
-        calendar: 'Calendar',
-        about: 'About Us'
-      }
-    }
-    return {
-      calendar: calendarTitle || 'Naptár',
-      about: aboutTitle || 'Rólunk'
-    }
-  }
-
-  const titles = getLocalizedTitles()
 
   const handleLanguageSwitch = () => {
     if (!setLocale || !mounted) return
@@ -67,7 +52,7 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
         <div className="flex justify-between items-center h-full">
           {/* Group 1: Calendar */}
           <div className="font-poppins font-medium text-[22px] leading-[27px] text-[#1A1A1A]">
-            {titles.calendar}
+            {calendarTitle}
           </div>
 
           {/* Group 2: Logo and Title */}
@@ -84,7 +69,7 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
 
           {/* Group 3: About Us */}
           <div className="font-poppins font-medium text-[22px] leading-[27px] text-[#1A1A1A]">
-            {titles.about}
+            {aboutTitle}
           </div>
 
           {/* Group 4: Language and Dark Mode */}
@@ -140,10 +125,10 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
               <div className="block text-gray-700 px-3 py-2 rounded-md text-base font-medium">
-                {titles.calendar}
+                {calendarTitle}
               </div>
               <div className="block text-gray-700 px-3 py-2 rounded-md text-base font-medium">
-                {titles.about}
+                {aboutTitle}
               </div>
               <div className="flex space-x-4 px-3 py-2">
                 <button 

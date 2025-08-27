@@ -67,10 +67,6 @@ export function getLocalizedPath(path: string, locale: Locale): string {
   // Remove any existing locale prefix
   const cleanPath = path.replace(/^\/(en|hu)/, '') || '/'
   
-  // Add locale prefix only for English (Hungarian is default)
-  if (locale === 'en') {
-    return `/en${cleanPath === '/' ? '' : cleanPath}`
-  }
-  
-  return cleanPath
+  // Always add locale prefix since all URLs must have locale
+  return `/${locale}${cleanPath === '/' ? '' : cleanPath}`
 }

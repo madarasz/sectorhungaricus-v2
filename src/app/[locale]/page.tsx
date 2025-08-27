@@ -13,7 +13,7 @@ interface HomePageProps {
 }
 
 export async function generateStaticParams() {
-  return [{ locale: 'en' }] // Only generate English version (Hungarian is default at root)
+  return [{ locale: 'hu' }, { locale: 'en' }] // Generate both Hungarian and English versions
 }
 
 export default async function HomePage({ params }: HomePageProps) {
@@ -66,17 +66,16 @@ export default async function HomePage({ params }: HomePageProps) {
           {/* Buttons */}
           <div className="absolute flex" style={{left: '449.5px', top: '279.5px'}}>
             {/* Calendar Button */}
-            <Link href={validLocale === 'en' ? '/en/tournaments' : '/tournaments'} 
-                  className="flex items-center border-3 border-[#EAE9E9] rounded-[10px] px-6 py-4 hover:bg-[#EAE9E9] hover:text-[#1A1251] transition-colors group mr-[91.5px]" 
+            <div className="flex items-center border-3 border-[#EAE9E9] rounded-[10px] px-6 py-4 mr-[91.5px]" 
                   style={{width: '215px', height: '71px'}}>
               <FontAwesomeIcon 
                 icon={faCalendarDays} 
-                className="text-4xl mr-4 text-[#EAE9E9] group-hover:text-[#1A1251]" 
+                className="text-4xl mr-4 text-[#EAE9E9]" 
               />
-              <span className="font-poppins font-medium text-[20px] leading-[30px] text-[#EAE9E9] group-hover:text-[#1A1251]">
+              <span className="font-poppins font-medium text-[20px] leading-[30px] text-[#EAE9E9]">
                 {t.calendar}
               </span>
-            </Link>
+            </div>
             
             {/* Discord Button */}
             <Link href="https://discord.gg/sector-hungaricus" 
@@ -100,35 +99,29 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="flex justify-center gap-[91px]">
             {games.map((game) => {
               return (
-                <Link 
-                  key={game.slug}
-                  href={validLocale === 'en' ? `/en/games/${game.slug}` : `/games/${game.slug}`}
-                  className="block"
-                >
-                  <div className="w-[373px] h-[485px]">
-                    <div className="w-full h-full bg-[#DFDFDF] rounded-[15px] shadow-[4px_4px_5px_2px_rgba(0,0,0,0.25)] relative hover:shadow-lg transition-shadow">
-                      {/* Background Image */}
-                      {game.data.featuredImage ? (
-                        <div 
-                          className="w-full h-[269px] rounded-t-[15px] bg-cover bg-center"
-                          style={{backgroundImage: `url(${game.data.featuredImage})`}}
-                        />
-                      ) : (
-                        <div className="w-full h-[269px] rounded-t-[15px] bg-gradient-to-b from-gray-400 to-gray-600" />
-                      )}
-                      
-                      {/* Content */}
-                      <div className="absolute left-[19px] top-[225px]">
-                        <h3 className="font-poppins font-semibold text-[36px] leading-[45px] text-[#EAE9E9] mb-2">
-                          {game.data.title}
-                        </h3>
-                        <p className="font-poppins font-normal text-[16px] leading-[24px] text-[#1A1A1A] w-[312px]">
-                          {game.data.description}
-                        </p>
-                      </div>
+                <div key={game.slug} className="w-[373px] h-[485px]">
+                  <div className="w-full h-full bg-[#DFDFDF] rounded-[15px] shadow-[4px_4px_5px_2px_rgba(0,0,0,0.25)] relative">
+                    {/* Background Image */}
+                    {game.data.featuredImage ? (
+                      <div 
+                        className="w-full h-[269px] rounded-t-[15px] bg-cover bg-center"
+                        style={{backgroundImage: `url(${game.data.featuredImage})`}}
+                      />
+                    ) : (
+                      <div className="w-full h-[269px] rounded-t-[15px] bg-gradient-to-b from-gray-400 to-gray-600" />
+                    )}
+                    
+                    {/* Content */}
+                    <div className="absolute left-[19px] top-[225px]">
+                      <h3 className="font-poppins font-semibold text-[36px] leading-[45px] text-[#EAE9E9] mb-2">
+                        {game.data.title}
+                      </h3>
+                      <p className="font-poppins font-normal text-[16px] leading-[24px] text-[#1A1A1A] w-[312px]">
+                        {game.data.description}
+                      </p>
                     </div>
                   </div>
-                </Link>
+                </div>
               )
             })}
           </div>
