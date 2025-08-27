@@ -51,7 +51,8 @@ export default async function HomePage({ params }: HomePageProps) {
           {/* Buttons */}
           <div className="absolute flex" style={{left: '449.5px', top: '279.5px'}}>
             {/* Calendar Button */}
-            <div className="flex items-center border-3 rounded-[10px] px-6 py-4 mr-[91.5px] transition-all duration-300" 
+            <Link href={`/${locale}/calendar`}
+                  className="flex items-center border-3 rounded-[10px] px-6 py-4 mr-[91.5px] transition-all duration-300 hover:opacity-90" 
                   style={{
                     width: '215px', 
                     height: '71px', 
@@ -66,7 +67,7 @@ export default async function HomePage({ params }: HomePageProps) {
               <span className="font-poppins font-medium text-[20px] leading-[30px] transition-colors duration-300" style={{color: 'var(--button-secondary-text)'}}>
                 {calendarContent?.data.title}
               </span>
-            </div>
+            </Link>
             
             {/* Discord Button */}
             <Link href="https://discord.gg/sector-hungaricus" 

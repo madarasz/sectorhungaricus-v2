@@ -1,28 +1,6 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Rendering Tests', () => {
-  test('Hungarian page renders with HTTP 200 status', async ({ page }) => {
-    const response = await page.goto('/hu/');
-    expect(response?.status()).toBe(200);
-    
-    // Wait for the page to fully load
-    await page.waitForLoadState('networkidle');
-    
-    // Verify the page title contains expected content
-    await expect(page).toHaveTitle(/Sector Hungaricus/);
-  });
-
-  test('English page renders with HTTP 200 status', async ({ page }) => {
-    const response = await page.goto('/en/');
-    expect(response?.status()).toBe(200);
-    
-    // Wait for the page to fully load
-    await page.waitForLoadState('networkidle');
-    
-    // Verify the page title contains expected content
-    await expect(page).toHaveTitle(/Sector Hungaricus/);
-  });
-
   test('Hungarian page renders without React errors', async ({ page }) => {
     const consoleErrors: string[] = [];
     page.on('console', (msg) => {
@@ -31,8 +9,10 @@ test.describe('Rendering Tests', () => {
       }
     });
 
-    await page.goto('/hu/');
+    const response = await page.goto('/hu/');
+    expect(response?.status()).toBe(200);
     await page.waitForLoadState('networkidle');
+    await expect(page).toHaveTitle(/Sector Hungaricus/);
 
     // Check that no React errors occurred
     const reactErrors = consoleErrors.filter(error => 
@@ -52,8 +32,56 @@ test.describe('Rendering Tests', () => {
       }
     });
 
-    await page.goto('/en/');
+    const response = await page.goto('/en/');
+    expect(response?.status()).toBe(200);
     await page.waitForLoadState('networkidle');
+    await expect(page).toHaveTitle(/Sector Hungaricus/);
+
+    // Check that no React errors occurred
+    const reactErrors = consoleErrors.filter(error => 
+      error.includes('React') || 
+      error.includes('Warning:') ||
+      error.includes('Error:')
+    );
+    
+    expect(reactErrors).toHaveLength(0);
+  });
+
+  test('Hungarian calendar page renders without React errors', async ({ page }) => {
+    const consoleErrors: string[] = [];
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') {
+        consoleErrors.push(msg.text());
+      }
+    });
+
+    const response = await page.goto('/hu/calendar');
+    expect(response?.status()).toBe(200);
+    await page.waitForLoadState('networkidle');
+    await expect(page).toHaveTitle(/Sector Hungaricus/);
+
+    // Check that no React errors occurred
+    const reactErrors = consoleErrors.filter(error => 
+      error.includes('React') || 
+      error.includes('Warning:') ||
+      error.includes('Error:')
+    );
+    
+    expect(reactErrors).toHaveLength(0);
+  });
+
+  test('English calendar page renders without React errors', async ({ page }) => {
+    const consoleErrors: string[] = [];
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') {
+        consoleErrors.push(msg.text());
+      }
+    });
+
+    const response = await page.goto('/en/calendar');
+    expect(response?.status()).toBe(200);
+    await page.waitForLoadState('networkidle');
+    await expect(page).toHaveTitle(/Sector Hungaricus/);
 
     // Check that no React errors occurred
     const reactErrors = consoleErrors.filter(error => 

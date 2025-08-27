@@ -15,10 +15,7 @@ export interface TournamentContent {
     title: string
     date: string
     game: string
-    status: 'upcoming' | 'ongoing' | 'completed'
-    description: string
-    registration?: string
-    resultsGallery?: string
+    url: string
   }
   contentHtml: string
 }
@@ -41,6 +38,7 @@ export interface PageContent {
   slug: string
   data: {
     title: string
+    hero?: string
   }
   contentHtml: string
 }

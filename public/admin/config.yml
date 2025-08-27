@@ -28,7 +28,6 @@ collections:
       - {label: "Title", name: "title", widget: "string", i18n: true}
       - {label: "Description", name: "description", widget: "text", i18n: true}
       - {label: "Featured Image", name: "featuredImage", widget: "image", required: false}
-      - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Gallery"
         name: "gallery"
         widget: "relation"
@@ -47,6 +46,7 @@ collections:
     fields:
       - {label: "Title", name: "title", widget: "string", i18n: true}
       - {label: "Slug", name: "slug", widget: "string"}
+      - {label: "Hero", name: "hero", widget: "markdown", i18n: true, required: false}
       - {label: "Body", name: "body", widget: "markdown", i18n: true}
       - label: "Gallery"
         name: "gallery"
@@ -78,19 +78,16 @@ collections:
     folder: "content/tournaments"
     create: true
     slug: "{{slug}}"
-    i18n: true
+    i18n: false
     fields:
-      - {label: "Title", name: "title", widget: "string", i18n: true}
+      - {label: "Title", name: "title", widget: "string"}
       - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Game", name: "game", widget: "select", options: ["Kill Team", "Spearhead"]}
-      - {label: "Description", name: "description", widget: "markdown", i18n: true}
-      - {label: "Registration Info", name: "registration", widget: "markdown", i18n: true, required: false}
-      - {label: "Status", name: "status", widget: "select", options: ["upcoming", "ongoing", "completed"], default: "upcoming"}
-      - label: "Results Gallery"
-        name: "resultsGallery"
+      - label: "Game"
+        name: "game"
         widget: "relation"
-        collection: "galleries"
+        collection: "games"
         search_fields: ["title"]
         value_field: "{{slug}}"
         display_fields: ["title"]
-        required: false
+        required: true
+      - {label: "Url", name: "url", widget: "string"}
