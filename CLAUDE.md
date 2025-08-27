@@ -11,9 +11,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run build` - Build static site for production (outputs to `out/`)
 - `npm run lint` - Run ESLint
 
+### Testing
+- `npm run test:e2e` - Run Playwright e2e tests (headless, Chromium only)
+
 ### CMS Access
 - Local development: http://localhost:3000/admin/index.html (no authentication)
-- Production: Uses Netlify Identity for authentication
 
 ## Architecture Overview
 
@@ -21,12 +23,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a **static Next.js site** using **static export** (`output: 'export'`) with a **Git-based CMS** (Decap CMS). Content is stored as Markdown files in the `content/` directory, not in a database.
 
 ### Content Architecture
-The site has four content collections managed through the CMS:
+The site the following content collections managed through the CMS:
 
 1. **Games** (`content/games/`) - Gaming information with multilingual support
-2. **Tournaments** (`content/tournaments/`) - Event management with status tracking  
-3. **Galleries** (`content/galleries/`) - Photo galleries with metadata
-4. **Pages** (`content/pages/`) - General site pages
+2. **Pages** (`content/pages/`) - General site pages
 
 ### Multilingual Content System
 - **Structure**: Multiple files approach (`game-name.en.md`, `game-name.hu.md`)
@@ -75,4 +75,7 @@ The `src/lib/markdown.ts` utilities handle:
 - Markdown to HTML conversion
 - Frontmatter parsing
 - Locale-specific content retrieval
+
+## Developement guidelines
 - DO NOT EVER use default values for data coming from the CMS. DO NOT use locale dependant magic strings either.
+- After finishing your task, run tests, observe results. On failure, analyse failure reasons. If failure is because development issues, continue iteration of development.

@@ -55,6 +55,28 @@ A static website for the Hungarian skirmish gaming community, built with Next.js
    - Website: [http://localhost:3000](http://localhost:3000)
    - CMS Admin: [http://localhost:3000/admin/index.html](http://localhost:3000/admin/index.html)
 
+### Testing
+
+**End-to-End Tests**
+
+Run Playwright e2e tests to verify functionality:
+
+```bash
+# Run all e2e tests (headless)
+npm run test:e2e
+
+# Run tests with UI for debugging
+npm run test:e2e:ui
+```
+
+The e2e tests cover:
+- ✅ **Redirects**: Root URL redirects to Hungarian locale (`/hu/`)
+- ✅ **Language**: Hungarian and English content displays correctly
+- ✅ **Rendering**: Pages load with HTTP 200 and no React errors
+- ✅ **Game Loading**: Kill Team and Spearhead games appear on homepage
+
+Tests automatically start the dev server and run against `localhost:3000`.
+
 ### Content Management
 
 - **Local Development**: No authentication required, direct file editing
