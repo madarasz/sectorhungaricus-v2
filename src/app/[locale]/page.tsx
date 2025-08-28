@@ -31,58 +31,56 @@ export default async function HomePage({ params }: HomePageProps) {
   const games = allGames.filter(Boolean).sort((a, b) => a.data.title.localeCompare(b.data.title))
 
   return (
-    <div style={{backgroundColor: 'var(--background)', minHeight: '100vh', overflowX: 'auto'}}>
+    <div style={{backgroundColor: 'var(--background)', minHeight: '100vh'}} className="overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative" style={{backgroundColor: 'var(--hero-background)', height: '390px'}}>
-        <div className="w-[1440px] mx-auto relative h-full">
+      <section className="relative" style={{backgroundColor: 'var(--hero-background)'}}>
+        <div className="w-full max-w-[1440px] mx-auto relative responsive-padding min-h-[24rem]">
           {/* Welcome Title */}
-          <h1 className="absolute left-1/2 transform -translate-x-1/2 text-center font-namdhinggo font-semibold text-[48px] leading-[60px]" 
-              style={{width: '693px', top: '48px', color: 'var(--hero-text)'}}>
+          <h1 className="max-w-[50rem] mx-auto text-center pt-[3rem] font-namdhinggo font-semibold text-[2rem] md:text-[2.5rem] xl:text-[3rem]" 
+              style={{color: 'var(--hero-text)'}}>
             {homepageContent?.data.title}
           </h1>
           
           {/* Description */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 text-center font-poppins font-light text-[18px] leading-[27px]" 
-               style={{width: '1030px', top: '158px', color: 'var(--hero-text)'}}
+          <div className="mx-auto text-center font-poppins font-light w-full max-w-[64rem] text-[1.125rem] pt-[1rem]" 
+               style={{ color: 'var(--hero-text)' }}
                dangerouslySetInnerHTML={{
                  __html: homepageContent?.contentHtml || ''
                }} />
           
           {/* Buttons */}
-          <div className="absolute flex" style={{left: '449.5px', top: '279.5px'}}>
+          <div className="mx-auto flex flex-col md:flex-row gap-4 md:gap-[91.5px] w-full max-w-[16rem]">
             {/* Calendar Button */}
             <Link href={`/${locale}/calendar`}
-                  className="flex items-center border-3 rounded-[10px] px-6 py-4 mr-[91.5px] transition-all duration-300 hover:opacity-90" 
+                  className="flex items-center justify-center border-3 rounded-[10px] px-4 py-3 md:px-6 md:py-4 transition-all duration-300 hover:opacity-90 w-full md:w-[215px]" 
                   style={{
-                    width: '215px', 
-                    height: '71px', 
+                    minHeight: '60px',
                     borderColor: 'var(--button-border)',
                     backgroundColor: 'var(--button-secondary)'
                   }}>
               <FontAwesomeIcon 
                 icon={faCalendarDays} 
-                className="text-4xl mr-4" 
+                className="text-2xl md:text-4xl mr-2 md:mr-4" 
                 style={{color: 'var(--button-secondary-text)'}}
               />
-              <span className="font-poppins font-medium text-[20px] leading-[30px]" style={{color: 'var(--button-secondary-text)'}}>
+              <span className="font-poppins font-medium text-[16px] md:text-[20px] leading-[24px] md:leading-[30px]" style={{color: 'var(--button-secondary-text)'}}>
                 {calendarContent?.data.title}
               </span>
             </Link>
             
             {/* Discord Button */}
             <Link href="https://discord.gg/sector-hungaricus" 
-                  className="flex items-center rounded-[10px] px-6 py-4 transition-all duration-300 hover:opacity-90" 
+                  className="flex items-center justify-center rounded-[10px] px-4 py-3 md:px-6 md:py-4 transition-all duration-300 hover:opacity-90 w-full md:w-[218px]" 
                   style={{
-                    width: '218px', 
-                    height: '74px',
+                    minHeight: '60px',
                     backgroundColor: 'var(--button-primary)'
                   }}>
               <FontAwesomeIcon 
                 icon={faDiscord} 
-                className="text-4xl mr-4" 
+                className="text-2xl md:text-4xl mr-2 md:mr-4" 
                 style={{color: 'var(--button-primary-text)'}}
               />
-              <span className="font-poppins font-medium text-[20px] leading-[30px]" style={{color: 'var(--button-primary-text)'}}>
+              <span className="font-poppins font-medium text-[16px] md:text-[20px] leading-[24px] md:leading-[30px]" style={{color: 'var(--button-primary-text)'}}>
                 Discord
               </span>
             </Link>
@@ -91,12 +89,12 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       {/* Games Section */}
-      <section style={{paddingTop: '79px'}}>
-        <div className="w-[1440px] mx-auto">
-          <div className="flex justify-center gap-[91px]">
+      <section className="py-8 md:py-16 lg:py-20">
+        <div className="w-full max-w-[1440px] mx-auto px-4 md:px-8 lg:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-[91px] justify-items-center">
             {games.map((game) => {
               return (
-                <div key={game.slug} className="w-[373px] h-[485px]">
+                <div key={game.slug} className="w-full max-w-[373px] h-[300px] md:h-[485px]">
                   <div className="w-full h-full rounded-[15px] relative" 
                        style={{
                          backgroundColor: 'var(--card-background)',
@@ -105,21 +103,25 @@ export default async function HomePage({ params }: HomePageProps) {
                     {/* Background Image */}
                     {game.data.featuredImage ? (
                       <div 
-                        className="w-full h-[269px] rounded-t-[15px] bg-cover bg-center"
+                        className="w-full h-[180px] md:h-[269px] rounded-t-[15px] bg-cover bg-center"
                         style={{backgroundImage: `url(${game.data.featuredImage})`}}
                       />
                     ) : (
-                      <div className="w-full h-[269px] rounded-t-[15px] bg-gradient-to-b from-gray-400 to-gray-600" />
+                      <div className="w-full h-[180px] md:h-[269px] rounded-t-[15px] bg-gradient-to-b from-gray-400 to-gray-600" />
                     )}
                     
-                    {/* Content */}
-                    <div className="absolute left-[19px] top-[225px]">
-                      <h3 className="font-poppins font-semibold text-[36px] leading-[45px] mb-2" style={{color: 'var(--card-title)'}}>
-                        {game.data.title}
-                      </h3>
-                      <p className="font-poppins font-normal text-[16px] leading-[24px] w-[312px]" style={{color: 'var(--card-text)'}}>
-                        {game.data.description}
-                      </p>
+                    {/* Content - Mobile: centered title only, Desktop: positioned title + description */}
+                    <div className="absolute inset-0 flex items-center justify-center md:block md:left-[19px] md:top-[225px]">
+                      <div className="text-center md:text-left">
+                        <h3 className="font-poppins font-semibold text-[24px] md:text-[36px] leading-[30px] md:leading-[45px] mb-0 md:mb-2 px-4 md:px-0" 
+                            style={{color: 'var(--card-title)'}}>
+                          {game.data.title}
+                        </h3>
+                        <p className="hidden md:block font-poppins font-normal text-[16px] leading-[24px] w-[312px]" 
+                           style={{color: 'var(--card-text)'}}>
+                          {game.data.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -127,7 +129,6 @@ export default async function HomePage({ params }: HomePageProps) {
             })}
           </div>
         </div>
-        <div style={{height: '485px'}}></div>
       </section>
     </div>
   )

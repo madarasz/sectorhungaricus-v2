@@ -79,9 +79,9 @@ The `src/lib/markdown.ts` utilities handle:
 ## Responsive Design Guidelines
 
 ### Screen Breakpoints
-- **Mobile**: 360px - 767px (minimum usable width: 360px)
-- **Tablet**: 768px - 1279px 
-- **Desktop**: 1280px and above
+- **Mobile**: 360px - 767px (minimum usable width: 360px, Tailwind breakpoint until "md")
+- **Tablet**: 768px - 1279px (Tailwind breakpoint: from "md" until "xl")
+- **Desktop**: 1280px and above (Tailwind breakpoint: from "xl")
 - Navigation bar has additional breakpoints due to its complexity
 
 ### CSS Measurement Standards (2025 Best Practices)
