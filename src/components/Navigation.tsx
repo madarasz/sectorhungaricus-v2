@@ -66,11 +66,11 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
 
 
   return (
-    <nav style={{backgroundColor: 'var(--navigation-background)'}} className="transition-colors duration-300 h-[4rem] sm:h-[6rem] md:h-[7.5rem] xl:h-[10.25rem]">
+    <nav style={{backgroundColor: 'var(--navigation-background)'}} className="h-[4rem] sm:h-[6rem] md:h-[7.5rem] xl:h-[10.25rem]">
       <div className="lg:max-w-[90rem] px-4 sm:px-8 md:px-16 mx-auto h-full">
         <div className="flex justify-between items-center h-full">
           {/* Group 1: Calendar - Hidden on mobile, icon on tablet (md-lg), text on desktop (xl+) */}
-          <Link href={getLocalizedPath("/calendar", locale)} className="flex font-poppins font-medium text-[1.25rem] transition-colors duration-300 hover:opacity-80 md:items-center md:justify-center w-auto h-auto" style={{color: 'var(--navigation-text)'}}>
+          <Link href={getLocalizedPath("/calendar", locale)} className="flex font-poppins font-medium text-[1.25rem] hover:opacity-80 md:items-center md:justify-center w-auto h-auto" style={{color: 'var(--navigation-text)'}}>
             <FontAwesomeIcon icon={faCalendarDays} className="text-2xl" />
             <div className="hidden md:block">{calendarTitle}</div>
           </Link>
@@ -99,7 +99,7 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
           <div className="flex items-center space-x-0">
             {/* Language Switch */}
             {/* Desktop: Full switch */}
-            <div className="hidden md:flex rounded-lg p-1 transition-colors duration-300" style={{backgroundColor: 'var(--language-switch-background)'}} data-testid="desktop-language-switch">
+            <div className="hidden md:flex rounded-lg p-1" style={{backgroundColor: 'var(--language-switch-background)'}} data-testid="desktop-language-switch">
               <button
                 onClick={() => locale !== 'hu' && handleLanguageSwitch()}
                 className="px-3 py-1 text-sm font-semibold rounded-md transition-all duration-300 shadow-sm"
@@ -148,7 +148,7 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
             >
               <FontAwesomeIcon 
                 icon={theme === 'light' ? faMoon : faSun} 
-                className="text-2xl transition-colors duration-300" 
+                className="text-2xl" 
                 style={{color: 'var(--navigation-text)'}}
               />
             </button>
@@ -163,7 +163,7 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
               {/* Calendar Link */}
               <Link 
                 href={getLocalizedPath("/calendar", locale)} 
-                className="flex items-center space-x-3 px-3 py-3 rounded-lg text-base font-medium transition-colors duration-300 hover:opacity-80" 
+                className="flex items-center space-x-3 px-3 py-3 rounded-lg text-base font-medium hover:opacity-80" 
                 style={{color: 'var(--navigation-text)'}}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -201,7 +201,7 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
                 >
                   <FontAwesomeIcon 
                     icon={theme === 'light' ? faMoon : faSun} 
-                    className="text-xl transition-colors duration-300" 
+                    className="text-xl" 
                     style={{color: 'var(--navigation-text)'}}
                   />
                 </button>

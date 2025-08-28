@@ -33,11 +33,16 @@ export function ThemeProvider({ children, initialTheme = 'light' }: ThemeProvide
     const detectedTheme = savedTheme || systemTheme || 'light'
     
     setThemeState(detectedTheme)
-    setIsLoading(false)
     
-    // Apply theme class to document
+    // Apply theme class to document immediately
     document.documentElement.classList.remove('light', 'dark')
     document.documentElement.classList.add(detectedTheme)
+    
+    // Enable transitions after a brief delay to prevent flash
+    setTimeout(() => {
+      document.documentElement.classList.add('theme-transitions-enabled')
+      setIsLoading(false)
+    }, 500)
   }, [])
 
   const setTheme = (newTheme: Theme) => {

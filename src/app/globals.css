@@ -135,7 +135,11 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme transitions - only active after initial theme is set */
+.theme-transitions-enabled * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, fill 0.3s ease;
 }
 
 /* Calendar page markdown content styling */

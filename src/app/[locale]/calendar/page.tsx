@@ -40,14 +40,14 @@ export default async function CalendarPage({ params }: CalendarPageProps) {
   }, {} as Record<string, string>)
 
   return (
-    <div style={{backgroundColor: 'var(--background)', minHeight: '100vh'}} className="transition-colors duration-300">
+    <div style={{backgroundColor: 'var(--background)', minHeight: '100vh'}}>
       {/* Hero Section */}
           
           {/* Upcoming Tournaments List */}
           {upcomingTournaments.length > 0 && (
             <div className="max-w-4xl mx-auto">
               <div className="bg-blue-900 bg-opacity-80 rounded-lg p-6 backdrop-blur-sm" style={{color: 'var(--hero-text)', backgroundColor: 'var(--hero-background)',}}>
-                <h1 className="text-center font-poppins font-semibold text-[22px] leading-[60px] mb-8 transition-colors duration-300" >
+                <h1 className="text-center font-poppins font-semibold text-[22px] leading-[60px] mb-8" >
                   {calendarContent?.data.hero || calendarContent?.data.title}
                 </h1>
                 {upcomingTournaments.map((tournament) => {
@@ -103,7 +103,7 @@ export default async function CalendarPage({ params }: CalendarPageProps) {
             {/* Calendar Page Body Content */}
             <div className="prose max-w-none">
               <div 
-                className="font-poppins text-base leading-relaxed transition-colors duration-300"
+                className="font-poppins text-base leading-relaxed"
                 style={{color: 'var(--text)'}}
                 dangerouslySetInnerHTML={{
                   __html: calendarContent?.contentHtml || ''
