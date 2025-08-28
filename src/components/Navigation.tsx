@@ -153,7 +153,6 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
               />
             </button>
           </div>
-
         </div>
 
         {/* Mobile Navigation */}
