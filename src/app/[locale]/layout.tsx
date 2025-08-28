@@ -31,7 +31,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         {children}
       </main>
       <footer className="bg-gray-900 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 md:px-8 xl:px-16 text-center max-w-[64rem]">
           <p>&copy; 2024 Sector Hungaricus. All rights reserved.</p>
         </div>
       </footer>

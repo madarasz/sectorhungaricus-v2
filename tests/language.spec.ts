@@ -2,6 +2,8 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Language Tests', () => {
   test('Hungarian page displays correct texts', async ({ page }) => {
+    // Set desktop viewport to ensure navigation texts are visible
+    await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto('/hu/');
     await page.waitForLoadState('networkidle');
 
@@ -15,6 +17,8 @@ test.describe('Language Tests', () => {
   });
 
   test('English page displays correct texts', async ({ page }) => {
+    // Set desktop viewport to ensure navigation texts are visible
+    await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto('/en/');
     await page.waitForLoadState('networkidle');
 
