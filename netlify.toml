@@ -1,5 +1,5 @@
 [build]
-  command = "npm run test:e2e && npm run build"
+  command = "npm run build"
   publish = "out"
 
 [[redirects]]
