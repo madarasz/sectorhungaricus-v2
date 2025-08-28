@@ -22,21 +22,10 @@ export function ThemeProvider({ children, initialTheme = 'light' }: ThemeProvide
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Get saved theme from localStorage
-    const savedTheme = localStorage.getItem('preferred-theme') as Theme | null
-    
-    // Check system preference
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const systemTheme: Theme = systemPrefersDark ? 'dark' : 'light'
-    
-    // Priority: localStorage > system preference > default (light)
-    const detectedTheme = savedTheme || systemTheme || 'light'
-    
-    setThemeState(detectedTheme)
-    
-    // Apply theme class to document immediately
-    document.documentElement.classList.remove('light', 'dark')
-    document.documentElement.classList.add(detectedTheme)
+    // Theme is already applied by the inline script in layout.tsx
+    // Just sync the React state with the already-applied theme
+    const appliedTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+    setThemeState(appliedTheme)
     
     // Enable transitions after a brief delay to prevent flash
     setTimeout(() => {

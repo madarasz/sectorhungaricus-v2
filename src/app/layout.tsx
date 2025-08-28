@@ -80,6 +80,21 @@ export default function RootLayout({
 
   return (
     <html lang="hu">
+      <head>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              try {
+                const savedTheme = localStorage.getItem('preferred-theme');
+                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                const theme = savedTheme || systemTheme || 'light';
+                document.documentElement.classList.remove('light', 'dark');
+                document.documentElement.classList.add(theme);
+              } catch (e) {}
+            })();
+          `
+        }} />
+      </head>
       <body className={`${inter.variable} ${poppins.variable} ${namdhinggo.variable} ${montserratSubrayada.variable} font-sans antialiased`}>
         <ThemeProvider>
           {children}
