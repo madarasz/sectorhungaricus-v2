@@ -91,9 +91,9 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
           </Link>
 
           {/* Group 3: About Us - Only on desktop */}
-          <div className="hidden lg:block font-poppins font-medium text-[1.25rem]" style={{color: 'var(--navigation-text)'}}>
+          <Link href={getLocalizedPath("/about", locale)} className="hidden lg:block font-poppins font-medium text-[1.25rem] hover:opacity-80" style={{color: 'var(--navigation-text)'}}>
             {aboutTitle}
-          </div>
+          </Link>
 
           {/* Group 4: Language and Dark Mode */}
           <div className="flex items-center space-x-0">
@@ -171,10 +171,15 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
               </Link>
               
               {/* About Us */}
-              <div className="flex items-center space-x-3 px-3 py-3 rounded-lg text-base font-medium" style={{color: 'var(--navigation-text)'}}>
+              <Link 
+                href={getLocalizedPath("/about", locale)} 
+                className="flex items-center space-x-3 px-3 py-3 rounded-lg text-base font-medium hover:opacity-80" 
+                style={{color: 'var(--navigation-text)'}}
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <span className="text-lg">ℹ️</span>
                 <span>{aboutTitle}</span>
-              </div>
+              </Link>
               
               {/* Language and Theme Controls */}
               <div className="px-3 py-2 flex items-center justify-between">
