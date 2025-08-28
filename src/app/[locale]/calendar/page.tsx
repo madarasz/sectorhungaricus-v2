@@ -45,8 +45,8 @@ export default async function CalendarPage({ params }: CalendarPageProps) {
           
           {/* Upcoming Tournaments List */}
           {upcomingTournaments.length > 0 && (
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-blue-900 bg-opacity-80 rounded-lg p-6 backdrop-blur-sm" style={{color: 'var(--hero-text)', backgroundColor: 'var(--hero-background)',}}>
+            <div className="lg:max-w-4xl lg:mx-auto">
+              <div className="bg-blue-900 bg-opacity-80 lg:rounded-lg p-6 backdrop-blur-sm" style={{color: 'var(--hero-text)', backgroundColor: 'var(--hero-background)',}}>
                 <h1 className="text-center font-poppins font-semibold text-[22px] leading-[60px] mb-8" >
                   {calendarContent?.data.hero || calendarContent?.data.title}
                 </h1>
@@ -56,27 +56,24 @@ export default async function CalendarPage({ params }: CalendarPageProps) {
                   const gameName = gameMap[tournament.data.game] || tournament.data.game
                   
                   return (
-                      <div key={tournament.slug} className="flex items-center justify-between py-2">
-                        <div className="flex items-center justify-center space-x-4 w-full">
-                        <span className="text-white font-poppins">
-                          {formattedDate} - {gameName} {validLocale == "hu" ? "verseny" : "tournament"}:
-                        </span>
-                        {tournament.data.url ? (
-                          <Link 
-                            href={tournament.data.url}
-                            className="text-blue-200 hover:text-white underline font-poppins"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {tournament.data.title}
-                          </Link>
-                        ) : (
-                          <span className="text-white font-poppins">
-                            {tournament.data.title}
-                          </span>
-                        )}
+                      <div key={tournament.slug} className="py-2">
+                        <div className="text-white font-poppins text-center">
+                          {formattedDate} - {gameName} {validLocale == "hu" ? "verseny" : "tournament"}: {tournament.data.url ? (
+                            <Link 
+                              href={tournament.data.url}
+                              className="text-blue-200 hover:text-white underline"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {tournament.data.title}
+                            </Link>
+                          ) : (
+                            <span>
+                              {tournament.data.title}
+                            </span>
+                          )}
+                        </div>
                       </div>
-                    </div>
                   )
                 })}
               </div>
@@ -85,8 +82,8 @@ export default async function CalendarPage({ params }: CalendarPageProps) {
 
       {/* Main Content Section */}
       <section className="py-16">
-        <div className="w-[1440px] mx-auto">
-          <div className="grid grid-cols-2 gap-16">
+        <div className="max-w-[1440px] mx-auto px-4">
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-8 lg:gap-16">
             {/* Google Calendar Embed */}
             <div className="h-[600px]">
               <iframe
