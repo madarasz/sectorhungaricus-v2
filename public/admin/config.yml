@@ -91,3 +91,49 @@ collections:
         display_fields: ["title"]
         required: true
       - {label: "Url", name: "url", widget: "string"}
+
+  - name: "subpages"
+    label: "Subpages"
+    folder: "content/subpages"
+    create: true
+    slug: "{{game}}-{{fields.slug}}"
+    i18n: true
+    fields:
+      - {label: "Title", name: "title", widget: "string", i18n: true}
+      - {label: "Hide title", name: "hide-title", widget: "boolean", default: false}
+      - {label: "Slug", name: "slug", widget: "string"}
+      - {label: "Order", name: "order", widget: "number", default: 1}
+      - label: "Game"
+        name: "game"
+        widget: "relation"
+        collection: "games"
+        search_fields: ["title"]
+        value_field: "{{slug}}"
+        display_fields: ["title"]
+      - label: "Content Blocks"
+        name: "content_blocks"
+        widget: "list"
+        i18n: true
+        types:
+          - label: "Text Block"
+            name: "text_block"
+            widget: "object"
+            fields:
+              - {label: "Content", name: "content", widget: "markdown"}
+              - label: "Style"
+                name: "style"
+                widget: "select"
+                options: ["normal", "bordered"]
+                default: "normal"
+          - label: "Hero Block"
+            name: "hero_block"
+            widget: "object"
+            fields:
+              - {label: "Content", name: "content", widget: "markdown"}
+          - label: "Two Column Layout"
+            name: "two_column_block"
+            widget: "object"
+            fields:
+              - {label: "Block Title", name: "block_title", widget: "string"}
+              - {label: "Left Content", name: "left_content", widget: "markdown"}
+              - {label: "Right Content", name: "right_content", widget: "markdown"}
