@@ -41,7 +41,11 @@ async function processContentBlocks(blocks: ContentBlock[]): Promise<ContentBloc
   return processedBlocks
 }
 
-export async function getMarkdownContent(collection: string, slug: string, locale?: string) {
+export async function getMarkdownContent(collection: string, slug: string, locale?: string): Promise<{
+  slug: string;
+  data: Record<string, unknown>;
+  contentHtml: string;
+} | null> {
   const fileName = locale ? `${slug}.${locale}.md` : `${slug}.md`
   const fullPath = path.join(contentDirectory, collection, fileName)
   
@@ -97,7 +101,7 @@ export function getAllSlugs(collection: string) {
   return slugs
 }
 
-export function getAllContent(collection: string, locale?: string) {
+export function getAllContent(collection: string, locale?: string): Promise<NonNullable<Awaited<ReturnType<typeof getMarkdownContent>>>[]> {
   const slugs = getAllSlugs(collection)
   
   return Promise.all(
@@ -105,7 +109,7 @@ export function getAllContent(collection: string, locale?: string) {
       const content = await getMarkdownContent(collection, slug, locale)
       return content
     })
-  ).then(results => results.filter(Boolean))
+  ).then(results => results.filter(Boolean) as NonNullable<Awaited<ReturnType<typeof getMarkdownContent>>>[])
 }
 
 export async function getGameWithSubpages(gameSlug: string, locale?: string) {

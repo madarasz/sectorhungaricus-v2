@@ -99,6 +99,6 @@ The `src/lib/markdown.ts` utilities handle:
 
 ## Developement guidelines
 - DO NOT EVER use default values for data coming from the CMS. DO NOT use locale dependant magic strings either.
-- After finishing your task, run tests, observe results. On failure, analyse failure reasons. If failure is because development issues, continue iteration of development.
+- After finishing your task, run E2E tests and "npm run build", observe results. On failure, analyse failure reasons. If failure is because development issues, continue iteration of development.
 - If you ever want to run "npm run dev", check if the server is already running on port 3000, so you don't have to start another instance
 - Do not write "await page.waitForLoadState('networkidle')" in the E2E tests, Playwright handles this automatically
