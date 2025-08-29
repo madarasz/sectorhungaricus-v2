@@ -1,6 +1,6 @@
 ---
 title: Hasznos linkek
-hide-title: true
+hide-title: false
 slug: resources
 order: 4
 game: kill-team
@@ -27,4 +27,5 @@ content_blocks:
       - [KT3 Battlekit](https://kt3.albecortes.com/) - Tartalmazza az általános szabályokat, csapatszabályokat, pontszámkövetőt és még sok mást. Készítette **Alberto Cortes Villena**.
 
       - [Approved Ops alternatíva](https://ko-fi.com/s/5136c98c58) - nyomtatható Crit Ops, Tac Ops, Kill Op Chart, Universal Equipment **Dovahkruz**-tól. Használd ezt a [felszerelés frissítést](https://drive.google.com/file/d/1NiEIa16WcMGShihDOi_0QYzFA4ON4ZHY/view) a legújabb 2025 Q1 szabályoknak való megfeleléshez!
+    hide_title: true
 ---

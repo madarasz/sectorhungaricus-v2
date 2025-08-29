@@ -28,6 +28,7 @@ content_blocks:
       - Jegyzetfüzet vagy digitális eszköz a játék követéséhez
       - Szabálykönyv, csapat adatkártyák
       - Küldetés- és felszereléskártyák (*Approved Ops Card Pack*)
+    hide_title: false
   - type: text_block
     style: normal
     content: >

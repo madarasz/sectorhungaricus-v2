@@ -7,6 +7,7 @@
   --navigation-background: #EAE9E9;
   --navigation-text: #1A1A1A;
   --hero-background: #1A1251;
+  --hero-secondary-background: #4D448E;
   --hero-text: #EAE9E9;
   --button-primary: #EAE9E9;
   --button-primary-text: #1A1A1A;
@@ -32,6 +33,7 @@
   --navigation-background: #1A1A1A;
   --navigation-text: #EAE9E9;
   --hero-background: #1A1251;
+  --hero-secondary-background: #4D448E;
   --hero-text: #EAE9E9;
   --button-primary: #EAE9E9;
   --button-primary-text: #1A1A1A;
@@ -90,6 +92,16 @@
 
 .font-namdhinggo {
   font-family: var(--font-namdhinggo), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+.hero-colors {
+  background: var(--hero-background);
+  color: var(--hero-text);
+}
+
+.hero-secondary-colors {
+  background: var(--hero-secondary-background);
+  color: var(--hero-secondary-text);
 }
 
 .responsive-padding {

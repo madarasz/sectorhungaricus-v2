@@ -1,6 +1,6 @@
 ---
 title: Custom game elements
-hide-title: true
+hide-title: false
 slug: custom-game-elements
 order: 3
 game: kill-team
@@ -33,6 +33,7 @@ content_blocks:
       - 3D printed order tokens
 
       - Fancy, expensive, laser-cut/wooden/minted tokens from Etsy
+    hide_title: true
   - type: text_block
     style: bordered
     content: >-

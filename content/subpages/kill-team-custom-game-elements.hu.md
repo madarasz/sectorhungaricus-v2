@@ -1,6 +1,6 @@
 ---
 title: Saját kellékek készítése
-hide-title: true
+hide-title: false
 slug: custom-game-elements
 order: 3
 game: kill-team
@@ -33,6 +33,7 @@ content_blocks:
       - 3D nyomtatott parancs tokenek
 
       - Egyedi lézervágott/préselt/fa tokenek Etsyről
+    hide_title: true
   - type: text_block
     style: bordered
     content: >-

@@ -51,7 +51,7 @@ test.describe('Subpages Navigation Tests', () => {
       await checkContentLength(page);
       
       // Verify the link is marked as active
-      await expect(link).toHaveClass(/bg-blue-100|text-blue-700/);
+      await expect(link).toHaveClass(/hero-colors/);
     }
     
     return linkCount;

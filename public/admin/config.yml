@@ -135,5 +135,6 @@ collections:
             widget: "object"
             fields:
               - {label: "Block Title", name: "block_title", widget: "string"}
+              - {label: "Hide title", name: "hide_title", widget: "boolean", default: false}
               - {label: "Left Content", name: "left_content", widget: "markdown"}
               - {label: "Right Content", name: "right_content", widget: "markdown"}

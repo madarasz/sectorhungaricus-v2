@@ -5,7 +5,7 @@ import SubpageRenderer from './SubpageRenderer'
 interface GameLayoutProps {
   game: GameContent
   subpages: SubpageContent[]
-  currentSubpage: SubpageContent | null
+  currentSubpage: SubpageContent
   locale: string
 }
 
@@ -18,17 +18,8 @@ export default function GameLayout({ game, subpages, currentSubpage, locale }: G
         gameSlug={game.slug}
         locale={locale} 
       />
-      <main className="flex-1 p-8" data-testid="subpage-content">
-        {currentSubpage ? (
-          <SubpageRenderer subpage={currentSubpage} />
-        ) : (
-          <div className="max-w-4xl mx-auto text-center py-16">
-            <h1 className="text-4xl font-bold mb-4">{game.data.title}</h1>
-            <p className="text-xl text-gray-600">
-              Contents coming soon...
-            </p>
-          </div>
-        )}
+      <main className="flex-1 px-4" data-testid="subpage-content">
+        <SubpageRenderer subpage={currentSubpage} />
       </main>
     </div>
   )

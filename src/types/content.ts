@@ -48,6 +48,7 @@ export interface ContentBlock {
   content?: string
   style?: 'normal' | 'bordered'
   block_title?: string
+  hide_title?: boolean
   left_content?: string
   right_content?: string
 }

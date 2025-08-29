@@ -28,6 +28,7 @@ content_blocks:
       - Notebook or digital tool for tracking game progress
       - Rulebook, team data cards
       - Mission and equipment cards (*Approved Ops Card Pack*)
+    hide_title: false
   - type: text_block
     style: normal
     content: >-
