@@ -6,9 +6,16 @@ interface HeroBlockProps {
 
 export default function HeroBlock({ block }: HeroBlockProps) {
   return (
-    <div className="hero-block bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-lg mb-8">
+    <div 
+      className="hero-block p-8 rounded-lg mb-8"
+      style={{ 
+        background: 'var(--hero-background)',
+        color: 'var(--hero-text)'
+      }}
+    >
       <div 
-        className="prose prose-lg max-w-none text-gray-800"
+        className="prose prose-lg max-w-none"
+        style={{ color: 'var(--hero-text)' }}
         dangerouslySetInnerHTML={{ __html: block.content || '' }} 
       />
     </div>

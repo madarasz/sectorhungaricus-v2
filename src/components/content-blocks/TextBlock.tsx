@@ -6,7 +6,7 @@ interface TextBlockProps {
 
 export default function TextBlock({ block }: TextBlockProps) {
   const className = block.style === 'bordered' 
-    ? 'prose max-w-none p-6 border border-gray-300 rounded-lg'
+    ? 'prose max-w-none p-6 border-10 border-indigo-950 rounded-lg'
     : 'prose max-w-none'
 
   return (

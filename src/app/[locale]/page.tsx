@@ -113,7 +113,7 @@ export default async function HomePage({ params }: HomePageProps) {
                   {/* Soon Banner for games without subpages */}
                   {!hasSubpages && (
                     <div className="absolute inset-0 flex items-center justify-center" style={{ transform: 'translateY(-5rem)' }}>
-                      <div className="bg-blue-800 text-black px-12 py-4 rounded-lg text-3xl font-bold border-1 border-black transform -rotate-12">
+                      <div className="px-12 py-4 rounded-lg text-3xl font-bold border-1 transform -rotate-12" style={{color: 'var(--hero-text)', backgroundColor: 'var(--hero-background)',}}>
                         {soonText}
                       </div>
                     </div>

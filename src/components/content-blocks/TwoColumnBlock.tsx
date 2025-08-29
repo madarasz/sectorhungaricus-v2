@@ -6,17 +6,25 @@ interface TwoColumnBlockProps {
 
 export default function TwoColumnBlock({ block }: TwoColumnBlockProps) {
   return (
-    <div className="two-column-block mb-8">
+    <div className="two-column-block mb-8" >
       {block.block_title && (
         <h3 className="text-2xl font-bold mb-6">{block.block_title}</h3>
       )}
       <div className="grid md:grid-cols-2 gap-8">
         <div 
-          className="prose max-w-none"
+          className="p-8 rounded-lg mb-8 prose max-w-none"
+          style={{ 
+            background: 'var(--hero-background)',
+            color: 'var(--hero-text)'
+          }}
           dangerouslySetInnerHTML={{ __html: block.left_content || '' }} 
         />
         <div 
-          className="prose max-w-none"
+          className="p-8 rounded-lg mb-8 prose max-w-none"
+          style={{ 
+            background: 'var(--hero-background)',
+            color: 'var(--hero-text)'
+          }}
           dangerouslySetInnerHTML={{ __html: block.right_content || '' }} 
         />
       </div>
