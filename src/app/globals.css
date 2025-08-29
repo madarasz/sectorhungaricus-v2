@@ -116,13 +116,6 @@
   }
 }
 
-@media (min-width: 768px) {
-  .responsive-padding {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
@@ -222,4 +215,14 @@ body {
   line-height: 1.6;
   margin-bottom: 1rem;
   transition: color 0.3s ease;
+}
+
+@media (max-width: 1023px) {
+  .prose h3 {
+    font-size: 1.25rem;
+  }
+
+  .prose h4 {
+    font-size: 1rem;
+  }
 }
