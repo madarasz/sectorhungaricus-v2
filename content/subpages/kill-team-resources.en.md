@@ -14,7 +14,7 @@ content_blocks:
 
       - [Warhammer Community - Kill Team News](https://www.warhammer-community.com/en-gb/setting/kill-team/) - latest news, announcements, and updates about the world of Kill Team
 
-      #### Faction rules, rule updates, FAQs
+      ##### Faction rules, rule updates, FAQs
 
       - Warhammer Community - [Kill Team Downloads](https://www.warhammer-community.com/en-gb/downloads/kill-team/)
 
@@ -22,7 +22,7 @@ content_blocks:
     right_content: >-
       ### Unofficial Sources
 
-      #### Rules, data cards, and scoring tool
+      ##### Rules, data cards, and scoring tool
 
       - [KT3 Battlekit](https://kt3.albecortes.com/) - Includes general rules, team rules, score tracker and much more. Created by **Alberto Cortes Villena**.
 

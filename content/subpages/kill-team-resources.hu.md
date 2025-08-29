@@ -14,7 +14,7 @@ content_blocks:
 
       - [Warhammer Community - Kill Team hírek](https://www.warhammer-community.com/en-gb/setting/kill-team/) - legújabb hírek, bejelentések és frissítések a Kill Team világából
 
-      #### Frakció szabályok, szabály frissítések, gyakori kérdések
+      ##### Frakció szabályok, szabály frissítések, gyakori kérdések
 
       - Warhammer Community - [Kill Team letölthető fájlok](https://www.warhammer-community.com/en-gb/downloads/kill-team/)
 
@@ -22,7 +22,7 @@ content_blocks:
     right_content: >-
       ### Nem-hivatalos források
 
-      #### Szabályok, adatkártyák, eszközök pontozáshoz
+      ##### Szabályok, adatkártyák, eszközök pontozáshoz
 
       - [KT3 Battlekit](https://kt3.albecortes.com/) - Tartalmazza az általános szabályokat, csapatszabályokat, pontszámkövetőt és még sok mást. Készítette **Alberto Cortes Villena**.
 

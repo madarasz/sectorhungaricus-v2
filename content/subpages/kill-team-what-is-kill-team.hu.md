@@ -6,13 +6,10 @@ order: 1
 game: kill-team
 content_blocks:
   - type: hero_block
-    content: A **Kill Team** egy **skirmish wargame** a **Warhammer 40,000
-      univerzumban**, ahol a játékosok kis létszámú, specializált osztagokat
-      irányítanak egyedi képességekkel rendelkező csapattagokkal. A játék a
-      taktikai küzdelemre és az egyes egységek irányítására összpontosít a nagy
-      léptékű csaták helyett. **Több mint 30 különböző frakció** közül
-      választhatsz, mindegyik saját egyedi játékstílussal, így minden játék új
-      és izgalmas élményt nyújt.
+    content: >-
+      ### Mi az a Kill Team?
+
+      A **Kill Team** egy **skirmish wargame** a **Warhammer 40,000 univerzumban**, ahol a játékosok kis létszámú, specializált osztagokat irányítanak egyedi képességekkel rendelkező csapattagokkal. A játék a taktikai küzdelemre és az egyes egységek irányítására összpontosít a nagy léptékű csaták helyett. **Több mint 30 különböző frakció** közül választhatsz, mindegyik saját egyedi játékstílussal, így minden játék új és izgalmas élményt nyújt.
   - type: text_block
     style: normal
     content: >-

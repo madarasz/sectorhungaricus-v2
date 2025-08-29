@@ -49,7 +49,7 @@ export default async function HomePage({ params }: HomePageProps) {
         <div className="w-full max-w-[1440px] mx-auto relative responsive-padding min-h-[24rem] flex flex-col">
           <div>
             {/* Welcome Title */}
-            <h1 className="max-w-[50rem] mx-auto text-center pt-[3rem] font-namdhinggo font-semibold text-[2rem] md:text-[2.5rem] xl:text-[3rem]" 
+            <h1 className="max-w-[50rem] mx-auto text-center pt-[1rem] lg:pt-[3rem] font-namdhinggo font-semibold text-[2rem] md:text-[2.5rem] xl:text-[3rem]" 
                 style={{color: 'var(--hero-text)'}}>
               {homepageContent?.data.title}
             </h1>
@@ -112,8 +112,8 @@ export default async function HomePage({ params }: HomePageProps) {
                   
                   {/* Soon Banner for games without subpages */}
                   {!hasSubpages && (
-                    <div className="absolute inset-0 flex items-center justify-center" style={{ transform: 'translateY(-6rem)' }}>
-                      <div className="bg-orange-500 text-black px-12 py-4 rounded-lg text-3xl font-bold border-1 border-black transform -rotate-12">
+                    <div className="absolute inset-0 flex items-center justify-center" style={{ transform: 'translateY(-5rem)' }}>
+                      <div className="bg-blue-800 text-black px-12 py-4 rounded-lg text-3xl font-bold border-1 border-black transform -rotate-12">
                         {soonText}
                       </div>
                     </div>

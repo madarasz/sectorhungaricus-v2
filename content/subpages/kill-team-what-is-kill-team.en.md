@@ -6,12 +6,10 @@ order: 1
 game: kill-team
 content_blocks:
   - type: hero_block
-    content: "**Kill Team** is a **skirmish wargame** set in the **Warhammer 40,000
-      universe** where players control small, specialized squads of operatives
-      with unique abilities. The game focuses on tactical combat and individual
-      unit management rather than large-scale battles. With **more than 30
-      different factions** to choose from, each with their own distinct
-      playstyle, every game offers a new and exciting experience."
+    content: >-
+      ### What is Kill Team?
+
+      **Kill Team** is a **skirmish wargame** set in the **Warhammer 40,000 universe** where players control small, specialized squads of operatives with unique abilities. The game focuses on tactical combat and individual unit management rather than large-scale battles. With **more than 30 different factions** to choose from, each with their own distinct playstyle, every game offers a new and exciting experience.
   - type: text_block
     style: normal
     content: >-
