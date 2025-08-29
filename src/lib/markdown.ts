@@ -8,6 +8,11 @@ import { ContentBlock } from '@/types/content'
 const contentDirectory = path.join(process.cwd(), 'content')
 
 async function processMarkdownString(content: string): Promise<string> {
+  // Check if content is already HTML (contains HTML tags)
+  if (content.includes('<') && content.includes('>')) {
+    return content
+  }
+  
   const processedContent = await remark()
     .use(html)
     .process(content)
@@ -57,11 +62,17 @@ export async function getMarkdownContent(collection: string, slug: string, local
     data.content_blocks = await processContentBlocks(data.content_blocks as ContentBlock[])
   }
 
-  return {
+  // Ensure content_blocks are properly structured for serialization
+  const result = {
     slug,
-    data,
+    data: {
+      ...data,
+      content_blocks: data.content_blocks ? JSON.parse(JSON.stringify(data.content_blocks)) : undefined
+    },
     contentHtml,
   }
+  
+  return result
 }
 
 export function getAllSlugs(collection: string) {

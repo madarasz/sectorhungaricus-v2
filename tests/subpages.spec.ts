@@ -14,7 +14,6 @@ test.describe('Subpages Navigation Tests', () => {
   async function navigateSubpages(page: any, locale: any, gameSlug: any, subpageSlug: any) {
     // Navigate to the initial subpage
     await page.goto(`/${locale}/${gameSlug}/${subpageSlug}/`);
-    await page.waitForLoadState('networkidle');
     
     // Check initial content
     await checkContentLength(page);
@@ -41,7 +40,6 @@ test.describe('Subpages Navigation Tests', () => {
       
       // Click the link
       await link.click();
-      await page.waitForLoadState('networkidle');
       
       // Wait for URL to change
       await page.waitForURL(`**${href}`, { timeout: 5000 });

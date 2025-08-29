@@ -8,7 +8,6 @@ test.describe('Theme Switching Tests', () => {
 
   test('should toggle theme when clicking theme button', async ({ page }) => {
     await page.goto('/hu/');
-    await page.waitForLoadState('networkidle');
 
     // Get the theme toggle button
     const themeToggle = page.getByTestId('theme-toggle');
@@ -48,7 +47,6 @@ test.describe('Theme Switching Tests', () => {
 
   test('should persist theme preference in localStorage', async ({ page }) => {
     await page.goto('/hu/');
-    await page.waitForLoadState('networkidle');
 
     // Switch to dark theme
     const themeToggle = page.getByTestId('theme-toggle');
@@ -67,7 +65,6 @@ test.describe('Theme Switching Tests', () => {
 
     // Reload page and verify theme is still dark
     await page.reload();
-    await page.waitForLoadState('networkidle');
     
     const htmlClass = await page.locator('html').getAttribute('class');
     expect(htmlClass).toContain('dark');
@@ -80,7 +77,6 @@ test.describe('Theme Switching Tests', () => {
 
   test('should maintain theme across different pages', async ({ page }) => {
     await page.goto('/hu/');
-    await page.waitForLoadState('networkidle');
 
     // Switch to dark theme
     const themeToggle = page.getByTestId('theme-toggle');
@@ -89,7 +85,6 @@ test.describe('Theme Switching Tests', () => {
 
     // Navigate to English page
     await page.goto('/en/');
-    await page.waitForLoadState('networkidle');
 
     // Verify theme is still dark
     const htmlClass = await page.locator('html').getAttribute('class');

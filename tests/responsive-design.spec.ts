@@ -14,7 +14,6 @@ test.describe('Responsive Design Tests', () => {
 
     test('Navigation renders correctly on mobile', async ({ page }) => {
       await page.goto('/hu/');
-      await page.waitForLoadState('networkidle');
 
       // Check navigation height is 6rem (96px)
       const nav = page.locator('nav').first();
@@ -28,7 +27,6 @@ test.describe('Responsive Design Tests', () => {
 
     test('No layout overflow on mobile', async ({ page }) => {
       await page.goto('/hu/');
-      await page.waitForLoadState('networkidle');
 
       // Check that no horizontal scrollbar appears
       const horizontalScrollWidth = await page.evaluate(() => {
@@ -50,8 +48,7 @@ test.describe('Responsive Design Tests', () => {
 
     test('Navigation renders correctly on tablet', async ({ page }) => {
       await page.goto('/hu/');
-      await page.waitForLoadState('networkidle');
-
+ 
       // Calendar should show as icon + text on tablet (md+)
       const navCalendarIcon = page.locator('nav [data-icon="calendar-days"]').first();
       await expect(navCalendarIcon).toBeVisible();
@@ -69,7 +66,6 @@ test.describe('Responsive Design Tests', () => {
 
     test('No layout overflow on tablet', async ({ page }) => {
       await page.goto('/hu/');
-      await page.waitForLoadState('networkidle');
 
       const horizontalScrollWidth = await page.evaluate(() => {
         return document.documentElement.scrollWidth;
@@ -90,7 +86,6 @@ test.describe('Responsive Design Tests', () => {
 
     test('Navigation renders correctly on desktop', async ({ page }) => {
       await page.goto('/hu/');
-      await page.waitForLoadState('networkidle');
 
       // Calendar should show as text (link) in navigation
       const navCalendarLink = page.locator('nav a[href*="/calendar"]').filter({ hasText: 'Naptár' }).first();
@@ -113,7 +108,6 @@ test.describe('Responsive Design Tests', () => {
 
     test('No layout overflow on desktop', async ({ page }) => {
       await page.goto('/hu/');
-      await page.waitForLoadState('networkidle');
 
       const horizontalScrollWidth = await page.evaluate(() => {
         return document.documentElement.scrollWidth;

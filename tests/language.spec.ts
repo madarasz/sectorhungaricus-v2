@@ -5,7 +5,6 @@ test.describe('Language Tests', () => {
     // Set desktop viewport to ensure navigation texts are visible
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto('/hu/');
-    await page.waitForLoadState('networkidle');
 
     // Check for Hungarian texts from content files and navigation - use first() to avoid strict mode violations
     await expect(page.locator('text=Naptár').first()).toBeVisible();
@@ -20,7 +19,6 @@ test.describe('Language Tests', () => {
     // Set desktop viewport to ensure navigation texts are visible
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto('/en/');
-    await page.waitForLoadState('networkidle');
 
     // Check for English texts from content files and navigation - use first() to avoid strict mode violations
     await expect(page.locator('text=Calendar').first()).toBeVisible();

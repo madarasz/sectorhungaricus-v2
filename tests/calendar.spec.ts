@@ -3,7 +3,6 @@ import { test, expect } from '@playwright/test';
 test.describe('Calendar Page Tests', () => {
   test('Calendar page displays upcoming tournaments in hero section', async ({ page }) => {
     await page.goto('/hu/calendar');
-    await page.waitForLoadState('networkidle');
 
     // Check that the hero section is visible
     await expect(page.locator('h1:text("Kiemelt események")')).toBeVisible();
@@ -15,7 +14,6 @@ test.describe('Calendar Page Tests', () => {
 
   test('Calendar page displays markdown content from CMS', async ({ page }) => {
     await page.goto('/en/calendar');
-    await page.waitForLoadState('networkidle');
 
     // Check for content sections from the calendar.en.md file using heading selectors
     await expect(page.locator('h3:text("Club Days")')).toBeVisible();
@@ -29,7 +27,6 @@ test.describe('Calendar Page Tests', () => {
 
   test('Hungarian calendar page shows correct localized content', async ({ page }) => {
     await page.goto('/hu/calendar');
-    await page.waitForLoadState('networkidle');
 
     // Check Hungarian hero text
     await expect(page.locator('h1:text("Kiemelt események")')).toBeVisible();
