@@ -119,10 +119,16 @@ export async function getGameWithSubpages(gameSlug: string, locale?: string) {
   // Get subpages for this game and locale
   const allSubpages = await getAllContent('subpages', locale)
   const subpages = allSubpages
-    .filter(subpage => subpage && subpage.data && subpage.data.game === gameSlug)
+    .filter((subpage): subpage is NonNullable<typeof subpage> => 
+      subpage !== null && 
+      subpage.data && 
+      'game' in subpage.data && 
+      subpage.data.game === gameSlug
+    )
     .sort((a, b) => {
-      if (!a || !b) return 0
-      return (a.data.order || 0) - (b.data.order || 0)
+      const orderA = 'order' in a.data ? (a.data.order as number) || 0 : 0
+      const orderB = 'order' in b.data ? (b.data.order as number) || 0 : 0
+      return orderA - orderB
     })
   
   return { game, subpages }

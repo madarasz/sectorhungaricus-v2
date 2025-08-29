@@ -1,8 +1,8 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 
 test.describe('Subpages Navigation Tests', () => {
   // Helper function to check content has at least 0 characters
-  async function checkContentLength(page: any) {
+  async function checkContentLength(page: Page) {
     const subpageContent = page.locator('[data-testid="subpage-content"]');
     await expect(subpageContent).toBeVisible();
     
@@ -11,7 +11,7 @@ test.describe('Subpages Navigation Tests', () => {
   }
 
   // Helper function to navigate through all subpages
-  async function navigateSubpages(page: any, locale: any, gameSlug: any, subpageSlug: any) {
+  async function navigateSubpages(page: Page, locale: string, gameSlug: string, subpageSlug: string) {
     // Navigate to the initial subpage
     await page.goto(`/${locale}/${gameSlug}/${subpageSlug}/`);
     
