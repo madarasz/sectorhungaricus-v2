@@ -79,18 +79,27 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="hu">
+    <html lang="hu" className="light" suppressHydrationWarning={true}>
       <head>
         <script dangerouslySetInnerHTML={{
           __html: `
             (function() {
               try {
-                const savedTheme = localStorage.getItem('preferred-theme');
-                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                const theme = savedTheme || systemTheme || 'light';
+                // Set theme
+                var savedTheme = localStorage.getItem('preferred-theme');
+                var systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                var theme = savedTheme || systemTheme || 'light';
                 document.documentElement.classList.remove('light', 'dark');
                 document.documentElement.classList.add(theme);
-              } catch (e) {}
+                
+                // Set language
+                var pathLocale = window.location.pathname.startsWith('/en') ? 'en' : 'hu';
+                document.documentElement.setAttribute('lang', pathLocale);
+              } catch (e) {
+                // Fallback: ensure defaults are applied
+                document.documentElement.classList.add('light');
+                document.documentElement.setAttribute('lang', 'hu');
+              }
             })();
           `
         }} />
