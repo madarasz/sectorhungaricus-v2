@@ -1,5 +1,8 @@
 ---
 title: Hasznos linkek
+hide-title: true
+slug: resources
+order: 4
 game: kill-team
 content_blocks:
   - type: two_column_block

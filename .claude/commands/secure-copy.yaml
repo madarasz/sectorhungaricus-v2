@@ -1,0 +1,102 @@
+secure-copy:
+  description: "Create a clean copy of the current project directory"
+  prompt: |
+    Create a secure copy of the current project directory with the following requirements:
+    
+    1. **Determine the copy destination**:
+       - Get the current project directory name (last part of pwd)
+       - Create a copy at the same level (sibling directory)
+       - Name it: "{original-name}-copy"
+    
+    2. **Clean up existing copy**:
+       - If a directory with the name "{original-name}-copy" already exists, delete it completely first
+    
+    3. **Copy with exclusions**:
+       - Copy all files and directories from the current project
+       - IMPORTANT: INCLUDE the .git directory to preserve version control history
+       - EXCLUDE the following directories and their contents:
+         
+         # Node.js / JavaScript
+         - node_modules/
+         - .next/
+         - .nuxt/
+         - dist/
+         - out/
+         - .cache/
+         - .parcel-cache/
+         - .webpack/
+         - .svelte-kit/
+         - .vite/
+         
+         # Python
+         - __pycache__/
+         - *.pyc
+         - .Python
+         - build/
+         - develop-eggs/
+         - dist/
+         - downloads/
+         - eggs/
+         - .eggs/
+         - lib/
+         - lib64/
+         - parts/
+         - sdist/
+         - var/
+         - wheels/
+         - *.egg-info/
+         - .pytest_cache/
+         - .tox/
+         - .coverage
+         - .mypy_cache/
+         - .ruff_cache/
+         - venv/
+         - env/
+         - ENV/
+         - .venv/
+         
+         # Java / Maven / Gradle
+         - target/
+         - build/
+         - .gradle/
+         - gradle-app.setting
+         - !gradle-wrapper.jar
+         - .gradletasknamecache
+         - bin/
+         - out/
+         - .classpath
+         - .project
+         - .settings/
+         
+         # IDE and Editor
+         - .idea/
+         - .vscode/
+         - *.swp
+         - *.swo
+         - *~
+         - .DS_Store
+         
+         # Other build artifacts
+         - *.log
+         - logs/
+         - tmp/
+         - temp/
+         - .sass-cache/
+         - coverage/
+         - .nyc_output/
+         
+    4. **Execute the copy operation**:
+       - Use appropriate system commands (cp, rsync, or similar)
+       - Preserve file permissions and timestamps where possible
+       - Show progress if copying large projects
+    
+    5. **Verify and report**:
+       - Confirm the copy was created successfully
+       - Report the location of the new copy
+       - List the total size of the copied directory
+       - Confirm that .git directory was included (show git status or branch info)
+       - Mention what was excluded
+    
+    Please implement this as a shell command sequence that will work on Unix-like systems (Linux/macOS) and provide a PowerShell alternative for Windows if needed.
+    
+    The implementation should be robust, handle errors gracefully, and provide clear feedback about what's happening during the copy process.

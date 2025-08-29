@@ -1,5 +1,8 @@
 ---
 title: Mi az a Kill Team?
+hide-title: true
+slug: what-is-kill-team
+order: 1
 game: kill-team
 content_blocks:
   - type: hero_block

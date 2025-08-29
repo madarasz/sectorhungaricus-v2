@@ -3,8 +3,38 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
+import { ContentBlock } from '@/types/content'
 
 const contentDirectory = path.join(process.cwd(), 'content')
+
+async function processMarkdownString(content: string): Promise<string> {
+  const processedContent = await remark()
+    .use(html)
+    .process(content)
+  return processedContent.toString()
+}
+
+async function processContentBlocks(blocks: ContentBlock[]): Promise<ContentBlock[]> {
+  const processedBlocks = []
+  
+  for (const block of blocks) {
+    const processedBlock = { ...block }
+    
+    if (block.content) {
+      processedBlock.content = await processMarkdownString(block.content)
+    }
+    if (block.left_content) {
+      processedBlock.left_content = await processMarkdownString(block.left_content)
+    }
+    if (block.right_content) {
+      processedBlock.right_content = await processMarkdownString(block.right_content)
+    }
+    
+    processedBlocks.push(processedBlock)
+  }
+  
+  return processedBlocks
+}
 
 export async function getMarkdownContent(collection: string, slug: string, locale?: string) {
   const fileName = locale ? `${slug}.${locale}.md` : `${slug}.md`
@@ -21,6 +51,11 @@ export async function getMarkdownContent(collection: string, slug: string, local
     .use(html)
     .process(content)
   const contentHtml = processedContent.toString()
+
+  // Process content blocks for subpages
+  if (collection === 'subpages' && data.content_blocks) {
+    data.content_blocks = await processContentBlocks(data.content_blocks as ContentBlock[])
+  }
 
   return {
     slug,
@@ -60,4 +95,24 @@ export function getAllContent(collection: string, locale?: string) {
       return content
     })
   ).then(results => results.filter(Boolean))
+}
+
+export async function getGameWithSubpages(gameSlug: string, locale?: string) {
+  // Get game data
+  const game = await getMarkdownContent('games', gameSlug, locale)
+  
+  if (!game) {
+    return { game: null, subpages: [] }
+  }
+  
+  // Get subpages for this game and locale
+  const allSubpages = await getAllContent('subpages', locale)
+  const subpages = allSubpages
+    .filter(subpage => subpage && subpage.data && subpage.data.game === gameSlug)
+    .sort((a, b) => {
+      if (!a || !b) return 0
+      return (a.data.order || 0) - (b.data.order || 0)
+    })
+  
+  return { game, subpages }
 }

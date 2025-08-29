@@ -100,9 +100,9 @@ collections:
     i18n: true
     fields:
       - {label: "Title", name: "title", widget: "string", i18n: true}
-      - {label: "Hide title", name: "hide-title", widget: "boolean", default: false}
-      - {label: "Slug", name: "slug", widget: "string"}
-      - {label: "Order", name: "order", widget: "number", default: 1}
+      - {label: "Hide title", name: "hide-title", widget: "boolean", default: false, i18n: "duplicate"}
+      - {label: "Slug", name: "slug", widget: "string", i18n: "duplicate"}
+      - {label: "Order", name: "order", widget: "number", default: 1, i18n: "duplicate"}
       - label: "Game"
         name: "game"
         widget: "relation"

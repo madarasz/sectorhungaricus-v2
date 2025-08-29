@@ -1,5 +1,8 @@
 ---
 title: Saját kellékek készítése
+hide-title: true
+slug: custom-game-elements
+order: 3
 game: kill-team
 content_blocks:
   - type: two_column_block

@@ -42,3 +42,25 @@ export interface PageContent {
   }
   contentHtml: string
 }
+
+export interface ContentBlock {
+  type: 'text_block' | 'hero_block' | 'two_column_block'
+  content?: string
+  style?: 'normal' | 'bordered'
+  block_title?: string
+  left_content?: string
+  right_content?: string
+}
+
+export interface SubpageContent {
+  slug: string
+  data: {
+    title: string
+    'hide-title': boolean
+    slug: string
+    order: number
+    game: string
+    content_blocks: ContentBlock[]
+  }
+  contentHtml: string
+}

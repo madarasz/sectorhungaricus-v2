@@ -1,5 +1,8 @@
 ---
 title: Játszanék
+hide-title: false
+slug: want-to-play
+order: 2
 game: kill-team
 content_blocks:
   - type: text_block
