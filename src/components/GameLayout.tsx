@@ -18,7 +18,7 @@ export default function GameLayout({ game, subpages, currentSubpage, locale }: G
         gameSlug={game.slug}
         locale={locale} 
       />
-      <main className="flex-1 p-8">
+      <main className="flex-1 p-8" data-testid="subpage-content">
         {currentSubpage ? (
           <SubpageRenderer subpage={currentSubpage} />
         ) : (
