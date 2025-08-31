@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
 import { ContentBlock } from '@/types/content'
+import { generateImageVariants } from './imageVariants'
 
 const contentDirectory = path.join(process.cwd(), 'content')
 
@@ -44,9 +45,17 @@ async function processContentBlocks(blocks: ContentBlock[]): Promise<ContentBloc
           description?: string
           images?: Array<{
             src: string
+            variants?: import('@/types/content').ImageVariants
             caption?: string
             alt: string
           }>
+        }
+        // Generate image variants for gallery images
+        if (processedBlock.galleryData.images) {
+          processedBlock.galleryData.images = processedBlock.galleryData.images.map(image => ({
+            ...image,
+            variants: generateImageVariants(image.src)
+          }))
         }
       }
     }
@@ -80,6 +89,19 @@ export async function getMarkdownContent(collection: string, slug: string, local
   // Process content blocks for subpages
   if (collection === 'subpages' && data.content_blocks) {
     data.content_blocks = await processContentBlocks(data.content_blocks as ContentBlock[])
+  }
+
+  // Generate image variants for featured images in games
+  if (collection === 'games' && data.featuredImage) {
+    data.featuredImageVariants = generateImageVariants(data.featuredImage as string)
+  }
+
+  // Generate image variants for gallery images
+  if (collection === 'galleries' && data.images) {
+    data.images = (data.images as Array<{ src: string; caption?: string; alt: string }>).map((image) => ({
+      ...image,
+      variants: generateImageVariants(image.src)
+    }))
   }
 
   // Ensure content_blocks are properly structured for serialization

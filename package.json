@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run process-images && next build",
+    "build:next": "next build",
     "start": "next start",
     "lint": "next lint",
     "cms": "decap-server",
     "dev:cms": "concurrently \"npm run dev\" \"npm run cms\"",
+    "process-images": "tsx scripts/process-images.ts",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui"
   },
@@ -33,11 +35,14 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/sharp": "^0.31.1",
     "concurrently": "^9.2.1",
     "decap-server": "^3.3.1",
     "eslint": "^9",
     "eslint-config-next": "15.5.0",
+    "sharp": "^0.34.3",
     "tailwindcss": "^4",
+    "tsx": "^4.20.5",
     "typescript": "^5"
   }
 }

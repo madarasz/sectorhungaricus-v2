@@ -1,8 +1,9 @@
 'use client'
 
-import { ContentBlock } from '@/types/content'
+import { ContentBlock, ImageVariants } from '@/types/content'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
+import { getBestImageVariant } from '@/lib/imageVariants'
 
 interface GalleryBlockProps {
   block: ContentBlock & { type: 'gallery_block' }
@@ -11,6 +12,7 @@ interface GalleryBlockProps {
 interface ImageOverlayProps {
   images: Array<{
     src: string
+    variants?: ImageVariants
     caption?: string
     alt: string
   }>
@@ -107,14 +109,26 @@ function ImageOverlay({ images, currentIndex, isOpen, onClose, onPrevious, onNex
         data-testid="gallery-image-container"
       >
         <div className="relative flex-1 min-h-0">
-          <Image
-            src={currentImage.src}
-            alt={currentImage.alt}
-            fill
-            className="object-contain pointer-events-none"
-            sizes="90vw"
-            data-testid="gallery-overlay-image"
-          />
+          <picture>
+            {/* Desktop: use desktop variant */}
+            <source 
+              media="(min-width: 768px)" 
+              srcSet={getBestImageVariant(currentImage.variants, 'desktop') || currentImage.src}
+            />
+            {/* Mobile: use mobile variant */}
+            <source 
+              media="(max-width: 767px)" 
+              srcSet={getBestImageVariant(currentImage.variants, 'mobile') || currentImage.src}
+            />
+            <Image
+              src={getBestImageVariant(currentImage.variants, 'desktop') || currentImage.src}
+              alt={currentImage.alt}
+              fill
+              className="object-contain pointer-events-none"
+              sizes="90vw"
+              data-testid="gallery-overlay-image"
+            />
+          </picture>
         </div>
         
         {/* Caption */}
@@ -169,7 +183,7 @@ export default function GalleryBlock({ block }: GalleryBlockProps) {
   return (
     <>
       <div className="w-4/5 mx-auto" data-testid="gallery-container">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {images.map((image, index) => (
             <div 
               key={index} 
@@ -177,12 +191,13 @@ export default function GalleryBlock({ block }: GalleryBlockProps) {
               onClick={() => openOverlay(index)}
               data-testid={`gallery-thumbnail-${index}`}
             >
+              {/* Always use thumbnail variant for grid display */}
               <Image
-                src={image.src}
+                src={getBestImageVariant(image.variants, 'thumbnail') || image.src}
                 alt={image.alt}
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-200"
-                sizes="(max-width: 768px) 80vw, (max-width: 1280px) 40vw, 26vw"
+                sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
               />
             </div>
           ))}

@@ -1,9 +1,17 @@
+export interface ImageVariants {
+  original?: string
+  thumb?: string
+  mobile?: string
+  desktop?: string
+}
+
 export interface GameContent {
   slug: string
   data: {
     title: string
     description: string
     featuredImage?: string
+    featuredImageVariants?: ImageVariants
     gallery?: string
   }
   contentHtml: string
@@ -27,6 +35,7 @@ export interface GalleryContent {
     description?: string
     images?: Array<{
       src: string
+      variants?: ImageVariants
       caption?: string
       alt: string
     }>
@@ -57,6 +66,7 @@ export interface ContentBlock {
     description?: string
     images?: Array<{
       src: string
+      variants?: ImageVariants
       caption?: string
       alt: string
     }>

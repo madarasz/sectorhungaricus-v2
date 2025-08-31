@@ -145,8 +145,30 @@ Tournament files support:
 ### Galleries
 Gallery files contain:
 - Image lists with captions
-- Alt text for accessibility
+- Alt text for accessibility  
 - Descriptions
+
+#### Image Optimization
+
+The site automatically generates optimized image variants for gallery images during build:
+
+- **Thumbnails** (400×300px, 85% quality) - Used for gallery grids
+- **Mobile** (800×600px, 90% quality) - Optimized for mobile screens
+- **Desktop** (1200px width, 95% quality) - Full quality for desktop viewing
+
+**How it works:**
+1. Upload original images through the CMS to `public/uploads/`
+2. Add images to gallery content via CMS
+3. During build (`npm run build`), the system scans all gallery content
+4. Only images referenced in galleries are processed for variants
+5. Variants are automatically used based on screen size
+
+**Manual processing:**
+```bash
+npm run process-images
+```
+
+**Generated files are ignored by Git** - they're created during each build, keeping the repository clean while ensuring optimal performance.
 
 ## Customization
 
