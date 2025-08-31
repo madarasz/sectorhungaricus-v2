@@ -138,3 +138,15 @@ collections:
               - {label: "Hide title", name: "hide_title", widget: "boolean", default: false}
               - {label: "Left Content", name: "left_content", widget: "markdown"}
               - {label: "Right Content", name: "right_content", widget: "markdown"}
+          - label: "Gallery Block"
+            name: "gallery_block"
+            widget: "object"
+            fields:
+              - label: "Gallery"
+                name: "gallery"
+                widget: "relation"
+                collection: "galleries"
+                search_fields: ["title"]
+                value_field: "{{slug}}"
+                display_fields: ["title"]
+                required: false

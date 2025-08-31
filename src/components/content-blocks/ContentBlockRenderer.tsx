@@ -2,6 +2,7 @@ import { ContentBlock } from '@/types/content'
 import TextBlock from './TextBlock'
 import HeroBlock from './HeroBlock'
 import TwoColumnBlock from './TwoColumnBlock'
+import GalleryBlock from './GalleryBlock'
 
 interface ContentBlockRendererProps {
   block: ContentBlock
@@ -15,6 +16,8 @@ export default function ContentBlockRenderer({ block }: ContentBlockRendererProp
       return <HeroBlock block={block as ContentBlock & { type: 'hero_block' }} />
     case 'two_column_block':
       return <TwoColumnBlock block={block as ContentBlock & { type: 'two_column_block' }} />
+    case 'gallery_block':
+      return <GalleryBlock block={block as ContentBlock & { type: 'gallery_block' }} />
     default:
       return null
   }

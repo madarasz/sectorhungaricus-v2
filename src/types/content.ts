@@ -44,13 +44,23 @@ export interface PageContent {
 }
 
 export interface ContentBlock {
-  type: 'text_block' | 'hero_block' | 'two_column_block'
+  type: 'text_block' | 'hero_block' | 'two_column_block' | 'gallery_block'
   content?: string
   style?: 'normal' | 'bordered'
   block_title?: string
   hide_title?: boolean
   left_content?: string
   right_content?: string
+  gallery?: string
+  galleryData?: {
+    title: string
+    description?: string
+    images?: Array<{
+      src: string
+      caption?: string
+      alt: string
+    }>
+  }
 }
 
 export interface SubpageContent {

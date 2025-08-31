@@ -35,6 +35,22 @@ async function processContentBlocks(blocks: ContentBlock[]): Promise<ContentBloc
       processedBlock.right_content = await processMarkdownString(block.right_content)
     }
     
+    // Load gallery data for gallery blocks
+    if (block.type === 'gallery_block' && block.gallery) {
+      const galleryData = await getMarkdownContent('galleries', block.gallery)
+      if (galleryData) {
+        processedBlock.galleryData = galleryData.data as {
+          title: string
+          description?: string
+          images?: Array<{
+            src: string
+            caption?: string
+            alt: string
+          }>
+        }
+      }
+    }
+    
     processedBlocks.push(processedBlock)
   }
   

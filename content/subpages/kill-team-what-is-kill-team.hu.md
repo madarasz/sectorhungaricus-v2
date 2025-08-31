@@ -10,6 +10,8 @@ content_blocks:
       ### Mi az a Kill Team?
 
       A **Kill Team** egy **skirmish wargame** a **Warhammer 40,000 univerzumban**, ahol a játékosok kis létszámú, specializált osztagokat irányítanak egyedi képességekkel rendelkező csapattagokkal. A játék a taktikai küzdelemre és az egyes egységek irányítására összpontosít a nagy léptékű csaták helyett. **Több mint 30 különböző frakció** közül választhatsz, mindegyik saját egyedi játékstílussal, így minden játék új és izgalmas élményt nyújt.
+  - type: gallery_block
+    gallery: what-is-kill-team-gallery
   - type: text_block
     style: normal
     content: >-
