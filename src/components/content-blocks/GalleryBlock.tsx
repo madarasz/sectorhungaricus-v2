@@ -183,11 +183,11 @@ export default function GalleryBlock({ block }: GalleryBlockProps) {
   return (
     <>
       <div className="w-4/5 mx-auto" data-testid="gallery-container">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="flex flex-wrap gap-4 justify-center">
           {images.map((image, index) => (
             <div 
               key={index} 
-              className="relative aspect-square overflow-hidden rounded-lg bg-gray-100 cursor-pointer"
+              className="relative aspect-square overflow-hidden rounded-lg bg-gray-100 cursor-pointer w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.67rem)]"
               onClick={() => openOverlay(index)}
               data-testid={`gallery-thumbnail-${index}`}
             >

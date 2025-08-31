@@ -29,6 +29,8 @@ content_blocks:
       - Szabálykönyv, csapat adatkártyák
       - Küldetés- és felszereléskártyák (*Approved Ops Card Pack*)
     hide_title: false
+  - type: gallery_block
+    gallery: kill-team-suggested-boxes
   - type: text_block
     style: normal
     content: >
