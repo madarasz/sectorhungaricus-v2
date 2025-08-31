@@ -66,7 +66,7 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
 
 
   return (
-    <nav style={{backgroundColor: 'var(--navigation-background)'}} className="h-[4rem] sm:h-[6rem] md:h-[7.5rem] xl:h-[10.25rem]">
+    <nav style={{backgroundColor: 'var(--navigation-background)'}} className="sticky top-0 z-20 lg:static h-[4rem] sm:h-[6rem] md:h-[7.5rem] xl:h-[10.25rem]">
       <div className="lg:max-w-[90rem] px-4 responsive-padding mx-auto h-full">
         <div className="flex justify-between items-center h-full">
           {/* Group 1: Calendar - Hidden on mobile, icon on tablet (md-lg), text on desktop (xl+) */}

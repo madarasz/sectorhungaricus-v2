@@ -14,7 +14,7 @@ export default function SubpageNav({ subpages, currentSlug, gameSlug, locale }: 
   }
 
   return (
-    <nav className="w-full lg:w-[16rem] 2xl:w-[20rem] pl-4 pr-4 lg:pr-0 mb-4 lg:mb-0">
+    <nav className="sticky top-[4rem] sm:top-[6rem] md:top-[7.5rem] z-10 lg:static w-full lg:w-[16rem] 2xl:w-[20rem] pl-4 pr-4 lg:pr-0">
       <div className="hero-secondary-colors lg:w-[15.5rem] 2xl:ml-[4rem] rounded-md text-[1rem] font-poppins flex flex-wrap lg:flex-col lg:flex-nowrap overflow-hidden">
         {subpages.map((subpage) => {
           const isActive = currentSlug === subpage.data.slug
@@ -35,6 +35,7 @@ export default function SubpageNav({ subpages, currentSlug, gameSlug, locale }: 
           )
         })}
       </div>
+      <div className="h-4 lg:hidden" style={{backgroundColor: 'var(--background)'}} />
     </nav>
   )
 }
