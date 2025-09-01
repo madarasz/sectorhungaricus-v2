@@ -46,17 +46,15 @@ export default async function HomePage({ params }: HomePageProps) {
     <div style={{backgroundColor: 'var(--background)', minHeight: '100vh'}} className="overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative" style={{backgroundColor: 'var(--hero-background)'}}>
-        <div className="w-full max-w-[1440px] mx-auto relative responsive-padding min-h-[24rem] flex flex-col">
+        <div className="w-full max-w-[1440px] relative responsive-padding min-h-[22rem] flex flex-col hero-section">
           <div>
             {/* Welcome Title */}
-            <h1 className="max-w-[50rem] mx-auto text-center pt-[1rem] lg:pt-[3rem] font-namdhinggo font-semibold text-[2rem] md:text-[2.5rem] xl:text-[3rem]" 
-                style={{color: 'var(--hero-text)'}}>
+            <h1 className="max-w-[50rem] pt-[1rem] lg:pt-[3rem] text-[2rem] md:text-[2.5rem] xl:text-[3rem]">
               {homepageContent?.data.title}
             </h1>
             
             {/* Description */}
-            <div className="mx-auto text-center font-poppins font-light w-full max-w-[64rem] text-[1.125rem] pt-[1rem]" 
-                 style={{ color: 'var(--hero-text)' }}
+            <div className="w-full max-w-[64rem] text-[1.125rem] pt-[1rem]" 
                  dangerouslySetInnerHTML={{
                    __html: homepageContent?.contentHtml || ''
                  }} />
@@ -64,7 +62,7 @@ export default async function HomePage({ params }: HomePageProps) {
           
           <div className="flex-1 flex items-center">
             {/* Buttons */}
-            <div className="mx-auto flex flex-col sm:flex-row gap-4 md:gap-[5rem] w-full max-w-[34rem] py-2 md:py-0">
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-[5rem] w-full max-w-[34rem] py-2 md:py-0">
             <CTAButton 
               href={`/${locale}/calendar`}
               icon={faCalendarDays}
@@ -95,7 +93,7 @@ export default async function HomePage({ params }: HomePageProps) {
               const soonText = locale === 'hu' ? 'Nemsokára' : 'Soon'
               
               const CardContent = () => (
-                <div className="w-full h-full rounded-[15px] relative overflow-hidden hover:scale-105 transition-transform cursor-pointer" 
+                <div className={`w-full h-full rounded-[15px] relative overflow-hidden transition-transform ${hasSubpages ? 'hover:scale-105 cursor-pointer' : 'cursor-default'}`} 
                      style={{
                        backgroundColor: 'var(--card-background)',
                        boxShadow: `4px 4px 5px 2px var(--card-shadow)`
@@ -103,11 +101,11 @@ export default async function HomePage({ params }: HomePageProps) {
                   {/* Background Image */}
                   {game.data.featuredImage ? (
                     <div 
-                      className="w-full h-full md:h-[269px] rounded-t-[15px] bg-cover bg-center"
+                      className={`w-full h-full md:h-[269px] rounded-t-[15px] bg-cover bg-center ${!hasSubpages ? 'grayscale opacity-60' : ''}`}
                       style={{backgroundImage: `url(${game.data.featuredImage})`}}
                     />
                   ) : (
-                    <div className="w-full h-[180px] md:h-[269px] rounded-t-[15px] bg-gradient-to-b from-gray-400 to-gray-600" />
+                    <div className={`w-full h-[180px] md:h-[269px] rounded-t-[15px] bg-gradient-to-b from-gray-400 to-gray-600 ${!hasSubpages ? 'opacity-60' : ''}`} />
                   )}
                   
                   {/* Soon Banner for games without subpages */}

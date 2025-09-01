@@ -24,6 +24,8 @@
   --language-switch-inactive: transparent;
   --language-switch-inactive-text: #6B7280;
   --text: #1A1A1A;
+  --font-namdhinggo-fallback: "Namdhinggo", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-poppins-fallback: "Poppins", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
 
 :root.dark {
@@ -50,6 +52,8 @@
   --language-switch-inactive: transparent;
   --language-switch-inactive-text: #9CA3AF;
   --text: #EAE9E9;
+  --font-namdhinggo-fallback: "Namdhinggo", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-poppins-fallback: "Poppins", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
 
 @theme inline {
@@ -63,7 +67,7 @@
 }
 
 .font-poppins {
-  font-family: var(--font-poppins), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-family: var(--font-poppins-fallback);
 }
 
 .font-light {
@@ -91,7 +95,34 @@
 }
 
 .font-namdhinggo {
-  font-family: var(--font-namdhinggo), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-family: var(--font-namdhinggo-fallback);
+}
+
+.hero-section {
+  background: var(--hero-background);
+  color: var(--hero-text);
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-family: var(--font-namdhinggo-fallback);
+  font-weight: 600;
+  margin-inline: auto;
+}
+
+.hero-section div {
+  font-family: var(--font-poppins-fallback);
+  font-weight: 300;
+  margin-inline: auto;
+}
+
+.hero-section strong {
+  font-weight: 600;
+}
+
+.hero-section a {
+  text-decoration: underline;
+  font-weight: 500;
 }
 
 .hero-colors {
@@ -129,7 +160,7 @@ body {
 
 /* Calendar page markdown content styling */
 .prose h3 {
-  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-poppins-fallback);
   font-size: 1.5rem;
   font-weight: 600;
   margin-top: 2rem;
@@ -143,7 +174,7 @@ body {
 }
 
 .prose h4 {
-  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-poppins-fallback);
   font-size: 1.25rem;
   font-weight: 600;
   margin-top: 1.5rem;
@@ -157,7 +188,7 @@ body {
 }
 
 .prose h5 {
-  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-poppins-fallback);
   font-size: 1rem;
   font-weight: 600;
   margin-top: 1rem;
@@ -171,7 +202,7 @@ body {
 }
 
 .prose a {
-  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-poppins-fallback);
   color: #3B82F6;
   text-decoration: underline;
   font-weight: 500;
@@ -192,7 +223,7 @@ body {
 }
 
 .prose ul {
-  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-poppins-fallback);
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding-left: 1.5rem;
@@ -211,7 +242,7 @@ body {
 }
 
 .prose p {
-  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-poppins-fallback);
   line-height: 1.6;
   margin-bottom: 1rem;
   transition: color 0.3s ease;
