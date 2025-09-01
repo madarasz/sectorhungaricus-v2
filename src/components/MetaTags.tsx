@@ -1,4 +1,4 @@
-import { Locale } from '@/contexts/LocaleContext'
+import { Locale } from '@/lib/locale-utils'
 
 interface MetaTagsProps {
   locale: Locale

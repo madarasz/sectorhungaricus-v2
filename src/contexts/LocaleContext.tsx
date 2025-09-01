@@ -2,8 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
-
-export type Locale = 'hu' | 'en'
+import { Locale, getLocalizedPath, getLocaleFromPathname } from '@/lib/locale-utils'
 
 interface LocaleContextType {
   locale: Locale
@@ -57,16 +56,8 @@ export function useLocale() {
   return context
 }
 
-// Utility function to get locale from pathname
-export function getLocaleFromPathname(pathname: string): Locale {
-  return pathname.startsWith('/en') ? 'en' : 'hu'
-}
+// Re-export for convenience
+export { getLocalizedPath, getLocaleFromPathname }
 
-// Utility function to generate locale-aware URLs
-export function getLocalizedPath(path: string, locale: Locale): string {
-  // Remove any existing locale prefix
-  const cleanPath = path.replace(/^\/(en|hu)/, '') || '/'
-  
-  // Always add locale prefix since all URLs must have locale
-  return `/${locale}${cleanPath === '/' ? '' : cleanPath}`
-}
+
+

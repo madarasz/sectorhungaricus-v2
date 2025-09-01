@@ -1,6 +1,6 @@
 import { getMarkdownContent } from '@/lib/markdown'
 import { PageContent } from '@/types/content'
-import { Locale } from '@/contexts/LocaleContext'
+import { Locale } from '@/lib/locale-utils'
 
 interface AboutPageProps {
   params: Promise<{

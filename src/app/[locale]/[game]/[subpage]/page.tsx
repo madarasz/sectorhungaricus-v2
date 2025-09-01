@@ -1,6 +1,6 @@
 import { getGameWithSubpages, getAllContent } from '@/lib/markdown'
 import { GameContent, SubpageContent } from '@/types/content'
-import { Locale } from '@/contexts/LocaleContext'
+import { Locale } from '@/lib/locale-utils'
 import GameLayout from '@/components/GameLayout'
 import { notFound } from 'next/navigation'
 

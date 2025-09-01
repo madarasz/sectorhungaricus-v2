@@ -2,7 +2,7 @@ import { getMarkdownContent, getAllContent, getGameWithSubpages } from '@/lib/ma
 import { PageContent, GameContent } from '@/types/content'
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons'
 import { faDiscord } from '@fortawesome/free-brands-svg-icons'
-import { Locale } from '@/contexts/LocaleContext'
+import { Locale } from '@/lib/locale-utils'
 import CTAButton from '@/components/CTAButton'
 import Link from 'next/link'
 

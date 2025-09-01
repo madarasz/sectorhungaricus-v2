@@ -1,6 +1,6 @@
 import { getMarkdownContent, getAllContent } from '@/lib/markdown'
 import { PageContent, TournamentContent, GameContent } from '@/types/content'
-import { Locale } from '@/contexts/LocaleContext'
+import { Locale } from '@/lib/locale-utils'
 import Link from 'next/link'
 
 interface CalendarPageProps {
