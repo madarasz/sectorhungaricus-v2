@@ -177,7 +177,6 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
                 style={{color: 'var(--navigation-text)'}}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="text-lg">ℹ️</span>
                 <span>{aboutTitle}</span>
               </Link>
               

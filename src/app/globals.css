@@ -102,6 +102,7 @@
   background: var(--hero-background);
   color: var(--hero-text);
   text-align: center;
+  margin-inline: auto;
 }
 
 .hero-section h1 {
