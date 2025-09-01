@@ -3,6 +3,7 @@ import { Locale, getLocalizedPath } from "@/lib/locale-utils";
 import Navigation from "@/components/Navigation";
 import { getMarkdownContent } from "@/lib/markdown";
 import Link from "next/link";
+import KofiWidget from "@/components/KofiWidget";
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
@@ -20,9 +21,10 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const validLocale = locale as Locale;
 
   // Fetch navigation data from CMS based on current locale
-  const [calendarData, aboutData] = await Promise.allSettled([
+  const [calendarData, aboutData, supportData] = await Promise.allSettled([
     getMarkdownContent('pages', 'calendar', validLocale),
-    getMarkdownContent('pages', 'about-us', validLocale)
+    getMarkdownContent('pages', 'about-us', validLocale),
+    getMarkdownContent('pages', 'support-us', validLocale)
   ])
   
   const calendarTitle = (
@@ -32,29 +34,42 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const aboutTitle = (
     aboutData.status === 'fulfilled' && aboutData.value?.data?.title as string
   ) || ''
+  
+  const supportTitle = (
+    supportData.status === 'fulfilled' && supportData.value?.data?.title as string
+  ) || ''
 
   return (
     <LocaleProvider initialLocale={validLocale}>
-      <Navigation calendarTitle={calendarTitle} aboutTitle={aboutTitle} />
+      <Navigation calendarTitle={calendarTitle} aboutTitle={aboutTitle} supportTitle={supportTitle} />
       <main className="min-h-screen">
         {children}
       </main>
       <footer className="bg-gray-900 text-white py-8">
         <div className="container mx-auto px-4 md:px-8 xl:px-16 text-center max-w-[64rem]">
-          <p>
-            &copy; 2024 Sector Hungaricus. All rights reserved.
+          <div className="flex items-center justify-center flex-wrap gap-2">
+            <span>
+              &copy; 2024 Sector Hungaricus. All rights reserved.
+            </span>
             {aboutTitle && (
               <>
-                {" | "}
+                <span>|</span>
                 <Link 
                   href={getLocalizedPath("/about", validLocale)} 
-                  style={{color: 'var(--navigation-text)'}}
+                  style={{color: '#ffffff'}}
                 >
                   {aboutTitle}
                 </Link>
               </>
             )}
-          </p>
+            <span>|</span>
+            <KofiWidget 
+              buttonText={supportTitle} 
+              variant="button" 
+              buttonBackgroundColor="var(--hero-background)"
+              buttonBorderColor="#ffffff"
+            />
+          </div>
         </div>
       </footer>
     </LocaleProvider>

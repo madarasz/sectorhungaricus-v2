@@ -7,13 +7,15 @@ import { faSun, faMoon, faCalendarDays } from '@fortawesome/free-solid-svg-icons
 import { useLocale, getLocalizedPath } from '@/contexts/LocaleContext'
 import { useTheme } from '@/contexts/ThemeContext'
 import { usePathname, useRouter } from 'next/navigation'
+import KofiWidget from './KofiWidget'
 
 interface NavigationProps {
   calendarTitle: string
   aboutTitle: string
+  supportTitle: string
 }
 
-export default function Navigation({ calendarTitle, aboutTitle }: NavigationProps) {
+export default function Navigation({ calendarTitle, aboutTitle: _aboutTitle, supportTitle }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
@@ -90,10 +92,10 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
             </div>
           </Link>
 
-          {/* Group 3: About Us - Only on desktop */}
-          <Link href={getLocalizedPath("/about", locale)} className="hidden lg:block font-poppins font-medium text-[1.25rem] hover:opacity-80" style={{color: 'var(--navigation-text)'}}>
-            {aboutTitle}
-          </Link>
+          {/* Group 3: Support Us - Only on desktop */}
+          <div className="hidden lg:block font-poppins font-medium text-[1.25rem] md:items-center md:justify-center w-auto h-auto" style={{color: 'var(--navigation-text)'}}>
+            <KofiWidget buttonText={supportTitle} popoverDirection="down" />
+          </div>
 
           {/* Group 4: Language and Dark Mode */}
           <div className="flex items-center space-x-0">
@@ -170,15 +172,10 @@ export default function Navigation({ calendarTitle, aboutTitle }: NavigationProp
                 <span>{calendarTitle}</span>
               </Link>
               
-              {/* About Us */}
-              <Link 
-                href={getLocalizedPath("/about", locale)} 
-                className="flex items-center space-x-3 px-3 py-3 rounded-lg text-base font-medium hover:opacity-80" 
-                style={{color: 'var(--navigation-text)'}}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <span>{aboutTitle}</span>
-              </Link>
+              {/* Support Us */}
+              <div className="flex items-center space-x-3 px-3 py-3 rounded-lg text-base font-medium">
+                <KofiWidget buttonText={supportTitle} popoverDirection="down" />
+              </div>
               
               {/* Language and Theme Controls */}
               <div className="px-3 py-2 flex items-center justify-between">
