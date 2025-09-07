@@ -1,8 +1,8 @@
 # Netlify redirects for production static export
 # Exclude admin paths from locale redirects to preserve CMS functionality
 
-# Don't redirect admin paths (CMS)
-/admin/*  /admin/:splat  200
+# Don't redirect admin paths (CMS) - serve admin pages correctly
+/admin/*  /admin/index.html  200
 
 # Don't redirect paths that already have locale
 /hu/*     /hu/:splat     200
