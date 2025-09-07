@@ -40,6 +40,9 @@ content_blocks:
 
       - [Hivestorm (2024)](https://start-warhammer.com/kill-team-hivestorm/) - A comprehensive package containing everything needed to play. In addition to the Starter Set contents, it includes plastic terrain (*Volkus*), rulebook, mission book, equipment models, mission and equipment cards. Note that the included teams (*Tempestus Aquilons*, *Vespids*) may present more complexity for beginners.
 
+      - [Tomb World (2025)](https://www.warhammer.com/en-EU/shop/kill-team-tomb-world-eng-2025) is the newest expansion, containing two new kill teams and a veritable mountain of terrain. The Deathwatch are the OG kill team, a collection of veterans drawn from disparate Space Marine Chapters who band together to combine their unique skills into an elite but specialised unit. The box contains enough miniatures to make two teams of five, or 10 of the possible 11 operatives. They are pitted against the Canoptek Circle – a cohort of insectile Necron constructs conducted in combat by a Geomancer, who enhances the technological tricks of their followers.
+
+
 
       Check out **Custom game elements** for unofficial, cheaper options.
   - type: text_block

@@ -40,6 +40,9 @@ content_blocks:
 
       - [Hivestorm (2024)](https://start-warhammer.com/kill-team-hivestorm/) - Mindent tartalmaz, ami kellhet a játékhoz. A Starter Set tartalmán felül műanyag terepet (*Volkus*), szabálykönyvet, küldetéskönyvet, felszerelés modelleket, küldetés- és felszereléskártyákat is tartalmaz. A mellékelt csapatok (*Tempestus Aquilons*, *Vespids*) azonban kevésbé alkalmasak kezdő játékosok részére, játékstílusuk bonyolultabb.
 
+      - A [Tomb World (2025)](https://www.warhammer.com/en-EU/shop/kill-team-tomb-world-eng-2025) a legújabb kiegészítő, amely két új kill teamet és valóságos hegynyit terepet tartalmaz. A Deathwatch az eredeti kill team, veteránok gyűjteménye, akiket különböző Space Marine Chapter-ekből vontak össze, és egyesítik egyedi képességeiket egy elit, de specializált egységgé. A doboz elegendő miniatűrt tartalmaz két ötfős csapat, vagy a lehetséges 11 operatívból 10 elkészítéséhez. Szemben állnak velük a Canoptek Circle – rovarszerű Necron konstrukciók kohorsza, amelyeket harcban egy Geomancer vezényel, aki fokozza követői technológiai trükkjeit.
+
+
 
       További információt a **Saját kellékek készítése** részben találsz nem hivatalos, kedvezőbb árú lehetőségekről.
   - type: text_block

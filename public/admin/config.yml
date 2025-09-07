@@ -28,14 +28,6 @@ collections:
       - {label: "Title", name: "title", widget: "string", i18n: true}
       - {label: "Description", name: "description", widget: "text", i18n: true}
       - {label: "Featured Image", name: "featuredImage", widget: "image", required: false}
-      - label: "Gallery"
-        name: "gallery"
-        widget: "relation"
-        collection: "galleries"
-        search_fields: ["title"]
-        value_field: "{{slug}}"
-        display_fields: ["title"]
-        required: false
 
   - name: "pages"
     label: "Pages"
@@ -48,14 +40,6 @@ collections:
       - {label: "Slug", name: "slug", widget: "string"}
       - {label: "Hero", name: "hero", widget: "markdown", i18n: true, required: false}
       - {label: "Body", name: "body", widget: "markdown", i18n: true}
-      - label: "Gallery"
-        name: "gallery"
-        widget: "relation"
-        collection: "galleries"
-        search_fields: ["title"]
-        value_field: "{{slug}}"
-        display_fields: ["title"]
-        required: false
 
   - name: "galleries"
     label: "Galleries"

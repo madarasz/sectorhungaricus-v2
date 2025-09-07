@@ -7,4 +7,7 @@ images:
   - src: /uploads/kill-team-hivestorm.jpg
     caption: Kill Team Hivestorm
     alt: Kill Team Hivestorm
+  - src: /uploads/tomb-world-jpg.jpeg
+    caption: Tomb World
+    alt: Tomb World
 ---
