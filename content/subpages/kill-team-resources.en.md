@@ -25,7 +25,5 @@ content_blocks:
       ##### Rules, data cards, and scoring tool
 
       - [KT3 Battlekit](https://kt3.albecortes.com/) - Includes general rules, team rules, score tracker and much more. Created by **Alberto Cortes Villena**.
-
-      - [Approved Ops alternative](https://ko-fi.com/s/5136c98c58) - printable Crit Ops, Tac Ops, Kill Op Chart, Universal Equipment by **Dovahkruz**. Use this [equipment update](https://drive.google.com/file/d/1NiEIa16WcMGShihDOi_0QYzFA4ON4ZHY/view) to have it comply with the latest 2025 Q1 updates.
     hide_title: true
 ---

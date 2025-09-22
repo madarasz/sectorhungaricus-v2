@@ -71,7 +71,7 @@ export default async function HomePage({ params }: HomePageProps) {
             />
             
             <CTAButton 
-              href="https://discord.gg/fVDCQ8qw"
+              href="https://discord.gg/sX46Y83puz"
               icon={faDiscord}
               text="Discord"
               variant="primary"
