@@ -134,3 +134,13 @@ collections:
                 value_field: "{{slug}}"
                 display_fields: ["title"]
                 required: false
+          - label: "Page Reference Block"
+            name: "page_reference_block"
+            widget: "object"
+            fields:
+              - label: "Component Path"
+                name: "page_reference"
+                widget: "string"
+                hint: "Enter the path to a .tsx component (e.g., 'pages/ContactForm' or 'custom/MyComponent'). Path should be relative to src/components/"
+                pattern: ["^[a-zA-Z0-9/_-]+$", "Must contain only letters, numbers, forward slashes, underscores, and hyphens"]
+                required: true

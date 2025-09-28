@@ -249,6 +249,17 @@ body {
   transition: color 0.3s ease;
 }
 
+.prose blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  font-size: 0.7rem;
+}
+.prose blockquote p {
+  display: inline;
+}
+
 @media (max-width: 1023px) {
   .prose h3 {
     font-size: 1.25rem;
@@ -257,4 +268,45 @@ body {
   .prose h4 {
     font-size: 1rem;
   }
+}
+
+/* Tournament Table Styling */
+.tournament-table {
+  @apply min-w-full divide-y divide-gray-200;
+}
+
+.tournament-table__header {
+  @apply bg-gray-50;
+}
+
+.tournament-table__header-cell {
+  @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+}
+
+.tournament-table__header-cell--center {
+  @apply px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider;
+}
+
+.tournament-table__header-cell--right {
+  @apply px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider;
+}
+
+.tournament-table__body {
+  @apply bg-white divide-y divide-gray-200;
+}
+
+.tournament-table__row {
+  /* Row styling can be added here if needed */
+}
+
+.tournament-table__cell {
+  @apply px-6 py-1 whitespace-nowrap text-sm text-gray-900;
+}
+
+.tournament-table__cell--center {
+  @apply px-6 py-1 text-center whitespace-nowrap text-sm text-gray-900;
+}
+
+.tournament-table__cell--right {
+  @apply px-6 py-1 text-right whitespace-nowrap text-sm text-gray-900;
 }

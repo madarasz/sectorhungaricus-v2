@@ -53,7 +53,7 @@ export interface PageContent {
 }
 
 export interface ContentBlock {
-  type: 'text_block' | 'hero_block' | 'two_column_block' | 'gallery_block'
+  type: 'text_block' | 'hero_block' | 'two_column_block' | 'gallery_block' | 'page_reference_block'
   content?: string
   style?: 'normal' | 'bordered'
   block_title?: string
@@ -71,6 +71,7 @@ export interface ContentBlock {
       alt: string
     }>
   }
+  page_reference?: string
 }
 
 export interface SubpageContent {
