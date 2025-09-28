@@ -251,6 +251,7 @@ body {
 
 .prose blockquote {
   background: #f9f9f9;
+  color: #1A1A1A;
   border-left: 10px solid #ccc;
   margin: 1.5em 10px;
   padding: 0.5em 10px;
