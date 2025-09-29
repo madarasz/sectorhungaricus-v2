@@ -88,7 +88,7 @@ export default function TournamentResults() {
             </tr>
             <tr className="tournament-table__row">
               <td className="tournament-table__cell--right">10</td>
-              <td className="tournament-table__cell">Tamás Sándor</td>
+              <td className="tournament-table__cell">Balogh Sándor</td>
               <td className="tournament-table__cell--right">30</td>
               <td className="tournament-table__cell--center">1</td>
             </tr>
