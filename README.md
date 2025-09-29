@@ -63,17 +63,22 @@ Run Playwright e2e tests to verify functionality:
 
 ```bash
 # Run all e2e tests (headless)
-npm run test:e2e
+npm test
 
 # Run tests with UI for debugging
-npm run test:e2e:ui
+npm run test:ui
 ```
 
 The e2e tests cover:
 - ✅ **Redirects**: Root URL redirects to Hungarian locale (`/hu/`)
 - ✅ **Language**: Hungarian and English content displays correctly
 - ✅ **Rendering**: Pages load with HTTP 200 and no React errors
-- ✅ **Game Loading**: Kill Team and Spearhead games appear on homepage
+- ✅ **Games**: Kill Team and Spearhead games appear on homepage
+- ✅ **Subpages**: Game-specific navigation and content blocks
+- ✅ **Calendar**: Tournament listings and CMS content display
+- ✅ **Theme**: Dark/light mode toggle and persistence
+- ✅ **Gallery**: Image display and lightbox functionality
+- ✅ **Responsive**: Mobile, tablet, and desktop layouts
 
 Tests automatically start the dev server and run against `localhost:3000`.
 
@@ -87,66 +92,66 @@ Tests automatically start the dev server and run against `localhost:3000`.
 
 ### Deploy to Netlify
 
-1. **Push to GitHub**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git remote add origin <your-repo-url>
-   git push -u origin main
-   ```
-
-2. **Connect to Netlify**
-   - Go to [Netlify](https://netlify.com)
-   - Click "New site from Git"
-   - Connect your GitHub repository
-   - Build settings are already configured in `netlify.toml`
-
-3. **Enable Netlify Identity**
-   - Go to Site Settings > Identity
-   - Enable Identity service
-   - Set registration preferences (invite-only recommended)
-
-4. **Configure Git Gateway**
-   - In Identity settings, enable Git Gateway
-   - This allows the CMS to commit to your repository
-
-## Content Structure
-
-```
-content/
-├── games/           # Game information
-│   ├── kill-team.en.md
-│   ├── kill-team.hu.md
-│   └── spearhead.en.md
-├── tournaments/     # Tournament details
-│   ├── april-2024.en.md
-│   └── april-2024.hu.md
-├── galleries/       # Photo galleries
-│   └── tournament-march.md
-└── pages/          # General pages
-    └── about.en.md
-```
+By pushing/merging to the `origin/main` branch, new content is automatically deployed to Netlify.
 
 ## Adding Content
 
+Add new content via [http://localhost:3000/admin/index.html](CMS Admin).
+
 ### Games
-Create new game files in `content/games/`:
-- `game-name.en.md` (English)
-- `game-name.hu.md` (Hungarian)
+Games are displayed on the home page and have subpages with game related content.
+
+**Fields:**
+- **Title** - Game name (multilingual)
+- **Description** - Brief description of the game (multilingual)
+- **Featured Image** - Optional hero image for the game page
+- **Body** - Main content written in Markdown (multilingual)
+
+### Subpages
+Game-specific content pages.
+
+**Fields:**
+- **Title** - Page title (multilingual)
+- **Hide Title** - Option to hide the page title in display
+- **Slug** - URL-friendly identifier
+- **Order** - Sort order for navigation (numeric)
+- **Game** - Associated game (relationship to games collection)
+- **Content Blocks** - Flexible content system with multiple block types:
+  - **Text Block** - Standard markdown content with normal/bordered styling
+  - **Hero Block** - Prominent featured content sections
+  - **Two Column Block** - Side-by-side content layout (one column on mobile)
+  - **Gallery Block** - Reference to image galleries
+  - **Page Reference Block** - Embed custom React .tsx components
+
+### Pages
+Dedicated site pages (ie: About us, Support us, etc.). Creating new ones in CMS won't get them displayed. Their localized fields are displayed on specific React pages/components.
+
+**Fields:**
+- **Title** - Page title (multilingual)
+- **Slug** - URL identifier
+- **Hero** - Optional hero section content (multilingual markdown)
+- **Body** - Main page content (multilingual markdown)
 
 ### Tournaments
-Tournament files support:
-- Status tracking (upcoming/ongoing/completed)
-- Registration information
-- Results galleries
-- Multilingual content
+Automatically displays on calendar page if date is in the future
+
+**Fields:**
+- **Title** - Tournament name
+- **Date** - Tournament date and time
+- **Game** - Associated game (relationship to games collection)
+- **URL** - Registration or information link
 
 ### Galleries
-Gallery files contain:
-- Image lists with captions
-- Alt text for accessibility  
-- Descriptions
+Image collections in `content/galleries/` for use throughout the site:
+- Referenced by other content types (currently: subpage gallery block)
+
+**Fields:**
+- **Title** - Gallery name
+- **Description** - Optional gallery description
+- **Images** - List of images with:
+  - **Image** - File upload
+  - **Caption** - Optional image caption
+  - **Alt Text** - Required accessibility text
 
 #### Image Optimization
 

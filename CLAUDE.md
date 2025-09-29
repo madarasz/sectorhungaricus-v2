@@ -12,7 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run lint` - Run ESLint
 
 ### Testing
-- `npm run test:e2e` - Run Playwright e2e tests (headless, Chromium only)
+- `npm run test` - Run Playwright e2e tests (headless, Chromium only)
 
 ### CMS Access
 - Local development: http://localhost:3000/admin/index.html (no authentication)

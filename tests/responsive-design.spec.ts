@@ -55,8 +55,8 @@ test.describe('Responsive Design Tests', () => {
       const navCalendarText = page.locator('nav').locator('text=Naptár').first();
       await expect(navCalendarText).toBeVisible();
 
-      // About Us should be hidden on tablet
-      const aboutUs = page.locator('nav').locator('text=Rólunk').or(page.locator('nav').locator('text=About Us'));
+      // Support Us should be hidden on tablet
+      const aboutUs = page.locator('nav').locator('text=Támogass').or(page.locator('nav').locator('text=About Us'));
       await expect(aboutUs).toBeHidden();
 
       // Full language switcher should be visible (desktop buttons in the hidden div)
@@ -91,8 +91,8 @@ test.describe('Responsive Design Tests', () => {
       const navCalendarLink = page.locator('nav a[href*="/calendar"]').filter({ hasText: 'Naptár' }).first();
       await expect(navCalendarLink).toBeVisible();
 
-      // About Us should be visible in navigation
-      const navAboutUs = page.locator('nav').locator('text=Rólunk').or(page.locator('nav').locator('text=About Us')).first();
+      // Support Us should be visible in navigation
+      const navAboutUs = page.locator('nav').locator('text=Támogass').or(page.locator('nav').locator('text=About Us')).first();
       await expect(navAboutUs).toBeVisible();
 
       // Full language switcher should be visible (desktop buttons in the hidden div)

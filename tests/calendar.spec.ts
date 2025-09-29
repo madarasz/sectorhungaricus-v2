@@ -1,18 +1,42 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
+
+async function mockDateTo2025September(page: Page) {
+  await page.addInitScript(() => {
+    const mockDate = new Date('2025-09-01T00:00:00.000Z');
+    Date.now = () => mockDate.getTime();
+
+    const OriginalDate = Date;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (global as any).Date = class extends OriginalDate {
+      constructor(...args: unknown[]) {
+        if (args.length === 0) {
+          super(mockDate.getTime());
+        } else {
+          super(...(args as [string | number | Date]));
+        }
+      }
+
+      static now() {
+        return mockDate.getTime();
+      }
+    };
+  });
+}
 
 test.describe('Calendar Page Tests', () => {
   test('Calendar page displays upcoming tournaments in hero section', async ({ page }) => {
+    await mockDateTo2025September(page);
     await page.goto('/hu/calendar');
 
     // Check that the hero section is visible
     await expect(page.locator('h1:text("Kiemelt események")')).toBeVisible();
     
     // Check for upcoming tournaments list
-    // TODO: mock upcoming tournaments for stability
     await expect(page.locator('text=Contrast Clash')).toBeVisible();
   });
 
   test('Calendar page displays markdown content from CMS', async ({ page }) => {
+    await mockDateTo2025September(page);
     await page.goto('/en/calendar');
 
     // Check for content sections from the calendar.en.md file using heading selectors
@@ -26,6 +50,7 @@ test.describe('Calendar Page Tests', () => {
   });
 
   test('Hungarian calendar page shows correct localized content', async ({ page }) => {
+    await mockDateTo2025September(page);
     await page.goto('/hu/calendar');
 
     // Check Hungarian hero text
