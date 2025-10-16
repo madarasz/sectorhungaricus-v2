@@ -47,7 +47,7 @@ export default function TournamentResults() {
             <tr className="tournament-table__row">
               <td className="tournament-table__cell--right">3</td>
               <td className="tournament-table__cell">L Barnabás</td>
-              <td className="tournament-table__cell--right">72</td>
+              <td className="tournament-table__cell--right">68</td>
               <td className="tournament-table__cell--center">5</td>
             </tr>
             <tr className="tournament-table__row">
@@ -101,7 +101,7 @@ export default function TournamentResults() {
             <tr className="tournament-table__row">
               <td className="tournament-table__cell--right">12</td>
               <td className="tournament-table__cell">Károly Robi</td>
-              <td className="tournament-table__cell--right">22</td>
+              <td className="tournament-table__cell--right">28</td>
               <td className="tournament-table__cell--center">3</td>
             </tr>
           </tbody>
