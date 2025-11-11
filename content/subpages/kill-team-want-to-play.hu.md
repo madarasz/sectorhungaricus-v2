@@ -58,5 +58,8 @@ content_blocks:
 
       - [Contrast Phase](https://contrastphase.hu/)
 
+
       Ne felejtsd el előre lefoglalni az asztalt, ha játszani szeretnél valamelyik helyszínen.
+  - type: page_reference_block
+    page_reference: pages/GoogleMap
 ---

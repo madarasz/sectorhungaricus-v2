@@ -5,6 +5,8 @@ slug: tournament-results
 order: 5
 game: kill-team
 content_blocks:
+  - type: hero_block
+    content: '#### 🏆 Winner of 2025 "Invitational": Clostry'
   - type: page_reference_block
     page_reference: pages/TournamentResults
   - type: text_block

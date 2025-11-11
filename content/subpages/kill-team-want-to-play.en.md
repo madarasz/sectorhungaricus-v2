@@ -58,5 +58,8 @@ content_blocks:
 
       - [Contrast Phase](https://contrastphase.hu/)
 
+
       Remember to make a reservation if you plan to play at any of these locations.
+  - type: page_reference_block
+    page_reference: pages/GoogleMap
 ---

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSun, faMoon, faCalendarDays } from '@fortawesome/free-solid-svg-icons'
@@ -82,10 +83,13 @@ export default function Navigation({ calendarTitle, aboutTitle: _aboutTitle, sup
 
           {/* Group 2: Logo and Title */}
           <Link href={getLocalizedPath("/", locale)} className="flex items-center space-x-2 md:space-x-3 xl:space-x-4">
-            <img 
-              src="/uploads/sh-logo.png" 
-              alt="Sector Hungaricus Logo" 
+            <Image
+              src="/uploads/sh-logo.png"
+              alt="Sector Hungaricus Logo"
+              width={70}
+              height={70}
               className="hidden sm:block max-w-[2.5rem] max-h-[2.5rem] md:max-w-[3rem] md:max-h-[3rem] lg:max-w-[3.5rem] lg:max-h-[3.5rem] xl:max-w-[4.375rem] xl:max-h-[4.375rem] object-contain"
+              unoptimized
             />
             <div className="font-montserrat-subrayada font-bold text-[1.25rem] sm:text-[1.5rem] lg:text-[1.75rem] xl:text-[2.5rem] tracking-wide" style={{color: 'var(--navigation-text)'}}>
               SECTOR HUNGARICUS

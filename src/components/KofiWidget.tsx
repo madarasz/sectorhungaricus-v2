@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 
 interface KofiWidgetProps {
   textColor?: string
@@ -49,10 +50,13 @@ const KofiWidget: React.FC<KofiWidgetProps> = ({
         }}
       >
         {variant === 'button' && (
-          <img
+          <Image
             src="/images/ko-fi-logo.png"
             alt="Ko-fi Logo"
-            className="w-5 h-5 mr-2"
+            width={20}
+            height={20}
+            className="mr-2"
+            unoptimized
           />
         )}
         {buttonText}
@@ -103,10 +107,13 @@ const KofiWidget: React.FC<KofiWidgetProps> = ({
               >
                 https://ko-fi.com/sectorhungaricus
               </a>
-              <img
+              <Image
                 src="/images/kofi-qr.png"
                 alt="Ko-fi QR Code"
-                className="mx-auto max-w-[100px] w-full"
+                width={100}
+                height={100}
+                className="mx-auto"
+                unoptimized
               />
             </div>
           </div>

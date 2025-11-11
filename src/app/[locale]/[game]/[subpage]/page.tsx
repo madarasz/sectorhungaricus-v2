@@ -15,10 +15,10 @@ interface SubpagePageProps {
 export async function generateStaticParams() {
   const locales = ['en', 'hu']
   const params = []
-  
+
   for (const locale of locales) {
     const allSubpages = await getAllContent('subpages', locale)
-    
+
     for (const subpage of allSubpages) {
       if (subpage && subpage.data && subpage.data.game && subpage.data.slug) {
         params.push({
@@ -29,7 +29,7 @@ export async function generateStaticParams() {
       }
     }
   }
-  
+
   return params
 }
 
