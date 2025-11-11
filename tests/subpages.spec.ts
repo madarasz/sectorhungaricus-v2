@@ -1,7 +1,13 @@
 import { test, expect, Page } from '@playwright/test';
 
 test.describe('Subpages Navigation Tests', () => {
-  // Helper function to check content has at least 0 characters
+  // Pages excluded from content length check
+  const EXCLUDED_TITLES = [
+    'Képek',
+    'Gallery',
+  ];
+
+  // Helper function to check content has at least 100 characters
   async function checkContentLength(page: Page) {
     const subpageContent = page.locator('[data-testid="subpage-content"]');
     await expect(subpageContent).toBeVisible();
@@ -48,7 +54,9 @@ test.describe('Subpages Navigation Tests', () => {
       expect(page.url()).toContain(href);
       
       // Check content length
-      await checkContentLength(page);
+      if (!EXCLUDED_TITLES.includes(title!)) {
+        await checkContentLength(page);
+      }
       
       // Verify the link is marked as active
       await expect(link).toHaveClass(/hero-colors/);

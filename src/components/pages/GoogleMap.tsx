@@ -2,7 +2,7 @@
 
 export default function GoogleMap() {
   return (
-    <div className="overflow-hidden shadow">
+    <div className="overflow-hidden">
       {/* Responsive iframe container with 4:3 aspect ratio (640:480) */}
       <div className="w-full aspect-[4/3]">
         <iframe

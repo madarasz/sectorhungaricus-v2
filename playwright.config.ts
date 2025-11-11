@@ -1,5 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
+// Set environment variable globally for all scenarios
+process.env.TEST_CURRENT_DATE = '2025-09-01T00:00:00.000Z';
+
 export default defineConfig({
   testDir: './tests',
   outputDir: './test-results',
