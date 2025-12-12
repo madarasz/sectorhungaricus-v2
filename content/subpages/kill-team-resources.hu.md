@@ -24,6 +24,6 @@ content_blocks:
 
       ##### Szabályok, adatkártyák, eszközök pontozáshoz
 
-      - [KT3 Battlekit](https://kt3.albecortes.com/) - Tartalmazza az általános szabályokat, csapatszabályokat, pontszámkövetőt és még sok mást. Készítette **Alberto Cortes Villena**.
+      - [KT3 Battlekit](https://battlekit.killteam.ru/) - Tartalmazza az általános szabályokat, csapatszabályokat, pontszámkövetőt és még sok mást. Készítette **Alberto Cortes Villena**.
     hide_title: true
 ---

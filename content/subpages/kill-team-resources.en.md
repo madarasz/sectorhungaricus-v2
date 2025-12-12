@@ -24,6 +24,6 @@ content_blocks:
 
       ##### Rules, data cards, and scoring tool
 
-      - [KT3 Battlekit](https://kt3.albecortes.com/) - Includes general rules, team rules, score tracker and much more. Created by **Alberto Cortes Villena**.
+      - [KT3 Battlekit](https://battlekit.killteam.ru/) - Includes general rules, team rules, score tracker and much more. Created by **Alberto Cortes Villena**.
     hide_title: true
 ---
