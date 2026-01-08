@@ -12,7 +12,7 @@ export interface TournamentResultsTranslations {
 
 export const tournamentResultsTranslations: Record<Locale, TournamentResultsTranslations> = {
   en: {
-    title: 'Best tournament players in 2025',
+    title: 'Best tournament players in the 2026 season',
     tableHeaders: {
       position: '#',
       player: 'Player',
@@ -21,7 +21,7 @@ export const tournamentResultsTranslations: Record<Locale, TournamentResultsTran
     }
   },
   hu: {
-    title: 'Legjobb versenyzők 2025-ben',
+    title: 'Legjobb versenyzők a 2026-os szezonban',
     tableHeaders: {
       position: '#',
       player: 'Játékos',

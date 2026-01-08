@@ -12,10 +12,15 @@ content_blocks:
   - type: text_block
     style: normal
     content: >-
+      Minden szezonban a 8 legjobb játékost meghívjuk az "Invitational"
+      versenyre. A 2025-os szezon a novemberi "Invitational" versennyel zárult.
+      Ez után elkezdődött a 2026-os szezon. 
+
+
       *A játékosok a helyezésük alapján pontokat kapnak a versenyeken::*
 
       > *első: **40**, második: **30**, harmadik: **22**, negyedik: **16**, ötödik: **12**, hatodik: **10**, hetedik: **8**, nyolcadik: **6**, kilencedik: **4**, tizedik: **2***
 
 
-      *Minden évben a játékosok **3 legjobb helyezését** vesszük figyelembe a végső pontszám kiszámításához. Ez biztosítja a méltányosságot azokkal a játékosokkal szemben, akik nem tudnak részt venni minden versenyen.*
+      *A játékosok **3 legjobb helyezését** vesszük figyelembe a végső pontszám kiszámításához. Ez biztosítja a méltányosságot azokkal a játékosokkal szemben, akik nem tudnak részt venni minden versenyen.*
 ---

@@ -12,10 +12,15 @@ content_blocks:
   - type: text_block
     style: normal
     content: >-
+      Each season is concluded with an Invitational tournament for the top 8
+      players. The 2025 season ended with the 2025 Invitational tournament in
+      November. The 2026 season started afterwards.
+
+
       *Players earn points based on their tournament rank:*
 
       > *1st: **40**, 2nd: **30**, 3rd: **22**, 4th: **16**, 5th: **12**, 6th: **10**, 7th: **8**, 8th: **6**, 9th: **4**, 10th: **2***
 
 
-      *Each year, we consider a player's **best 3 ranks** to calculate their final score. This ensures fairness for players who are unable to attend every tournament.*
+      *We consider a player's **best 3 ranks** to calculate their final score. This ensures fairness for players who are unable to attend every tournament.*
 ---
