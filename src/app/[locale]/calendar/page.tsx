@@ -13,6 +13,19 @@ export async function generateStaticParams() {
   return [{ locale: 'hu' }, { locale: 'en' }]
 }
 
+// Helper function to determine the tournament type label based on game name and locale
+function getTournamentTypeLabel(gameName: string, locale: Locale): string {
+  const lowerGameName = gameName.toLowerCase()
+  
+  // Check if the game name contains "liga" or "league"
+  if (lowerGameName.includes('liga') || lowerGameName.includes('league')) {
+    return locale === 'hu' ? 'liga' : 'league'
+  }
+  
+  // Default tournament label
+  return locale === 'hu' ? 'verseny' : 'tournament'
+}
+
 export default async function CalendarPage({ params }: CalendarPageProps) {
   const { locale } = await params
   const validLocale = locale as Locale
@@ -57,11 +70,12 @@ export default async function CalendarPage({ params }: CalendarPageProps) {
                   const tournamentDate = new Date(tournament.data.date)
                   const formattedDate = `${tournamentDate.getFullYear()}.${String(tournamentDate.getMonth() + 1).padStart(2, '0')}.${String(tournamentDate.getDate()).padStart(2, '0')}`
                   const gameName = gameMap[tournament.data.game] || tournament.data.game
+                  const tournamentTypeLabel = getTournamentTypeLabel(tournament.data.title, validLocale)
                   
                   return (
                       <div key={tournament.slug} className="py-2">
                         <div className="text-white font-poppins text-center">
-                          {formattedDate} - {gameName} {validLocale == "hu" ? "verseny" : "tournament"}: {tournament.data.url ? (
+                          {formattedDate} - {gameName} {tournamentTypeLabel}: {tournament.data.url ? (
                             <Link 
                               href={tournament.data.url}
                               className="text-blue-200 hover:text-white underline"
