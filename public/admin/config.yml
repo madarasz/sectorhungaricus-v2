@@ -58,6 +58,24 @@ collections:
           - {label: "Caption", name: "caption", widget: "string", required: false}
           - {label: "Alt Text", name: "alt", widget: "string"}
 
+  - name: "artists"
+    label: "Artists"
+    folder: "content/artists"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Portfolio URL", name: "portfolio", widget: "string", required: false}
+      - {label: "Does Commission", name: "does_commission", widget: "boolean", default: false}
+      - label: "Gallery"
+        name: "gallery"
+        widget: "relation"
+        collection: "galleries"
+        search_fields: ["title"]
+        value_field: "{{slug}}"
+        display_fields: ["title"]
+        required: true
+
   - name: "tournaments"
     label: "Tournaments"
     folder: "content/tournaments"
@@ -144,4 +162,16 @@ collections:
                 widget: "string"
                 hint: "Enter the path to a .tsx component (e.g., 'pages/ContactForm' or 'custom/MyComponent'). Path should be relative to src/components/"
                 pattern: ["^[a-zA-Z0-9/_-]+$", "Must contain only letters, numbers, forward slashes, underscores, and hyphens"]
+                required: true
+          - label: "Artist Block"
+            name: "artist_block"
+            widget: "object"
+            fields:
+              - label: "Artist"
+                name: "artist"
+                widget: "relation"
+                collection: "artists"
+                search_fields: ["name"]
+                value_field: "{{slug}}"
+                display_fields: ["name"]
                 required: true

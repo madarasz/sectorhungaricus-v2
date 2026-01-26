@@ -59,7 +59,49 @@ async function processContentBlocks(blocks: ContentBlock[]): Promise<ContentBloc
         }
       }
     }
-    
+
+    // Load artist data for artist blocks
+    if (block.type === 'artist_block' && block.artist) {
+      const artistData = await getMarkdownContent('artists', block.artist)
+      if (artistData) {
+        const artistInfo = artistData.data as {
+          name: string
+          portfolio?: string
+          does_commission: boolean
+          gallery: string
+        }
+
+        // Load the artist's gallery
+        const galleryData = await getMarkdownContent('galleries', artistInfo.gallery)
+        let galleryDataResolved: {
+          title: string
+          description?: string
+          images?: Array<{
+            src: string
+            variants?: import('@/types/content').ImageVariants
+            caption?: string
+            alt: string
+          }>
+        } | undefined
+
+        if (galleryData) {
+          galleryDataResolved = galleryData.data as typeof galleryDataResolved
+          // Generate image variants for gallery images
+          if (galleryDataResolved?.images) {
+            galleryDataResolved.images = galleryDataResolved.images.map(image => ({
+              ...image,
+              variants: generateImageVariants(image.src)
+            }))
+          }
+        }
+
+        processedBlock.artistData = {
+          ...artistInfo,
+          galleryData: galleryDataResolved
+        }
+      }
+    }
+
     processedBlocks.push(processedBlock)
   }
   

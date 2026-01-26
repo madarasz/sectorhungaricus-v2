@@ -19,7 +19,7 @@ export default function GameLayout({ game, subpages, currentSubpage, locale }: G
         locale={locale} 
       />
       <main className="flex-1 px-4 pb-4" data-testid="subpage-content">
-        <SubpageRenderer subpage={currentSubpage} />
+        <SubpageRenderer subpage={currentSubpage} locale={locale} />
       </main>
     </div>
   )

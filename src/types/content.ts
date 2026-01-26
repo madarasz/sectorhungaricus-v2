@@ -53,8 +53,19 @@ export interface PageContent {
   contentHtml: string
 }
 
+export interface ArtistContent {
+  slug: string
+  data: {
+    name: string
+    portfolio?: string
+    does_commission: boolean
+    gallery: string
+  }
+  contentHtml: string
+}
+
 export interface ContentBlock {
-  type: 'text_block' | 'hero_block' | 'two_column_block' | 'gallery_block' | 'page_reference_block'
+  type: 'text_block' | 'hero_block' | 'two_column_block' | 'gallery_block' | 'page_reference_block' | 'artist_block'
   content?: string
   style?: 'normal' | 'bordered'
   block_title?: string
@@ -73,6 +84,23 @@ export interface ContentBlock {
     }>
   }
   page_reference?: string
+  artist?: string
+  artistData?: {
+    name: string
+    portfolio?: string
+    does_commission: boolean
+    gallery: string
+    galleryData?: {
+      title: string
+      description?: string
+      images?: Array<{
+        src: string
+        variants?: ImageVariants
+        caption?: string
+        alt: string
+      }>
+    }
+  }
 }
 
 export interface SubpageContent {

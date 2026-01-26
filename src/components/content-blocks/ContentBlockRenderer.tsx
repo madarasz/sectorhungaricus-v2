@@ -4,12 +4,14 @@ import HeroBlock from './HeroBlock'
 import TwoColumnBlock from './TwoColumnBlock'
 import GalleryBlock from './GalleryBlock'
 import PageReferenceBlock from './PageReferenceBlock'
+import ArtistBlock from './ArtistBlock'
 
 interface ContentBlockRendererProps {
   block: ContentBlock
+  locale: string
 }
 
-export default function ContentBlockRenderer({ block }: ContentBlockRendererProps) {
+export default function ContentBlockRenderer({ block, locale }: ContentBlockRendererProps) {
   switch (block.type) {
     case 'text_block':
       return <TextBlock block={block as ContentBlock & { type: 'text_block' }} />
@@ -21,6 +23,8 @@ export default function ContentBlockRenderer({ block }: ContentBlockRendererProp
       return <GalleryBlock block={block as ContentBlock & { type: 'gallery_block' }} />
     case 'page_reference_block':
       return <PageReferenceBlock block={block as ContentBlock & { type: 'page_reference_block' }} />
+    case 'artist_block':
+      return <ArtistBlock block={block as ContentBlock & { type: 'artist_block' }} locale={locale} />
     default:
       return null
   }
