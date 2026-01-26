@@ -12,4 +12,8 @@ content_blocks:
       Discord channel to get glory, expert feedback and to level up your skills.
   - type: artist_block
     artist: map-does_commission-true-name-matteo-portfolio-https-www-instagram-com-mafacmiatures-gallery-artist-matteo
+  - type: artist_block
+    artist: map-does_commission-false-name-aries-gallery-artist-aries
+  - type: artist_block
+    artist: map-does_commission-false-name-groxika-gallery-artist-groxika
 ---

@@ -12,4 +12,8 @@ content_blocks:
       channel of our Discord to get feedback, tips and glory.
   - type: artist_block
     artist: map-does_commission-true-name-matteo-portfolio-https-www-instagram-com-mafacmiatures-gallery-artist-matteo
+  - type: artist_block
+    artist: map-does_commission-false-name-aries-gallery-artist-aries
+  - type: artist_block
+    artist: map-does_commission-false-name-groxika-gallery-artist-groxika
 ---
