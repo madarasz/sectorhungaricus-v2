@@ -10,6 +10,7 @@ export interface GameContent {
   data: {
     title: string
     description: string
+    order: number
     featuredImage?: string
     featuredImageVariants?: ImageVariants
     gallery?: string

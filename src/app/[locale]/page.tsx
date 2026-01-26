@@ -26,9 +26,9 @@ export default async function HomePage({ params }: HomePageProps) {
   // Load calendar content for button text
   const calendarContent = await getMarkdownContent('pages', 'calendar', validLocale) as PageContent | null
   
-  // Load games content and sort alphabetically  
+  // Load games content and sort by order
   const allGames = await getAllContent('games', validLocale) as GameContent[]
-  const sortedGames = allGames.filter(Boolean).sort((a, b) => a.data.title.localeCompare(b.data.title))
+  const sortedGames = allGames.filter(Boolean).sort((a, b) => a.data.order - b.data.order)
 
   // Get first subpage for each game for direct linking
   const gamesWithFirstSubpage = await Promise.all(
@@ -84,7 +84,7 @@ export default async function HomePage({ params }: HomePageProps) {
       {/* Games Section */}
       <section className="py-8 md:py-16">
         <div className="w-full max-w-[1440px] mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 justify-items-center">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8">
             {gamesWithFirstSubpage.map((game) => {
               const hasSubpages = game.firstSubpage !== null
               const gameHref = hasSubpages && game.firstSubpage

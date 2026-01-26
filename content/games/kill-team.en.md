@@ -1,6 +1,7 @@
 ---
 title: Kill Team
 description: Action-packed tactical skirmish combat in the war-torn 41st Millennium
+order: 1
 featuredImage: /uploads/killteam-budkvkd-.webp
 ---
 

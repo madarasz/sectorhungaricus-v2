@@ -27,6 +27,7 @@ collections:
     fields:
       - {label: "Title", name: "title", widget: "string", i18n: true}
       - {label: "Description", name: "description", widget: "text", i18n: true}
+      - {label: "Order", name: "order", widget: "number", default: 1, i18n: "duplicate"}
       - {label: "Featured Image", name: "featuredImage", widget: "image", required: false}
 
   - name: "pages"

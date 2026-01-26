@@ -1,6 +1,7 @@
 ---
 title: Kill Team
 description: Akciódús taktikai harc a háború sújtotta 41. évezredben
+order: 1
 featuredImage: /uploads/killteam-budkvkd-.webp
 ---
 
