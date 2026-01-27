@@ -74,8 +74,32 @@ test.describe('Subpages Navigation Tests', () => {
 
   test('English subpages navigation - Kill Team', async ({ page }) => {
     const linkCount = await navigateSubpages(page, 'en', 'kill-team', 'what-is-kill-team');
-    
+
     // Verify we navigated through multiple subpages
     expect(linkCount).toBeGreaterThan(1);
+  });
+
+  test('Our Artists page loads correctly', async ({ page }) => {
+    await page.goto('/hu/painting-hobby/our-artists/');
+
+    const subpageContent = page.locator('[data-testid="subpage-content"]');
+    await expect(subpageContent).toBeVisible();
+
+    // Verify there are multiple artist blocks
+    const artistBlocks = page.locator('[data-testid="artist-block"]');
+    const artistCount = await artistBlocks.count();
+    expect(artistCount).toBeGreaterThan(1);
+
+    // Verify each artist block has a gallery with images
+    for (let i = 0; i < artistCount; i++) {
+      const artistBlock = artistBlocks.nth(i);
+      const gallery = artistBlock.locator('[data-testid="gallery-container"]');
+      await expect(gallery).toBeVisible();
+
+      // Verify gallery has at least one thumbnail
+      const thumbnails = gallery.locator('[data-testid^="gallery-thumbnail-"]');
+      const thumbnailCount = await thumbnails.count();
+      expect(thumbnailCount).toBeGreaterThan(0);
+    }
   });
 });

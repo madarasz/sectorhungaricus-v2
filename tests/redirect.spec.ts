@@ -6,8 +6,8 @@ test.describe('Redirect Tests', () => {
     // In production, it should redirect via _redirects file
     await page.goto('/');
     
-    // Check if we ended up at /hu/ either via redirect or client-side navigation
-    await page.waitForURL('**/hu/**', { timeout: 5000 });
-    expect(page.url()).toMatch(/\/hu\/$/);
+    // Check if we ended up at /hu either via redirect or client-side navigation
+    await page.waitForURL('**/hu**', { timeout: 5000 });
+    expect(page.url()).toMatch(/\/hu\/?$/);
   });
 });

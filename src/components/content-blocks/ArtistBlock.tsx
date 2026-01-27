@@ -52,7 +52,7 @@ export default function ArtistBlock({ block, locale }: ArtistBlockProps) {
       </div>
 
       {images.length > 0 && (
-        <GalleryBlock images={images} testIdPrefix="artist-gallery" />
+        <GalleryBlock images={images} />
       )}
     </div>
   )
