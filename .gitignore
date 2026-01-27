@@ -47,3 +47,6 @@ next-env.d.ts
 public/uploads/*-thumb.*
 public/uploads/*-mobile.*
 public/uploads/*-desktop.*
+
+# Local Netlify folder
+.netlify

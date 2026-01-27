@@ -4,6 +4,7 @@ import { ContentBlock, ImageVariants } from '@/types/content'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { getBestImageVariant } from '@/lib/imageVariants'
+import VoteButton from '@/components/VoteButton'
 
 interface ArtistBlockProps {
   block: ContentBlock & { type: 'artist_block' }
@@ -182,10 +183,12 @@ export default function ArtistBlock({ block, locale }: ArtistBlockProps) {
 
   return (
     <div data-testid="artist-block">
-      <div className="flex items-center gap-3 mb-4">
+      <div className="flex items-center gap-3 mb-4 flex-wrap">
         <span className="text-xl font-semibold" data-testid="artist-name">
           @{name}
         </span>
+
+        <VoteButton artistId={block.artist || ''} locale={locale} />
 
         {does_commission && (
           <span
