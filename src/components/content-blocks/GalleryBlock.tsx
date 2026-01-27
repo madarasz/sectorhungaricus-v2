@@ -5,25 +5,30 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { getBestImageVariant } from '@/lib/imageVariants'
 
+interface GalleryImage {
+  src: string
+  variants?: ImageVariants
+  caption?: string
+  alt: string
+}
+
 interface GalleryBlockProps {
-  block: ContentBlock & { type: 'gallery_block' }
+  block?: ContentBlock & { type: 'gallery_block' }
+  images?: GalleryImage[]
+  testIdPrefix?: string
 }
 
 interface ImageOverlayProps {
-  images: Array<{
-    src: string
-    variants?: ImageVariants
-    caption?: string
-    alt: string
-  }>
+  images: GalleryImage[]
   currentIndex: number
   isOpen: boolean
   onClose: () => void
   onPrevious: () => void
   onNext: () => void
+  testIdPrefix: string
 }
 
-function ImageOverlay({ images, currentIndex, isOpen, onClose, onPrevious, onNext }: ImageOverlayProps) {
+function ImageOverlay({ images, currentIndex, isOpen, onClose, onPrevious, onNext, testIdPrefix }: ImageOverlayProps) {
   useEffect(() => {
     if (!isOpen) return
 
@@ -57,10 +62,10 @@ function ImageOverlay({ images, currentIndex, isOpen, onClose, onPrevious, onNex
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Semi-transparent background overlay */}
-      <div 
+      <div
         className="absolute inset-0 bg-black bg-opacity-70"
         onClick={onClose}
-        data-testid="gallery-overlay-background"
+        data-testid={`${testIdPrefix}-overlay-background`}
       />
 
       {/* Close button */}
@@ -68,7 +73,7 @@ function ImageOverlay({ images, currentIndex, isOpen, onClose, onPrevious, onNex
         onClick={onClose}
         className="absolute top-4 right-4 text-white text-2xl hover:text-gray-300 z-10 p-2 pointer-events-auto"
         aria-label="Close gallery"
-        data-testid="gallery-close-button"
+        data-testid={`${testIdPrefix}-close-button`}
       >
         ✕
       </button>
@@ -82,7 +87,7 @@ function ImageOverlay({ images, currentIndex, isOpen, onClose, onPrevious, onNex
           }}
           className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-gray-300 z-10 p-2 pointer-events-auto"
           aria-label="Previous image"
-          data-testid="gallery-prev-button"
+          data-testid={`${testIdPrefix}-prev-button`}
         >
           ‹
         </button>
@@ -97,16 +102,16 @@ function ImageOverlay({ images, currentIndex, isOpen, onClose, onPrevious, onNex
           }}
           className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-gray-300 z-10 p-2 pointer-events-auto"
           aria-label="Next image"
-          data-testid="gallery-next-button"
+          data-testid={`${testIdPrefix}-next-button`}
         >
           ›
         </button>
       )}
 
       {/* Image container */}
-      <div 
+      <div
         className="relative w-full h-full max-w-[90vw] max-h-[80vh] flex flex-col z-10 pointer-events-none"
-        data-testid="gallery-image-container"
+        data-testid={`${testIdPrefix}-image-container`}
       >
         <div className="relative flex-1 min-h-0">
           <picture>
@@ -126,14 +131,14 @@ function ImageOverlay({ images, currentIndex, isOpen, onClose, onPrevious, onNex
               fill
               className="object-contain pointer-events-none"
               sizes="90vw"
-              data-testid="gallery-overlay-image"
+              data-testid={`${testIdPrefix}-overlay-image`}
             />
           </picture>
         </div>
         
         {/* Caption */}
         {currentImage.caption && (
-          <div className="text-white text-center mt-4 px-4 py-2 flex-shrink-0" data-testid="gallery-image-caption">
+          <div className="text-white text-center mt-4 px-4 py-2 flex-shrink-0" data-testid={`${testIdPrefix}-image-caption`}>
             {currentImage.caption}
           </div>
         )}
@@ -141,7 +146,7 @@ function ImageOverlay({ images, currentIndex, isOpen, onClose, onPrevious, onNex
 
       {/* Image counter */}
       {images.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm z-10 pointer-events-auto" data-testid="gallery-image-counter">
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm z-10 pointer-events-auto" data-testid={`${testIdPrefix}-image-counter`}>
           {currentIndex + 1} / {images.length}
         </div>
       )}
@@ -149,14 +154,15 @@ function ImageOverlay({ images, currentIndex, isOpen, onClose, onPrevious, onNex
   )
 }
 
-export default function GalleryBlock({ block }: GalleryBlockProps) {
+export default function GalleryBlock({ block, images: imagesProp, testIdPrefix = 'gallery' }: GalleryBlockProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null)
 
-  if (!block.galleryData?.images || block.galleryData.images.length === 0) {
+  // Use images from props if provided, otherwise from block
+  const images = imagesProp || block?.galleryData?.images
+
+  if (!images || images.length === 0) {
     return null
   }
-
-  const images = block.galleryData.images
 
   const openOverlay = (index: number) => {
     setSelectedImageIndex(index)
@@ -182,14 +188,14 @@ export default function GalleryBlock({ block }: GalleryBlockProps) {
 
   return (
     <>
-      <div className="w-4/5 mx-auto" data-testid="gallery-container">
+      <div className="w-4/5 mx-auto" data-testid={`${testIdPrefix}-container`}>
         <div className="flex flex-wrap gap-4 justify-center">
           {images.map((image, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="relative aspect-square overflow-hidden rounded-lg bg-gray-100 cursor-pointer w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.67rem)]"
               onClick={() => openOverlay(index)}
-              data-testid={`gallery-thumbnail-${index}`}
+              data-testid={`${testIdPrefix}-thumbnail-${index}`}
             >
               {/* Always use thumbnail variant for grid display */}
               <Image
@@ -211,6 +217,7 @@ export default function GalleryBlock({ block }: GalleryBlockProps) {
         onClose={closeOverlay}
         onPrevious={goToPrevious}
         onNext={goToNext}
+        testIdPrefix={testIdPrefix}
       />
     </>
   )
