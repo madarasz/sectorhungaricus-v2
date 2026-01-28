@@ -50,13 +50,15 @@ content_blocks:
     content: >-
       ### Friendly Local Game Stores (FLGS)
 
-      We recommend these stores in Budapest for their Kill Team and hobby products, good business practices, helpful staff, and gaming tables with proper terrain:
+      We recommend these stores for their Kill Team and hobby products, good business practices, helpful staff, and gaming tables with proper terrain:
 
-      - [Metagames](https://www.metagames.hu/)
+      - [Metagames](https://www.metagames.hu/) - Budapest
 
-      - [Tuan](https://tuan.hu/)
+      - [Tuan](https://tuan.hu/) - Budapest
 
-      - [Contrast Phase](https://contrastphase.hu/)
+      - [Contrast Phase](https://contrastphase.hu/) - Budapest
+
+      - [Főnixcsarnok](https://www.fonixcsarnok.eu/) - Székesfehérvár
 
 
       Remember to make a reservation if you plan to play at any of these locations.

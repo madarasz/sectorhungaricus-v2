@@ -48,15 +48,17 @@ content_blocks:
   - type: text_block
     style: normal
     content: >-
-      ### Ajánlott játékboltok Budapesten
+      ### Ajánlott játékboltok
 
       Az alábbi üzleteket ajánljuk Kill Team és hobby termékek beszerzéséhez, valamint játékhoz. Mindegyik helyen segítőkész személyzet és megfelelő terepekkel felszerelt játékasztalok várnak:
 
-      - [Metagames](https://www.metagames.hu/)
+      - [Metagames](https://www.metagames.hu/) - Budapest
 
-      - [Tuan](https://tuan.hu/)
+      - [Tuan](https://tuan.hu/) - Budapest
 
-      - [Contrast Phase](https://contrastphase.hu/)
+      - [Contrast Phase](https://contrastphase.hu/) - Budapest
+
+      - [Főnixcsarnok](https://www.fonixcsarnok.eu/) - Székesfehérvár
 
 
       Ne felejtsd el előre lefoglalni az asztalt, ha játszani szeretnél valamelyik helyszínen.
