@@ -42,7 +42,7 @@ content_blocks:
 
       - [Zumikito: Weathering](https://www.youtube.com/watch?v=Sy2g5mQAYz4)
 
-      - ...
+      - [Squidly Bits: Photographing Miniatures](https://www.youtube.com/watch?v=Z84kE8J-804)
   - type: text_block
     style: normal
     content: >-
