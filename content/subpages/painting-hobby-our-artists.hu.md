@@ -17,6 +17,8 @@ content_blocks:
   - type: artist_block
     artist: map-does_commission-true-name-gabd-gallery-artist-gabf-portfolio-https-discord-com-channels-me-1114452166007074816
   - type: artist_block
+    artist: map-does_commission-false-name-madarasz-gallery-artist-madarasz
+  - type: artist_block
     artist: map-does_commission-false-name-aries-gallery-artist-aries
   - type: artist_block
     artist: map-does_commission-false-name-groxika-gallery-artist-groxika
