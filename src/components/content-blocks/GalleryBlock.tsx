@@ -78,78 +78,99 @@ function ImageOverlay({ images, currentIndex, isOpen, onClose, onPrevious, onNex
         ✕
       </button>
 
-      {/* Previous button */}
+      {/* Desktop navigation buttons - on sides */}
       {images.length > 1 && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            onPrevious()
-          }}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-gray-300 z-10 p-2 pointer-events-auto"
-          aria-label="Previous image"
-          data-testid={`${testIdPrefix}-prev-button`}
-        >
-          ‹
-        </button>
+        <>
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              onPrevious()
+            }}
+            className="hidden md:block absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-gray-300 z-10 p-2 pointer-events-auto"
+            aria-label="Previous image"
+            data-testid={`${testIdPrefix}-prev-button-desktop`}
+          >
+            ‹
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              onNext()
+            }}
+            className="hidden md:block absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-gray-300 z-10 p-2 pointer-events-auto"
+            aria-label="Next image"
+            data-testid={`${testIdPrefix}-next-button-desktop`}
+          >
+            ›
+          </button>
+        </>
       )}
 
-      {/* Next button */}
-      {images.length > 1 && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            onNext()
-          }}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-gray-300 z-10 p-2 pointer-events-auto"
-          aria-label="Next image"
-          data-testid={`${testIdPrefix}-next-button`}
-        >
-          ›
-        </button>
-      )}
-
-      {/* Image container */}
+      {/* Main content container */}
       <div
-        className="relative w-full h-full max-w-[90vw] max-h-[80vh] flex flex-col z-10 pointer-events-none"
+        className="relative z-10 pointer-events-none flex flex-col items-center justify-center"
+        style={{ width: 'calc(100vw - 2rem)', maxWidth: '90vw' }}
         data-testid={`${testIdPrefix}-image-container`}
       >
-        <div className="relative flex-1 min-h-0">
-          <picture>
-            {/* Desktop: use desktop variant */}
-            <source 
-              media="(min-width: 768px)" 
-              srcSet={getBestImageVariant(currentImage.variants, 'desktop') || currentImage.src}
-            />
-            {/* Mobile: use mobile variant */}
-            <source 
-              media="(max-width: 767px)" 
-              srcSet={getBestImageVariant(currentImage.variants, 'mobile') || currentImage.src}
-            />
-            <Image
-              src={getBestImageVariant(currentImage.variants, 'desktop') || currentImage.src}
-              alt={currentImage.alt}
-              fill
-              className="object-contain pointer-events-none"
-              sizes="90vw"
-              data-testid={`${testIdPrefix}-overlay-image`}
-            />
-          </picture>
+        {/* Image wrapper - fits image naturally without cropping */}
+        <div className="flex items-center justify-center w-full">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={getBestImageVariant(currentImage.variants, 'original') || getBestImageVariant(currentImage.variants, 'desktop') || currentImage.src}
+            alt={currentImage.alt}
+            style={{
+              maxWidth: 'calc(100vw - 2rem)',
+              maxHeight: 'calc(100vh - 180px)',
+              width: 'auto',
+              height: 'auto',
+            }}
+            className="pointer-events-none"
+            data-testid={`${testIdPrefix}-overlay-image`}
+          />
         </div>
-        
+
+        {/* Mobile navigation buttons - below image */}
+        {images.length > 1 && (
+          <div className="flex md:hidden items-center justify-center gap-8 mt-4 pointer-events-auto">
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                onPrevious()
+              }}
+              className="text-white text-4xl hover:text-gray-300 p-3 bg-black/50 rounded-full min-w-[52px] min-h-[52px] flex items-center justify-center"
+              aria-label="Previous image"
+              data-testid={`${testIdPrefix}-prev-button`}
+            >
+              ‹
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                onNext()
+              }}
+              className="text-white text-4xl hover:text-gray-300 p-3 bg-black/50 rounded-full min-w-[52px] min-h-[52px] flex items-center justify-center"
+              aria-label="Next image"
+              data-testid={`${testIdPrefix}-next-button`}
+            >
+              ›
+            </button>
+          </div>
+        )}
+
         {/* Caption */}
         {currentImage.caption && (
           <div className="text-white text-center mt-4 px-4 py-2 flex-shrink-0" data-testid={`${testIdPrefix}-image-caption`}>
             {currentImage.caption}
           </div>
         )}
-      </div>
 
-      {/* Image counter */}
-      {images.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm z-10 pointer-events-auto" data-testid={`${testIdPrefix}-image-counter`}>
-          {currentIndex + 1} / {images.length}
-        </div>
-      )}
+        {/* Image counter */}
+        {images.length > 1 && (
+          <div className="text-white text-sm mt-2 pointer-events-auto" data-testid={`${testIdPrefix}-image-counter`}>
+            {currentIndex + 1} / {images.length}
+          </div>
+        )}
+      </div>
     </div>
   )
 }
