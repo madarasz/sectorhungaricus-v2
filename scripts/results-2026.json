@@ -3,6 +3,7 @@
         {
             "name": "Lóránd “Clostry” Papp",
             "total_score": 52,
+            "best_3_score": 52,
             "tournaments": [
                 {
                     "name": "Contrast Clash - January",
@@ -21,6 +22,7 @@
         {
             "name": "Péter Oláh",
             "total_score": 50,
+            "best_3_score": 50,
             "tournaments": [
                 {
                     "name": "Contrast Clash - January",
@@ -39,6 +41,7 @@
         {
             "name": "Gergely Papp \"Watapi\"",
             "total_score": 40,
+            "best_3_score": 40,
             "tournaments": [
                 {
                     "name": "Contrast Double Clash - November",
@@ -51,6 +54,7 @@
         {
             "name": "Gabor Kiss",
             "total_score": 30,
+            "best_3_score": 30,
             "tournaments": [
                 {
                     "name": "Contrast Clash - January",
@@ -63,6 +67,7 @@
         {
             "name": "Bence Gombás",
             "total_score": 22,
+            "best_3_score": 22,
             "tournaments": [
                 {
                     "name": "Contrast Double Clash - November",
@@ -75,6 +80,7 @@
         {
             "name": "Wojciech Ogrodowczyk",
             "total_score": 16,
+            "best_3_score": 16,
             "tournaments": [
                 {
                     "name": "Contrast Clash - January",
@@ -87,6 +93,7 @@
         {
             "name": "Dávid Nagy",
             "total_score": 16,
+            "best_3_score": 16,
             "tournaments": [
                 {
                     "name": "Contrast Double Clash - November",
@@ -99,6 +106,7 @@
         {
             "name": "Szarvas Dominik",
             "total_score": 12,
+            "best_3_score": 12,
             "tournaments": [
                 {
                     "name": "Contrast Clash - January",
@@ -111,6 +119,7 @@
         {
             "name": "Sándor Ágota",
             "total_score": 12,
+            "best_3_score": 12,
             "tournaments": [
                 {
                     "name": "Contrast Double Clash - November",
@@ -123,6 +132,7 @@
         {
             "name": "Barnabás László",
             "total_score": 10,
+            "best_3_score": 10,
             "tournaments": [
                 {
                     "name": "Contrast Clash - January",
@@ -135,6 +145,7 @@
         {
             "name": "Milán Józing",
             "total_score": 8,
+            "best_3_score": 8,
             "tournaments": [
                 {
                     "name": "Contrast Clash - January",
@@ -153,6 +164,7 @@
         {
             "name": "Csaba Toth",
             "total_score": 8,
+            "best_3_score": 8,
             "tournaments": [
                 {
                     "name": "Contrast Double Clash - November",
@@ -165,6 +177,7 @@
         {
             "name": "Gombás Bence",
             "total_score": 6,
+            "best_3_score": 6,
             "tournaments": [
                 {
                     "name": "Contrast Clash - January",
@@ -177,6 +190,7 @@
         {
             "name": "Gergely Darmos",
             "total_score": 6,
+            "best_3_score": 6,
             "tournaments": [
                 {
                     "name": "Contrast Double Clash - November",
@@ -189,6 +203,7 @@
         {
             "name": "Máté Bujdosó",
             "total_score": 4,
+            "best_3_score": 4,
             "tournaments": [
                 {
                     "name": "Contrast Clash - January",
@@ -201,6 +216,7 @@
         {
             "name": "Áron Kovács",
             "total_score": 4,
+            "best_3_score": 4,
             "tournaments": [
                 {
                     "name": "Contrast Double Clash - November",
@@ -213,6 +229,7 @@
         {
             "name": "Vince Balázs Soós",
             "total_score": 2,
+            "best_3_score": 2,
             "tournaments": [
                 {
                     "name": "Contrast Clash - January",
@@ -225,6 +242,7 @@
         {
             "name": "Sándor Tamás Balogh",
             "total_score": 2,
+            "best_3_score": 2,
             "tournaments": [
                 {
                     "name": "Contrast Double Clash - November",
@@ -237,6 +255,7 @@
         {
             "name": "Alex Horvai",
             "total_score": 0,
+            "best_3_score": 0,
             "tournaments": [
                 {
                     "name": "Contrast Clash - January",
@@ -249,6 +268,7 @@
         {
             "name": "Róbert Károly",
             "total_score": 0,
+            "best_3_score": 0,
             "tournaments": [
                 {
                     "name": "Contrast Double Clash - November",
@@ -261,6 +281,7 @@
         {
             "name": "Szabolcs Berényi",
             "total_score": 0,
+            "best_3_score": 0,
             "tournaments": [
                 {
                     "name": "Contrast Double Clash - November",
@@ -273,6 +294,7 @@
         {
             "name": "Dániel Károly",
             "total_score": 0,
+            "best_3_score": 0,
             "tournaments": [
                 {
                     "name": "Contrast Double Clash - November",
@@ -285,6 +307,7 @@
         {
             "name": "Márton Mati",
             "total_score": 0,
+            "best_3_score": 0,
             "tournaments": [
                 {
                     "name": "Contrast Double Clash - November",
@@ -297,6 +320,7 @@
         {
             "name": "Kolos Szentpáli",
             "total_score": 0,
+            "best_3_score": 0,
             "tournaments": [
                 {
                     "name": "Contrast Double Clash - November",

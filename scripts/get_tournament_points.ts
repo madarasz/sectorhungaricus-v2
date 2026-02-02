@@ -22,6 +22,7 @@ interface PlayerTournamentResult {
 interface PlayerResult {
   name: string;
   total_score: number;
+  best_3_score: number;
   tournaments: PlayerTournamentResult[];
 }
 
@@ -135,6 +136,7 @@ async function main(): Promise<void> {
           playerMap.set(playerName, {
             name: playerName,
             total_score: score,
+            best_3_score: 0, // Will be calculated after all tournaments are processed
             tournaments: [tournamentResult],
           });
         }
@@ -146,9 +148,17 @@ async function main(): Promise<void> {
     }
   }
 
-  // Convert map to array and sort by total_score descending
+  // Calculate best_3_score for each player
+  for (const player of playerMap.values()) {
+    const sortedScores = player.tournaments
+      .map((t) => t.score)
+      .sort((a, b) => b - a);
+    player.best_3_score = sortedScores.slice(0, 3).reduce((sum, s) => sum + s, 0);
+  }
+
+  // Convert map to array and sort by best_3_score descending
   const playersArray = Array.from(playerMap.values()).sort(
-    (a, b) => b.total_score - a.total_score
+    (a, b) => b.best_3_score - a.best_3_score
   );
 
   const results: ResultsOutput = {

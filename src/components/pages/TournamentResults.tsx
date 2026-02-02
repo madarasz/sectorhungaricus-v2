@@ -41,7 +41,7 @@ export default function TournamentResults() {
               <tr key={player.name} className="tournament-table__row">
                 <td className="tournament-table__cell--right">{index + 1}</td>
                 <td className="tournament-table__cell">{player.name}</td>
-                <td className="tournament-table__cell--right">{player.total_score}</td>
+                <td className="tournament-table__cell--right">{player.best_3_score}</td>
                 <td className="tournament-table__cell--center">{player.tournaments.length}</td>
               </tr>
             ))}
