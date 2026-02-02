@@ -2,10 +2,15 @@
 
 import { useLocale } from '@/contexts/LocaleContext'
 import { getTournamentResultsTranslations } from '@/lib/translations'
+import resultsData from '../../../scripts/results-2026.json'
+
+const TOP_PLAYERS_COUNT = 12
 
 export default function TournamentResults() {
   const { locale } = useLocale()
   const t = getTournamentResultsTranslations(locale)
+
+  const topPlayers = resultsData.players.slice(0, TOP_PLAYERS_COUNT)
 
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow">
@@ -32,66 +37,14 @@ export default function TournamentResults() {
             </tr>
           </thead>
           <tbody className="tournament-table__body">
-            <tr className="tournament-table__row">
-              <td className="tournament-table__cell--right">1</td>
-              <td className="tournament-table__cell">Watapi</td>
-              <td className="tournament-table__cell--right">40</td>
-              <td className="tournament-table__cell--center">1</td>
-            </tr>
-            <tr className="tournament-table__row">
-              <td className="tournament-table__cell--right">2</td>
-              <td className="tournament-table__cell">Clostry</td>
-              <td className="tournament-table__cell--right">30</td>
-              <td className="tournament-table__cell--center">1</td>
-            </tr>
-            <tr className="tournament-table__row">
-              <td className="tournament-table__cell--right">3</td>
-              <td className="tournament-table__cell">Gombás Bence</td>
-              <td className="tournament-table__cell--right">22</td>
-              <td className="tournament-table__cell--center">1</td>
-            </tr>
-            <tr className="tournament-table__row">
-              <td className="tournament-table__cell--right">4</td>
-              <td className="tournament-table__cell">Nagy Dávid</td>
-              <td className="tournament-table__cell--right">16</td>
-              <td className="tournament-table__cell--center">1</td>
-            </tr>
-            <tr className="tournament-table__row">
-              <td className="tournament-table__cell--right">5</td>
-              <td className="tournament-table__cell">Ágota Sándor</td>
-              <td className="tournament-table__cell--right">12</td>
-              <td className="tournament-table__cell--center">1</td>
-            </tr>
-            <tr className="tournament-table__row">
-              <td className="tournament-table__cell--right">6</td>
-              <td className="tournament-table__cell">Oláh Péter</td>
-              <td className="tournament-table__cell--right">10</td>
-              <td className="tournament-table__cell--center">1</td>
-            </tr>
-            <tr className="tournament-table__row">
-              <td className="tournament-table__cell--right">7</td>
-              <td className="tournament-table__cell">Tóth Csaba</td>
-              <td className="tournament-table__cell--right">8</td>
-              <td className="tournament-table__cell--center">1</td>
-            </tr>
-            <tr className="tournament-table__row">
-              <td className="tournament-table__cell--right">8</td>
-              <td className="tournament-table__cell">Darmos Gergely</td>
-              <td className="tournament-table__cell--right">6</td>
-              <td className="tournament-table__cell--center">1</td>
-            </tr>
-            <tr className="tournament-table__row">
-              <td className="tournament-table__cell--right">9</td>
-              <td className="tournament-table__cell">Kovács Áron</td>
-              <td className="tournament-table__cell--right">4</td>
-              <td className="tournament-table__cell--center">1</td>
-            </tr>
-            <tr className="tournament-table__row">
-              <td className="tournament-table__cell--right">10</td>
-              <td className="tournament-table__cell">Balogh Sándor</td>
-              <td className="tournament-table__cell--right">2</td>
-              <td className="tournament-table__cell--center">1</td>
-            </tr>
+            {topPlayers.map((player, index) => (
+              <tr key={player.name} className="tournament-table__row">
+                <td className="tournament-table__cell--right">{index + 1}</td>
+                <td className="tournament-table__cell">{player.name}</td>
+                <td className="tournament-table__cell--right">{player.total_score}</td>
+                <td className="tournament-table__cell--center">{player.tournaments.length}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

@@ -1,0 +1,14 @@
+{
+    "name": "Tournaments 2026",
+    "tournaments": [
+        {
+            "name": "Contrast Clash - January",
+            "bcp_id": "Hs3KhPo1VXJR"
+        },
+        {
+            "name": "Contrast Double Clash - November",
+            "bcp_id": "8L6HZdZa0W7W"
+        }
+    ],
+    "scoring": [40, 30, 22, 16, 12, 10, 8, 6, 4, 2]
+}

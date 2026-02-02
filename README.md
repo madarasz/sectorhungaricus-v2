@@ -192,6 +192,13 @@ Edit `public/admin/config.yml` to modify:
 - Field definitions
 - Workflow settings
 
+## Tournament results, best players
+Add tournaments to `scripts/tournaments-2026.json`.
+Run script to update tournament scores:
+```
+npx tsx scripts/get_tournament_points.ts
+```
+
 ## License
 
 This project is open source and available under the MIT License.
