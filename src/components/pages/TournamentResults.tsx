@@ -6,7 +6,8 @@ import resultsData from '../../../scripts/results-2026.json'
 import tournamentsData from '../../../scripts/tournaments-2026.json'
 
 const TOP_PLAYERS_COUNT = 12
-const TOP_FACTIONS_COUNT = 4
+const TOP_FACTIONS_COUNT = 5
+const MIN_TIMES_PLAYED = 2
 
 export default function TournamentResults() {
   const { locale } = useLocale()
@@ -22,10 +23,19 @@ export default function TournamentResults() {
       return acc
     }, {} as Record<string, number>)
 
-  // Sort and take top factions
-  const topFactions = Object.entries(factionCounts)
+  // Sort factions, filter out those with less than MIN_TIMES_PLAYED
+  const sortedFactions = Object.entries(factionCounts)
+    .filter(([, count]) => count >= MIN_TIMES_PLAYED)
     .sort((a, b) => b[1] - a[1])
-    .slice(0, TOP_FACTIONS_COUNT)
+
+  // Take top factions, extending if there's a tie at the cutoff
+  const topFactions = (() => {
+    if (sortedFactions.length <= TOP_FACTIONS_COUNT) {
+      return sortedFactions
+    }
+    const cutoffCount = sortedFactions[TOP_FACTIONS_COUNT - 1][1]
+    return sortedFactions.filter(([, count]) => count >= cutoffCount)
+  })()
 
   return (
     <div className="space-y-6">
