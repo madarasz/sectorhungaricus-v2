@@ -22,7 +22,7 @@ export const tournamentResultsTranslations: Record<Locale, TournamentResultsTran
       tournaments: 'Tournaments'
     },
     concludedTournaments: 'Concluded Tournaments',
-    topFactions: 'Top Factions'
+    topFactions: 'Most Played Factions'
   },
   hu: {
     title: 'Legjobb versenyzők a 2026-os szezonban',
@@ -33,7 +33,7 @@ export const tournamentResultsTranslations: Record<Locale, TournamentResultsTran
       tournaments: 'Versenyek'
     },
     concludedTournaments: 'Lezárult versenyek',
-    topFactions: 'Legnépszerűbb frakciók'
+    topFactions: 'Legtöbbet játszott frakciók'
   }
 }
 
