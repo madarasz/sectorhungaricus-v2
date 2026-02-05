@@ -8,6 +8,8 @@ export interface TournamentResultsTranslations {
     points: string
     tournaments: string
   }
+  concludedTournaments: string
+  topFactions: string
 }
 
 export const tournamentResultsTranslations: Record<Locale, TournamentResultsTranslations> = {
@@ -18,7 +20,9 @@ export const tournamentResultsTranslations: Record<Locale, TournamentResultsTran
       player: 'Player',
       points: 'Points',
       tournaments: 'Tournaments'
-    }
+    },
+    concludedTournaments: 'Concluded Tournaments',
+    topFactions: 'Top Factions'
   },
   hu: {
     title: 'Legjobb versenyzők a 2026-os szezonban',
@@ -27,7 +31,9 @@ export const tournamentResultsTranslations: Record<Locale, TournamentResultsTran
       player: 'Játékos',
       points: 'Pontszám',
       tournaments: 'Versenyek'
-    }
+    },
+    concludedTournaments: 'Lezárult versenyek',
+    topFactions: 'Legnépszerűbb frakciók'
   }
 }
 
