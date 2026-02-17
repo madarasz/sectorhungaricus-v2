@@ -45,13 +45,14 @@ content_blocks:
       A hivatalos terep drága (~30e Ft), de nagyon szép és részletes. A közösség térképcsomagokat is készít ezekhez, így "kiegyensúlyozott és fair" elrendezéseket kapsz. A legnépszerűbbek:
 
 
-      - **Volkus** (a *Hivestorm* dobozban) a legújabb népszerű terep
+      - **Tomb World** - A Gallowdark-hoz nagyon hasonló, de teleportálókkal és elszórt terep elemekkel
+
+      - **Volkus** (a *Hivestorm* dobozban)
 
       - **Octarius**
 
       - **Gallowdark** (gyakran "Into the Dark" vagy "ItD" néven is említik) - Ez a terep kiegészítő "zsúfolt környezet" szabályokat használ. Több nagy doboz is tartalmazta két csapattal együtt. Úgy is beszerezheted, ha veszel egy fél doboz *WH40k Boarding Actions* terepet.
 
-      - **Tomb World** - Hamarosan érkezik, nem ismerjük a részleteket, de biztos menő lesz!
 
 
       Az MDF vagy karton terep szintén jó opció feleannyi árért (10-15e Ft), bár kevésbé részletes. Nézd meg a TTCombat vagy Battle Systems kínálatát! A TTCombat Raised District-je nagyon hasonlít a Volkushoz, az Orc Mega Bunker pedig az Octariusra emlékeztet.

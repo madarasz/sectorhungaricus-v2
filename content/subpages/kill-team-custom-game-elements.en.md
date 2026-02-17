@@ -45,13 +45,14 @@ content_blocks:
       Official terrain is expensive (~30k Ft), but very nice and detailed. The community also makes map packs for these sets, so you will have "balanced and fair" layouts. The most popular ones are:
 
 
-      - **Volkus** (in *Hivestorm* box) is the newest hotness
+      - **Tomb World** - Very similar to Gallowdark, but with teleporters and scatter terrain
+
+      - **Volkus** (in *Hivestorm* box)
 
       - **Octarius**
 
       - **Gallowdark** (often referred to as "Into the Dark" or "ItD") - This terrain uses additional "condensed environments" rules. There were several big boxes including it with two teams. You can also get it by buying half a box of *WH40k Boarding Actions* terrain.
 
-      - **Tomb World** - It will be released soon, we don't know the details yet, but it's going to be hot!
 
 
       MDF or cardboard terrain is also a good option for half the price (10-15k Ft) though less detailed. Check out TTCombat or Battle Systems. TTCombat's Raised District is very similar to Volkus and Orc Mega Bunker mimics Octarius.
