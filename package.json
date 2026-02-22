@@ -12,7 +12,8 @@
     "dev:cms": "concurrently \"npm run dev\" \"npm run cms\"",
     "process-images": "tsx scripts/process-images.ts",
     "test": "playwright test",
-    "test:ui": "playwright test --ui"
+    "test:ui": "playwright test --ui",
+    "points": "tsx scripts/get_tournament_points.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.0.0",

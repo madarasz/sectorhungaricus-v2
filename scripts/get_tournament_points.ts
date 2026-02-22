@@ -85,6 +85,20 @@ function getFactionName(player: BCPPlayer): string {
   return player.faction?.name || "Unknown";
 }
 
+// Workaround for missing factions in BCP
+function sanitizeFactionName(faction: string, tournamentName: string): string {
+  if (faction === "Legionary" && tournamentName === "Contrast Clash - January 2026") {
+    return "Murderwing";
+  }
+  return faction;
+}
+
+// Workaroud for swapped player names in BCP (e.g. "John Doe" vs "Doe John")
+function sanitizePlayerName(name: string): string {
+  if (name == "Szarvas Dominik") return "Dominik Szarvas";
+  return name;
+}
+
 async function main(): Promise<void> {
   const scriptsDir = path.dirname(__filename);
   const tournamentsPath = path.join(scriptsDir, "tournaments-2026.json");
@@ -113,13 +127,13 @@ async function main(): Promise<void> {
           continue;
         }
 
-        const playerName = getPlayerName(player);
+        const playerName = sanitizePlayerName(getPlayerName(player));
         if (!playerName) {
           continue;
         }
 
         const score = calculateScore(placing, scoring);
-        const faction = getFactionName(player);
+        const faction = sanitizeFactionName(getFactionName(player), tournament.name);
 
         const tournamentResult: PlayerTournamentResult = {
           name: tournament.name,

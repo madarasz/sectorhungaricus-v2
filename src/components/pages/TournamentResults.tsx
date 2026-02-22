@@ -9,14 +9,6 @@ const TOP_PLAYERS_COUNT = 12
 const TOP_FACTIONS_COUNT = 5
 const MIN_TIMES_PLAYED = 2
 
-// Workaround for missing factions in BCP
-function normalizeFactionName(faction: string, tournamentName: string): string {
-  if (faction === 'Legionary' && tournamentName === 'Contrast Clash - January 2026') {
-    return 'Murderwing'
-  }
-  return faction
-}
-
 export default function TournamentResults() {
   const { locale } = useLocale()
   const t = getTournamentResultsTranslations(locale)
@@ -27,8 +19,7 @@ export default function TournamentResults() {
   const factionCounts = resultsData.players
     .flatMap(player => player.tournaments)
     .reduce((acc, tournament) => {
-      const faction = normalizeFactionName(tournament.faction, tournament.name)
-      acc[faction] = (acc[faction] || 0) + 1
+      acc[tournament.faction] = (acc[tournament.faction] || 0) + 1
       return acc
     }, {} as Record<string, number>)
 

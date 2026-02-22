@@ -196,7 +196,7 @@ Edit `public/admin/config.yml` to modify:
 Add tournaments to `scripts/tournaments-2026.json`.
 Run script to update tournament scores:
 ```
-npx tsx scripts/get_tournament_points.ts
+npm run points
 ```
 
 ## License
