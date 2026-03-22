@@ -60,6 +60,8 @@ content_blocks:
 
       - [Főnixcsarnok](https://www.fonixcsarnok.eu/) - Székesfehérvár
 
+      - [Taverna](https://www.tavern.hu/) - Debrecen
+
 
       Remember to make a reservation if you plan to play at any of these locations.
   - type: page_reference_block

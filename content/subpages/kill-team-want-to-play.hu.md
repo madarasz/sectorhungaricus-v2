@@ -60,6 +60,8 @@ content_blocks:
 
       - [Főnixcsarnok](https://www.fonixcsarnok.eu/) - Székesfehérvár
 
+      - [Taverna](https://www.tavern.hu/) - Debrecen
+
 
       Ne felejtsd el előre lefoglalni az asztalt, ha játszani szeretnél valamelyik helyszínen.
   - type: page_reference_block
