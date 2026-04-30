@@ -96,6 +96,7 @@ function sanitizeFactionName(faction: string, tournamentName: string): string {
 // Workaroud for swapped player names in BCP (e.g. "John Doe" vs "Doe John")
 function sanitizePlayerName(name: string): string {
   if (name == "Szarvas Dominik") return "Dominik Szarvas";
+  if (name == "Bence Gombás") return "Gombás Bence";
   return name;
 }
 
@@ -188,7 +189,7 @@ async function main(): Promise<void> {
   // Print top 10 players
   console.log("\nTop 10 players:");
   playersArray.slice(0, 10).forEach((player, index) => {
-    console.log(`  ${index + 1}. ${player.name}: ${player.total_score} points`);
+    console.log(`  ${index + 1}. ${player.name}: ${player.best_3_score} points (${player.total_score} total)`);
   });
 }
 
