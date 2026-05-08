@@ -1,0 +1,1129 @@
+{
+    "rounds": {
+        "1": [
+            {
+                "id": "RD0PHatcsxE2",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T09:38:22.905Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 1,
+                "round": 1,
+                "published": true,
+                "isDone": true,
+                "player1Id": "xlDY4Wf0I0sB",
+                "player2Id": "VEdzqcbuudnP",
+                "player1": {
+                    "id": "xlDY4Wf0I0sB",
+                    "user": {
+                        "id": "7BA37A23AG",
+                        "firstName": "Márton",
+                        "lastName": "Mati"
+                    },
+                    "team": "Dice and Beers",
+                    "parentFaction": "Nemesis Claw",
+                    "faction": "Nemesis Claw",
+                    "listId": "nbcUYG9TjdQo"
+                },
+                "player2": {
+                    "id": "VEdzqcbuudnP",
+                    "user": {
+                        "id": "EHV1LKB7G8",
+                        "firstName": "Tamás",
+                        "lastName": "Szücs"
+                    },
+                    "parentFaction": "Wrecka Krew",
+                    "faction": "Wrecka Krew"
+                },
+                "player1GameId": "1HizMK0uWCcv",
+                "player2GameId": "LydqZR4gacb5",
+                "player1Game": {
+                    "id": "1HizMK0uWCcv",
+                    "result": 0,
+                    "points": 7
+                },
+                "player2Game": {
+                    "id": "LydqZR4gacb5",
+                    "result": 2,
+                    "points": 15
+                }
+            },
+            {
+                "id": "XAJumqyNrtjp",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T09:38:22.905Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 2,
+                "round": 1,
+                "published": true,
+                "isDone": true,
+                "player1Id": "pSzaGeqTbieg",
+                "player2Id": "KdwG3cfkYxw7",
+                "player1": {
+                    "id": "pSzaGeqTbieg",
+                    "user": {
+                        "id": "FCN8D689FP",
+                        "firstName": "Misi",
+                        "lastName": "Szabolcs"
+                    },
+                    "faction": "Ratlings",
+                    "listId": "QoqtNTkLvdKj"
+                },
+                "player2": {
+                    "id": "KdwG3cfkYxw7",
+                    "user": {
+                        "id": "TLwOnErtF1Pj",
+                        "firstName": "Tamás",
+                        "lastName": "Horváth"
+                    },
+                    "parentFaction": "Blades of Khaine",
+                    "faction": "Blades of Khaine",
+                    "listId": "HltXR1mWxd1G"
+                },
+                "player1GameId": "j6hTLoL7TLwv",
+                "player2GameId": "AACiDCzvnb9S",
+                "player1Game": {
+                    "id": "j6hTLoL7TLwv",
+                    "result": 2,
+                    "points": 19
+                },
+                "player2Game": {
+                    "id": "AACiDCzvnb9S",
+                    "result": 0,
+                    "points": 13
+                }
+            },
+            {
+                "id": "uNl7GZS9Lk5a",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T09:38:22.905Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 3,
+                "round": 1,
+                "published": true,
+                "isDone": true,
+                "player1Id": "pAsKX52rCz24",
+                "player2Id": "DKg509yeyBmP",
+                "player1": {
+                    "id": "pAsKX52rCz24",
+                    "user": {
+                        "id": "0chsx54R4d4J",
+                        "firstName": "Wojciech",
+                        "lastName": "Ogrodowczyk"
+                    },
+                    "parentFaction": "Wrecka Krew",
+                    "faction": "Wrecka Krew",
+                    "listId": "moDfmYnexjoa"
+                },
+                "player2": {
+                    "id": "DKg509yeyBmP",
+                    "user": {
+                        "id": "cOHk4iYN1y4p",
+                        "firstName": "Dávid",
+                        "lastName": "Viniczay"
+                    },
+                    "parentFaction": "Raveners",
+                    "faction": "Raveners",
+                    "listId": "xeBlGEYfV8T3"
+                },
+                "player1GameId": "dzRvZEUMkvmE",
+                "player2GameId": "LuMbYoPDR06g",
+                "player1Game": {
+                    "id": "dzRvZEUMkvmE",
+                    "result": 0,
+                    "points": 11
+                },
+                "player2Game": {
+                    "id": "LuMbYoPDR06g",
+                    "result": 2,
+                    "points": 15
+                }
+            },
+            {
+                "id": "oDfju2aPDYuh",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T09:38:22.905Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 4,
+                "round": 1,
+                "published": true,
+                "isDone": true,
+                "player1Id": "26DE3LIcINFV",
+                "player2Id": "ZalYHpi2uej2",
+                "player1": {
+                    "id": "26DE3LIcINFV",
+                    "user": {
+                        "id": "VYHC05G2Q9",
+                        "firstName": "Sándor",
+                        "lastName": "Ágota"
+                    },
+                    "team": "Dice and Beers",
+                    "parentFaction": "Hand of the Archon",
+                    "faction": "Hand of the Archon",
+                    "listId": "hXfLLBJ8ofuU"
+                },
+                "player2": {
+                    "id": "ZalYHpi2uej2",
+                    "user": {
+                        "id": "jyArkiYod6fD",
+                        "firstName": "József Márton",
+                        "lastName": "Bíró"
+                    },
+                    "parentFaction": "Wrecka Krew",
+                    "faction": "Wrecka Krew"
+                },
+                "player1GameId": "cTZnx9345giS",
+                "player2GameId": "rglnHG4Nimew",
+                "player1Game": {
+                    "id": "cTZnx9345giS",
+                    "result": 2,
+                    "points": 14
+                },
+                "player2Game": {
+                    "id": "rglnHG4Nimew",
+                    "result": 0,
+                    "points": 7
+                }
+            },
+            {
+                "id": "ZfpQ2OnrtkS4",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T09:38:22.905Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 5,
+                "round": 1,
+                "published": true,
+                "isDone": true,
+                "player1Id": "JqfMHIKFIplZ",
+                "player2Id": "7iX6fHD0hBb8",
+                "player1": {
+                    "id": "JqfMHIKFIplZ",
+                    "user": {
+                        "id": "k4OwFWmdSw40",
+                        "firstName": "Alex",
+                        "lastName": "Horvai"
+                    },
+                    "team": "chaos és a tomb world",
+                    "parentFaction": "Wolf Scouts",
+                    "faction": "Wolf Scouts",
+                    "listId": "juc5UNHJ3zkC"
+                },
+                "player2": {
+                    "id": "7iX6fHD0hBb8",
+                    "user": {
+                        "id": "oR63vcViuRP3",
+                        "firstName": "Federico",
+                        "lastName": "Marcon"
+                    },
+                    "parentFaction": "Brood Brothers",
+                    "faction": "Brood Brothers"
+                },
+                "player1GameId": "zNdOkD4hc3aX",
+                "player2GameId": "jdBU0rL2pnJ5",
+                "player1Game": {
+                    "id": "zNdOkD4hc3aX",
+                    "result": 0,
+                    "points": 6
+                },
+                "player2Game": {
+                    "id": "jdBU0rL2pnJ5",
+                    "result": 2,
+                    "points": 12
+                }
+            },
+            {
+                "id": "QXK2WxOArS89",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T09:38:22.905Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 6,
+                "round": 1,
+                "published": true,
+                "isDone": true,
+                "player1Id": "LBumm7P7YtE7",
+                "player2Id": "2Ww29UbhuR9O",
+                "player1": {
+                    "id": "LBumm7P7YtE7",
+                    "user": {
+                        "id": "hOogfq7rID",
+                        "firstName": "Gergely",
+                        "lastName": "Papp \"Watapi\""
+                    },
+                    "team": "Turning Point Tactics",
+                    "parentFaction": "XV26 Stealth Battlesuits",
+                    "faction": "XV26 Stealth Battlesuits"
+                },
+                "player2": {
+                    "id": "2Ww29UbhuR9O",
+                    "user": {
+                        "id": "0jMvlbJbQNl0",
+                        "firstName": "Balázs",
+                        "lastName": "Schunder"
+                    },
+                    "parentFaction": "Nemesis Claw",
+                    "faction": "Nemesis Claw"
+                },
+                "player1GameId": "COcMClNQEx29",
+                "player2GameId": "6cnQlVlEUFIJ",
+                "player1Game": {
+                    "id": "COcMClNQEx29",
+                    "result": 2,
+                    "points": 18
+                },
+                "player2Game": {
+                    "id": "6cnQlVlEUFIJ",
+                    "result": 0,
+                    "points": 2
+                }
+            },
+            {
+                "id": "QhwDFQL9RJPb",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T09:38:22.905Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 7,
+                "round": 1,
+                "published": true,
+                "isDone": true,
+                "player1Id": "DM4x4FeSujnx",
+                "player2Id": "od3fSoywWILW",
+                "player1": {
+                    "id": "DM4x4FeSujnx",
+                    "user": {
+                        "id": "5lJp3NUIc67s",
+                        "firstName": "Vince Balázs",
+                        "lastName": "Soós"
+                    },
+                    "team": "chaos és a tomb world",
+                    "faction": "Murderwing",
+                    "listId": "m3TWhTgDoguN"
+                },
+                "player2": {
+                    "id": "od3fSoywWILW",
+                    "user": {
+                        "id": "LAkP193dbQ4s",
+                        "firstName": "Dominik",
+                        "lastName": "Szarvas"
+                    },
+                    "team": "Sector Hungaricus",
+                    "parentFaction": "Celestian Insidiants",
+                    "faction": "Celestian Insidiants"
+                },
+                "player1GameId": "ZDu50ABkzlgD",
+                "player2GameId": "7uQ7EaBHCGQc",
+                "player1Game": {
+                    "id": "ZDu50ABkzlgD",
+                    "result": 0,
+                    "points": 10
+                },
+                "player2Game": {
+                    "id": "7uQ7EaBHCGQc",
+                    "result": 2,
+                    "points": 15
+                }
+            },
+            {
+                "id": "7XnUou1mcwaV",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T09:38:22.905Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 8,
+                "round": 1,
+                "published": true,
+                "isDone": true,
+                "player1Id": "WHoof6LUNQOy",
+                "player2Id": "vrvX5MrCtAgb",
+                "player1": {
+                    "id": "WHoof6LUNQOy",
+                    "user": {
+                        "id": "MEY0buOmpcFb",
+                        "firstName": "Lőrinc",
+                        "lastName": "Soós"
+                    },
+                    "team": "chaos és a tomb world",
+                    "parentFaction": "Nemesis Claw",
+                    "faction": "Nemesis Claw"
+                },
+                "player2": {
+                    "id": "vrvX5MrCtAgb",
+                    "user": {
+                        "id": "WFZkqTxeAF0X",
+                        "firstName": "Dávid",
+                        "lastName": "Gunst"
+                    },
+                    "parentFaction": "Wolf Scouts",
+                    "faction": "Wolf Scouts"
+                },
+                "player1GameId": "mZMU1mg9eV5j",
+                "player2GameId": "qsxVsNabo2Jb",
+                "player1Game": {
+                    "id": "mZMU1mg9eV5j",
+                    "result": 0,
+                    "points": 1
+                },
+                "player2Game": {
+                    "id": "qsxVsNabo2Jb",
+                    "result": 2,
+                    "points": 21
+                }
+            }
+        ],
+        "2": [
+            {
+                "id": "eNey7idmNzKX",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T12:37:27.339Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 1,
+                "round": 2,
+                "published": true,
+                "isDone": true,
+                "player1Id": "vrvX5MrCtAgb",
+                "player2Id": "pSzaGeqTbieg",
+                "player1": {
+                    "id": "vrvX5MrCtAgb",
+                    "user": {
+                        "id": "WFZkqTxeAF0X",
+                        "firstName": "Dávid",
+                        "lastName": "Gunst"
+                    },
+                    "parentFaction": "Wolf Scouts",
+                    "faction": "Wolf Scouts"
+                },
+                "player2": {
+                    "id": "pSzaGeqTbieg",
+                    "user": {
+                        "id": "FCN8D689FP",
+                        "firstName": "Misi",
+                        "lastName": "Szabolcs"
+                    },
+                    "faction": "Ratlings",
+                    "listId": "QoqtNTkLvdKj"
+                },
+                "player1GameId": "Mj15EO0wdxxA",
+                "player2GameId": "ASIE1M7gDGJM",
+                "player1Game": {
+                    "id": "Mj15EO0wdxxA",
+                    "result": 2,
+                    "points": 18
+                },
+                "player2Game": {
+                    "id": "ASIE1M7gDGJM",
+                    "result": 0,
+                    "points": 9
+                }
+            },
+            {
+                "id": "jdwBHrl4nj7l",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T12:37:27.339Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 2,
+                "round": 2,
+                "published": true,
+                "isDone": true,
+                "player1Id": "xlDY4Wf0I0sB",
+                "player2Id": "JqfMHIKFIplZ",
+                "player1": {
+                    "id": "xlDY4Wf0I0sB",
+                    "user": {
+                        "id": "7BA37A23AG",
+                        "firstName": "Márton",
+                        "lastName": "Mati"
+                    },
+                    "team": "Dice and Beers",
+                    "parentFaction": "Nemesis Claw",
+                    "faction": "Nemesis Claw",
+                    "listId": "nbcUYG9TjdQo"
+                },
+                "player2": {
+                    "id": "JqfMHIKFIplZ",
+                    "user": {
+                        "id": "k4OwFWmdSw40",
+                        "firstName": "Alex",
+                        "lastName": "Horvai"
+                    },
+                    "team": "chaos és a tomb world",
+                    "parentFaction": "Wolf Scouts",
+                    "faction": "Wolf Scouts",
+                    "listId": "juc5UNHJ3zkC"
+                },
+                "player1GameId": "8LpODIyDTpUP",
+                "player2GameId": "2JXzOcGmIe6F",
+                "player1Game": {
+                    "id": "8LpODIyDTpUP",
+                    "result": 2,
+                    "points": 15
+                },
+                "player2Game": {
+                    "id": "2JXzOcGmIe6F",
+                    "result": 0,
+                    "points": 12
+                }
+            },
+            {
+                "id": "4bNyHpGfWPab",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T12:37:27.339Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 3,
+                "round": 2,
+                "published": true,
+                "isDone": true,
+                "player1Id": "26DE3LIcINFV",
+                "player2Id": "7iX6fHD0hBb8",
+                "player1": {
+                    "id": "26DE3LIcINFV",
+                    "user": {
+                        "id": "VYHC05G2Q9",
+                        "firstName": "Sándor",
+                        "lastName": "Ágota"
+                    },
+                    "team": "Dice and Beers",
+                    "parentFaction": "Hand of the Archon",
+                    "faction": "Hand of the Archon",
+                    "listId": "hXfLLBJ8ofuU"
+                },
+                "player2": {
+                    "id": "7iX6fHD0hBb8",
+                    "user": {
+                        "id": "oR63vcViuRP3",
+                        "firstName": "Federico",
+                        "lastName": "Marcon"
+                    },
+                    "parentFaction": "Brood Brothers",
+                    "faction": "Brood Brothers"
+                },
+                "player1GameId": "nz5RjJMyr8Rk",
+                "player2GameId": "wEoMr85V5rt1",
+                "player1Game": {
+                    "id": "nz5RjJMyr8Rk",
+                    "result": 2,
+                    "points": 19
+                },
+                "player2Game": {
+                    "id": "wEoMr85V5rt1",
+                    "result": 0,
+                    "points": 16
+                }
+            },
+            {
+                "id": "x939ZCsq9aD7",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T12:37:27.339Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 4,
+                "round": 2,
+                "published": true,
+                "isDone": true,
+                "player1Id": "2Ww29UbhuR9O",
+                "player2Id": "WHoof6LUNQOy",
+                "player1": {
+                    "id": "2Ww29UbhuR9O",
+                    "user": {
+                        "id": "0jMvlbJbQNl0",
+                        "firstName": "Balázs",
+                        "lastName": "Schunder"
+                    },
+                    "parentFaction": "Nemesis Claw",
+                    "faction": "Nemesis Claw"
+                },
+                "player2": {
+                    "id": "WHoof6LUNQOy",
+                    "user": {
+                        "id": "MEY0buOmpcFb",
+                        "firstName": "Lőrinc",
+                        "lastName": "Soós"
+                    },
+                    "team": "chaos és a tomb world",
+                    "parentFaction": "Nemesis Claw",
+                    "faction": "Nemesis Claw"
+                },
+                "player1GameId": "XgChf8PVWRge",
+                "player2GameId": "oIsJSdHEOZre",
+                "player1Game": {
+                    "id": "XgChf8PVWRge",
+                    "result": 1,
+                    "points": 12
+                },
+                "player2Game": {
+                    "id": "oIsJSdHEOZre",
+                    "result": 1,
+                    "points": 12
+                }
+            },
+            {
+                "id": "vi6gnQf9HI09",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T12:37:27.339Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 5,
+                "round": 2,
+                "published": true,
+                "isDone": true,
+                "player1Id": "DM4x4FeSujnx",
+                "player2Id": "ZalYHpi2uej2",
+                "player1": {
+                    "id": "DM4x4FeSujnx",
+                    "user": {
+                        "id": "5lJp3NUIc67s",
+                        "firstName": "Vince Balázs",
+                        "lastName": "Soós"
+                    },
+                    "team": "chaos és a tomb world",
+                    "faction": "Murderwing",
+                    "listId": "m3TWhTgDoguN"
+                },
+                "player2": {
+                    "id": "ZalYHpi2uej2",
+                    "user": {
+                        "id": "jyArkiYod6fD",
+                        "firstName": "József Márton",
+                        "lastName": "Bíró"
+                    },
+                    "parentFaction": "Wrecka Krew",
+                    "faction": "Wrecka Krew"
+                },
+                "player1GameId": "GXZcMJAq8IWG",
+                "player2GameId": "w5MDQQ36KvQU",
+                "player1Game": {
+                    "id": "GXZcMJAq8IWG",
+                    "result": 2,
+                    "points": 11
+                },
+                "player2Game": {
+                    "id": "w5MDQQ36KvQU",
+                    "result": 0,
+                    "points": 10
+                }
+            },
+            {
+                "id": "vItterCGRhq1",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T12:37:27.339Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 6,
+                "round": 2,
+                "published": true,
+                "isDone": true,
+                "player1Id": "KdwG3cfkYxw7",
+                "player2Id": "pAsKX52rCz24",
+                "player1": {
+                    "id": "KdwG3cfkYxw7",
+                    "user": {
+                        "id": "TLwOnErtF1Pj",
+                        "firstName": "Tamás",
+                        "lastName": "Horváth"
+                    },
+                    "parentFaction": "Blades of Khaine",
+                    "faction": "Blades of Khaine",
+                    "listId": "HltXR1mWxd1G"
+                },
+                "player2": {
+                    "id": "pAsKX52rCz24",
+                    "user": {
+                        "id": "0chsx54R4d4J",
+                        "firstName": "Wojciech",
+                        "lastName": "Ogrodowczyk"
+                    },
+                    "parentFaction": "Wrecka Krew",
+                    "faction": "Wrecka Krew",
+                    "listId": "moDfmYnexjoa"
+                },
+                "player1GameId": "W5mfa1MeCmHC",
+                "player2GameId": "WeHNnPwmzlOo",
+                "player1Game": {
+                    "id": "W5mfa1MeCmHC",
+                    "result": 0,
+                    "points": 12
+                },
+                "player2Game": {
+                    "id": "WeHNnPwmzlOo",
+                    "result": 2,
+                    "points": 14
+                }
+            },
+            {
+                "id": "S4xHSKolgqkA",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T12:37:27.339Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 7,
+                "round": 2,
+                "published": true,
+                "isDone": true,
+                "player1Id": "LBumm7P7YtE7",
+                "player2Id": "od3fSoywWILW",
+                "player1": {
+                    "id": "LBumm7P7YtE7",
+                    "user": {
+                        "id": "hOogfq7rID",
+                        "firstName": "Gergely",
+                        "lastName": "Papp \"Watapi\""
+                    },
+                    "team": "Turning Point Tactics",
+                    "parentFaction": "XV26 Stealth Battlesuits",
+                    "faction": "XV26 Stealth Battlesuits"
+                },
+                "player2": {
+                    "id": "od3fSoywWILW",
+                    "user": {
+                        "id": "LAkP193dbQ4s",
+                        "firstName": "Dominik",
+                        "lastName": "Szarvas"
+                    },
+                    "team": "Sector Hungaricus",
+                    "parentFaction": "Celestian Insidiants",
+                    "faction": "Celestian Insidiants"
+                },
+                "player1GameId": "6Srxx2D2q9y2",
+                "player2GameId": "i0WOo9Q1O0Ep",
+                "player1Game": {
+                    "id": "6Srxx2D2q9y2",
+                    "result": 2,
+                    "points": 13
+                },
+                "player2Game": {
+                    "id": "i0WOo9Q1O0Ep",
+                    "result": 0,
+                    "points": 11
+                }
+            },
+            {
+                "id": "FnABX6EZoQlM",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T12:37:27.339Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 8,
+                "round": 2,
+                "published": true,
+                "isDone": true,
+                "player1Id": "DKg509yeyBmP",
+                "player2Id": "VEdzqcbuudnP",
+                "player1": {
+                    "id": "DKg509yeyBmP",
+                    "user": {
+                        "id": "cOHk4iYN1y4p",
+                        "firstName": "Dávid",
+                        "lastName": "Viniczay"
+                    },
+                    "parentFaction": "Raveners",
+                    "faction": "Raveners",
+                    "listId": "xeBlGEYfV8T3"
+                },
+                "player2": {
+                    "id": "VEdzqcbuudnP",
+                    "user": {
+                        "id": "EHV1LKB7G8",
+                        "firstName": "Tamás",
+                        "lastName": "Szücs"
+                    },
+                    "parentFaction": "Wrecka Krew",
+                    "faction": "Wrecka Krew"
+                },
+                "player1GameId": "NZO0bbpKsliL",
+                "player2GameId": "1PjYhjKjoyoR",
+                "player1Game": {
+                    "id": "NZO0bbpKsliL",
+                    "result": 2,
+                    "points": 13
+                },
+                "player2Game": {
+                    "id": "1PjYhjKjoyoR",
+                    "result": 0,
+                    "points": 10
+                }
+            }
+        ],
+        "3": [
+            {
+                "id": "nuorcegPLvUt",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T15:20:27.994Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 1,
+                "round": 3,
+                "published": true,
+                "isDone": true,
+                "player1Id": "od3fSoywWILW",
+                "player2Id": "VEdzqcbuudnP",
+                "player1": {
+                    "id": "od3fSoywWILW",
+                    "user": {
+                        "id": "LAkP193dbQ4s",
+                        "firstName": "Dominik",
+                        "lastName": "Szarvas"
+                    },
+                    "team": "Sector Hungaricus",
+                    "parentFaction": "Celestian Insidiants",
+                    "faction": "Celestian Insidiants"
+                },
+                "player2": {
+                    "id": "VEdzqcbuudnP",
+                    "user": {
+                        "id": "EHV1LKB7G8",
+                        "firstName": "Tamás",
+                        "lastName": "Szücs"
+                    },
+                    "parentFaction": "Wrecka Krew",
+                    "faction": "Wrecka Krew"
+                },
+                "player1GameId": "xijoHQUYDqBn",
+                "player2GameId": "G6Os3QNBAB0J",
+                "player1Game": {
+                    "id": "xijoHQUYDqBn",
+                    "result": 2,
+                    "points": 15
+                },
+                "player2Game": {
+                    "id": "G6Os3QNBAB0J",
+                    "result": 0,
+                    "points": 11
+                }
+            },
+            {
+                "id": "cy7uuuQcMz0G",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T15:20:27.994Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 2,
+                "round": 3,
+                "published": true,
+                "isDone": true,
+                "player1Id": "7iX6fHD0hBb8",
+                "player2Id": "pSzaGeqTbieg",
+                "player1": {
+                    "id": "7iX6fHD0hBb8",
+                    "user": {
+                        "id": "oR63vcViuRP3",
+                        "firstName": "Federico",
+                        "lastName": "Marcon"
+                    },
+                    "parentFaction": "Brood Brothers",
+                    "faction": "Brood Brothers"
+                },
+                "player2": {
+                    "id": "pSzaGeqTbieg",
+                    "user": {
+                        "id": "FCN8D689FP",
+                        "firstName": "Misi",
+                        "lastName": "Szabolcs"
+                    },
+                    "faction": "Ratlings",
+                    "listId": "QoqtNTkLvdKj"
+                },
+                "player1GameId": "U97NB3OsOgtG",
+                "player2GameId": "ADczEZE5eKBH",
+                "player1Game": {
+                    "id": "U97NB3OsOgtG",
+                    "result": 0,
+                    "points": 5
+                },
+                "player2Game": {
+                    "id": "ADczEZE5eKBH",
+                    "result": 2,
+                    "points": 13
+                }
+            },
+            {
+                "id": "tG3Xtbt1o8fB",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T15:20:27.994Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 3,
+                "round": 3,
+                "published": true,
+                "isDone": true,
+                "player1Id": "WHoof6LUNQOy",
+                "player2Id": "KdwG3cfkYxw7",
+                "player1": {
+                    "id": "WHoof6LUNQOy",
+                    "user": {
+                        "id": "MEY0buOmpcFb",
+                        "firstName": "Lőrinc",
+                        "lastName": "Soós"
+                    },
+                    "team": "chaos és a tomb world",
+                    "parentFaction": "Nemesis Claw",
+                    "faction": "Nemesis Claw"
+                },
+                "player2": {
+                    "id": "KdwG3cfkYxw7",
+                    "user": {
+                        "id": "TLwOnErtF1Pj",
+                        "firstName": "Tamás",
+                        "lastName": "Horváth"
+                    },
+                    "parentFaction": "Blades of Khaine",
+                    "faction": "Blades of Khaine",
+                    "listId": "HltXR1mWxd1G"
+                },
+                "player1GameId": "bJyjZM7QQ0XA",
+                "player2GameId": "ely9WcD1I80x",
+                "player1Game": {
+                    "id": "bJyjZM7QQ0XA",
+                    "result": 2,
+                    "points": 13
+                },
+                "player2Game": {
+                    "id": "ely9WcD1I80x",
+                    "result": 0,
+                    "points": 11
+                }
+            },
+            {
+                "id": "GxunWKrPNHRm",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T15:20:27.994Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 4,
+                "round": 3,
+                "published": true,
+                "isDone": true,
+                "player1Id": "DM4x4FeSujnx",
+                "player2Id": "2Ww29UbhuR9O",
+                "player1": {
+                    "id": "DM4x4FeSujnx",
+                    "user": {
+                        "id": "5lJp3NUIc67s",
+                        "firstName": "Vince Balázs",
+                        "lastName": "Soós"
+                    },
+                    "team": "chaos és a tomb world",
+                    "faction": "Murderwing",
+                    "listId": "m3TWhTgDoguN"
+                },
+                "player2": {
+                    "id": "2Ww29UbhuR9O",
+                    "user": {
+                        "id": "0jMvlbJbQNl0",
+                        "firstName": "Balázs",
+                        "lastName": "Schunder"
+                    },
+                    "parentFaction": "Nemesis Claw",
+                    "faction": "Nemesis Claw"
+                },
+                "player1GameId": "2OD9093m1piN",
+                "player2GameId": "G4ilCQJ2Loyg",
+                "player1Game": {
+                    "id": "2OD9093m1piN",
+                    "result": 0,
+                    "points": 9
+                },
+                "player2Game": {
+                    "id": "G4ilCQJ2Loyg",
+                    "result": 2,
+                    "points": 16
+                }
+            },
+            {
+                "id": "4n4HpSqjtMz3",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T15:20:27.994Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 5,
+                "round": 3,
+                "published": true,
+                "isDone": true,
+                "player1Id": "pAsKX52rCz24",
+                "player2Id": "xlDY4Wf0I0sB",
+                "player1": {
+                    "id": "pAsKX52rCz24",
+                    "user": {
+                        "id": "0chsx54R4d4J",
+                        "firstName": "Wojciech",
+                        "lastName": "Ogrodowczyk"
+                    },
+                    "parentFaction": "Wrecka Krew",
+                    "faction": "Wrecka Krew",
+                    "listId": "moDfmYnexjoa"
+                },
+                "player2": {
+                    "id": "xlDY4Wf0I0sB",
+                    "user": {
+                        "id": "7BA37A23AG",
+                        "firstName": "Márton",
+                        "lastName": "Mati"
+                    },
+                    "team": "Dice and Beers",
+                    "parentFaction": "Nemesis Claw",
+                    "faction": "Nemesis Claw",
+                    "listId": "nbcUYG9TjdQo"
+                },
+                "player1GameId": "qsyseiSwbB2s",
+                "player2GameId": "EkdzlL1rEWss",
+                "player1Game": {
+                    "id": "qsyseiSwbB2s",
+                    "result": 2,
+                    "points": 14
+                },
+                "player2Game": {
+                    "id": "EkdzlL1rEWss",
+                    "result": 0,
+                    "points": 11
+                }
+            },
+            {
+                "id": "YGhzJsFhP6VE",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T15:20:27.994Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 6,
+                "round": 3,
+                "published": true,
+                "isDone": true,
+                "player1Id": "vrvX5MrCtAgb",
+                "player2Id": "26DE3LIcINFV",
+                "player1": {
+                    "id": "vrvX5MrCtAgb",
+                    "user": {
+                        "id": "WFZkqTxeAF0X",
+                        "firstName": "Dávid",
+                        "lastName": "Gunst"
+                    },
+                    "parentFaction": "Wolf Scouts",
+                    "faction": "Wolf Scouts"
+                },
+                "player2": {
+                    "id": "26DE3LIcINFV",
+                    "user": {
+                        "id": "VYHC05G2Q9",
+                        "firstName": "Sándor",
+                        "lastName": "Ágota"
+                    },
+                    "team": "Dice and Beers",
+                    "parentFaction": "Hand of the Archon",
+                    "faction": "Hand of the Archon",
+                    "listId": "hXfLLBJ8ofuU"
+                },
+                "player1GameId": "cMd6pmMGRoL6",
+                "player2GameId": "ax2N9Sucq6KS",
+                "player1Game": {
+                    "id": "cMd6pmMGRoL6",
+                    "result": 2,
+                    "points": 20
+                },
+                "player2Game": {
+                    "id": "ax2N9Sucq6KS",
+                    "result": 0,
+                    "points": 7
+                }
+            },
+            {
+                "id": "QNFJUxrS6rZ0",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T15:20:27.994Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 7,
+                "round": 3,
+                "published": true,
+                "isDone": true,
+                "player1Id": "LBumm7P7YtE7",
+                "player2Id": "DKg509yeyBmP",
+                "player1": {
+                    "id": "LBumm7P7YtE7",
+                    "user": {
+                        "id": "hOogfq7rID",
+                        "firstName": "Gergely",
+                        "lastName": "Papp \"Watapi\""
+                    },
+                    "team": "Turning Point Tactics",
+                    "parentFaction": "XV26 Stealth Battlesuits",
+                    "faction": "XV26 Stealth Battlesuits"
+                },
+                "player2": {
+                    "id": "DKg509yeyBmP",
+                    "user": {
+                        "id": "cOHk4iYN1y4p",
+                        "firstName": "Dávid",
+                        "lastName": "Viniczay"
+                    },
+                    "parentFaction": "Raveners",
+                    "faction": "Raveners",
+                    "listId": "xeBlGEYfV8T3"
+                },
+                "player1GameId": "blxDSbSlL6MB",
+                "player2GameId": "d5LfmvAT3UZy",
+                "player1Game": {
+                    "id": "blxDSbSlL6MB",
+                    "result": 2,
+                    "points": 16
+                },
+                "player2Game": {
+                    "id": "d5LfmvAT3UZy",
+                    "result": 0,
+                    "points": 7
+                }
+            },
+            {
+                "id": "4ZbRN5THbRc9",
+                "updated_at": "2026-02-21T18:10:50.616Z",
+                "created_at": "2026-02-21T15:20:27.994Z",
+                "pairingType": "Pairing",
+                "eventId": "fNcyr6CGbi3P",
+                "table": 8,
+                "round": 3,
+                "published": true,
+                "isDone": true,
+                "player1Id": "JqfMHIKFIplZ",
+                "player2Id": "ZalYHpi2uej2",
+                "player1": {
+                    "id": "JqfMHIKFIplZ",
+                    "user": {
+                        "id": "k4OwFWmdSw40",
+                        "firstName": "Alex",
+                        "lastName": "Horvai"
+                    },
+                    "team": "chaos és a tomb world",
+                    "parentFaction": "Wolf Scouts",
+                    "faction": "Wolf Scouts",
+                    "listId": "juc5UNHJ3zkC"
+                },
+                "player2": {
+                    "id": "ZalYHpi2uej2",
+                    "user": {
+                        "id": "jyArkiYod6fD",
+                        "firstName": "József Márton",
+                        "lastName": "Bíró"
+                    },
+                    "parentFaction": "Wrecka Krew",
+                    "faction": "Wrecka Krew"
+                },
+                "player1GameId": "N8QDglsPI9lA",
+                "player2GameId": "BBjwf7vV61Ro",
+                "player1Game": {
+                    "id": "N8QDglsPI9lA",
+                    "result": 2,
+                    "points": 18
+                },
+                "player2Game": {
+                    "id": "BBjwf7vV61Ro",
+                    "result": 0,
+                    "points": 6
+                }
+            }
+        ]
+    }
+}

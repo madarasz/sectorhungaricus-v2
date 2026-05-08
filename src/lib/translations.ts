@@ -18,7 +18,7 @@ export const tournamentResultsTranslations: Record<Locale, TournamentResultsTran
     tableHeaders: {
       position: '#',
       player: 'Player',
-      points: 'Points',
+      points: 'ELO',
       tournaments: 'Tournaments'
     },
     concludedTournaments: 'Concluded Tournaments',
@@ -29,7 +29,7 @@ export const tournamentResultsTranslations: Record<Locale, TournamentResultsTran
     tableHeaders: {
       position: '#',
       player: 'Játékos',
-      points: 'Pontszám',
+      points: 'ELO',
       tournaments: 'Versenyek'
     },
     concludedTournaments: 'Lezárult versenyek',
