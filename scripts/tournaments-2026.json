@@ -2,6 +2,10 @@
     "name": "Tournaments 2026",
     "tournaments": [
         {
+            "name": "Contrast Clash - May 2026",
+            "bcp_id": "6EjzxTYqnWsn"
+        },
+        {
             "name": "Contrast Clash - April 2026",
             "bcp_id": "1v5wZOBCiRUu"
         },

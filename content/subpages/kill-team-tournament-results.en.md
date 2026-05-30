@@ -17,10 +17,5 @@ content_blocks:
       November. The 2026 season started afterwards.
 
 
-      *Players earn points based on their tournament rank:*
-
-      > *1st: **40**, 2nd: **30**, 3rd: **22**, 4th: **16**, 5th: **12**, 6th: **10**, 7th: **8**, 8th: **6**, 9th: **4**, 10th: **2***
-
-
-      *We consider a player's **best 3 ranks** to calculate their final score. This ensures fairness for players who are unable to attend every tournament.*
+      *Players get ELO points based on their tournament matches. You have to play at least two tournaments to qualify for "best player". We reset ELO points at every season start.*
 ---
