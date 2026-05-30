@@ -1,5 +1,10 @@
 import * as fs from "fs";
 import * as path from "path";
+import {
+  getFactionName,
+  sanitizeFactionName,
+  loadFactionCache,
+} from "./faction-utils";
 
 interface Tournament {
   name: string;
@@ -14,15 +19,16 @@ interface TournamentsConfig {
 
 interface PlayerTournamentResult {
   name: string;
-  rank: number;
-  score: number;
   faction: string;
+  elo_change: number;
 }
 
 interface PlayerResult {
   name: string;
-  total_score: number;
-  best_3_score: number;
+  elo: number;
+  wins: number;
+  draws: number;
+  losses: number;
   tournaments: PlayerTournamentResult[];
 }
 
@@ -30,23 +36,51 @@ interface ResultsOutput {
   players: PlayerResult[];
 }
 
-interface BCPPlayer {
-  placing?: number;
-  faction?: {
-    name?: string;
-  };
-  user?: {
-    firstName?: string;
-    lastName?: string;
-  };
+interface BCPUser {
+  firstName?: string;
+  lastName?: string;
 }
 
-interface BCPResponse {
-  active?: BCPPlayer[];
+interface BCPPairingPlayer {
+  id?: string;
+  user?: BCPUser;
+  faction?: string;
+  parentFaction?: string;
 }
 
-async function fetchTournamentPlayers(bcpId: string): Promise<BCPPlayer[]> {
-  const url = `https://newprod-api.bestcoastpairings.com/v1/events/${bcpId}/players?placings=true`;
+interface BCPGame {
+  id?: string;
+  result?: number; // 2=Win, 1=Draw, 0=Loss
+  points?: number;
+}
+
+interface BCPPairing {
+  id?: string;
+  round?: number;
+  isDone?: boolean;
+  player1?: BCPPairingPlayer;
+  player2?: BCPPairingPlayer;
+  player1Game?: BCPGame;
+  player2Game?: BCPGame;
+}
+
+interface BCPPairingsResponse {
+  active?: BCPPairing[];
+  deleted?: BCPPairing[];
+}
+
+interface PairingsCache {
+  rounds: Record<string, BCPPairing[]>;
+}
+
+const STARTING_ELO = 1500;
+const K_FACTOR = 50;
+
+async function fetchPairingsForRound(
+  bcpId: string,
+  round: number
+): Promise<BCPPairing[]> {
+  const url = `https://newprod-api.bestcoastpairings.com/v1/events/${bcpId}/pairings?eventId=${bcpId}&round=${round}&pairingType=Pairing`;
 
   const response = await fetch(url, {
     headers: {
@@ -58,138 +92,234 @@ async function fetchTournamentPlayers(bcpId: string): Promise<BCPPlayer[]> {
 
   if (!response.ok) {
     throw new Error(
-      `Failed to fetch tournament ${bcpId}: ${response.status} ${response.statusText}`
+      `Failed to fetch pairings for ${bcpId} round ${round}: ${response.status} ${response.statusText}`
     );
   }
 
-  const data: BCPResponse = await response.json();
+  const data: BCPPairingsResponse = await response.json();
   return data.active || [];
 }
 
-function calculateScore(placing: number, scoring: number[]): number {
-  // placing is 1-indexed, scoring array is 0-indexed
-  const index = placing - 1;
-  if (index >= 0 && index < scoring.length) {
-    return scoring[index];
+async function fetchAndCachePairings(
+  tournament: Tournament,
+  cacheDir: string
+): Promise<PairingsCache> {
+  const cachePath = path.join(cacheDir, `${tournament.bcp_id}.json`);
+
+  if (fs.existsSync(cachePath)) {
+    console.log(`  Using cached pairings for: ${tournament.name}`);
+    return JSON.parse(fs.readFileSync(cachePath, "utf-8"));
   }
-  return 0;
+
+  console.log(`  Fetching pairings for: ${tournament.name}`);
+  const rounds: Record<string, BCPPairing[]> = {};
+
+  for (let round = 1; round <= 20; round++) {
+    try {
+      const pairings = await fetchPairingsForRound(tournament.bcp_id, round);
+      if (pairings.length === 0) {
+        break;
+      }
+      rounds[String(round)] = pairings;
+      console.log(`    Round ${round}: ${pairings.length} pairings`);
+    } catch (error) {
+      if (round === 1) {
+        console.warn(
+          `  WARNING: Could not fetch pairings for ${tournament.name}. Creating template for manual fill.`
+        );
+        console.warn(`  Please fill in: ${cachePath}`);
+        const template: PairingsCache = { rounds: {} };
+        fs.writeFileSync(cachePath, JSON.stringify(template, null, 4));
+        return template;
+      }
+      // Later rounds failing means we've passed the last round
+      break;
+    }
+  }
+
+  const cache: PairingsCache = { rounds };
+  fs.writeFileSync(cachePath, JSON.stringify(cache, null, 4));
+  return cache;
 }
 
-function getPlayerName(player: BCPPlayer): string {
+function getPlayerName(player: BCPPairingPlayer): string {
   const firstName = player.user?.firstName || "";
   const lastName = player.user?.lastName || "";
   return `${firstName} ${lastName}`.trim();
 }
 
-function getFactionName(player: BCPPlayer): string {
-  return player.faction?.name || "Unknown";
-}
-
-// Workaround for missing factions in BCP
-function sanitizeFactionName(faction: string, tournamentName: string): string {
-  if (faction === "Legionary" && tournamentName === "Contrast Clash - January 2026") {
-    return "Murderwing";
-  }
-  return faction;
-}
-
-// Workaroud for swapped player names in BCP (e.g. "John Doe" vs "Doe John")
+// Workaround for swapped player names in BCP (e.g. "John Doe" vs "Doe John")
 function sanitizePlayerName(name: string): string {
-  if (name == "Szarvas Dominik") return "Dominik Szarvas";
-  if (name == "Bence Gombás") return "Gombás Bence";
+  if (name === "Szarvas Dominik") return "Dominik Szarvas";
+  if (name === "Bence Gombás") return "Gombás Bence";
   return name;
+}
+
+function expectedScore(ratingA: number, ratingB: number): number {
+  return 1 / (1 + Math.pow(10, (ratingB - ratingA) / 400));
+}
+
+function updateElo(rating: number, expected: number, actual: number): number {
+  return Math.round(rating + K_FACTOR * (actual - expected));
 }
 
 async function main(): Promise<void> {
   const scriptsDir = path.dirname(__filename);
   const tournamentsPath = path.join(scriptsDir, "tournaments-2026.json");
   const resultsPath = path.join(scriptsDir, "results-2026.json");
+  const cacheDir = path.join(scriptsDir, "cache", "pairings");
 
-  // Read tournaments config
+  fs.mkdirSync(cacheDir, { recursive: true });
+
   const tournamentsConfig: TournamentsConfig = JSON.parse(
     fs.readFileSync(tournamentsPath, "utf-8")
   );
 
-  const { tournaments, scoring } = tournamentsConfig;
+  // Process oldest first
+  const tournaments = [...tournamentsConfig.tournaments].reverse();
 
-  // Map to aggregate player scores: playerName -> PlayerResult
+  const eloMap = new Map<string, number>();
   const playerMap = new Map<string, PlayerResult>();
 
-  // Process each tournament
+  function getOrInitPlayer(name: string): PlayerResult {
+    if (!playerMap.has(name)) {
+      playerMap.set(name, {
+        name,
+        elo: STARTING_ELO,
+        wins: 0,
+        draws: 0,
+        losses: 0,
+        tournaments: [],
+      });
+      eloMap.set(name, STARTING_ELO);
+    }
+    return playerMap.get(name)!;
+  }
+
   for (const tournament of tournaments) {
-    console.log(`Fetching results for: ${tournament.name}`);
+    console.log(`\nProcessing: ${tournament.name}`);
 
-    try {
-      const players = await fetchTournamentPlayers(tournament.bcp_id);
+    await loadFactionCache(tournament.bcp_id, cacheDir);
+    const cache = await fetchAndCachePairings(tournament, cacheDir);
+    const roundNumbers = Object.keys(cache.rounds)
+      .map(Number)
+      .sort((a, b) => a - b);
 
-      for (const player of players) {
-        const placing = player.placing;
-        if (placing === undefined || placing === null) {
-          continue;
-        }
+    if (roundNumbers.length === 0) {
+      console.log(`  No pairing data available, skipping.`);
+      continue;
+    }
 
-        const playerName = sanitizePlayerName(getPlayerName(player));
-        if (!playerName) {
-          continue;
-        }
+    // Track per-tournament ELO change and factions per player
+    const tournamentEloChange = new Map<string, number>();
+    const tournamentFaction = new Map<string, string>();
 
-        const score = calculateScore(placing, scoring);
-        const faction = sanitizeFactionName(getFactionName(player), tournament.name);
+    for (const round of roundNumbers) {
+      const pairings = cache.rounds[String(round)];
 
-        const tournamentResult: PlayerTournamentResult = {
-          name: tournament.name,
-          rank: placing,
-          score,
-          faction,
-        };
+      for (const pairing of pairings) {
+        if (!pairing.isDone) continue;
+        if (!pairing.player1 || !pairing.player2) continue;
+        if (!pairing.player1Game || !pairing.player2Game) continue;
 
-        if (playerMap.has(playerName)) {
-          const existingPlayer = playerMap.get(playerName)!;
-          existingPlayer.total_score += score;
-          existingPlayer.tournaments.push(tournamentResult);
+        const name1 = sanitizePlayerName(getPlayerName(pairing.player1));
+        const name2 = sanitizePlayerName(getPlayerName(pairing.player2));
+        if (!name1 || !name2) continue;
+
+        const result1 = pairing.player1Game.result;
+        const result2 = pairing.player2Game.result;
+        if (result1 === undefined || result2 === undefined) continue;
+
+        getOrInitPlayer(name1);
+        getOrInitPlayer(name2);
+
+        const faction1 = sanitizeFactionName(
+          getFactionName(pairing.player1.faction, name1, tournament.bcp_id),
+          tournament.name
+        );
+        const faction2 = sanitizeFactionName(
+          getFactionName(pairing.player2.faction, name2, tournament.bcp_id),
+          tournament.name
+        );
+
+        // Update faction (last seen per tournament)
+        tournamentFaction.set(name1, faction1);
+        tournamentFaction.set(name2, faction2);
+
+        const elo1 = eloMap.get(name1)!;
+        const elo2 = eloMap.get(name2)!;
+
+        const exp1 = expectedScore(elo1, elo2);
+        const exp2 = expectedScore(elo2, elo1);
+
+        // result: 2=Win, 1=Draw, 0=Loss
+        const score1 = result1 === 2 ? 1 : result1 === 1 ? 0.5 : 0;
+        const score2 = result2 === 2 ? 1 : result2 === 1 ? 0.5 : 0;
+
+        const newElo1 = updateElo(elo1, exp1, score1);
+        const newElo2 = updateElo(elo2, exp2, score2);
+
+        eloMap.set(name1, newElo1);
+        eloMap.set(name2, newElo2);
+
+        tournamentEloChange.set(
+          name1,
+          (tournamentEloChange.get(name1) || 0) + (newElo1 - elo1)
+        );
+        tournamentEloChange.set(
+          name2,
+          (tournamentEloChange.get(name2) || 0) + (newElo2 - elo2)
+        );
+
+        // Record wins/draws/losses
+        const p1 = playerMap.get(name1)!;
+        const p2 = playerMap.get(name2)!;
+
+        if (result1 === 2) {
+          p1.wins++;
+          p2.losses++;
+        } else if (result1 === 1) {
+          p1.draws++;
+          p2.draws++;
         } else {
-          playerMap.set(playerName, {
-            name: playerName,
-            total_score: score,
-            best_3_score: 0, // Will be calculated after all tournaments are processed
-            tournaments: [tournamentResult],
-          });
+          p1.losses++;
+          p2.wins++;
         }
       }
+    }
 
-      console.log(`  Found ${players.length} players`);
-    } catch (error) {
-      console.error(`  Error fetching ${tournament.name}:`, error);
+    // Commit ELO to player results and record tournament
+    for (const [name] of tournamentEloChange) {
+      const player = playerMap.get(name)!;
+      player.elo = eloMap.get(name)!;
+      player.tournaments.push({
+        name: tournament.name,
+        faction: tournamentFaction.get(name) || "Unknown",
+        elo_change: tournamentEloChange.get(name) || 0,
+      });
     }
   }
 
-  // Calculate best_3_score for each player
-  for (const player of playerMap.values()) {
-    const sortedScores = player.tournaments
-      .map((t) => t.score)
-      .sort((a, b) => b - a);
-    player.best_3_score = sortedScores.slice(0, 3).reduce((sum, s) => sum + s, 0);
-  }
-
-  // Convert map to array and sort by best_3_score descending
+  // Sort by ELO descending
   const playersArray = Array.from(playerMap.values()).sort(
-    (a, b) => b.best_3_score - a.best_3_score
+    (a, b) => b.elo - a.elo
   );
 
   const results: ResultsOutput = {
     players: playersArray,
   };
 
-  // Write results to file
   fs.writeFileSync(resultsPath, JSON.stringify(results, null, 4));
 
   console.log(`\nResults written to ${resultsPath}`);
   console.log(`Total players: ${playersArray.length}`);
 
-  // Print top 10 players
-  console.log("\nTop 10 players:");
-  playersArray.slice(0, 10).forEach((player, index) => {
-    console.log(`  ${index + 1}. ${player.name}: ${player.best_3_score} points (${player.total_score} total)`);
+  console.log("\nAll players:");
+  playersArray.forEach((player, index) => {
+    const record = `${player.wins}W/${player.draws}D/${player.losses}L`;
+    console.log(
+      `  ${index + 1}. ${player.name}: ${player.elo} ELO (${record}, ${player.tournaments.length} tournaments)`
+    );
   });
 }
 

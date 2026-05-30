@@ -8,12 +8,15 @@ import tournamentsData from '../../../scripts/tournaments-2026.json'
 const TOP_PLAYERS_COUNT = 12
 const TOP_FACTIONS_COUNT = 10
 const MIN_TIMES_PLAYED = 3
+const MIN_TOURNAMENTS = 2
 
 export default function TournamentResults() {
   const { locale } = useLocale()
   const t = getTournamentResultsTranslations(locale)
 
-  const topPlayers = resultsData.players.slice(0, TOP_PLAYERS_COUNT)
+  const topPlayers = resultsData.players
+    .filter(player => player.tournaments.length >= MIN_TOURNAMENTS)
+    .slice(0, TOP_PLAYERS_COUNT)
 
   // Calculate faction counts from all player tournaments
   const factionCounts = resultsData.players
@@ -64,14 +67,17 @@ export default function TournamentResults() {
               </tr>
             </thead>
             <tbody className="tournament-table__body">
-              {topPlayers.map((player, index) => (
+              {topPlayers.map((player, index) => {
+                const rank = topPlayers.findIndex(p => p.elo === player.elo) + 1
+                return (
                 <tr key={player.name} className="tournament-table__row">
-                  <td className="tournament-table__cell--right">{index + 1}</td>
+                  <td className="tournament-table__cell--right">{rank}</td>
                   <td className="tournament-table__cell">{player.name}</td>
-                  <td className="tournament-table__cell--right">{player.best_3_score}</td>
+                  <td className="tournament-table__cell--right">{player.elo}</td>
                   <td className="tournament-table__cell--center">{player.tournaments.length}</td>
                 </tr>
-              ))}
+                )
+              })}
             </tbody>
           </table>
         </div>

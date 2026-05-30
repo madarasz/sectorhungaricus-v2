@@ -2,6 +2,10 @@
     "name": "Tournaments 2026",
     "tournaments": [
         {
+            "name": "Contrast Clash - May 2026",
+            "bcp_id": "6EjzxTYqnWsn"
+        },
+        {
             "name": "Contrast Clash - April 2026",
             "bcp_id": "1v5wZOBCiRUu"
         },
@@ -20,7 +24,10 @@
         {
             "name": "Contrast Double Clash - November 2025",
             "bcp_id": "8L6HZdZa0W7W"
+        },
+        {
+            "name": "Meta Liga 2025",
+            "bcp_id": "YsDk8iAlpwgm"
         }
-    ],
-    "scoring": [40, 30, 22, 16, 12, 10, 8, 6, 4, 2]
+    ]
 }
