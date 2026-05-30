@@ -14,7 +14,7 @@ export interface TournamentResultsTranslations {
 
 export const tournamentResultsTranslations: Record<Locale, TournamentResultsTranslations> = {
   en: {
-    title: 'Best tournament players in the 2026 season',
+    title: 'Best tournament players in the 2026 season (at least 2 tournaments)',
     tableHeaders: {
       position: '#',
       player: 'Player',
@@ -25,7 +25,7 @@ export const tournamentResultsTranslations: Record<Locale, TournamentResultsTran
     topFactions: 'Most Played Factions'
   },
   hu: {
-    title: 'Legjobb versenyzők a 2026-os szezonban',
+    title: 'Legjobb versenyzők a 2026-os szezonban (legalább 2 verseny)',
     tableHeaders: {
       position: '#',
       player: 'Játékos',
