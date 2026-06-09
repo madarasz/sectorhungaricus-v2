@@ -62,6 +62,8 @@ content_blocks:
 
       - [Taverna](https://www.tavern.hu/) - Debrecen
 
+      - [Stork Gaming](https://storkgaming.hu/) - Győr
+
 
       Ne felejtsd el előre lefoglalni az asztalt, ha játszani szeretnél valamelyik helyszínen.
   - type: page_reference_block

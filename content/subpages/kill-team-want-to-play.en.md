@@ -62,6 +62,8 @@ content_blocks:
 
       - [Taverna](https://www.tavern.hu/) - Debrecen
 
+      - [Stork Gaming](https://storkgaming.hu/) - Győr
+
 
       Remember to make a reservation if you plan to play at any of these locations.
   - type: page_reference_block
