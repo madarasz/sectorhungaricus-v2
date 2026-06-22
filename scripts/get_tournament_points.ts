@@ -150,6 +150,10 @@ function getPlayerName(player: BCPPairingPlayer): string {
 
 // Workaround for swapped player names in BCP (e.g. "John Doe" vs "Doe John")
 function sanitizePlayerName(name: string): string {
+  if (name === "Vince Balázs Soós") return "Vince  Soós";
+  if (name === "Marton Mati") return "Márton Mati";
+  if (name === "Gabor Kiss") return "Gábor Kiss";
+  if (name === "SANDOR TAMAS BALOGH") return "Sándor Tamás Balogh";
   if (name === "Szarvas Dominik") return "Dominik Szarvas";
   if (name === "Bence Gombás") return "Gombás Bence";
   return name;

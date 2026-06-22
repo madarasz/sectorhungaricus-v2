@@ -2,6 +2,10 @@
     "name": "Tournaments 2026",
     "tournaments": [
         {
+            "name": "HTC Kísérleti verseny",
+            "bcp_id": "1ywikkKlgP8a"
+        },
+        {
             "name": "Contrast Clash - May 2026",
             "bcp_id": "6EjzxTYqnWsn"
         },
