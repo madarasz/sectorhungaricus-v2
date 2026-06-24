@@ -7,7 +7,7 @@ import tournamentsData from '../../../scripts/tournaments-2026.json'
 
 const TOP_PLAYERS_COUNT = 12
 const TOP_FACTIONS_COUNT = 10
-const MIN_TIMES_PLAYED = 3
+const FACTION_MIN_TIMES_PLAYED = 3
 const MIN_TOURNAMENTS = 2
 
 export default function TournamentResults() {
@@ -26,9 +26,9 @@ export default function TournamentResults() {
       return acc
     }, {} as Record<string, number>)
 
-  // Sort factions, filter out those with less than MIN_TIMES_PLAYED
+  // Sort factions, filter out those with less than FACTION_MIN_TIMES_PLAYED
   const sortedFactions = Object.entries(factionCounts)
-    .filter(([, count]) => count >= MIN_TIMES_PLAYED)
+    .filter(([, count]) => count >= FACTION_MIN_TIMES_PLAYED)
     .sort((a, b) => b[1] - a[1])
 
   // Take top factions, extending if there's a tie at the cutoff
@@ -58,10 +58,10 @@ export default function TournamentResults() {
                 <th className="tournament-table__header-cell">
                   {t.tableHeaders.player}
                 </th>
-                <th className="tournament-table__header-cell--right">
+                <th className="tournament-table__header-cell--center">
                   {t.tableHeaders.points}
                 </th>
-                <th className="tournament-table__header-cell--center">
+                <th className="tournament-table__header-cell--center hidden md:table-cell">
                   {t.tableHeaders.tournaments}
                 </th>
               </tr>
@@ -73,8 +73,8 @@ export default function TournamentResults() {
                 <tr key={player.name} className="tournament-table__row">
                   <td className="tournament-table__cell--right">{rank}</td>
                   <td className="tournament-table__cell">{player.name}</td>
-                  <td className="tournament-table__cell--right">{player.elo}</td>
-                  <td className="tournament-table__cell--center">{player.tournaments.length}</td>
+                  <td className="tournament-table__cell--center"><span className="font-bold">{player.elo}</span> <span className="italic">({player.wins}W/{player.draws}D/{player.losses}L)</span></td>
+                  <td className="tournament-table__cell--center hidden md:table-cell">{player.tournaments.length}</td>
                 </tr>
                 )
               })}
