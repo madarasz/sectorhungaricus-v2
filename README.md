@@ -198,6 +198,7 @@ Run script to update tournament scores:
 ```
 npm run points
 ```
+If the same player appears twice with different name spellings, use the `data-deduplication-normalization` skill to add a rule to `sanitizePlayerName()` in `scripts/get_tournament_points.ts`.
 
 ## License
 
