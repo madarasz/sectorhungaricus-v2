@@ -4,13 +4,15 @@ hide-title: false
 slug: want-to-play
 order: 2
 game: kill-team
+metaTitle: Játssz Kill Teamet Budapesten és Magyarországon — Sector Hungaricus
+metaDescription: Szeretnél Kill Teamet játszani Budapesten vagy bárhol Magyarországon? Csatlakozz a Sector Hungaricus klubnapjaihoz, találd meg a helyi boltokat, és szerezd be a kezdő szettet.
 content_blocks:
   - type: text_block
     style: normal
     content: >-
       ### Próbáld ki a játékot: Klubnapok
 
-      Szeretnéd kipróbálni a Kill Team-et? Klubnapjaink tökéletesek kezdők számára! Nézd meg a játékokat élőben, ismerkedj meg barátságos játékosokkal. Megtanítunk mindent, amit tudnod kell. Ne aggódj a felszerelés vagy a figurák miatt - biztosítunk csapatot és minden szükséges kelléket az első játékaidhoz. Keresd meg a következő klubnapot a [naptárban](/hu/calendar/) és gyere el te is! Kérdéseid vannak? Nézz be a [#lfg-kt-budapest](https://discord.com/channels/1025385427273789550/1025385745856344115)  Discord csatornánkra és csatlakozz a közösséghez!
+      Szeretnél **Kill Teamet játszani Budapesten** vagy máshol Magyarországon? Klubnapjaink tökéletesek kezdők számára! Nézd meg a játékokat élőben, ismerkedj meg barátságos játékosokkal. Megtanítunk mindent, amit tudnod kell. Ne aggódj a felszerelés vagy a figurák miatt - biztosítunk csapatot és minden szükséges kelléket az első játékaidhoz. Keresd meg a következő klubnapot a [naptárban](/hu/calendar/) és gyere el te is! Kérdéseid vannak? Nézz be a [#lfg-kt-budapest](https://discord.com/channels/1025385427273789550/1025385745856344115)  Discord csatornánkra és csatlakozz a közösséghez!
   - type: two_column_block
     block_title: Mi kell a játékhoz?
     left_content: |-

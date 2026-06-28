@@ -3,6 +3,8 @@ import { PageContent, GameContent } from '@/types/content'
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons'
 import { faDiscord } from '@fortawesome/free-brands-svg-icons'
 import { Locale } from '@/lib/locale-utils'
+import { buildPageMetadata, composeTitle } from '@/lib/seo'
+import { Metadata } from 'next'
 import CTAButton from '@/components/CTAButton'
 import Link from 'next/link'
 
@@ -14,6 +16,19 @@ interface HomePageProps {
 
 export async function generateStaticParams() {
   return [{ locale: 'hu' }, { locale: 'en' }] // Generate both Hungarian and English versions
+}
+
+export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
+  const { locale } = await params
+  const validLocale = locale as Locale
+  const home = await getMarkdownContent('pages', 'welcome-to-sector-hungaricus', validLocale) as PageContent | null
+
+  return buildPageMetadata({
+    locale: validLocale,
+    path: '/',
+    title: composeTitle(home?.data.metaTitle, home?.data.title),
+    description: home?.data.metaDescription,
+  })
 }
 
 export default async function HomePage({ params }: HomePageProps) {

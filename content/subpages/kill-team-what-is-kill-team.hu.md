@@ -4,12 +4,16 @@ hide-title: true
 slug: what-is-kill-team
 order: 1
 game: kill-team
+metaTitle: Kill Team Magyarországon és Budapesten — Sector Hungaricus
+metaDescription: Mi az a Kill Team? Ismerd meg a Games Workshop 40K skirmish játékának alapjait, és játszd a Sector Hungaricusszal - a Kill Team közösséggel, amely Budapesten szervez versenyeket.
 content_blocks:
   - type: hero_block
     content: >-
       ### Mi az a Kill Team?
 
       A **Kill Team** egy **skirmish wargame** a **Warhammer 40,000 univerzumban**, ahol a játékosok kis létszámú, specializált osztagokat irányítanak egyedi képességekkel rendelkező csapattagokkal. A játék a taktikai küzdelemre és az egyes egységek irányítására összpontosít a nagy léptékű csaták helyett. **Több mint 30 különböző frakció** közül választhatsz, mindegyik saját egyedi játékstílussal, így minden játék új és izgalmas élményt nyújt.
+
+      Magyarországon a **Sector Hungaricus** a közösség, amellyel játszhatsz: **Kill Team versenyeket** és kezdőbarát klubnapokat szervezünk **Budapesten**, és [Discordunk](https://discord.gg/sX46Y83puz) összeköti a játékosokat az egész országban.
   - type: gallery_block
     gallery: what-is-kill-team-gallery
   - type: text_block

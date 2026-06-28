@@ -1,6 +1,8 @@
 import { getMarkdownContent } from '@/lib/markdown'
 import { PageContent } from '@/types/content'
 import { Locale } from '@/lib/locale-utils'
+import { buildPageMetadata, composeTitle } from '@/lib/seo'
+import { Metadata } from 'next'
 
 interface AboutPageProps {
   params: Promise<{
@@ -10,6 +12,19 @@ interface AboutPageProps {
 
 export async function generateStaticParams() {
   return [{ locale: 'hu' }, { locale: 'en' }]
+}
+
+export async function generateMetadata({ params }: AboutPageProps): Promise<Metadata> {
+  const { locale } = await params
+  const validLocale = locale as Locale
+  const about = await getMarkdownContent('pages', 'about-us', validLocale) as PageContent | null
+
+  return buildPageMetadata({
+    locale: validLocale,
+    path: '/about/',
+    title: composeTitle(about?.data.metaTitle, about?.data.title),
+    description: about?.data.metaDescription,
+  })
 }
 
 export default async function AboutPage({ params }: AboutPageProps) {

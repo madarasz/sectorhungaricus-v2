@@ -1,6 +1,8 @@
 import { getGameWithSubpages, getAllContent } from '@/lib/markdown'
 import { GameContent, SubpageContent } from '@/types/content'
 import { Locale } from '@/lib/locale-utils'
+import { buildPageMetadata, composeTitle } from '@/lib/seo'
+import { Metadata } from 'next'
 import GameLayout from '@/components/GameLayout'
 import { notFound } from 'next/navigation'
 
@@ -10,6 +12,30 @@ interface SubpagePageProps {
     game: string
     subpage: string
   }>
+}
+
+export async function generateMetadata({ params }: SubpagePageProps): Promise<Metadata> {
+  const { locale, game: gameSlug, subpage: subpageSlug } = await params
+  const validLocale = locale as Locale
+
+  const { game, subpages } = await getGameWithSubpages(gameSlug, validLocale)
+  const current = subpages.find(
+    (s) => s !== null && s.data.slug === subpageSlug
+  ) as SubpageContent | undefined
+
+  if (!game || !current) {
+    return {}
+  }
+
+  const g = game as GameContent
+
+  return buildPageMetadata({
+    locale: validLocale,
+    path: `/${gameSlug}/${subpageSlug}/`,
+    title: composeTitle(current.data.metaTitle, current.data.title, g.data.title),
+    description: current.data.metaDescription,
+    image: g.data.featuredImage,
+  })
 }
 
 export async function generateStaticParams() {

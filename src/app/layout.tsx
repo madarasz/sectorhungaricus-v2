@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import "../lib/fontawesome";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { BASE_URL } from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -65,8 +66,9 @@ const montserratSubrayada = localFont({
 
 
 export const metadata: Metadata = {
-  title: "Sector Hungaricus - Skirmish Gaming Community",
-  description: "Hungarian skirmish gaming community focusing on Kill Team, Spearhead and other tabletop games",
+  metadataBase: new URL(BASE_URL),
+  title: "Sector Hungaricus - Kill Team & Skirmish Gaming in Hungary",
+  description: "Kill Team and skirmish wargaming community in Hungary and Budapest - tournaments, beginner-friendly events, and hobby resources.",
   icons: {
     icon: '/favicon.ico',
   },

@@ -4,13 +4,15 @@ hide-title: false
 slug: want-to-play
 order: 2
 game: kill-team
+metaTitle: Play Kill Team in Budapest & Hungary — Sector Hungaricus
+metaDescription: Want to play Kill Team in Budapest or anywhere in Hungary? Join Sector Hungaricus club days, find local game stores, and get the starter sets you need to begin.
 content_blocks:
   - type: text_block
     style: normal
     content: >-
       ### Start Your Journey: Club Days
 
-      Looking to try Kill Team? Our club days are perfect for newcomers! Watch games in action, meet friendly players, and jump right in - we'll teach you everything you need to know. Don't worry about equipment or models - we'll provide a team and all the gaming essentials for your first games. Find our next club day in the [calendar](/en/calendar/) and join us! Have questions? Drop by our [#lfg-kt-budapest](https://discord.com/channels/1025385427273789550/1025385745856344115) Discord channel and chat with the community.
+      Looking to try **Kill Team in Budapest** or elsewhere in Hungary? Our club days are perfect for newcomers! Watch games in action, meet friendly players, and jump right in - we'll teach you everything you need to know. Don't worry about equipment or models - we'll provide a team and all the gaming essentials for your first games. Find our next club day in the [calendar](/en/calendar/) and join us! Have questions? Drop by our [#lfg-kt-budapest](https://discord.com/channels/1025385427273789550/1025385745856344115) Discord channel and chat with the community.
   - type: two_column_block
     block_title: What You Need to Play
     left_content: |-

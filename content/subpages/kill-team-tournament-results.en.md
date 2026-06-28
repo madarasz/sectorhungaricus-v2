@@ -4,6 +4,8 @@ hide-title: false
 slug: tournament-results
 order: 5
 game: kill-team
+metaTitle: Kill Team Tournament Results in Hungary — Sector Hungaricus
+metaDescription: Results and ELO rankings from Sector Hungaricus Kill Team tournaments, including the season Invitational.
 content_blocks:
   - type: page_reference_block
     page_reference: pages/TournamentResults
