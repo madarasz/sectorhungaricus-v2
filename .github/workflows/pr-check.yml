@@ -12,7 +12,7 @@ jobs:
     # Replace 'v1.45.0-jammy' with the version that matches your project's Playwright version.
     # See tags here: https://mcr.microsoft.com/en-us/product/playwright/tags
     container:
-      image: mcr.microsoft.com/playwright:v1.55.0-jammy
+      image: mcr.microsoft.com/playwright:v1.57.0-jammy
 
     steps:
       - name: Checkout code
