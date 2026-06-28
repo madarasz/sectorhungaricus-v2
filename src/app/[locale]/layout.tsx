@@ -2,6 +2,8 @@ import { LocaleProvider } from "@/contexts/LocaleContext";
 import { Locale, getLocalizedPath } from "@/lib/locale-utils";
 import Navigation from "@/components/Navigation";
 import { getMarkdownContent } from "@/lib/markdown";
+import { BASE_URL, SITE_NAME } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
 import Link from "next/link";
 import KofiWidget from "@/components/KofiWidget";
 
@@ -39,8 +41,31 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     supportData.status === 'fulfilled' && supportData.value?.data?.title as string
   ) || ''
 
+  const organizationLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SportsOrganization',
+    name: SITE_NAME,
+    url: `${BASE_URL}/${validLocale}/`,
+    logo: `${BASE_URL}/uploads/sh-logo.png`,
+    sameAs: ['https://discord.gg/sX46Y83puz'],
+    areaServed: [
+      { '@type': 'Country', name: 'Hungary' },
+      { '@type': 'City', name: 'Budapest' },
+    ],
+    knowsAbout: ['Kill Team', 'Warhammer 40,000', 'Tabletop wargaming', 'Spearhead'],
+  }
+
+  const websiteLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: BASE_URL,
+    inLanguage: validLocale === 'hu' ? 'hu-HU' : 'en-US',
+  }
+
   return (
     <LocaleProvider initialLocale={validLocale}>
+      <JsonLd data={[organizationLd, websiteLd]} />
       <Navigation calendarTitle={calendarTitle} aboutTitle={aboutTitle} supportTitle={supportTitle} />
       <main className="min-h-screen">
         {children}

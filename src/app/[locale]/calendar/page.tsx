@@ -1,6 +1,9 @@
 import { getMarkdownContent, getAllContent } from '@/lib/markdown'
 import { PageContent, TournamentContent, GameContent } from '@/types/content'
 import { Locale } from '@/lib/locale-utils'
+import { buildPageMetadata, composeTitle, BASE_URL, SITE_NAME } from '@/lib/seo'
+import { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
 import Link from 'next/link'
 
 interface CalendarPageProps {
@@ -11,6 +14,19 @@ interface CalendarPageProps {
 
 export async function generateStaticParams() {
   return [{ locale: 'hu' }, { locale: 'en' }]
+}
+
+export async function generateMetadata({ params }: CalendarPageProps): Promise<Metadata> {
+  const { locale } = await params
+  const validLocale = locale as Locale
+  const calendar = await getMarkdownContent('pages', 'calendar', validLocale) as PageContent | null
+
+  return buildPageMetadata({
+    locale: validLocale,
+    path: '/calendar/',
+    title: composeTitle(calendar?.data.metaTitle, calendar?.data.title),
+    description: calendar?.data.metaDescription,
+  })
 }
 
 // Helper function to determine the tournament type label based on game name and locale
@@ -55,8 +71,21 @@ export default async function CalendarPage({ params }: CalendarPageProps) {
     return map
   }, {} as Record<string, string>)
 
+  // schema.org Event JSON-LD for each upcoming tournament
+  const eventsLd = upcomingTournaments.map((tournament) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: tournament.data.title,
+    startDate: tournament.data.date,
+    url: tournament.data.url,
+    eventStatus: 'https://schema.org/EventScheduled',
+    about: gameMap[tournament.data.game] || tournament.data.game,
+    organizer: { '@type': 'Organization', name: SITE_NAME, url: BASE_URL },
+  }))
+
   return (
     <div style={{backgroundColor: 'var(--background)', minHeight: '100vh'}}>
+      {eventsLd.length > 0 && <JsonLd data={eventsLd} />}
       {/* Hero Section */}
           
           {/* Upcoming Tournaments List */}

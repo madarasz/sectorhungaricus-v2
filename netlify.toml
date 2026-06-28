@@ -6,6 +6,8 @@
   from = "/"
   to = "/hu/"
   status = 302
+  force = true
 
 [build.environment]
   NODE_VERSION = "18"
+  NEXT_PUBLIC_BASE_URL = "https://sectorhungaricus.com"

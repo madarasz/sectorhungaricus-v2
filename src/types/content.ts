@@ -49,6 +49,8 @@ export interface PageContent {
   data: {
     title: string
     hero?: string
+    metaTitle?: string
+    metaDescription?: string
   }
   contentHtml: string
 }
@@ -111,6 +113,8 @@ export interface SubpageContent {
     slug: string
     order: number
     game: string
+    metaTitle?: string
+    metaDescription?: string
     content_blocks: ContentBlock[]
   }
   contentHtml: string

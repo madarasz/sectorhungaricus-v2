@@ -88,7 +88,7 @@ function ImageOverlay({ images, currentIndex, isOpen, onClose, onPrevious, onNex
             }}
             className="hidden md:block absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-gray-300 z-10 p-2 pointer-events-auto"
             aria-label="Previous image"
-            data-testid={`${testIdPrefix}-prev-button-desktop`}
+            data-testid={`${testIdPrefix}-prev-button`}
           >
             ‹
           </button>
@@ -99,7 +99,7 @@ function ImageOverlay({ images, currentIndex, isOpen, onClose, onPrevious, onNex
             }}
             className="hidden md:block absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-gray-300 z-10 p-2 pointer-events-auto"
             aria-label="Next image"
-            data-testid={`${testIdPrefix}-next-button-desktop`}
+            data-testid={`${testIdPrefix}-next-button`}
           >
             ›
           </button>
@@ -139,7 +139,7 @@ function ImageOverlay({ images, currentIndex, isOpen, onClose, onPrevious, onNex
               }}
               className="text-white text-4xl hover:text-gray-300 p-3 bg-black/50 rounded-full min-w-[52px] min-h-[52px] flex items-center justify-center"
               aria-label="Previous image"
-              data-testid={`${testIdPrefix}-prev-button`}
+              data-testid={`${testIdPrefix}-prev-button-mobile`}
             >
               ‹
             </button>
@@ -150,7 +150,7 @@ function ImageOverlay({ images, currentIndex, isOpen, onClose, onPrevious, onNex
               }}
               className="text-white text-4xl hover:text-gray-300 p-3 bg-black/50 rounded-full min-w-[52px] min-h-[52px] flex items-center justify-center"
               aria-label="Next image"
-              data-testid={`${testIdPrefix}-next-button`}
+              data-testid={`${testIdPrefix}-next-button-mobile`}
             >
               ›
             </button>
