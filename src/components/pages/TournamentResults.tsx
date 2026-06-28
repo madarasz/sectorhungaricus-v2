@@ -67,7 +67,7 @@ export default function TournamentResults() {
               </tr>
             </thead>
             <tbody className="tournament-table__body">
-              {topPlayers.map((player, index) => {
+              {topPlayers.map((player) => {
                 const rank = topPlayers.findIndex(p => p.elo === player.elo) + 1
                 return (
                 <tr key={player.name} className="tournament-table__row">
