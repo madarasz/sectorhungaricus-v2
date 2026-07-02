@@ -239,7 +239,7 @@ body {
 
 .prose li strong {
   font-weight: 600;
-  color: var(--text);
+  color: inherit;
 }
 
 .prose p {
