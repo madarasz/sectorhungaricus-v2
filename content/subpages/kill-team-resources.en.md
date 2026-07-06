@@ -22,8 +22,8 @@ content_blocks:
     right_content: >-
       ### Unofficial Sources
 
-      ##### Rules, data cards, and scoring tool
-
       - [KT3 Battlekit](https://battlekit.killteam.ru/) - Includes general rules, team rules, score tracker and much more. Created by **Alberto Cortes Villena**.
+
+      - [Can I Shoot It?](https://canishoot.it/) - Great explanation on shooting rules with 3D visuals. Also includes some basic rules, movement, common mistakes and strategy guides.
     hide_title: true
 ---

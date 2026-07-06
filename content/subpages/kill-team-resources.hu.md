@@ -22,8 +22,8 @@ content_blocks:
     right_content: >-
       ### Nem-hivatalos források
 
-      ##### Szabályok, adatkártyák, eszközök pontozáshoz
-
       - [KT3 Battlekit](https://battlekit.killteam.ru/) - Tartalmazza az általános szabályokat, csapatszabályokat, pontszámkövetőt és még sok mást. Készítette **Alberto Cortes Villena**.
+
+      - [Can I Shoot It?](https://canishoot.it/) - Részletes összefoglaló a lövéssel kapcsolatos szabályokról 3D példákkal. Tartalmaz továbbá alapvető és mozgás szabályokat, gyakori hibákat és stratégiai tanácsokat.
     hide_title: true
 ---
