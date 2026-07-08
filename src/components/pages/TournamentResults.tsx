@@ -5,7 +5,7 @@ import { getTournamentResultsTranslations } from '@/lib/translations'
 import resultsData from '../../../scripts/results-2026.json'
 import tournamentsData from '../../../scripts/tournaments-2026.json'
 
-const TOP_PLAYERS_COUNT = 12
+const TOP_PLAYERS_COUNT = 16
 const TOP_FACTIONS_COUNT = 10
 const FACTION_MIN_TIMES_PLAYED = 3
 const MIN_TOURNAMENTS = 2
