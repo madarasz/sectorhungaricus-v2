@@ -58,6 +58,7 @@ interface BCPPairing {
   id?: string;
   round?: number;
   isDone?: boolean;
+  created_at?: string;
   player1?: BCPPairingPlayer;
   player2?: BCPPairingPlayer;
   player1Game?: BCPGame;
@@ -168,6 +169,14 @@ function updateElo(rating: number, expected: number, actual: number): number {
   return Math.round(rating + K_FACTOR * (actual - expected));
 }
 
+function getEarliestPairingDate(cache: PairingsCache): string {
+  const dates = Object.values(cache.rounds)
+    .flat()
+    .map((p) => p.created_at)
+    .filter(Boolean) as string[];
+  return dates.length ? dates.sort()[0] : "9999";
+}
+
 async function main(): Promise<void> {
   const scriptsDir = path.dirname(__filename);
   const tournamentsPath = path.join(scriptsDir, "tournaments-2026.json");
@@ -180,8 +189,18 @@ async function main(): Promise<void> {
     fs.readFileSync(tournamentsPath, "utf-8")
   );
 
-  // Process oldest first
-  const tournaments = [...tournamentsConfig.tournaments].reverse();
+  // Build cache map and sort tournaments by earliest pairing timestamp
+  const cacheMap = new Map<string, PairingsCache>();
+  for (const t of tournamentsConfig.tournaments) {
+    await loadFactionCache(t.bcp_id, cacheDir);
+    cacheMap.set(t.bcp_id, await fetchAndCachePairings(t, cacheDir));
+  }
+
+  const tournaments = [...tournamentsConfig.tournaments].sort((a, b) =>
+    getEarliestPairingDate(cacheMap.get(a.bcp_id)!).localeCompare(
+      getEarliestPairingDate(cacheMap.get(b.bcp_id)!)
+    )
+  );
 
   const eloMap = new Map<string, number>();
   const playerMap = new Map<string, PlayerResult>();
@@ -204,8 +223,7 @@ async function main(): Promise<void> {
   for (const tournament of tournaments) {
     console.log(`\nProcessing: ${tournament.name}`);
 
-    await loadFactionCache(tournament.bcp_id, cacheDir);
-    const cache = await fetchAndCachePairings(tournament, cacheDir);
+    const cache = cacheMap.get(tournament.bcp_id)!;
     const roundNumbers = Object.keys(cache.rounds)
       .map(Number)
       .sort((a, b) => a - b);
@@ -320,10 +338,13 @@ async function main(): Promise<void> {
   console.log(`Total players: ${playersArray.length}`);
 
   console.log("\nAll players:");
+  let rank = 0;
+  let prevElo = -1;
   playersArray.forEach((player, index) => {
+    if (player.elo !== prevElo) { rank = index + 1; prevElo = player.elo; }
     const record = `${player.wins}W/${player.draws}D/${player.losses}L`;
     console.log(
-      `  ${index + 1}. ${player.name}: ${player.elo} ELO (${record}, ${player.tournaments.length} tournaments)`
+      `  ${rank}. ${player.name}: ${player.elo} ELO (${record}, ${player.tournaments.length} tournaments)`
     );
   });
 }
