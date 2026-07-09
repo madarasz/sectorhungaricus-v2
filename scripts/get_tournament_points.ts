@@ -25,6 +25,7 @@ interface PlayerTournamentResult {
 
 interface PlayerResult {
   name: string;
+  rank: number;
   elo: number;
   wins: number;
   draws: number;
@@ -209,6 +210,7 @@ async function main(): Promise<void> {
     if (!playerMap.has(name)) {
       playerMap.set(name, {
         name,
+        rank: 0,
         elo: STARTING_ELO,
         wins: 0,
         draws: 0,
@@ -323,10 +325,20 @@ async function main(): Promise<void> {
     }
   }
 
-  // Sort by ELO descending
+  // Sort by ELO descending and assign ranks (ties share rank)
   const playersArray = Array.from(playerMap.values()).sort(
     (a, b) => b.elo - a.elo
   );
+
+  let rankCounter = 0;
+  let prevEloForRank = -1;
+  for (let i = 0; i < playersArray.length; i++) {
+    if (playersArray[i].elo !== prevEloForRank) {
+      rankCounter = i + 1;
+      prevEloForRank = playersArray[i].elo;
+    }
+    playersArray[i].rank = rankCounter;
+  }
 
   const results: ResultsOutput = {
     players: playersArray,

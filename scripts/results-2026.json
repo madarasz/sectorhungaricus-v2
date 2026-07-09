@@ -2,6 +2,7 @@
     "players": [
         {
             "name": "Dávid Gunst",
+            "rank": 1,
             "elo": 1658,
             "wins": 7,
             "draws": 0,
@@ -21,6 +22,7 @@
         },
         {
             "name": "Sándor Ágota",
+            "rank": 2,
             "elo": 1650,
             "wins": 10,
             "draws": 0,
@@ -50,6 +52,7 @@
         },
         {
             "name": "Dominik Szarvas",
+            "rank": 3,
             "elo": 1645,
             "wins": 10,
             "draws": 0,
@@ -79,6 +82,7 @@
         },
         {
             "name": "Gergely Papp \"Watapi\"",
+            "rank": 4,
             "elo": 1635,
             "wins": 8,
             "draws": 1,
@@ -103,6 +107,7 @@
         },
         {
             "name": "Barnabás László",
+            "rank": 5,
             "elo": 1617,
             "wins": 12,
             "draws": 1,
@@ -137,6 +142,7 @@
         },
         {
             "name": "Omar Bandar",
+            "rank": 6,
             "elo": 1600,
             "wins": 5,
             "draws": 0,
@@ -156,6 +162,7 @@
         },
         {
             "name": "Lóránd “Clostry” Papp",
+            "rank": 7,
             "elo": 1594,
             "wins": 5,
             "draws": 0,
@@ -175,6 +182,7 @@
         },
         {
             "name": "Istvan Madarasz",
+            "rank": 8,
             "elo": 1572,
             "wins": 6,
             "draws": 1,
@@ -199,6 +207,7 @@
         },
         {
             "name": "Gábor Mervó",
+            "rank": 9,
             "elo": 1570,
             "wins": 5,
             "draws": 0,
@@ -218,6 +227,7 @@
         },
         {
             "name": "Kristóf Haász",
+            "rank": 10,
             "elo": 1569,
             "wins": 5,
             "draws": 0,
@@ -237,6 +247,7 @@
         },
         {
             "name": "Misi Szabolcs",
+            "rank": 11,
             "elo": 1568,
             "wins": 4,
             "draws": 1,
@@ -256,6 +267,7 @@
         },
         {
             "name": "Wojciech Ogrodowczyk",
+            "rank": 12,
             "elo": 1563,
             "wins": 10,
             "draws": 0,
@@ -290,6 +302,7 @@
         },
         {
             "name": "Sándor Tamás Balogh",
+            "rank": 13,
             "elo": 1560,
             "wins": 5,
             "draws": 0,
@@ -309,6 +322,7 @@
         },
         {
             "name": "Donát Palinkas-Oszlovics",
+            "rank": 14,
             "elo": 1550,
             "wins": 3,
             "draws": 0,
@@ -323,6 +337,7 @@
         },
         {
             "name": "Matteo Facchino",
+            "rank": 15,
             "elo": 1549,
             "wins": 3,
             "draws": 0,
@@ -337,6 +352,7 @@
         },
         {
             "name": "Attila Pulger",
+            "rank": 16,
             "elo": 1548,
             "wins": 3,
             "draws": 0,
@@ -351,6 +367,7 @@
         },
         {
             "name": "Gombás Bence",
+            "rank": 17,
             "elo": 1544,
             "wins": 6,
             "draws": 2,
@@ -380,6 +397,7 @@
         },
         {
             "name": "Gergely Darmos",
+            "rank": 18,
             "elo": 1537,
             "wins": 5,
             "draws": 2,
@@ -404,6 +422,7 @@
         },
         {
             "name": "Péter Borsányi",
+            "rank": 19,
             "elo": 1531,
             "wins": 2,
             "draws": 0,
@@ -418,6 +437,7 @@
         },
         {
             "name": "Dániel Károly",
+            "rank": 20,
             "elo": 1529,
             "wins": 7,
             "draws": 0,
@@ -447,6 +467,7 @@
         },
         {
             "name": "Róbert Károly",
+            "rank": 21,
             "elo": 1528,
             "wins": 7,
             "draws": 0,
@@ -476,6 +497,7 @@
         },
         {
             "name": "Lőrinc Soós",
+            "rank": 22,
             "elo": 1527,
             "wins": 8,
             "draws": 1,
@@ -510,6 +532,7 @@
         },
         {
             "name": "Radovan Gallai",
+            "rank": 23,
             "elo": 1523,
             "wins": 2,
             "draws": 0,
@@ -524,6 +547,7 @@
         },
         {
             "name": "Csaba Toth",
+            "rank": 24,
             "elo": 1520,
             "wins": 4,
             "draws": 0,
@@ -543,6 +567,7 @@
         },
         {
             "name": "Dávid Viniczay",
+            "rank": 25,
             "elo": 1504,
             "wins": 3,
             "draws": 0,
@@ -562,6 +587,7 @@
         },
         {
             "name": "Gábor Kiss",
+            "rank": 26,
             "elo": 1502,
             "wins": 3,
             "draws": 0,
@@ -581,6 +607,7 @@
         },
         {
             "name": "Szecsodi Patrik",
+            "rank": 27,
             "elo": 1501,
             "wins": 2,
             "draws": 0,
@@ -595,6 +622,7 @@
         },
         {
             "name": "Ferenc Vitarius",
+            "rank": 28,
             "elo": 1500,
             "wins": 2,
             "draws": 0,
@@ -609,6 +637,7 @@
         },
         {
             "name": "Áron Kovács",
+            "rank": 29,
             "elo": 1499,
             "wins": 3,
             "draws": 1,
@@ -628,6 +657,7 @@
         },
         {
             "name": "Csaba Jerzsabek",
+            "rank": 30,
             "elo": 1498,
             "wins": 2,
             "draws": 0,
@@ -642,6 +672,7 @@
         },
         {
             "name": "Botond Bednárik",
+            "rank": 30,
             "elo": 1498,
             "wins": 1,
             "draws": 1,
@@ -656,6 +687,7 @@
         },
         {
             "name": "Gergő Disznósi",
+            "rank": 32,
             "elo": 1482,
             "wins": 1,
             "draws": 0,
@@ -670,6 +702,7 @@
         },
         {
             "name": "Máté Bujdosó",
+            "rank": 33,
             "elo": 1478,
             "wins": 1,
             "draws": 0,
@@ -684,6 +717,7 @@
         },
         {
             "name": "Miklos Stemler",
+            "rank": 33,
             "elo": 1478,
             "wins": 1,
             "draws": 0,
@@ -698,6 +732,7 @@
         },
         {
             "name": "Tamás Szücs",
+            "rank": 35,
             "elo": 1475,
             "wins": 1,
             "draws": 0,
@@ -712,6 +747,7 @@
         },
         {
             "name": "Benedek Horváth",
+            "rank": 35,
             "elo": 1475,
             "wins": 1,
             "draws": 0,
@@ -726,6 +762,7 @@
         },
         {
             "name": "Balázs Bihari",
+            "rank": 37,
             "elo": 1473,
             "wins": 1,
             "draws": 1,
@@ -740,6 +777,7 @@
         },
         {
             "name": "Dénes Csóka",
+            "rank": 37,
             "elo": 1473,
             "wins": 1,
             "draws": 0,
@@ -754,6 +792,7 @@
         },
         {
             "name": "Dávid Nagy",
+            "rank": 39,
             "elo": 1472,
             "wins": 5,
             "draws": 0,
@@ -773,6 +812,7 @@
         },
         {
             "name": "Báder Péter",
+            "rank": 39,
             "elo": 1472,
             "wins": 2,
             "draws": 1,
@@ -792,6 +832,7 @@
         },
         {
             "name": "Márton Mati",
+            "rank": 41,
             "elo": 1468,
             "wins": 7,
             "draws": 0,
@@ -831,6 +872,7 @@
         },
         {
             "name": "Péter Oláh",
+            "rank": 42,
             "elo": 1464,
             "wins": 6,
             "draws": 0,
@@ -860,6 +902,7 @@
         },
         {
             "name": "Balázs Schunder",
+            "rank": 43,
             "elo": 1462,
             "wins": 2,
             "draws": 1,
@@ -879,6 +922,7 @@
         },
         {
             "name": "Szabolcs Berényi",
+            "rank": 44,
             "elo": 1461,
             "wins": 3,
             "draws": 3,
@@ -903,6 +947,7 @@
         },
         {
             "name": "Federico Marcon",
+            "rank": 45,
             "elo": 1458,
             "wins": 2,
             "draws": 0,
@@ -922,6 +967,7 @@
         },
         {
             "name": "Gergely Szabó",
+            "rank": 46,
             "elo": 1457,
             "wins": 4,
             "draws": 0,
@@ -946,6 +992,7 @@
         },
         {
             "name": "Laszlo Balatincz",
+            "rank": 47,
             "elo": 1453,
             "wins": 1,
             "draws": 0,
@@ -960,6 +1007,7 @@
         },
         {
             "name": "Flóra Farkas",
+            "rank": 48,
             "elo": 1452,
             "wins": 1,
             "draws": 0,
@@ -974,6 +1022,7 @@
         },
         {
             "name": "Harsán Tamás",
+            "rank": 49,
             "elo": 1450,
             "wins": 1,
             "draws": 0,
@@ -988,6 +1037,7 @@
         },
         {
             "name": "Márton Szabó",
+            "rank": 49,
             "elo": 1450,
             "wins": 1,
             "draws": 0,
@@ -1002,6 +1052,7 @@
         },
         {
             "name": "Istvan Losonczi",
+            "rank": 51,
             "elo": 1444,
             "wins": 1,
             "draws": 0,
@@ -1016,6 +1067,7 @@
         },
         {
             "name": "Báder Máté",
+            "rank": 52,
             "elo": 1437,
             "wins": 0,
             "draws": 0,
@@ -1030,6 +1082,7 @@
         },
         {
             "name": "József Márton Bíró",
+            "rank": 53,
             "elo": 1430,
             "wins": 2,
             "draws": 0,
@@ -1049,6 +1102,7 @@
         },
         {
             "name": "Tamás Horváth",
+            "rank": 54,
             "elo": 1429,
             "wins": 0,
             "draws": 0,
@@ -1063,6 +1117,7 @@
         },
         {
             "name": "Ariel Kormos",
+            "rank": 54,
             "elo": 1429,
             "wins": 0,
             "draws": 0,
@@ -1077,6 +1132,7 @@
         },
         {
             "name": "Alex Horvai",
+            "rank": 56,
             "elo": 1428,
             "wins": 2,
             "draws": 0,
@@ -1101,6 +1157,7 @@
         },
         {
             "name": "Novak Botond",
+            "rank": 56,
             "elo": 1428,
             "wins": 0,
             "draws": 0,
@@ -1115,6 +1172,7 @@
         },
         {
             "name": "Szimeiszter Ákos",
+            "rank": 58,
             "elo": 1426,
             "wins": 0,
             "draws": 1,
@@ -1129,6 +1187,7 @@
         },
         {
             "name": "Milán Józing",
+            "rank": 59,
             "elo": 1425,
             "wins": 2,
             "draws": 2,
@@ -1153,6 +1212,7 @@
         },
         {
             "name": "Vince Soós",
+            "rank": 60,
             "elo": 1424,
             "wins": 4,
             "draws": 0,
@@ -1187,6 +1247,7 @@
         },
         {
             "name": "Gaspar Nemeth",
+            "rank": 61,
             "elo": 1393,
             "wins": 0,
             "draws": 0,
@@ -1206,6 +1267,7 @@
         },
         {
             "name": "Péter Sinkó",
+            "rank": 62,
             "elo": 1369,
             "wins": 0,
             "draws": 0,
@@ -1225,6 +1287,7 @@
         },
         {
             "name": "Kolos Szentpáli",
+            "rank": 63,
             "elo": 1346,
             "wins": 0,
             "draws": 0,
