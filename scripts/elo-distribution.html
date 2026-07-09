@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ELO Distribution</title>
+<style>
+  :root { --bg:#0f1115; --fg:#e6e6e6; --muted:#8a8f98; --bar:#6ea8fe; --bar-peak:#ffd166; --grid:#242833; --curve:#ff6b9d; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.4 system-ui, sans-serif; padding:2rem; }
+  h1 { font-size:1.4rem; margin:0 0 .25rem; }
+  .meta { color:var(--muted); margin-bottom:1.5rem; }
+  .wrap { position:relative; }
+  .chart { display:flex; align-items:flex-end; gap:6px; height:60vh; border-bottom:2px solid var(--grid); }
+  .col { flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; height:100%; }
+  .bar { width:100%; background:var(--bar); border-radius:4px 4px 0 0; min-height:2px; }
+  .bar.peak { background:var(--bar-peak); }
+  .count { font-size:.8rem; color:var(--fg); margin-bottom:4px; height:1em; }
+  .label { font-size:.7rem; color:var(--muted); margin-top:6px; writing-mode:vertical-rl; white-space:nowrap; }
+  .overlay { position:absolute; inset:0; pointer-events:none; overflow:visible; }
+  .err { color:#ff6b6b; }
+  .legend { display:flex; gap:1.5rem; margin-top:.5rem; color:var(--muted); font-size:.85rem; align-items:center; }
+  .swatch { display:inline-block; width:14px; height:14px; border-radius:3px; vertical-align:middle; margin-right:6px; }
+</style>
+</head>
+<body>
+  <h1>Player ELO Distribution</h1>
+  <div class="meta" id="meta">Loading…</div>
+  <div class="wrap">
+    <div class="chart" id="chart"></div>
+    <svg class="overlay" id="overlay"></svg>
+  </div>
+  <div class="legend" id="legend"></div>
+
+<script>
+const BUCKET = 50;
+let model = null; // {keys, buckets, maxCount, mean, sd, n, lo}
+
+async function load() {
+  const meta = document.getElementById('meta');
+  const chart = document.getElementById('chart');
+  let data;
+  try {
+    const res = await fetch('results-2026.json?t=' + Date.now()); // cache-bust => always fresh
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    data = await res.json();
+  } catch (e) {
+    meta.innerHTML = '<span class="err">Failed to load results-2026.json: ' + e.message +
+      '<br>Serve this folder over HTTP (fetch is blocked on file://). E.g. <code>npx serve scripts</code></span>';
+    return;
+  }
+
+  const elos = data.players.map(p => p.elo);
+  const n = elos.length;
+  const min = Math.min(...elos), max = Math.max(...elos);
+  const lo = Math.floor(min / BUCKET) * BUCKET;
+  const mean = elos.reduce((a, b) => a + b, 0) / n;
+  const sd = Math.sqrt(elos.reduce((a, b) => a + (b - mean) ** 2, 0) / n);
+
+  const buckets = {};
+  for (const e of elos) { const b = Math.floor(e / BUCKET) * BUCKET; buckets[b] = (buckets[b] || 0) + 1; }
+  const keys = [];
+  for (let k = lo; k <= max; k += BUCKET) keys.push(k);
+  const maxCount = Math.max(...keys.map(k => buckets[k] || 0));
+
+  meta.textContent = `${n} players · range ${min}–${max} · ${BUCKET}-point buckets · μ=${mean.toFixed(0)} σ=${sd.toFixed(0)}`;
+  document.getElementById('legend').innerHTML =
+    `<span><span class="swatch" style="background:var(--bar)"></span>players per bucket</span>` +
+    `<span><span class="swatch" style="background:var(--curve)"></span>normal fit (μ=${mean.toFixed(0)}, σ=${sd.toFixed(0)})</span>`;
+
+  chart.innerHTML = '';
+  for (const k of keys) {
+    const c = buckets[k] || 0;
+    const col = document.createElement('div');
+    col.className = 'col';
+    col.innerHTML =
+      `<div class="count">${c || ''}</div>` +
+      `<div class="bar ${c === maxCount ? 'peak' : ''}" style="height:${(c / maxCount) * 100}%"></div>` +
+      `<div class="label">${k}–${k + BUCKET - 1}</div>`;
+    chart.appendChild(col);
+  }
+
+  model = { keys, buckets, maxCount, mean, sd, n, lo };
+  requestAnimationFrame(drawCurve);
+}
+
+// Expected players in a BUCKET-wide bin centered at elo x, under normal(mean, sd).
+function expected(x, m) {
+  const pdf = Math.exp(-((x - m.mean) ** 2) / (2 * m.sd ** 2)) / (m.sd * Math.sqrt(2 * Math.PI));
+  return m.n * BUCKET * pdf;
+}
+
+function drawCurve() {
+  if (!model) return;
+  const chart = document.getElementById('chart');
+  const svg = document.getElementById('overlay');
+  const bars = [...chart.querySelectorAll('.bar')];
+  if (bars.length < 2) return;
+
+  const chartRect = chart.getBoundingClientRect();
+  svg.setAttribute('viewBox', `0 0 ${chartRect.width} ${chartRect.height}`);
+
+  // Anchor elo->x on measured bar centers; share y-scale with bars (peak bar px = maxCount).
+  const centerX = b => b.getBoundingClientRect().left - chartRect.left + b.getBoundingClientRect().width / 2;
+  const x0 = centerX(bars[0]), xN = centerX(bars[bars.length - 1]);
+  const c0 = model.keys[0] + BUCKET / 2, cN = model.keys[model.keys.length - 1] + BUCKET / 2;
+
+  const peak = bars.reduce((a, b) => a.getBoundingClientRect().height > b.getBoundingClientRect().height ? a : b);
+  const peakRect = peak.getBoundingClientRect();
+  const baselineY = peakRect.bottom - chartRect.top;      // shared bar bottom
+  const pxPerCount = peakRect.height / model.maxCount;
+
+  const eloToX = e => x0 + (e - c0) / (cN - c0) * (xN - x0);
+  const STEPS = 120;
+  const pts = [];
+  for (let i = 0; i <= STEPS; i++) {
+    const e = c0 + (cN - c0) * (i / STEPS);
+    pts.push(`${eloToX(e).toFixed(1)},${(baselineY - expected(e, model) * pxPerCount).toFixed(1)}`);
+  }
+
+  const x1500 = eloToX(1500);
+  svg.innerHTML =
+    `<line x1="${x1500.toFixed(1)}" y1="0" x2="${x1500.toFixed(1)}" y2="${baselineY.toFixed(1)}" ` +
+    `stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.55"/>` +
+    `<text x="${(x1500 + 5).toFixed(1)}" y="14" fill="var(--fg)" opacity="0.7" font-size="12">1500</text>` +
+    `<polyline points="${pts.join(' ')}" fill="none" stroke="var(--curve)" stroke-width="2.5" ` +
+    `stroke-linejoin="round" stroke-linecap="round"/>`;
+}
+
+addEventListener('resize', () => requestAnimationFrame(drawCurve));
+load();
+</script>
+</body>
+</html>

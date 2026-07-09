@@ -11,6 +11,7 @@
     "cms": "decap-server",
     "dev:cms": "concurrently \"npm run dev\" \"npm run cms\"",
     "process-images": "tsx scripts/process-images.ts",
+    "elo-stat": "python3 -m http.server 8099 --directory scripts",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
     "points": "tsx scripts/get_tournament_points.ts"
