@@ -159,6 +159,8 @@ function sanitizePlayerName(name: string): string {
   if (name === "SANDOR TAMAS BALOGH") return "Sándor Tamás Balogh";
   if (name === "Szarvas Dominik") return "Dominik Szarvas";
   if (name === "Bence Gombás") return "Gombás Bence";
+  if (name === "LÃ³rÃ¡nd “Clostry” Papp") return "Lóránd “Clostry” Papp";
+  if (name === "Balogh Sándor Tamás") return "Sándor Tamás Balogh";
   return name;
 }
 
