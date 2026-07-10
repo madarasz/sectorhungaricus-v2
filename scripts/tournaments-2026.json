@@ -2,6 +2,10 @@
     "name": "Tournaments 2026",
     "tournaments": [
         {
+            "name": "TTS Liga",
+            "bcp_id": "v4oKpw0ft0Dm"
+        },
+        {
             "name": "Contrast Clash - June 2026",
             "bcp_id": "KyKQcQQxZwSP"
         },

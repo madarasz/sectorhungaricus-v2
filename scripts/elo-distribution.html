@@ -10,17 +10,19 @@
   body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.4 system-ui, sans-serif; padding:2rem; }
   h1 { font-size:1.4rem; margin:0 0 .25rem; }
   .meta { color:var(--muted); margin-bottom:1.5rem; }
-  .wrap { position:relative; }
-  .chart { display:flex; align-items:flex-end; gap:6px; height:60vh; border-bottom:2px solid var(--grid); }
-  .col { flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; height:100%; }
+  .wrap { position:relative; max-width:500px; }
+  .chart { display:flex; align-items:stretch; gap:6px; height:60vh; border-bottom:2px solid var(--grid); }
+  .col { flex:1; display:flex; flex-direction:column; align-items:center; }
+  .bar-wrap { flex:1; width:100%; display:flex; flex-direction:column; justify-content:flex-end; }
   .bar { width:100%; background:var(--bar); border-radius:4px 4px 0 0; min-height:2px; }
   .bar.peak { background:var(--bar-peak); }
   .count { font-size:.8rem; color:var(--fg); margin-bottom:4px; height:1em; }
-  .label { font-size:.7rem; color:var(--muted); margin-top:6px; writing-mode:vertical-rl; white-space:nowrap; }
+  .label { font-size:.7rem; color:var(--muted); margin-top:6px; writing-mode:vertical-rl; white-space:nowrap; height:10rem; overflow:hidden; }
   .overlay { position:absolute; inset:0; pointer-events:none; overflow:visible; }
   .err { color:#ff6b6b; }
   .legend { display:flex; gap:1.5rem; margin-top:.5rem; color:var(--muted); font-size:.85rem; align-items:center; }
   .swatch { display:inline-block; width:14px; height:14px; border-radius:3px; vertical-align:middle; margin-right:6px; }
+  .section { margin-top:3rem; max-width:500px; }
 </style>
 </head>
 <body>
@@ -32,9 +34,20 @@
   </div>
   <div class="legend" id="legend"></div>
 
+  <div class="section">
+    <h1>Tournaments Played Distribution</h1>
+    <div class="meta" id="meta2">Loading…</div>
+    <div class="wrap">
+      <div class="chart" id="chart2" style="height:40vh"></div>
+      <svg class="overlay" id="overlay2" style="overflow:hidden"></svg>
+    </div>
+    <div class="legend" id="legend2"></div>
+  </div>
+
 <script>
 const BUCKET = 50;
-let model = null; // {keys, buckets, maxCount, mean, sd, n, lo}
+let model = null;
+let paretoModel = null; // {counts, tKeys, tMax, n, alpha}
 
 async function load() {
   const meta = document.getElementById('meta');
@@ -75,13 +88,54 @@ async function load() {
     col.className = 'col';
     col.innerHTML =
       `<div class="count">${c || ''}</div>` +
-      `<div class="bar ${c === maxCount ? 'peak' : ''}" style="height:${(c / maxCount) * 100}%"></div>` +
+      `<div class="bar-wrap"><div class="bar ${c === maxCount ? 'peak' : ''}" style="height:${(c / maxCount) * 100}%"></div></div>` +
       `<div class="label">${k}–${k + BUCKET - 1}</div>`;
     chart.appendChild(col);
   }
 
   model = { keys, buckets, maxCount, mean, sd, n, lo };
   requestAnimationFrame(drawCurve);
+
+  // --- tournaments played distribution ---
+  const counts = {};
+  for (const p of data.players) {
+    const t = p.tournaments ? p.tournaments.length : 0;
+    counts[t] = (counts[t] || 0) + 1;
+  }
+  const tKeys = Object.keys(counts).map(Number).sort((a, b) => a - b);
+  const tMax = Math.max(...tKeys.map(k => counts[k]));
+
+  // Discrete power law (Zipf) MLE: find alpha where
+  // sum(k^-alpha * ln(k)) / Z(alpha) = mean(ln(k)) over data
+  const meanLnK = tKeys.reduce((s, k) => s + counts[k] * Math.log(Math.max(k, 1e-9)), 0) / n;
+  const Zfn = a => tKeys.reduce((s, k) => s + Math.pow(k, -a), 0);
+  const targetFn = a => tKeys.reduce((s, k) => s + Math.pow(k, -a) * Math.log(k), 0) / Zfn(a);
+  let aLo = 0.01, aHi = 10;
+  for (let i = 0; i < 64; i++) { const mid = (aLo + aHi) / 2; if (targetFn(mid) > meanLnK) aLo = mid; else aHi = mid; }
+  const alpha = (aLo + aHi) / 2;
+  const Z = Zfn(alpha);
+
+  const meta2 = document.getElementById('meta2');
+  meta2.textContent = `${n} players · 1–${Math.max(...tKeys)} tournaments`;
+  document.getElementById('legend2').innerHTML =
+    `<span><span class="swatch" style="background:var(--bar)"></span>players per bucket</span>` +
+    `<span><span class="swatch" style="background:var(--curve)"></span>power law fit (α=${alpha.toFixed(2)})</span>`;
+
+  const chart2 = document.getElementById('chart2');
+  chart2.innerHTML = '';
+  for (const k of tKeys) {
+    const c = counts[k];
+    const col = document.createElement('div');
+    col.className = 'col';
+    col.innerHTML =
+      `<div class="count">${c}</div>` +
+      `<div class="bar-wrap"><div class="bar ${c === tMax ? 'peak' : ''}" style="height:${(c / tMax) * 100}%"></div></div>` +
+      `<div class="label">${k} tournament${k !== 1 ? 's' : ''}</div>`;
+    chart2.appendChild(col);
+  }
+
+  paretoModel = { counts, tKeys, tMax, n, alpha, Z };
+  requestAnimationFrame(drawParetoCurve);
 }
 
 // Expected players in a BUCKET-wide bin centered at elo x, under normal(mean, sd).
@@ -127,7 +181,41 @@ function drawCurve() {
     `stroke-linejoin="round" stroke-linecap="round"/>`;
 }
 
-addEventListener('resize', () => requestAnimationFrame(drawCurve));
+function drawParetoCurve() {
+  if (!paretoModel) return;
+  const chart2 = document.getElementById('chart2');
+  const svg2 = document.getElementById('overlay2');
+  const bars = [...chart2.querySelectorAll('.bar')];
+  if (bars.length < 2) return;
+
+  const { n, alpha, Z, tKeys, tMax } = paretoModel;
+  const chartRect = chart2.getBoundingClientRect();
+  svg2.setAttribute('viewBox', `0 0 ${chartRect.width} ${chartRect.height}`);
+
+  const centerX = b => b.getBoundingClientRect().left - chartRect.left + b.getBoundingClientRect().width / 2;
+  const x0 = centerX(bars[0]), xN = centerX(bars[bars.length - 1]);
+  const k0 = tKeys[0], kN = tKeys[tKeys.length - 1];
+
+  const peak = bars.reduce((a, b) => a.getBoundingClientRect().height > b.getBoundingClientRect().height ? a : b);
+  const peakRect = peak.getBoundingClientRect();
+  const baselineY = peakRect.bottom - chartRect.top;
+  const pxPerCount = peakRect.height / tMax;
+
+  const kToX = k => x0 + (k - k0) / (kN - k0) * (xN - x0);
+  const STEPS = 120;
+  const pts = [];
+  for (let i = 0; i <= STEPS; i++) {
+    const k = k0 + (kN - k0) * (i / STEPS);
+    const expected = n * Math.pow(k, -alpha) / Z;
+    pts.push(`${kToX(k).toFixed(1)},${(baselineY - expected * pxPerCount).toFixed(1)}`);
+  }
+
+  svg2.innerHTML =
+    `<polyline points="${pts.join(' ')}" fill="none" stroke="var(--curve)" stroke-width="2.5" ` +
+    `stroke-linejoin="round" stroke-linecap="round"/>`;
+}
+
+addEventListener('resize', () => { requestAnimationFrame(drawCurve); requestAnimationFrame(drawParetoCurve); });
 load();
 </script>
 </body>
