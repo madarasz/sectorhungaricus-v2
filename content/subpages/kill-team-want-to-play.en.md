@@ -3,9 +3,11 @@ title: I want to play
 hide-title: false
 slug: want-to-play
 order: 2
-game: kill-team
 metaTitle: Play Kill Team in Budapest & Hungary — Sector Hungaricus
-metaDescription: Want to play Kill Team in Budapest or anywhere in Hungary? Join Sector Hungaricus club days, find local game stores, and get the starter sets you need to begin.
+metaDescription: Want to play Kill Team in Budapest or anywhere in Hungary? Join
+  Sector Hungaricus club days, find local game stores, and get the starter sets
+  you need to begin.
+game: kill-team
 content_blocks:
   - type: text_block
     style: normal
@@ -60,7 +62,7 @@ content_blocks:
 
       - [Contrast Phase](https://contrastphase.hu/) - Budapest
 
-      - [Főnixcsarnok](https://www.fonixcsarnok.eu/) - Székesfehérvár
+      - [Epicarium](https://epicarium.eu/) - Székesfehérvár
 
       - [Taverna](https://www.tavern.hu/) - Debrecen
 

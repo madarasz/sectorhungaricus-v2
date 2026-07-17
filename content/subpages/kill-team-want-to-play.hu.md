@@ -3,9 +3,11 @@ title: Játszanék
 hide-title: false
 slug: want-to-play
 order: 2
-game: kill-team
 metaTitle: Játssz Kill Teamet Budapesten és Magyarországon — Sector Hungaricus
-metaDescription: Szeretnél Kill Teamet játszani Budapesten vagy bárhol Magyarországon? Csatlakozz a Sector Hungaricus klubnapjaihoz, találd meg a helyi boltokat, és szerezd be a kezdő szettet.
+metaDescription: Szeretnél Kill Teamet játszani Budapesten vagy bárhol
+  Magyarországon? Csatlakozz a Sector Hungaricus klubnapjaihoz, találd meg a
+  helyi boltokat, és szerezd be a kezdő szettet.
+game: kill-team
 content_blocks:
   - type: text_block
     style: normal
@@ -60,7 +62,7 @@ content_blocks:
 
       - [Contrast Phase](https://contrastphase.hu/) - Budapest
 
-      - [Főnixcsarnok](https://www.fonixcsarnok.eu/) - Székesfehérvár
+      - [Epicarium](https://epicarium.eu/) - Székesfehérvár
 
       - [Taverna](https://www.tavern.hu/) - Debrecen
 
