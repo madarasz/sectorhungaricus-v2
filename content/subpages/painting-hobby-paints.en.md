@@ -39,5 +39,5 @@ content_blocks:
 
       - **Wash/Shade**: Designed with a thin, watery consistency, these flow naturally into the recesses of a model to create instant shadows and define fine details.
 
-      - **One-Coat**: These specialized, high-transparency paints (like *Vallejo Xpress*, *Citadel Contrast* or *Army Painter Speedpaint*) provide base coloring and shading in a single application. Use them over a light base color.
+      - **One-Coat**: These specialized, high-transparency paints provide base coloring and shading in a single application. Use them over a light base color. We suggest choosing *Vallejo Xpress*, *Citadel Contrast* or *Army Painter Speedpaint 2.0*. [Color comparision](https://taleofpainters.com/2023/11/top-tip-visual-comparison-of-all-61-contrast-23-speedpaints-24-gsw-dipping-inks/)
 ---

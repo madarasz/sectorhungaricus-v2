@@ -39,5 +39,5 @@ content_blocks:
 
       - **Wash/Shade**: Híg, vizes állaguknál fogva ezek a festékek természetes módon belefolynak a modell mélyedéseibe, azonnali árnyékolást biztosítva és kiemelve az apró részleteket.
 
-      - **One-Coat**: Ezek a speciális, erősen áttetsző festékek (például a *Vallejo Xpress*, *Citadel Contrast* vagy az *Army Painter Speedpaint*) egyetlen lépésben megoldják a színezést és az árnyékolást. Világos alapszínre kend őket.
+      - **One-Coat**: Ezek a speciális, erősen áttetsző festékek egyetlen lépésben megoldják a színezést és az árnyékolást. Világos alapszínre kend őket! Ajánljuk a *Vallejo Xpress*, *Citadel Contrast* és az *Army Painter Speedpaint 2.0* festékeket. [Szín összehasonlítás](https://taleofpainters.com/2023/11/top-tip-visual-comparison-of-all-61-contrast-23-speedpaints-24-gsw-dipping-inks/)
 ---
