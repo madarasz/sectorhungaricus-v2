@@ -6,10 +6,11 @@ order: 4
 game: painting-hobby
 content_blocks:
   - type: hero_block
-    content: Here we feature the best painters of our community. We encourage you to
-      post your works on the
+    content: Itt közösségünk legjobb festőinek alkotásait mutatjuk be. Arra
+      biztatunk, hogy oszd meg a saját műveidet a Discordunk
       [#showroom](https://discord.com/channels/1025385427273789550/1025387319873765397)
-      channel of our Discord to get feedback, tips and glory.
+      csatornáján, ahol visszajelzést, hasznos tanácsokat és elismerést
+      kaphatsz.
   - type: artist_block
     artist: map-does_commission-true-name-fogtunder-portfolio-https-discord-com-channels-me-1257717324056887397-gallery-artist-fogtunder
   - type: artist_block
