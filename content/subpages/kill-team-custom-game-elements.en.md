@@ -18,7 +18,7 @@ content_blocks:
 
       - The weapons on the figure don't have to match your current loadout (WYSIWYG not needed). Just tell your opponent about your choices before the match.
 
-      - The conversion's size and silhouette should be similar to the original model. (i.e., don't use a small grot for a space marine with a huge banner)
+      - The conversion's size and silhouette should be similar to the original model. (i.e., don't use a small grot for a space marine with a huge banner) Use [minicompare.info](https://minicompare.info/) to compare miniature sizes.
 
       - Before tournaments, always ask for the approval of the organizer. (You should be fine if overall size and base size match)
     right_content: >-

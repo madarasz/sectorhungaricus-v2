@@ -18,7 +18,7 @@ content_blocks:
 
       - A figurán lévő fegyvereknek nem kell megegyezniük az aktuális felszereléseddel (WYSIWYG nem szükséges). Csak tájékoztasd az ellenfeledet róla a meccs előtt.
 
-      - Az konvertált modell mérete és sziluettje hasonló legyen az eredetihez. (pl. ne használj egy kicsi grotot egy hatalmas zászlóval rendelkező űrgárdista helyett)
+      - Az konvertált modell mérete és sziluettje hasonló legyen az eredetihez. (pl. ne használj egy kicsi grotot egy hatalmas zászlóval rendelkező űrgárdista helyett) Hasonlítsd össze a figurák méreteit a [minicompare.info](https://minicompare.info/)-val!
 
       - Versenyek előtt mindig kérd az szervező jóváhagyását. (általában rendben vagy, ha az általános méret és a talp mérete megfelelő)
     right_content: >-
