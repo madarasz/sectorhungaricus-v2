@@ -15,14 +15,15 @@ images:
     alt: Before Contrast Phase
   - src: /uploads/itd-vespids.jpg
     alt: Vespids
+  - alt: Így kell kezet fogni nőkkel
+    caption: Így kell kezet fogni nőkkel
+    src: /uploads/20260723_212650.webp
   - src: /uploads/itd.jpg
     alt: Into the Dark
   - src: /uploads/tomb_word_voiddancers.jpg
     alt: Tomb World Voiddancers
   - src: /uploads/volkus-lila.jpg
     alt: Purple Volkus
-  - src: /uploads/volkus-nida.jpg
-    alt: Volkus Nida
   - caption: ""
     alt: Volkus with Warpcoven
     src: /uploads/volkus-warpcoven.jpg
