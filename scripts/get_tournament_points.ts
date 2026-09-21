@@ -259,6 +259,10 @@ async function main(): Promise<void> {
         const result2 = pairing.player2Game.result;
         if (result1 === undefined || result2 === undefined) continue;
 
+        // Both scores zero means the match did not actually happen
+        // (there is no such thing as a double-loss), so skip it entirely.
+        if (result1 === 0 && result2 === 0) continue;
+
         getOrInitPlayer(name1);
         getOrInitPlayer(name2);
 
