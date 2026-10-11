@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { useLocale } from '@/contexts/LocaleContext'
 import { getTournamentResultsTranslations } from '@/lib/translations'
 import resultsData from '../../../scripts/results-2026.json'
@@ -10,13 +11,18 @@ const TOP_FACTIONS_COUNT = 10
 const FACTION_MIN_TIMES_PLAYED = 3
 const MIN_TOURNAMENTS = 2
 
+type PlayerLimit = 'top' | 'all'
+
 export default function TournamentResults() {
   const { locale } = useLocale()
   const t = getTournamentResultsTranslations(locale)
+  const [playerLimit, setPlayerLimit] = useState<PlayerLimit>('top')
 
-  const topPlayers = resultsData.players
+  const eligiblePlayers = resultsData.players
     .filter(player => player.tournaments.length >= MIN_TOURNAMENTS)
-    .slice(0, TOP_PLAYERS_COUNT)
+  const shownPlayers = playerLimit === 'top'
+    ? eligiblePlayers.slice(0, TOP_PLAYERS_COUNT)
+    : eligiblePlayers
 
   // Calculate faction counts from all player tournaments
   const factionCounts = resultsData.players
@@ -44,8 +50,32 @@ export default function TournamentResults() {
     <div className="space-y-6">
       {/* Tournament Results Card */}
       <div className="bg-white rounded-lg overflow-hidden shadow">
-        <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
+        <div className="px-6 py-4 bg-gray-50 border-b border-gray-200 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <h3 className="text-lg font-medium text-gray-900">{t.title}</h3>
+          <div className="flex items-center gap-2 shrink-0">
+            <label htmlFor="player-limit-select" className="text-sm font-medium text-gray-600">
+              {t.playerLimit.label}
+            </label>
+            <div className="relative">
+              <select
+                id="player-limit-select"
+                value={playerLimit}
+                onChange={(e) => setPlayerLimit(e.target.value as PlayerLimit)}
+                className="appearance-none min-h-[44px] md:min-h-0 rounded-md border border-gray-300 bg-white py-2 pl-3 pr-9 text-sm font-medium text-gray-900 shadow-sm cursor-pointer transition-colors hover:border-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
+              >
+                <option value="top">{t.playerLimit.top}</option>
+                <option value="all">{t.playerLimit.all}</option>
+              </select>
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500"
+              >
+                <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.17l3.71-3.94a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
         </div>
 
         <div className="overflow-x-auto">
@@ -67,8 +97,8 @@ export default function TournamentResults() {
               </tr>
             </thead>
             <tbody className="tournament-table__body">
-              {topPlayers.map((player) => {
-                const rank = topPlayers.findIndex(p => p.elo === player.elo) + 1
+              {shownPlayers.map((player) => {
+                const rank = eligiblePlayers.findIndex(p => p.elo === player.elo) + 1
                 return (
                 <tr key={player.name} className="tournament-table__row">
                   <td className="tournament-table__cell--right">{rank}</td>
@@ -80,6 +110,13 @@ export default function TournamentResults() {
               })}
             </tbody>
           </table>
+        </div>
+        <div
+          className="px-6 py-3 bg-gray-50 border-t border-gray-200 text-sm text-gray-500"
+          id="tournament-results-count"
+          aria-live="polite"
+        >
+          {t.playerLimit.showing(shownPlayers.length, eligiblePlayers.length)}
         </div>
       </div>
 
