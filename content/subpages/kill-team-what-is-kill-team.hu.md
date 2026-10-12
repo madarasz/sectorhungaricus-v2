@@ -39,6 +39,6 @@ content_blocks:
   - type: hero_block
     content: "Magyarországon a **Sector Hungaricus** a közösség, amellyel
       játszhatsz: **Kill Team versenyeket** és kezdőbarát klubnapokat szervezünk
-      **Budapesten**, és [Discordunk](https://discord.gg/sX46Y83puz) összeköti a
+      **Budapesten**, és [Discordunk](https://discord.gg/EWetSArjEC) összeköti a
       játékosokat az egész országban."
 ---

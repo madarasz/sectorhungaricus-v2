@@ -39,6 +39,6 @@ content_blocks:
   - type: hero_block
     content: "In Hungary, **Sector Hungaricus** is the community to play with: we
       run **Kill Team tournaments** and beginner-friendly club days in
-      **Budapest**, and our [Discord](https://discord.gg/sX46Y83puz) connects
+      **Budapest**, and our [Discord](https://discord.gg/EWetSArjEC) connects
       players across the country."
 ---

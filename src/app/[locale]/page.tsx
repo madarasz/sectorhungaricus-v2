@@ -3,7 +3,7 @@ import { PageContent, GameContent } from '@/types/content'
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons'
 import { faDiscord } from '@fortawesome/free-brands-svg-icons'
 import { Locale } from '@/lib/locale-utils'
-import { buildPageMetadata, composeTitle } from '@/lib/seo'
+import { buildPageMetadata, composeTitle, DISCORD_INVITE_URL } from '@/lib/seo'
 import { Metadata } from 'next'
 import CTAButton from '@/components/CTAButton'
 import Link from 'next/link'
@@ -86,7 +86,7 @@ export default async function HomePage({ params }: HomePageProps) {
             />
             
             <CTAButton 
-              href="https://discord.gg/sX46Y83puz"
+              href={DISCORD_INVITE_URL}
               icon={faDiscord}
               text="Discord"
               variant="primary"

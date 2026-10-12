@@ -3,6 +3,7 @@ import { Locale } from './locale-utils'
 
 export const SITE_NAME = 'Sector Hungaricus'
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://sectorhungaricus.com'
+export const DISCORD_INVITE_URL = 'https://discord.gg/EWetSArjEC'
 
 const DEFAULT_OG_IMAGE = '/uploads/sh-logo.png'
 const OG_LOCALE: Record<Locale, string> = { hu: 'hu_HU', en: 'en_US' }

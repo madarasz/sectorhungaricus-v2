@@ -2,7 +2,7 @@ import { LocaleProvider } from "@/contexts/LocaleContext";
 import { Locale, getLocalizedPath } from "@/lib/locale-utils";
 import Navigation from "@/components/Navigation";
 import { getMarkdownContent } from "@/lib/markdown";
-import { BASE_URL, SITE_NAME } from "@/lib/seo";
+import { BASE_URL, SITE_NAME, DISCORD_INVITE_URL } from "@/lib/seo";
 import JsonLd from "@/components/JsonLd";
 import Link from "next/link";
 import KofiWidget from "@/components/KofiWidget";
@@ -47,7 +47,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     name: SITE_NAME,
     url: `${BASE_URL}/${validLocale}/`,
     logo: `${BASE_URL}/uploads/sh-logo.png`,
-    sameAs: ['https://discord.gg/sX46Y83puz'],
+    sameAs: [DISCORD_INVITE_URL],
     areaServed: [
       { '@type': 'Country', name: 'Hungary' },
       { '@type': 'City', name: 'Budapest' },
