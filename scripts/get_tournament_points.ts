@@ -151,11 +151,10 @@ function getPlayerName(player: BCPPairingPlayer): string {
 }
 
 // Workaround for swapped player names in BCP (e.g. "John Doe" vs "Doe John")
-function sanitizePlayerName(name: string): string {
+function sanitizePlayerName(rawName: string): string {
+  const name = rawName.replace(/\s+/g, " ").trim();
   if (name === "Vince Balázs Soós") return "Vince Soós";
-  if (name === "Vince  Soós") return "Vince Soós";
   if (name === "Marton Mati") return "Márton Mati";
-  if (name === "Marton  Mati") return "Márton Mati";
   if (name === "David Viniczay") return "Dávid Viniczay";
   if (name === "Gabor Kiss") return "Gábor Kiss";
   if (name === "SANDOR TAMAS BALOGH") return "Sándor Tamás Balogh";
@@ -163,6 +162,7 @@ function sanitizePlayerName(name: string): string {
   if (name === "Bence Gombás") return "Gombás Bence";
   if (name === "LÃ³rÃ¡nd “Clostry” Papp") return "Lóránd “Clostry” Papp";
   if (name === "Balogh Sándor Tamás") return "Sándor Tamás Balogh";
+  if (name === "Adam Kriza") return "Ádám Kriza";
   return name;
 }
 
