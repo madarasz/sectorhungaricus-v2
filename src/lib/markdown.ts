@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
-import { ContentBlock } from '@/types/content'
+import { ContentBlock, KillTeam } from '@/types/content'
 import { generateImageVariants } from './imageVariants'
 
 const contentDirectory = path.join(process.cwd(), 'content')
@@ -20,7 +20,7 @@ async function processMarkdownString(content: string): Promise<string> {
   return processedContent.toString()
 }
 
-async function processContentBlocks(blocks: ContentBlock[]): Promise<ContentBlock[]> {
+async function processContentBlocks(blocks: ContentBlock[], locale?: string): Promise<ContentBlock[]> {
   const processedBlocks = []
   
   for (const block of blocks) {
@@ -102,6 +102,11 @@ async function processContentBlocks(blocks: ContentBlock[]): Promise<ContentBloc
       }
     }
 
+    // Load all kill teams for the team chooser block
+    if (block.type === 'kill_team_chooser') {
+      processedBlock.killTeams = await getKillTeams(locale)
+    }
+
     processedBlocks.push(processedBlock)
   }
   
@@ -130,7 +135,7 @@ export async function getMarkdownContent(collection: string, slug: string, local
 
   // Process content blocks for subpages
   if (collection === 'subpages' && data.content_blocks) {
-    data.content_blocks = await processContentBlocks(data.content_blocks as ContentBlock[])
+    data.content_blocks = await processContentBlocks(data.content_blocks as ContentBlock[], locale)
   }
 
   // Generate image variants for featured images in games
@@ -216,4 +221,23 @@ export async function getGameWithSubpages(gameSlug: string, locale?: string) {
     })
   
   return { game, subpages }
+}
+export async function getKillTeams(locale?: string): Promise<KillTeam[]> {
+  const teams = await getAllContent('killteams', locale)
+
+  return teams
+    .map(({ slug, data, contentHtml }) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { content_blocks, ...rest } = data
+      const team = rest as unknown as Omit<KillTeam, 'slug' | 'playstyleHtml' | 'imageVariants'>
+      return {
+        ...team,
+        slug,
+        boxes_note: team.boxes_note || undefined,
+        image: team.image || undefined,
+        imageVariants: team.image ? generateImageVariants(team.image) : undefined,
+        playstyleHtml: contentHtml,
+      }
+    })
+    .sort((a, b) => a.name.localeCompare(b.name))
 }

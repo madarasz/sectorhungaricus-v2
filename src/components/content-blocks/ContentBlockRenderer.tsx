@@ -5,6 +5,7 @@ import TwoColumnBlock from './TwoColumnBlock'
 import GalleryBlock from './GalleryBlock'
 import PageReferenceBlock from './PageReferenceBlock'
 import ArtistBlock from './ArtistBlock'
+import KillTeamChooser from './kill-team-chooser/KillTeamChooser'
 
 interface ContentBlockRendererProps {
   block: ContentBlock
@@ -25,6 +26,8 @@ export default function ContentBlockRenderer({ block, locale }: ContentBlockRend
       return <PageReferenceBlock block={block as ContentBlock & { type: 'page_reference_block' }} />
     case 'artist_block':
       return <ArtistBlock block={block as ContentBlock & { type: 'artist_block' }} locale={locale} />
+    case 'kill_team_chooser':
+      return <KillTeamChooser block={block as ContentBlock & { type: 'kill_team_chooser' }} />
     default:
       return null
   }

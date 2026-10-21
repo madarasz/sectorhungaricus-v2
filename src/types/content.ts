@@ -67,7 +67,7 @@ export interface ArtistContent {
 }
 
 export interface ContentBlock {
-  type: 'text_block' | 'hero_block' | 'two_column_block' | 'gallery_block' | 'page_reference_block' | 'artist_block'
+  type: 'text_block' | 'hero_block' | 'two_column_block' | 'gallery_block' | 'page_reference_block' | 'artist_block' | 'kill_team_chooser'
   content?: string
   style?: 'normal' | 'bordered'
   block_title?: string
@@ -103,6 +103,67 @@ export interface ContentBlock {
       }>
     }
   }
+  labels?: KillTeamChooserLabels
+  killTeams?: KillTeam[]
+}
+
+export type KillTeamCombat = 'ranged' | 'melee'
+export type KillTeamTier = 'S' | 'A' | 'B' | 'C' | 'D' | 'E'
+
+export interface KillTeam {
+  slug: string
+  name: string
+  factions: string[]
+  operatives: string
+  operatives_min: number
+  operatives_max: number
+  boxes: number
+  boxes_note?: string
+  tier: KillTeamTier
+  beginner_friendly: boolean
+  combat: KillTeamCombat[]
+  legal_until: string
+  rotates_soon: boolean
+  image?: string
+  imageVariants?: ImageVariants
+  playstyleHtml: string
+}
+
+export interface KillTeamFactionOption {
+  value: string
+  label: string
+}
+
+export interface KillTeamChooserLabels {
+  elite_max_operatives: number
+  q_experience: string
+  a_experience_new: string
+  a_experience_played: string
+  q_fight: string
+  a_fight_ranged: string
+  a_fight_melee: string
+  a_fight_mixed: string
+  q_size: string
+  a_size_few: string
+  a_size_many: string
+  q_boxes: string
+  a_boxes_one: string
+  a_boxes_more: string
+  q_faction: string
+  factions: KillTeamFactionOption[]
+  result_count: string
+  reset: string
+  empty_state: string
+  beginner_tag: string
+  operatives_label: string
+  boxes_label: string
+  combat_label: string
+  ranged_label: string
+  melee_label: string
+  tier_label: string
+  legal_until_label: string
+  rotates_soon_label: string
+  close_label: string
 }
 
 export interface SubpageContent {
