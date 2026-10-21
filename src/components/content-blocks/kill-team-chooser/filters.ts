@@ -1,27 +1,39 @@
 import { KillTeam } from '@/types/content'
+import { getLegality } from './legality'
 
 export interface Answers {
   exp?: 'new' | 'played'
   fight?: 'ranged' | 'melee' | 'mixed'
-  size?: 'few' | 'many'
+  size?: 'few' | 'many' | 'horde'
   boxes?: 'one' | 'more'
+  legal?: 'classified' | 'declassified'
   faction?: string
+  reviewed?: 'yes'
 }
 
 export type AnswerKey = keyof Answers
 
-export const ANSWER_KEYS: AnswerKey[] = ['exp', 'fight', 'size', 'boxes', 'faction']
+export const ANSWER_KEYS: AnswerKey[] = ['exp', 'fight', 'size', 'boxes', 'legal', 'faction', 'reviewed']
 
 const FIXED_VALUES: Record<Exclude<AnswerKey, 'faction'>, string[]> = {
   exp: ['new', 'played'],
   fight: ['ranged', 'melee', 'mixed'],
-  size: ['few', 'many'],
+  size: ['few', 'many', 'horde'],
+  legal: ['classified', 'declassified'],
+  reviewed: ['yes'],
   boxes: ['one', 'more'],
 }
 
 export const TEAM_PARAM = 'team'
 
-export function matchesAnswers(team: KillTeam, answers: Answers, eliteMaxOperatives: number): boolean {
+// Operative count ranges of the team size answers
+const SIZE_RANGES: Record<NonNullable<Answers['size']>, [number, number]> = {
+  few: [0, 6],
+  many: [7, 10],
+  horde: [11, Infinity],
+}
+
+export function matchesAnswers(team: KillTeam, answers: Answers, now: Date): boolean {
   if (answers.exp === 'new' && !team.beginner_friendly) return false
 
   if (answers.fight) {
@@ -32,14 +44,34 @@ export function matchesAnswers(team: KillTeam, answers: Answers, eliteMaxOperati
     if (answers.fight === 'mixed' && (ranged === 0 || melee === 0)) return false
   }
 
-  if (answers.size === 'few' && team.operatives_min > eliteMaxOperatives) return false
-  if (answers.size === 'many' && team.operatives_max <= eliteMaxOperatives) return false
+  if (answers.size) {
+    // A team matches when its operative count range overlaps the answer's range
+    const smallest = team.operatives ?? team.operatives_min
+    const largest = team.operatives ?? team.operatives_max
+    const [from, to] = SIZE_RANGES[answers.size]
+    if (smallest === undefined || largest === undefined || largest < from || smallest > to) return false
+  }
 
   if (answers.boxes === 'one' && team.boxes > 1) return false
 
+  if (answers.legal) {
+    const declassified = getLegality(team.legal_until, now) === 'declassified'
+    if (declassified !== (answers.legal === 'declassified')) return false
+  }
+
   if (answers.faction && !team.factions.includes(answers.faction)) return false
 
+  if (answers.reviewed && !team.reviewed) return false
+
   return true
+}
+
+// Fix number when set, otherwise the min–max range
+export function operativesText(team: KillTeam): string | undefined {
+  if (team.operatives !== undefined) return String(team.operatives)
+  if (team.operatives_min === undefined || team.operatives_max === undefined) return undefined
+  if (team.operatives_min === team.operatives_max) return String(team.operatives_min)
+  return `${team.operatives_min}–${team.operatives_max}`
 }
 
 export function answersFromSearch(search: string, factionValues: string[]): Answers {

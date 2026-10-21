@@ -1,14 +1,18 @@
 ---
 name: Angels of Death
-factions: [imperium, space-marine]
-operatives: "6"
-operatives_min: 6
-operatives_max: 6
-boxes: 1
+reviewed: Madarász
+factions:
+  - imperium
+  - space-marine
+operatives: 6
+operatives_min: null
+operatives_max: null
+boxes: 2
+boxes_note: Nincs külön dobozuk. A Starter Set tartalmazza, de pár lehetséges
+  figura hiányzik. WH40k dobozokból pótolhatóak.
 tier: A
 beginner_friendly: true
-combat: [ranged, ranged, melee]
-legal_until: 2027. október
-rotates_soon: false
+legal_until: 2028
+image: https://images.ctfassets.net/ps7sveckw0ws/55G3nstC6YXLvRCr3PhciP/e6e5a1d5b827c6e1f4e015f3b96cb053/sm_captain.png
 ---
-Elit, sokoldalú csapat. Kevés, nehezen elpusztítható operatív és rugalmas chapter taktikák. Megbocsátja a hibákat, ezért jó első csapat.
+Kevés, nehezen elpusztítható operatív, választható chapter taktikák. Rugalmas csapatösszeállítás, közel- és távolsági harcra is alkalmasak.

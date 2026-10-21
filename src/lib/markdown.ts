@@ -222,20 +222,42 @@ export async function getGameWithSubpages(gameSlug: string, locale?: string) {
   
   return { game, subpages }
 }
+// Empty optional number fields from the CMS can be saved as an empty string
+function optionalNumber(value: unknown): number | undefined {
+  return typeof value === 'number' ? value : undefined
+}
+
+// Kill team fields that are stored only in the default locale file
+const KILL_TEAM_SHARED_FIELDS = ['combat']
+const KILL_TEAM_DEFAULT_LOCALE = 'en'
+
 export async function getKillTeams(locale?: string): Promise<KillTeam[]> {
   const teams = await getAllContent('killteams', locale)
+  const defaultTeams = locale && locale !== KILL_TEAM_DEFAULT_LOCALE
+    ? await getAllContent('killteams', KILL_TEAM_DEFAULT_LOCALE)
+    : teams
 
   return teams
     .map(({ slug, data, contentHtml }) => {
+      // Only whether a team is reviewed reaches the page, not the reviewer's nickname
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { content_blocks, ...rest } = data
-      const team = rest as unknown as Omit<KillTeam, 'slug' | 'playstyleHtml' | 'imageVariants'>
+      const { content_blocks, reviewed, ...rest } = data
+      const defaultData = defaultTeams.find((t) => t.slug === slug)?.data ?? {}
+      const shared = Object.fromEntries(KILL_TEAM_SHARED_FIELDS.map((field) => [field, defaultData[field]]))
+      const team = { ...rest, ...shared } as unknown as Omit<KillTeam, 'slug' | 'playstyleHtml' | 'imageVariants'>
       return {
         ...team,
         slug,
+        tier: team.tier || undefined,
+        reviewed: typeof reviewed === 'string' && reviewed.trim() !== '',
+        operatives: optionalNumber(team.operatives),
+        operatives_min: optionalNumber(team.operatives_min),
+        operatives_max: optionalNumber(team.operatives_max),
+        legal_until: optionalNumber(team.legal_until),
         boxes_note: team.boxes_note || undefined,
         image: team.image || undefined,
-        imageVariants: team.image ? generateImageVariants(team.image) : undefined,
+        // Remote images have no generated size variants
+        imageVariants: team.image && !/^https?:\/\//.test(team.image) ? generateImageVariants(team.image) : undefined,
         playstyleHtml: contentHtml,
       }
     })

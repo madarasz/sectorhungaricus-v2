@@ -51,7 +51,7 @@ test.describe('Kill Team chooser', () => {
   });
 
   test('shows empty state and reset clears answers', async ({ page }) => {
-    await page.goto(`${PAGE_URL}?exp=new&boxes=one&fight=melee&size=many`);
+    await page.goto(`${PAGE_URL}?exp=new&fight=ranged&faction=orks`);
 
     await expect(page.getByTestId('kt-empty')).toBeVisible();
     await page.getByTestId('kt-reset').click();
@@ -59,15 +59,14 @@ test.describe('Kill Team chooser', () => {
     await expect(page.getByTestId('kt-reset')).toHaveCount(0);
   });
 
-  test('card opens team details with tier and closes', async ({ page }) => {
+  test('card opens team details and closes', async ({ page }) => {
     await page.goto(PAGE_URL);
 
     await page.getByTestId('kt-card-blades-of-khaine').click();
     const detail = page.getByTestId('kt-detail');
     await expect(detail).toBeVisible();
     await expect(detail.getByTestId('kt-detail-name')).toHaveText('Blades of Khaine');
-    await expect(detail.getByTestId('kt-detail-tier')).toHaveText('S');
-    await expect(detail.getByTestId('kt-detail-legal')).toContainText('October 2028');
+    await expect(detail.getByTestId('kt-detail-legal')).toBeVisible();
     await expect(page).toHaveURL(/team=blades-of-khaine/);
 
     await page.getByTestId('kt-detail-close').click();
@@ -80,7 +79,6 @@ test.describe('Kill Team chooser', () => {
 
     const detail = page.getByTestId('kt-detail');
     await expect(detail.getByTestId('kt-detail-name')).toHaveText('Legionaries');
-    await expect(detail.getByTestId('kt-detail-legal')).toContainText('rotates out');
 
     await page.keyboard.press('Escape');
     await expect(detail).toHaveCount(0);
@@ -101,6 +99,83 @@ test.describe('Kill Team chooser', () => {
 
     await page.getByTestId('kt-detail-backdrop').click({ position: { x: 20, y: 20 } });
     await expect(detail).toHaveCount(0);
+  });
+
+  test('team with operatives range shows min–max', async ({ page }) => {
+    await page.goto(PAGE_URL);
+    await expect(page.getByTestId('kt-card-blades-of-khaine')).toContainText('8–10');
+    await expect(page.getByTestId('kt-card-kasrkin')).toContainText('10');
+  });
+
+  test('faction question shows only filter factions', async ({ page }) => {
+    await page.goto(PAGE_URL);
+    await expect(page.getByTestId('kt-answer-faction-imperium')).toBeVisible();
+    await expect(page.getByTestId('kt-answer-faction-necrons')).toHaveCount(0);
+  });
+
+  test('horde answer shows only teams with 11 or more operatives', async ({ page }) => {
+    await page.goto(`${PAGE_URL}?size=horde`);
+    await expect(page.getByTestId('kt-answer-size-horde')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByTestId('kt-card-pathfinders')).toBeVisible();
+    await expect(page.getByTestId('kt-card-kasrkin')).toHaveCount(0);
+  });
+
+  test('reviewed checkbox hides unreviewed teams and updates the URL', async ({ page }) => {
+    await page.goto(PAGE_URL);
+    const cards = page.locator('[data-testid^="kt-card-"]').filter({ has: page.getByTestId('kt-card-name') });
+    const total = await cards.count();
+
+    await page.getByTestId('kt-reviewed-filter').check();
+    await expect(page).toHaveURL(/reviewed=yes/);
+    expect(await cards.count()).toBeLessThanOrEqual(total);
+
+    await page.getByTestId('kt-reviewed-filter').uncheck();
+    await expect(page).not.toHaveURL(/reviewed=/);
+    await expect(cards).toHaveCount(total);
+  });
+
+  test('Hungarian page shows combat icons from the shared data', async ({ page }) => {
+    await page.goto('/hu/kill-team/choose-a-team/');
+    await expect(page.getByTestId('kt-card-kasrkin').getByTestId('kt-combat-icons').locator('svg')).toHaveCount(3);
+  });
+
+  test.describe('tournament legality', () => {
+    // Kasrkin is tournament legal until 2027, rotation date is 1 November 2027
+
+    test('shows the rotation month in English and Hungarian', async ({ page }) => {
+      await page.clock.setFixedTime(new Date('2026-03-01T12:00:00'));
+      await page.goto(`${PAGE_URL}?team=kasrkin`);
+      const legal = page.getByTestId('kt-detail-legal');
+      await expect(legal).toContainText('November 2027');
+      await expect(legal).toHaveAttribute('data-legality', 'classified');
+
+      await page.goto('/hu/kill-team/choose-a-team/?team=kasrkin');
+      await expect(page.getByTestId('kt-detail-legal')).toContainText('2027. november');
+    });
+
+    test('rotates out soon less than a year before 1 November', async ({ page }) => {
+      await page.clock.setFixedTime(new Date('2026-11-01T12:00:00'));
+      await page.goto(`${PAGE_URL}?team=kasrkin`);
+      await expect(page.getByTestId('kt-detail-legal')).toHaveAttribute('data-legality', 'rotates_soon');
+    });
+
+    test('is non-classified after the rotation date', async ({ page }) => {
+      await page.clock.setFixedTime(new Date('2027-11-02T12:00:00'));
+      await page.goto(`${PAGE_URL}?team=kasrkin`);
+      const legal = page.getByTestId('kt-detail-legal');
+      await expect(legal).toHaveAttribute('data-legality', 'declassified');
+      await expect(legal).toContainText('Not tournament legal');
+    });
+
+    test('legality answers filter classified and non-classified teams', async ({ page }) => {
+      await page.clock.setFixedTime(new Date('2027-11-02T12:00:00'));
+      await page.goto(`${PAGE_URL}?legal=declassified`);
+      await expect(page.getByTestId('kt-card-kasrkin')).toBeVisible();
+
+      await page.getByTestId('kt-answer-legal-classified').click();
+      await expect(page).toHaveURL(/legal=classified/);
+      await expect(page.getByTestId('kt-card-kasrkin')).toHaveCount(0);
+    });
   });
 
   test('Hungarian page uses Hungarian labels', async ({ page }) => {

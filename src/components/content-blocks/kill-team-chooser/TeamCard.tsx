@@ -3,6 +3,7 @@ import { faBoxOpen, faSeedling, faUsers } from '@fortawesome/free-solid-svg-icon
 import { KillTeam, KillTeamChooserLabels } from '@/types/content'
 import CombatIcons from './CombatIcons'
 import TeamImage from './TeamImage'
+import { operativesText } from './filters'
 
 interface TeamCardProps {
   team: KillTeam
@@ -22,13 +23,15 @@ export function BeginnerTag({ label }: { label: string }) {
 }
 
 export default function TeamCard({ team, labels, factionNames, selected, onSelect }: TeamCardProps) {
+  const operatives = operativesText(team)
+
   return (
     <button
       type="button"
       onClick={() => onSelect(team.slug)}
       aria-haspopup="dialog"
       aria-pressed={selected}
-      className={`group text-left rounded-xl overflow-hidden bg-[var(--card-background)] text-[var(--card-text)] shadow-[0_1px_3px_var(--card-shadow)] hover:shadow-[0_4px_12px_var(--card-shadow)] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--hero-secondary-background)] ${selected ? 'outline-3 outline-offset-2 outline-[var(--hero-secondary-background)]' : ''}`}
+      className={`group flex flex-col text-left rounded-xl overflow-hidden bg-[var(--card-background)] text-[var(--card-text)] shadow-[0_1px_3px_var(--card-shadow)] hover:shadow-[0_4px_12px_var(--card-shadow)] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--hero-secondary-background)] ${selected ? 'outline-3 outline-offset-2 outline-[var(--hero-secondary-background)]' : ''}`}
       data-testid={`kt-card-${team.slug}`}
     >
       <TeamImage team={team} context="thumbnail" sizes="(max-width: 767px) 50vw, 240px" className="aspect-[4/3]">
@@ -45,11 +48,13 @@ export default function TeamCard({ team, labels, factionNames, selected, onSelec
         </h3>
         <p className="text-xs opacity-75 mt-0.5 mb-2">{factionNames(team.factions)}</p>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
-          <span className="inline-flex items-center gap-1" title={labels.operatives_label}>
-            <FontAwesomeIcon icon={faUsers} className="w-[1em] h-[1em]" aria-hidden="true" />
-            <span className="sr-only">{labels.operatives_label}:</span>
-            {team.operatives}
-          </span>
+          {operatives && (
+            <span className="inline-flex items-center gap-1" title={labels.operatives_label}>
+              <FontAwesomeIcon icon={faUsers} className="w-[1em] h-[1em]" aria-hidden="true" />
+              <span className="sr-only">{labels.operatives_label}:</span>
+              {operatives}
+            </span>
+          )}
           <span className="inline-flex items-center gap-1" title={labels.boxes_label}>
             <FontAwesomeIcon icon={faBoxOpen} className="w-[1em] h-[1em]" aria-hidden="true" />
             <span className="sr-only">{labels.boxes_label}:</span>

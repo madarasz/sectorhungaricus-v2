@@ -1,14 +1,20 @@
 ---
 name: Angels of Death
-factions: [imperium, space-marine]
-operatives: "6"
-operatives_min: 6
-operatives_max: 6
-boxes: 1
+reviewed: Madarász
+factions:
+  - imperium
+  - space-marine
+operatives: 6
+boxes: 2
+boxes_note: No dedicated Kill Team box. The Starter Set has this team, but a few
+  models options are missing. You have to get those from WH40k boxes.
 tier: A
 beginner_friendly: true
-combat: [ranged, ranged, melee]
-legal_until: October 2027
-rotates_soon: false
+combat:
+  - ranged
+  - melee
+  - melee
+legal_until: 2028
+image: https://images.ctfassets.net/ps7sveckw0ws/55G3nstC6YXLvRCr3PhciP/e6e5a1d5b827c6e1f4e015f3b96cb053/sm_captain.png
 ---
-Elite all-rounders. Few operatives, hard to kill, and flexible chapter tactics. Mistakes are forgiven, so this is a good first team.
+Few operatives, hard to kill, selectable chapter tactics. Flexible roster, can be suited to melee or ranged combat.

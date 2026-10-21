@@ -11,17 +11,21 @@ import TeamDetail from './TeamDetail'
 
 interface KillTeamChooserProps {
   block: ContentBlock & { type: 'kill_team_chooser' }
+  locale: string
 }
 
-export default function KillTeamChooser({ block }: KillTeamChooserProps) {
+export default function KillTeamChooser({ block, locale }: KillTeamChooserProps) {
   const { labels } = block
   const teams = useMemo(() => block.killTeams ?? [], [block.killTeams])
 
   const [answers, setAnswers] = useState<Answers>({})
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null)
   const [urlLoaded, setUrlLoaded] = useState(false)
+  // Answers and details render only after mount, so server and client output stay the same
+  const now = useMemo(() => new Date(), [])
 
-  const factionValues = useMemo(() => labels?.factions.map((f) => f.value) ?? [], [labels])
+  const filterFactions = useMemo(() => labels?.factions.filter((f) => f.in_filter) ?? [], [labels])
+  const factionValues = useMemo(() => filterFactions.map((f) => f.value), [filterFactions])
 
   // Restore answers and selected team from the URL
   useEffect(() => {
@@ -56,18 +60,23 @@ export default function KillTeamChooser({ block }: KillTeamChooserProps) {
     { key: 'size', label: labels.q_size, options: [
       { value: 'few', label: labels.a_size_few },
       { value: 'many', label: labels.a_size_many },
+      { value: 'horde', label: labels.a_size_horde },
     ] },
     { key: 'boxes', label: labels.q_boxes, options: [
       { value: 'one', label: labels.a_boxes_one },
       { value: 'more', label: labels.a_boxes_more },
     ] },
-    { key: 'faction', label: labels.q_faction, options: labels.factions },
+    { key: 'legal', label: labels.q_legal, options: [
+      { value: 'classified', label: labels.a_legal_classified },
+      { value: 'declassified', label: labels.a_legal_declassified },
+    ] },
+    { key: 'faction', label: labels.q_faction, options: filterFactions },
   ]
 
   const factionNames = (values: string[]) =>
     labels.factions.filter((f) => values.includes(f.value)).map((f) => f.label).join(', ')
 
-  const visibleTeams = teams.filter((team) => matchesAnswers(team, answers, labels.elite_max_operatives))
+  const visibleTeams = teams.filter((team) => matchesAnswers(team, answers, now))
   const selectedTeam = teams.find((team) => team.slug === selectedSlug)
   const hasAnswers = Object.keys(answers).length > 0
 
@@ -92,7 +101,19 @@ export default function KillTeamChooser({ block }: KillTeamChooserProps) {
       <QuestionFilters questions={questions} answers={answers} onAnswer={toggleAnswer} />
 
       <div className="flex flex-wrap items-center justify-between gap-2 my-4 font-poppins text-sm">
-        <p aria-live="polite" data-testid="kt-result-count">{resultCount}</p>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <p aria-live="polite" data-testid="kt-result-count">{resultCount}</p>
+          <label className="inline-flex items-center gap-2 min-h-11 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={answers.reviewed === 'yes'}
+              onChange={() => toggleAnswer('reviewed', 'yes')}
+              className="w-5 h-5 accent-[var(--hero-background)]"
+              data-testid="kt-reviewed-filter"
+            />
+            {labels.reviewed_filter}
+          </label>
+        </div>
         {hasAnswers && (
           <button
             type="button"
@@ -127,7 +148,7 @@ export default function KillTeamChooser({ block }: KillTeamChooserProps) {
         )}
 
         {selectedTeam && (
-          <TeamDetail team={selectedTeam} labels={labels} factionNames={factionNames} onClose={closeDetail} />
+          <TeamDetail team={selectedTeam} labels={labels} locale={locale} now={now} factionNames={factionNames} onClose={closeDetail} />
         )}
       </div>
     </div>

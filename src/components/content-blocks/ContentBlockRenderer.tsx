@@ -27,7 +27,7 @@ export default function ContentBlockRenderer({ block, locale }: ContentBlockRend
     case 'artist_block':
       return <ArtistBlock block={block as ContentBlock & { type: 'artist_block' }} locale={locale} />
     case 'kill_team_chooser':
-      return <KillTeamChooser block={block as ContentBlock & { type: 'kill_team_chooser' }} />
+      return <KillTeamChooser block={block as ContentBlock & { type: 'kill_team_chooser' }} locale={locale} />
     default:
       return null
   }

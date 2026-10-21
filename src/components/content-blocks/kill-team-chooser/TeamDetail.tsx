@@ -2,16 +2,20 @@
 
 import { useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBoxOpen, faHourglassHalf, faShieldHalved, faTrophy, faUsers, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faBan, faBoxOpen, faHourglassHalf, faShieldHalved, faTrophy, faUsers, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { KillTeam, KillTeamChooserLabels, KillTeamTier } from '@/types/content'
 import CombatIcons, { SwordIcon } from './CombatIcons'
 import TeamImage from './TeamImage'
 import { BeginnerTag } from './TeamCard'
+import { operativesText } from './filters'
+import { Legality, formatRotation, getLegality } from './legality'
 
 interface TeamDetailProps {
   team: KillTeam
   labels: KillTeamChooserLabels
   factionNames: (values: string[]) => string
+  locale: string
+  now: Date
   onClose: () => void
 }
 
@@ -25,9 +29,15 @@ const TIER_COLORS: Record<KillTeamTier, string> = {
   E: 'bg-[#E2E0F0] text-[#1A1251]',
 }
 
+const LEGALITY_STYLES: Record<Legality, string> = {
+  classified: 'bg-[var(--hero-text)] text-[var(--card-text)] border border-[var(--hero-secondary-background)]',
+  rotates_soon: 'bg-amber-100 text-amber-900',
+  declassified: 'bg-[var(--hero-text)] text-[var(--card-text)] border border-dashed border-[var(--card-text)]',
+}
+
 const DESKTOP_QUERY = '(min-width: 1280px)'
 
-export default function TeamDetail({ team, labels, factionNames, onClose }: TeamDetailProps) {
+export default function TeamDetail({ team, labels, factionNames, locale, now, onClose }: TeamDetailProps) {
   const closeRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
@@ -50,8 +60,10 @@ export default function TeamDetail({ team, labels, factionNames, onClose }: Team
     }
   }, [onClose])
 
+  const operatives = operativesText(team)
+  const legality = getLegality(team.legal_until, now)
   const rows = [
-    { icon: faUsers, label: labels.operatives_label, value: team.operatives },
+    ...(operatives ? [{ icon: faUsers, label: labels.operatives_label, value: operatives, note: undefined }] : []),
     { icon: faBoxOpen, label: labels.boxes_label, value: String(team.boxes), note: team.boxes_note },
   ]
 
@@ -64,7 +76,7 @@ export default function TeamDetail({ team, labels, factionNames, onClose }: Team
         className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] overflow-y-auto rounded-t-2xl bg-[var(--card-background)] text-[var(--card-text)] font-poppins shadow-[0_-4px_24px_var(--card-shadow)] motion-safe:animate-[kt-sheet-in_200ms_ease-out] xl:motion-safe:animate-none xl:sticky xl:top-4 xl:z-auto xl:w-80 xl:shrink-0 xl:max-h-[calc(100vh-2rem)] xl:rounded-2xl xl:shadow-[0_1px_3px_var(--card-shadow)]"
         data-testid="kt-detail"
       >
-        <TeamImage team={team} context="mobile" sizes="(max-width: 1279px) 100vw, 320px" className="aspect-[21/9] xl:aspect-[16/9]">
+        <TeamImage team={team} context="mobile" sizes="(max-width: 1279px) 100vw, 320px" className="aspect-[21/9] xl:aspect-[16/9]" imageClassName="object-top xl:object-center">
           <button
             ref={closeRef}
             type="button"
@@ -104,24 +116,33 @@ export default function TeamDetail({ team, labels, factionNames, onClose }: Team
             <dd className="text-right">
               <CombatIcons combat={team.combat} rangedLabel={labels.ranged_label} meleeLabel={labels.melee_label} />
             </dd>
-            <FontAwesomeIcon icon={faTrophy} className="w-4 h-4" aria-hidden="true" />
-            <dt className="opacity-80">{labels.tier_label}</dt>
-            <dd className="text-right">
-              <span className={`inline-flex items-center justify-center min-w-8 h-8 rounded-md font-namdhinggo text-lg font-semibold ${TIER_COLORS[team.tier]}`} data-testid="kt-detail-tier">
-                {team.tier}
-              </span>
-            </dd>
+            {team.tier && (
+              <>
+                <FontAwesomeIcon icon={faTrophy} className="w-4 h-4" aria-hidden="true" />
+                <dt className="opacity-80">{labels.tier_label}</dt>
+                <dd className="text-right">
+                  <span className={`inline-flex items-center justify-center min-w-8 h-8 rounded-md font-namdhinggo text-lg font-semibold ${TIER_COLORS[team.tier]}`} data-testid="kt-detail-tier">
+                    {team.tier}
+                  </span>
+                </dd>
+              </>
+            )}
           </dl>
 
           <div
-            className={`mt-4 flex items-center gap-2 rounded-lg px-3 py-2 text-sm ${team.rotates_soon ? 'bg-amber-100 text-amber-900' : 'hero-secondary-colors'}`}
+            className={`mt-4 flex items-center gap-2 rounded-lg px-3 py-2 text-sm ${LEGALITY_STYLES[legality]}`}
+            data-legality={legality}
             data-testid="kt-detail-legal"
           >
-            <FontAwesomeIcon icon={team.rotates_soon ? faHourglassHalf : faShieldHalved} className="w-4 h-4" aria-hidden="true" />
-            <span>
-              {labels.legal_until_label}: <strong className="font-semibold">{team.legal_until}</strong>
-              {team.rotates_soon && <span className="block text-xs">{labels.rotates_soon_label}</span>}
-            </span>
+            <FontAwesomeIcon icon={legality === 'classified' ? faShieldHalved : legality === 'rotates_soon' ? faHourglassHalf : faBan} className="w-4 h-4" aria-hidden="true" />
+            {legality === 'declassified' || team.legal_until === undefined ? (
+              <span>{labels.not_legal_label}</span>
+            ) : (
+              <span>
+                {labels.legal_until_label}: <strong className="font-semibold">{formatRotation(team.legal_until, locale)}</strong>
+                {legality === 'rotates_soon' && <span className="block text-xs">{labels.rotates_soon_label}</span>}
+              </span>
+            )}
           </div>
         </div>
       </aside>

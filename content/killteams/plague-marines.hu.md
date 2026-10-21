@@ -1,0 +1,14 @@
+---
+name: "Plague Marines"
+reviewed: ""
+factions:
+  - chaos
+  - space-marine
+operatives: 6
+boxes: 1
+tier: ""
+beginner_friendly: true
+legal_until: 2027
+image: https://assets.warhammer-community.com/kt-startersetreveal-oct14-1-feature-1728917657.jpg
+---
+Lassú és nagyon szívós csapat. A méreg idővel terjeszti a sebzést.

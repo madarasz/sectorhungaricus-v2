@@ -114,16 +114,16 @@ export interface KillTeam {
   slug: string
   name: string
   factions: string[]
-  operatives: string
-  operatives_min: number
-  operatives_max: number
+  operatives?: number
+  operatives_min?: number
+  operatives_max?: number
   boxes: number
   boxes_note?: string
-  tier: KillTeamTier
+  tier?: KillTeamTier
+  reviewed: boolean
   beginner_friendly: boolean
   combat: KillTeamCombat[]
-  legal_until: string
-  rotates_soon: boolean
+  legal_until?: number
   image?: string
   imageVariants?: ImageVariants
   playstyleHtml: string
@@ -132,10 +132,10 @@ export interface KillTeam {
 export interface KillTeamFactionOption {
   value: string
   label: string
+  in_filter: boolean
 }
 
 export interface KillTeamChooserLabels {
-  elite_max_operatives: number
   q_experience: string
   a_experience_new: string
   a_experience_played: string
@@ -146,10 +146,15 @@ export interface KillTeamChooserLabels {
   q_size: string
   a_size_few: string
   a_size_many: string
+  a_size_horde: string
   q_boxes: string
   a_boxes_one: string
   a_boxes_more: string
+  q_legal: string
+  a_legal_classified: string
+  a_legal_declassified: string
   q_faction: string
+  reviewed_filter: string
   factions: KillTeamFactionOption[]
   result_count: string
   reset: string
@@ -163,6 +168,7 @@ export interface KillTeamChooserLabels {
   tier_label: string
   legal_until_label: string
   rotates_soon_label: string
+  not_legal_label: string
   close_label: string
 }
 

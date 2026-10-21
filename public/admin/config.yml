@@ -104,32 +104,47 @@ collections:
     slug: "{{slug}}"
     i18n: true
     summary: "{{name}} ({{tier}})"
+    view_filters:
+      - {label: "Reviewed", field: "reviewed", pattern: ".+"}
+      - {label: "Not reviewed", field: "reviewed", pattern: "^$"}
     fields:
-      - {label: "Name", name: "name", widget: "string", i18n: true}
+      - {label: "Name", name: "name", widget: "string", i18n: "duplicate"}
+      - {label: "Reviewed by", name: "reviewed", widget: "string", required: false, i18n: "duplicate", hint: "Nickname of the person who checked this team information. Not shown on the site."}
       - label: "Factions"
         name: "factions"
         widget: "select"
         multiple: true
         i18n: "duplicate"
         hint: "Values must match the faction options of the Kill Team Chooser block."
-        options: ["imperium", "chaos", "xenos", "aeldari", "orks", "tyranids", "space-marine", "astra-militarum", "tau", "votann", "necrons", "adepta-sororitas"]
-      - {label: "Operatives (display text)", name: "operatives", widget: "string", i18n: "duplicate", hint: "Fix number (6) or a range (8–10)"}
-      - {label: "Operatives minimum", name: "operatives_min", widget: "number", value_type: "int", i18n: "duplicate"}
-      - {label: "Operatives maximum", name: "operatives_max", widget: "number", value_type: "int", i18n: "duplicate"}
+        options: ["imperium", "chaos", "xenos", "aeldari", "orks", "tyranids", "space-marine", "astra-militarum", "tau", "votann", "necrons", "adepta-sororitas", "adeptus-mechanicus", "genestealer-cults", "drukhari"]
+      - {label: "Operatives", name: "operatives", widget: "number", value_type: "int", required: false, i18n: "duplicate", hint: "Fix number of operatives. Leave empty if the team size is a range."}
+      - {label: "Operatives minimum", name: "operatives_min", widget: "number", value_type: "int", required: false, i18n: "duplicate", hint: "Used when Operatives is empty"}
+      - {label: "Operatives maximum", name: "operatives_max", widget: "number", value_type: "int", required: false, i18n: "duplicate", hint: "Used when Operatives is empty"}
       - {label: "Boxes to buy", name: "boxes", widget: "number", value_type: "int", min: 1, max: 3, i18n: "duplicate"}
       - {label: "Boxes note", name: "boxes_note", widget: "string", required: false, i18n: true}
-      - {label: "Power tier", name: "tier", widget: "select", options: ["S", "A", "B", "C", "D", "E"], i18n: "duplicate"}
+      - label: "Power tier"
+        name: "tier"
+        widget: "select"
+        required: false
+        default: ""
+        i18n: "duplicate"
+        options:
+          - {label: "No tier", value: ""}
+          - {label: "S", value: "S"}
+          - {label: "A", value: "A"}
+          - {label: "B", value: "B"}
+          - {label: "C", value: "C"}
+          - {label: "D", value: "D"}
+          - {label: "E", value: "E"}
       - {label: "Beginner-friendly", name: "beginner_friendly", widget: "boolean", i18n: "duplicate"}
       - label: "Combat (3 icons)"
         name: "combat"
         widget: "list"
         min: 3
         max: 3
-        i18n: true
-        hint: "Add exactly 3 icons, e.g. ranged, ranged, melee"
-        field: {label: "Icon", name: "icon", widget: "select", options: ["ranged", "melee"], i18n: "duplicate"}
-      - {label: "Tournament legal until", name: "legal_until", widget: "string", i18n: true, hint: "Classified status: when the team rotates out"}
-      - {label: "Rotates out soon", name: "rotates_soon", widget: "boolean", i18n: "duplicate"}
+        hint: "Add exactly 3 icons, e.g. ranged, ranged, melee. Same for all languages."
+        field: {label: "Icon", name: "icon", widget: "select", options: ["ranged", "melee"]}
+      - {label: "Tournament legal until (year)", name: "legal_until", widget: "number", value_type: "int", required: false, i18n: "duplicate", hint: "Year of the November when the team rotates out of tournament play. Empty means not tournament legal (non-classified)."}
       - {label: "Image", name: "image", widget: "image", required: false, i18n: "duplicate"}
       - {label: "Play style", name: "body", widget: "markdown", i18n: true}
 
@@ -223,7 +238,6 @@ collections:
                 name: "labels"
                 widget: "object"
                 fields:
-                  - {label: "Max operatives counted as elite team", name: "elite_max_operatives", widget: "number", value_type: "int"}
                   - {label: "Question: experience", name: "q_experience", widget: "string"}
                   - {label: "Answer: first team", name: "a_experience_new", widget: "string"}
                   - {label: "Answer: played before", name: "a_experience_played", widget: "string"}
@@ -232,11 +246,15 @@ collections:
                   - {label: "Answer: melee", name: "a_fight_melee", widget: "string"}
                   - {label: "Answer: mixed", name: "a_fight_mixed", widget: "string"}
                   - {label: "Question: team size", name: "q_size", widget: "string"}
-                  - {label: "Answer: few elite", name: "a_size_few", widget: "string"}
-                  - {label: "Answer: many", name: "a_size_many", widget: "string"}
+                  - {label: "Answer: few elite (up to 6)", name: "a_size_few", widget: "string"}
+                  - {label: "Answer: many (7-10)", name: "a_size_many", widget: "string"}
+                  - {label: "Answer: horde (11+)", name: "a_size_horde", widget: "string"}
                   - {label: "Question: boxes", name: "q_boxes", widget: "string"}
                   - {label: "Answer: one box", name: "a_boxes_one", widget: "string"}
                   - {label: "Answer: more boxes", name: "a_boxes_more", widget: "string"}
+                  - {label: "Question: tournament legality", name: "q_legal", widget: "string"}
+                  - {label: "Answer: classified", name: "a_legal_classified", widget: "string"}
+                  - {label: "Answer: non-classified", name: "a_legal_declassified", widget: "string"}
                   - {label: "Question: faction", name: "q_faction", widget: "string"}
                   - label: "Factions"
                     name: "factions"
@@ -245,6 +263,8 @@ collections:
                     fields:
                       - {label: "Value", name: "value", widget: "string"}
                       - {label: "Label", name: "label", widget: "string"}
+                      - {label: "Show as answer in the faction question", name: "in_filter", widget: "boolean", default: false}
+                  - {label: "Reviewed filter checkbox", name: "reviewed_filter", widget: "string"}
                   - {label: "Result count", name: "result_count", widget: "string", hint: "Use {shown} and {total}"}
                   - {label: "Reset button", name: "reset", widget: "string"}
                   - {label: "Empty state", name: "empty_state", widget: "string"}
@@ -257,4 +277,5 @@ collections:
                   - {label: "Tier label", name: "tier_label", widget: "string"}
                   - {label: "Legal until label", name: "legal_until_label", widget: "string"}
                   - {label: "Rotates soon label", name: "rotates_soon_label", widget: "string"}
+                  - {label: "Not tournament legal label", name: "not_legal_label", widget: "string"}
                   - {label: "Close button label", name: "close_label", widget: "string"}
