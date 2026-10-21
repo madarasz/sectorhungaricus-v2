@@ -1,19 +1,22 @@
 ---
-name: "XV26 Stealth Battlesuits"
-reviewed: ""
+name: XV26 Stealth Battlesuits
+reviewed: OláhPeti
 factions:
   - xenos
   - tau
-operatives_min: 4
-operatives_max: 5
+operatives: 7
+operatives_min: ""
+operatives_max: ""
 boxes: 1
-tier: ""
+boxes_note: Flexible weapon loadout. Fusion blasters are ideally on Lodestar and
+  Neutraliser, but you can magnetize.
+tier: B
 beginner_friendly: false
 combat:
   - ranged
   - ranged
   - ranged
-legal_until: 2027
+legal_until: 2029
 image: https://assets.warhammer-community.com/kt_deadsilencetau-nov05-1-feature-wxvxiybobg.jpg
 ---
-Invisible T'au battlesuits. Shoot from cover and vanish.
+Elite Tau team, relying purely on shooting. While being Concealed, they are invisible outside 3". Several tricks, positioning is very important, hard to master.

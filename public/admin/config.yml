@@ -144,7 +144,7 @@ collections:
         max: 3
         hint: "Add exactly 3 icons, e.g. ranged, ranged, melee. Same for all languages."
         field: {label: "Icon", name: "icon", widget: "select", options: ["ranged", "melee"]}
-      - {label: "Tournament legal until (year)", name: "legal_until", widget: "number", value_type: "int", required: false, i18n: "duplicate", hint: "Year of the November when the team rotates out of tournament play. Empty means not tournament legal (non-classified)."}
+      - {label: "Tournament legal until (year)", name: "legal_until", widget: "number", value_type: "int", required: false, i18n: "duplicate", hint: "The team is tournament legal until 30 November of this year. Empty means not tournament legal (non-classified)."}
       - {label: "Image", name: "image", widget: "image", required: false, i18n: "duplicate"}
       - {label: "Play style", name: "body", widget: "markdown", i18n: true}
 
@@ -253,8 +253,7 @@ collections:
                   - {label: "Answer: one box", name: "a_boxes_one", widget: "string"}
                   - {label: "Answer: more boxes", name: "a_boxes_more", widget: "string"}
                   - {label: "Question: tournament legality", name: "q_legal", widget: "string"}
-                  - {label: "Answer: classified", name: "a_legal_classified", widget: "string"}
-                  - {label: "Answer: non-classified", name: "a_legal_declassified", widget: "string"}
+                  - {label: "Checkbox: classified", name: "a_legal_classified", widget: "string"}
                   - {label: "Question: faction", name: "q_faction", widget: "string"}
                   - label: "Factions"
                     name: "factions"

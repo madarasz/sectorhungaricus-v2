@@ -66,11 +66,10 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
       { value: 'one', label: labels.a_boxes_one },
       { value: 'more', label: labels.a_boxes_more },
     ] },
-    { key: 'legal', label: labels.q_legal, options: [
-      { value: 'classified', label: labels.a_legal_classified },
-      { value: 'declassified', label: labels.a_legal_declassified },
-    ] },
     { key: 'faction', label: labels.q_faction, options: filterFactions },
+    { key: 'legal', label: labels.q_legal, checkbox: true, options: [
+      { value: 'classified', label: labels.a_legal_classified },
+    ] },
   ]
 
   const factionNames = (values: string[]) =>

@@ -8,7 +8,7 @@ import CombatIcons, { SwordIcon } from './CombatIcons'
 import TeamImage from './TeamImage'
 import { BeginnerTag } from './TeamCard'
 import { operativesText } from './filters'
-import { Legality, formatRotation, getLegality } from './legality'
+import { Legality, formatLegalUntil, getLegality } from './legality'
 
 interface TeamDetailProps {
   team: KillTeam
@@ -73,7 +73,7 @@ export default function TeamDetail({ team, labels, factionNames, locale, now, on
       <aside
         role="dialog"
         aria-labelledby="kt-detail-title"
-        className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] overflow-y-auto rounded-t-2xl bg-[var(--card-background)] text-[var(--card-text)] font-poppins shadow-[0_-4px_24px_var(--card-shadow)] motion-safe:animate-[kt-sheet-in_200ms_ease-out] xl:motion-safe:animate-none xl:sticky xl:top-4 xl:z-auto xl:w-80 xl:shrink-0 xl:max-h-[calc(100vh-2rem)] xl:rounded-2xl xl:shadow-[0_1px_3px_var(--card-shadow)]"
+        className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] overflow-y-auto rounded-t-2xl bg-[var(--card-background)] text-[var(--card-text)] font-poppins shadow-[0_-4px_24px_var(--card-shadow)] motion-safe:animate-[kt-sheet-in_200ms_ease-out] xl:motion-safe:animate-none xl:sticky xl:top-4 xl:z-auto xl:w-80 xl:shrink-0 xl:max-h-[calc(100vh-2rem)] xl:rounded-2xl xl:outline-3 xl:outline-offset-[0.375rem] xl:outline-[var(--hero-secondary-background)] xl:mx-[0.5625rem] xl:mt-[0.5625rem] xl:shadow-[0_8px_24px_var(--card-shadow)]"
         data-testid="kt-detail"
       >
         <TeamImage team={team} context="mobile" sizes="(max-width: 1279px) 100vw, 320px" className="aspect-[21/9] xl:aspect-[16/9]" imageClassName="object-top xl:object-center">
@@ -139,7 +139,7 @@ export default function TeamDetail({ team, labels, factionNames, locale, now, on
               <span>{labels.not_legal_label}</span>
             ) : (
               <span>
-                {labels.legal_until_label}: <strong className="font-semibold">{formatRotation(team.legal_until, locale)}</strong>
+                {labels.legal_until_label}: <strong className="font-semibold">{formatLegalUntil(team.legal_until, locale)}</strong>
                 {legality === 'rotates_soon' && <span className="block text-xs">{labels.rotates_soon_label}</span>}
               </span>
             )}

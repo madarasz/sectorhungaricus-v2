@@ -1,14 +1,15 @@
 ---
-name: "Chaos Cult"
+name: Chaos Cult
 reviewed: ""
 factions:
   - chaos
-operatives_min: 12
-operatives_max: 14
-boxes: 1
+operatives: 14
+operatives_min: ""
+operatives_max: ""
+boxes: 3
 tier: ""
 beginner_friendly: true
 legal_until: 2027
-image: https://assets.warhammer-community.com/articles/db1521de-d274-4590-be76-e98c94e5c6c5/0ii7nxgk95dl8bda.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102147_AccursedCultistsFeature2.jpg?fm=webp&w=892&h=920
 ---
 Mutálódó kultisták. Elárasztják a célpontokat, és a mutációkkal erősödnek.

@@ -140,41 +140,54 @@ test.describe('Kill Team chooser', () => {
   });
 
   test.describe('tournament legality', () => {
-    // Kasrkin is tournament legal until 2027, rotation date is 1 November 2027
+    // Kasrkin is tournament legal until 30 November 2027, Angels of Death until 30 November 2028
 
-    test('shows the rotation month in English and Hungarian', async ({ page }) => {
+    test('shows the legal until date in English and Hungarian', async ({ page }) => {
       await page.clock.setFixedTime(new Date('2026-03-01T12:00:00'));
       await page.goto(`${PAGE_URL}?team=kasrkin`);
       const legal = page.getByTestId('kt-detail-legal');
-      await expect(legal).toContainText('November 2027');
+      await expect(legal).toContainText('November 30, 2027');
       await expect(legal).toHaveAttribute('data-legality', 'classified');
 
       await page.goto('/hu/kill-team/choose-a-team/?team=kasrkin');
-      await expect(page.getByTestId('kt-detail-legal')).toContainText('2027. november');
+      await expect(page.getByTestId('kt-detail-legal')).toContainText('2027. november 30.');
     });
 
-    test('rotates out soon less than a year before 1 November', async ({ page }) => {
-      await page.clock.setFixedTime(new Date('2026-11-01T12:00:00'));
+    test('is still classified on 30 November a year before', async ({ page }) => {
+      await page.clock.setFixedTime(new Date('2026-11-30T12:00:00'));
+      await page.goto(`${PAGE_URL}?team=kasrkin`);
+      await expect(page.getByTestId('kt-detail-legal')).toHaveAttribute('data-legality', 'classified');
+    });
+
+    test('rotates out soon less than a year before the legal until date', async ({ page }) => {
+      await page.clock.setFixedTime(new Date('2026-12-01T12:00:00'));
       await page.goto(`${PAGE_URL}?team=kasrkin`);
       await expect(page.getByTestId('kt-detail-legal')).toHaveAttribute('data-legality', 'rotates_soon');
     });
 
-    test('is non-classified after the rotation date', async ({ page }) => {
-      await page.clock.setFixedTime(new Date('2027-11-02T12:00:00'));
+    test('is non-classified after the legal until date', async ({ page }) => {
+      await page.clock.setFixedTime(new Date('2027-12-01T12:00:00'));
       await page.goto(`${PAGE_URL}?team=kasrkin`);
       const legal = page.getByTestId('kt-detail-legal');
       await expect(legal).toHaveAttribute('data-legality', 'declassified');
       await expect(legal).toContainText('Not tournament legal');
     });
 
-    test('legality answers filter classified and non-classified teams', async ({ page }) => {
-      await page.clock.setFixedTime(new Date('2027-11-02T12:00:00'));
-      await page.goto(`${PAGE_URL}?legal=declassified`);
+    test('classified checkbox hides non-classified teams', async ({ page }) => {
+      await page.clock.setFixedTime(new Date('2027-12-01T12:00:00'));
+      await page.goto(PAGE_URL);
+      await expect(page.getByTestId('kt-question-legal')).toContainText('Legal on all tournaments');
       await expect(page.getByTestId('kt-card-kasrkin')).toBeVisible();
 
-      await page.getByTestId('kt-answer-legal-classified').click();
+      const checkbox = page.getByTestId('kt-answer-legal-classified');
+      await checkbox.check();
       await expect(page).toHaveURL(/legal=classified/);
       await expect(page.getByTestId('kt-card-kasrkin')).toHaveCount(0);
+      await expect(page.getByTestId('kt-card-angels-of-death')).toBeVisible();
+
+      await checkbox.uncheck();
+      await expect(page).not.toHaveURL(/legal=/);
+      await expect(page.getByTestId('kt-card-kasrkin')).toBeVisible();
     });
   });
 

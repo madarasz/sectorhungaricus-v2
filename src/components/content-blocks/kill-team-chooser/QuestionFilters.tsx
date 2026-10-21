@@ -4,6 +4,8 @@ export interface Question {
   key: AnswerKey
   label: string
   options: { value: string; label: string }[]
+  // Single option shown as a checkbox instead of answer buttons
+  checkbox?: boolean
 }
 
 interface QuestionFiltersProps {
@@ -18,6 +20,20 @@ export default function QuestionFilters({ questions, answers, onAnswer }: Questi
       {questions.map((question) => (
         <fieldset key={question.key} className={question.key === 'faction' ? 'md:col-span-2' : ''} data-testid={`kt-question-${question.key}`}>
           <legend className="text-sm font-medium mb-2">{question.label}</legend>
+          {question.checkbox ? (
+            question.options.map((option) => (
+              <label key={option.value} className="inline-flex items-center gap-3 min-h-11 cursor-pointer text-sm">
+                <input
+                  type="checkbox"
+                  checked={answers[question.key] === option.value}
+                  onChange={() => onAnswer(question.key, option.value)}
+                  className="w-5 h-5 accent-[var(--hero-text)]"
+                  data-testid={`kt-answer-${question.key}-${option.value}`}
+                />
+                {option.label}
+              </label>
+            ))
+          ) : (
           <div className="flex flex-wrap gap-2">
             {question.options.map((option) => {
               const active = answers[question.key] === option.value
@@ -39,6 +55,7 @@ export default function QuestionFilters({ questions, answers, onAnswer }: Questi
               )
             })}
           </div>
+          )}
         </fieldset>
       ))}
     </div>

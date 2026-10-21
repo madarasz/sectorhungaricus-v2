@@ -6,7 +6,7 @@ export interface Answers {
   fight?: 'ranged' | 'melee' | 'mixed'
   size?: 'few' | 'many' | 'horde'
   boxes?: 'one' | 'more'
-  legal?: 'classified' | 'declassified'
+  legal?: 'classified'
   faction?: string
   reviewed?: 'yes'
 }
@@ -19,7 +19,7 @@ const FIXED_VALUES: Record<Exclude<AnswerKey, 'faction'>, string[]> = {
   exp: ['new', 'played'],
   fight: ['ranged', 'melee', 'mixed'],
   size: ['few', 'many', 'horde'],
-  legal: ['classified', 'declassified'],
+  legal: ['classified'],
   reviewed: ['yes'],
   boxes: ['one', 'more'],
 }
@@ -55,8 +55,7 @@ export function matchesAnswers(team: KillTeam, answers: Answers, now: Date): boo
   if (answers.boxes === 'one' && team.boxes > 1) return false
 
   if (answers.legal) {
-    const declassified = getLegality(team.legal_until, now) === 'declassified'
-    if (declassified !== (answers.legal === 'declassified')) return false
+    if (getLegality(team.legal_until, now) === 'declassified') return false
   }
 
   if (answers.faction && !team.factions.includes(answers.faction)) return false

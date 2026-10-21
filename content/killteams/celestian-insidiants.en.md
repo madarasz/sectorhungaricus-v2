@@ -1,5 +1,5 @@
 ---
-name: "Celestian Insidiants"
+name: Celestian Insidiants
 reviewed: ""
 factions:
   - imperium
@@ -14,6 +14,6 @@ combat:
   - melee
   - melee
 legal_until: 2027
-image: https://assets.warhammer-community.com/kt_shbattlesistersrules-jan19-1-feature-rzxykxuuwk.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108125_KTCelestianInsidiants02.jpg?fm=webp&w=892&h=920
 ---
 Battle Sisters who hunt psykers. Tough melee with null maces.

@@ -1,5 +1,5 @@
 ---
-name: "Battleclade"
+name: Battleclade
 reviewed: ""
 factions:
   - imperium
@@ -12,8 +12,8 @@ beginner_friendly: false
 combat:
   - ranged
   - ranged
-  - melee
+  - ranged
 legal_until: 2027
-image: https://assets.warhammer-community.com/kt_update-apr28-1-feature-pv0a322qr0.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/threeSixty/99120116048_KTAdMechBattleclade2025OTT1360/01-01.jpg?fm=webp&w=892
 ---
 Tech-priest with servitors and Breachers. Strong support, careful positioning needed.

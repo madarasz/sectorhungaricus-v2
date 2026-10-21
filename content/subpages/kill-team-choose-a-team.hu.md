@@ -10,7 +10,7 @@ content_blocks:
   - type: text_block
     style: normal
     content: >-
-      Válaszolj az alábbi kérdésekre. A lista csak azokat a csapatokat mutatja, amelyek illenek a válaszaidhoz. Válassz ki egy csapatot, és megnézheted, hogyan játszik, mennyire erős most, és meddig versenylegális.
+      Segítünk kiválasztani neked a legjobb csapatot.
   - type: kill_team_chooser
     labels:
       q_experience: Játszottál már Kill Teamet?
@@ -27,10 +27,9 @@ content_blocks:
       q_boxes: Hány dobozt vennél?
       a_boxes_one: Csak egyet
       a_boxes_more: Kettő vagy több is jó
-      q_legal: Versenylegális?
+      q_legal: Minden versenyen legális
       a_legal_classified: Igen, classified
-      a_legal_declassified: Nem, non-classified
-      q_faction: Melyik oldalon harcolnál?
+      q_faction: Melyik frakció?
       factions:
         - {value: imperium, label: Imperium, in_filter: true}
         - {value: chaos, label: Káosz, in_filter: true}

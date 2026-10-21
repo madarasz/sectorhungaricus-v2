@@ -10,7 +10,7 @@ content_blocks:
   - type: text_block
     style: normal
     content: >-
-      Answer the questions below. The list shows only the teams that fit your answers. Select a team to see how it plays, how strong it is right now, and how long it stays tournament legal.
+      Let us help you find the best team for you.
   - type: kill_team_chooser
     labels:
       q_experience: Have you played Kill Team before?
@@ -27,10 +27,9 @@ content_blocks:
       q_boxes: How many boxes will you buy?
       a_boxes_one: Only one box
       a_boxes_more: Two or more is fine
-      q_legal: Is it tournament legal?
+      q_legal: Legal on all tournaments
       a_legal_classified: Yes, classified
-      a_legal_declassified: No, non-classified
-      q_faction: Which side of the war?
+      q_faction: Which faction?
       factions:
         - {value: imperium, label: Imperium, in_filter: true}
         - {value: chaos, label: Chaos, in_filter: true}

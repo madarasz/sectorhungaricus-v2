@@ -1,5 +1,5 @@
 ---
-name: "Blooded"
+name: Blooded
 reviewed: ""
 factions:
   - chaos
@@ -10,8 +10,9 @@ tier: ""
 beginner_friendly: true
 combat:
   - ranged
-  - ranged
+  - melee
   - melee
 legal_until: 2027
+image: https://wh40k.lexicanum.com/mediawiki/images/thumb/1/1d/TraitorChieftain.jpg/600px-TraitorChieftain.jpg
 ---
 Traitor guardsmen. Many cheap bodies that grow stronger as the battle goes bad.
