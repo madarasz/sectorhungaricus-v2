@@ -39,9 +39,15 @@ const DESKTOP_QUERY = '(min-width: 1280px)'
 
 export default function TeamDetail({ team, labels, factionNames, locale, now, onClose }: TeamDetailProps) {
   const closeRef = useRef<HTMLButtonElement>(null)
+  const panelRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     closeRef.current?.focus({ preventScroll: true })
+    // Desktop panel sits above the grid: bring it into view when a lower card is selected
+    if (window.matchMedia(DESKTOP_QUERY).matches) {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      panelRef.current?.scrollIntoView({ block: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth' })
+    }
   }, [team.slug])
 
   useEffect(() => {
@@ -71,12 +77,13 @@ export default function TeamDetail({ team, labels, factionNames, locale, now, on
     <>
       <div className="fixed inset-0 z-40 bg-black/60 xl:hidden" onClick={onClose} data-testid="kt-detail-backdrop" />
       <aside
+        ref={panelRef}
         role="dialog"
         aria-labelledby="kt-detail-title"
-        className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] overflow-y-auto rounded-t-2xl bg-[var(--card-background)] text-[var(--card-text)] font-poppins shadow-[0_-4px_24px_var(--card-shadow)] motion-safe:animate-[kt-sheet-in_200ms_ease-out] xl:motion-safe:animate-none xl:sticky xl:top-4 xl:z-auto xl:w-80 xl:shrink-0 xl:max-h-[calc(100vh-2rem)] xl:rounded-2xl xl:outline-3 xl:outline-offset-[0.375rem] xl:outline-[var(--hero-secondary-background)] xl:mx-[0.5625rem] xl:mt-[0.5625rem] xl:shadow-[0_8px_24px_var(--card-shadow)]"
+        className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] overflow-y-auto rounded-t-2xl bg-[var(--card-background)] text-[var(--card-text)] font-poppins shadow-[0_-4px_24px_var(--card-shadow)] motion-safe:animate-[kt-sheet-in_200ms_ease-out] xl:motion-safe:animate-none xl:static xl:z-auto xl:col-span-full xl:max-h-none xl:overflow-hidden xl:rounded-2xl xl:outline-3 xl:outline-offset-[0.375rem] xl:outline-[var(--hero-secondary-background)] xl:m-[0.5625rem] xl:scroll-mt-4 xl:shadow-[0_8px_24px_var(--card-shadow)]"
         data-testid="kt-detail"
       >
-        <TeamImage team={team} context="mobile" sizes="(max-width: 1279px) 100vw, 320px" className="aspect-[21/9] xl:aspect-[16/9]" imageClassName="object-top xl:object-center">
+        <TeamImage team={team} context="mobile" sizes="(max-width: 1279px) 100vw, 75vw" className="aspect-[21/9] xl:aspect-[5/2]" imageClassName="object-top">
           <button
             ref={closeRef}
             type="button"
@@ -94,15 +101,17 @@ export default function TeamDetail({ team, labels, factionNames, locale, now, on
           )}
         </TeamImage>
 
-        <div className="p-4 md:p-5">
-          <h2 id="kt-detail-title" className="font-namdhinggo text-xl md:text-2xl font-semibold leading-tight" data-testid="kt-detail-name">
-            {team.name}
-          </h2>
-          <p className="text-xs opacity-75 mt-1">{factionNames(team.factions)}</p>
+        <div className="p-4 md:p-5 xl:p-6 xl:grid xl:grid-cols-2 xl:gap-x-8 xl:content-start">
+          <div className="xl:col-span-2">
+            <h2 id="kt-detail-title" className="font-namdhinggo text-xl md:text-2xl font-semibold leading-tight" data-testid="kt-detail-name">
+              {team.name}
+            </h2>
+            <p className="text-xs opacity-75 mt-1">{factionNames(team.factions)}</p>
+          </div>
 
           <div className="prose prose-sm max-w-none mt-3 text-sm" dangerouslySetInnerHTML={{ __html: team.playstyleHtml }} />
 
-          <dl className="grid grid-cols-[1.25rem_1fr_auto] gap-x-2 gap-y-2 items-center text-sm mt-2">
+          <dl className="grid grid-cols-[1.25rem_1fr_auto] gap-x-2 gap-y-2 items-center text-sm mt-2 xl:mt-3 xl:col-start-2 xl:row-start-2 xl:row-span-2 xl:self-start">
             {rows.map((row) => (
               <div key={row.label} className="contents">
                 <FontAwesomeIcon icon={row.icon} className="w-4 h-4" aria-hidden="true" />
@@ -130,7 +139,7 @@ export default function TeamDetail({ team, labels, factionNames, locale, now, on
           </dl>
 
           <div
-            className={`mt-4 flex items-center gap-2 rounded-lg px-3 py-2 text-sm ${LEGALITY_STYLES[legality]}`}
+            className={`mt-4 xl:col-start-1 xl:self-start flex items-center gap-2 rounded-lg px-3 py-2 text-sm ${LEGALITY_STYLES[legality]}`}
             data-legality={legality}
             data-testid="kt-detail-legal"
           >
@@ -139,7 +148,7 @@ export default function TeamDetail({ team, labels, factionNames, locale, now, on
               <span>{labels.not_legal_label}</span>
             ) : (
               <span>
-                {labels.legal_until_label}: <strong className="font-semibold">{formatLegalUntil(team.legal_until, locale)}</strong>
+                {formatLegalUntil(labels.legal_until_label, team.legal_until, locale)}
                 {legality === 'rotates_soon' && <span className="block text-xs">{labels.rotates_soon_label}</span>}
               </span>
             )}

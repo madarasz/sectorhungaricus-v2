@@ -57,7 +57,7 @@ content_blocks:
       ranged_label: Távolsági
       melee_label: Közelharci
       tier_label: Erősség
-      legal_until_label: Versenylegális eddig
+      legal_until_label: "Classified {year}. {month} végéig"
       rotates_soon_label: Ez a csapat hamarosan kikerül a versenyjátékból.
       not_legal_label: Nem versenylegális (non-classified)
       close_label: Csapat részleteinek bezárása

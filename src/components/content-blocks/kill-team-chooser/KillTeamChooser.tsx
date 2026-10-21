@@ -95,6 +95,10 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
     .replace('{shown}', String(visibleTeams.length))
     .replace('{total}', String(teams.length))
 
+  const detail = selectedTeam && (
+    <TeamDetail team={selectedTeam} labels={labels} locale={locale} now={now} factionNames={factionNames} onClose={closeDetail} />
+  )
+
   return (
     <div data-testid="kt-chooser">
       <QuestionFilters questions={questions} answers={answers} onAnswer={toggleAnswer} />
@@ -126,30 +130,29 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
         )}
       </div>
 
-      <div className="flex items-start gap-5">
-        {visibleTeams.length > 0 ? (
-          <div className="flex-1 min-w-0 grid grid-cols-[repeat(auto-fill,minmax(min(10rem,100%),1fr))] md:grid-cols-[repeat(auto-fill,minmax(12rem,1fr))] gap-3 md:gap-4" data-testid="kt-grid">
-            {visibleTeams.map((team) => (
-              <TeamCard
-                key={team.slug}
-                team={team}
-                labels={labels}
-                factionNames={factionNames}
-                selected={team.slug === selectedSlug}
-                onSelect={(slug) => setSelectedSlug((current) => (current === slug ? null : slug))}
-              />
-            ))}
-          </div>
-        ) : (
-          <p className="flex-1 font-poppins rounded-xl border border-dashed p-6 text-center" data-testid="kt-empty">
+      {/* On desktop the detail is the first grid item and spans the full width */}
+      {visibleTeams.length > 0 ? (
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(min(10rem,100%),1fr))] md:grid-cols-[repeat(auto-fill,minmax(12rem,1fr))] gap-3 md:gap-4" data-testid="kt-grid">
+          {detail}
+          {visibleTeams.map((team) => (
+            <TeamCard
+              key={team.slug}
+              team={team}
+              labels={labels}
+              factionNames={factionNames}
+              selected={team.slug === selectedSlug}
+              onSelect={(slug) => setSelectedSlug((current) => (current === slug ? null : slug))}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col gap-4">
+          {detail}
+          <p className="font-poppins rounded-xl border border-dashed p-6 text-center" data-testid="kt-empty">
             {labels.empty_state}
           </p>
-        )}
-
-        {selectedTeam && (
-          <TeamDetail team={selectedTeam} labels={labels} locale={locale} now={now} factionNames={factionNames} onClose={closeDetail} />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   )
 }

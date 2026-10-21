@@ -57,7 +57,7 @@ content_blocks:
       ranged_label: Ranged
       melee_label: Melee
       tier_label: Power level
-      legal_until_label: Tournament legal until
+      legal_until_label: "Classified until {month}, {year}"
       rotates_soon_label: This team rotates out of tournament play soon.
       not_legal_label: Not tournament legal (non-classified)
       close_label: Close team details

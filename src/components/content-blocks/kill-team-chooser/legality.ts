@@ -20,6 +20,8 @@ export function getLegality(legalUntil: number | undefined, now: Date): Legality
   return 'classified'
 }
 
-export function formatLegalUntil(legalUntil: number, locale: string): string {
-  return new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'long', day: 'numeric' }).format(legalUntilDate(legalUntil))
+// Fills the {month} and {year} placeholders of the CMS label
+export function formatLegalUntil(template: string, legalUntil: number, locale: string): string {
+  const month = new Intl.DateTimeFormat(locale, { month: 'long' }).format(legalUntilDate(legalUntil))
+  return template.replace('{month}', month).replace('{year}', String(legalUntil))
 }

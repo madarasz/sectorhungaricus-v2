@@ -1,5 +1,5 @@
 ---
-name: "Exodite Dragon Masters"
+name: Exodite Dragon Masters
 reviewed: ""
 factions:
   - xenos
@@ -14,6 +14,6 @@ combat:
   - melee
   - melee
 legal_until: 2027
-image: https://assets.warhammer-community.com/articles/0-2026/july/wc20-07/kt_exoditeslore-jul23-1-feature-bewsov27gr.jpg
+image: https://assets.warhammer-community.com/articles/0-2026/july/wc20-07/kt_exoditerules2-jul21-1-feature-jbf8roqfft.jpg
 ---
 Aeldari riders on dragons. Few, fast and very hard-hitting models.

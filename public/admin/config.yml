@@ -274,7 +274,7 @@ collections:
                   - {label: "Ranged icon label", name: "ranged_label", widget: "string"}
                   - {label: "Melee icon label", name: "melee_label", widget: "string"}
                   - {label: "Tier label", name: "tier_label", widget: "string"}
-                  - {label: "Legal until label", name: "legal_until_label", widget: "string"}
+                  - {label: "Legal until label", name: "legal_until_label", widget: "string", hint: "Use {month} and {year} placeholders"}
                   - {label: "Rotates soon label", name: "rotates_soon_label", widget: "string"}
                   - {label: "Not tournament legal label", name: "not_legal_label", widget: "string"}
                   - {label: "Close button label", name: "close_label", widget: "string"}

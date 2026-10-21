@@ -8,8 +8,8 @@ operatives: 7
 operatives_min: ""
 operatives_max: ""
 boxes: 1
-boxes_note: Flexible weapon loadout. Fusion blasters are ideally on Lodestar and
-  Neutraliser, but you can magnetize.
+boxes_note: They have flexible weapon loadouts. Fusion blasters are ideally on
+  Lodestar and Neutraliser, but you can magnetize if you want to change it.
 tier: B
 beginner_friendly: false
 combat:
@@ -19,4 +19,4 @@ combat:
 legal_until: 2029
 image: https://assets.warhammer-community.com/kt_deadsilencetau-nov05-1-feature-wxvxiybobg.jpg
 ---
-Elite Tau team, relying purely on shooting. While being Concealed, they are invisible outside 3". Several tricks, positioning is very important, hard to master.
+Stealth Battlesuits are the T’au Empire's experts in infiltration and aggressive reconnaissance. They might be the sneakiest team in the game, combining hard-hitting firepower with mobility, tactical counterplay and near invisibility. While being concealed, they are not visible to enemies further than 3". They are very weak in melee but have options to flee close encounters. Positioning is very important with this team and they are hard to master. 

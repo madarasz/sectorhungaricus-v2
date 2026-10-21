@@ -146,11 +146,11 @@ test.describe('Kill Team chooser', () => {
       await page.clock.setFixedTime(new Date('2026-03-01T12:00:00'));
       await page.goto(`${PAGE_URL}?team=kasrkin`);
       const legal = page.getByTestId('kt-detail-legal');
-      await expect(legal).toContainText('November 30, 2027');
+      await expect(legal).toContainText('Classified until November, 2027');
       await expect(legal).toHaveAttribute('data-legality', 'classified');
 
       await page.goto('/hu/kill-team/choose-a-team/?team=kasrkin');
-      await expect(page.getByTestId('kt-detail-legal')).toContainText('2027. november 30.');
+      await expect(page.getByTestId('kt-detail-legal')).toContainText('Classified 2027. november végéig');
     });
 
     test('is still classified on 30 November a year before', async ({ page }) => {
