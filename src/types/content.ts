@@ -156,6 +156,9 @@ export interface KillTeamChooserLabels {
   factions: KillTeamFactionOption[]
   result_count: string
   reset: string
+  filters_button: string
+  filters_close_label: string
+  show_results: string
   empty_state: string
   declassified_separator: string
   under_construction: string

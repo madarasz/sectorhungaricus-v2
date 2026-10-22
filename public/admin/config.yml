@@ -264,6 +264,9 @@ collections:
                       - {label: "Label", name: "label", widget: "string"}
                   - {label: "Result count", name: "result_count", widget: "string", hint: "Use {shown} and {total}"}
                   - {label: "Reset button", name: "reset", widget: "string"}
+                  - {label: "Filters button (mobile)", name: "filters_button", widget: "string", hint: "Opens the questions on mobile. Also the title of the questions panel."}
+                  - {label: "Close filters label (mobile)", name: "filters_close_label", widget: "string"}
+                  - {label: "Show results button (mobile)", name: "show_results", widget: "string", hint: "Use {shown}"}
                   - {label: "Empty state", name: "empty_state", widget: "string"}
                   - {label: "Non-classified teams separator", name: "declassified_separator", widget: "string"}
                   - {label: "Under construction note", name: "under_construction", widget: "string", hint: "Shown at the end of the team list"}

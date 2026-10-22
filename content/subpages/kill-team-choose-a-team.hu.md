@@ -50,6 +50,9 @@ content_blocks:
         - {value: ork, label: Ork}
       result_count: "{shown} / {total} csapat"
       reset: Válaszok törlése
+      filters_button: Szűrők
+      filters_close_label: Szűrők bezárása
+      show_results: "{shown} csapat megjelenítése"
       empty_state: Egyik csapat sem felel meg minden válasznak. Változtass meg egy választ, hogy több csapatot láss.
       declassified_separator: Non-classified csapatok – a legtöbb versenyen nem használhatók
       under_construction: Az oldal fejlesztés alatt áll. Hamarosan további csapatokkal bővül.

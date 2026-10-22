@@ -6,6 +6,7 @@ import { faRotateLeft } from '@fortawesome/free-solid-svg-icons'
 import { ContentBlock, KillTeam } from '@/types/content'
 import { Answers, FACTION_TREE, SingleAnswerKey, TEAM_PARAM, answersFromSearch, buildSearch, matchesAnswers, subFactionsOf } from './filters'
 import { getLegality } from './legality'
+import FilterSheet from './FilterSheet'
 import QuestionFilters, { Question } from './QuestionFilters'
 import TeamCard from './TeamCard'
 import TeamDetail from './TeamDetail'
@@ -86,6 +87,8 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
   const declassifiedTeams = visibleTeams.filter(isDeclassified)
   const selectedTeam = teams.find((team) => team.slug === selectedSlug)
   const hasAnswers = Object.keys(answers).length > 0
+  // Each selected faction counts as one answer
+  const answerCount = Object.values(answers).reduce((count, value) => count + (Array.isArray(value) ? value.length : 1), 0)
 
   const toggleAnswer = (key: SingleAnswerKey, value: string) => {
     setAnswers((prev) => {
@@ -130,6 +133,8 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
     .replace('{shown}', String(visibleTeams.length))
     .replace('{total}', String(teams.length))
 
+  const showResults = labels.show_results.replace('{shown}', String(visibleTeams.length))
+
   const detail = selectedTeam && (
     <TeamDetail team={selectedTeam} labels={labels} locale={locale} now={now} factionLabels={factionLabels} onClose={closeDetail} />
   )
@@ -146,10 +151,20 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
   )
 
   return (
-    <div data-testid="kt-chooser">
-      <QuestionFilters columns={questionColumns} answers={answers} onAnswer={toggleAnswer} onFaction={toggleFaction} onSub={toggleSub} />
+    <div className="flex flex-col" data-testid="kt-chooser">
+      <FilterSheet
+        buttonLabel={labels.filters_button}
+        closeLabel={labels.filters_close_label}
+        resetLabel={labels.reset}
+        showResultsLabel={showResults}
+        activeCount={answerCount}
+        onReset={() => setAnswers({})}
+      >
+        <QuestionFilters columns={questionColumns} answers={answers} onAnswer={toggleAnswer} onFaction={toggleFaction} onSub={toggleSub} />
+      </FilterSheet>
 
-      <div className="flex flex-wrap items-center justify-between gap-2 my-4 font-poppins text-sm">
+      {/* On mobile the result count and the note go below the teams */}
+      <div className="order-last md:order-none flex flex-wrap items-center justify-between gap-2 my-4 font-poppins text-sm" data-testid="kt-result-bar">
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
           <p aria-live="polite" data-testid="kt-result-count">{resultCount}</p>
           <p className="italic" data-testid="kt-under-construction">{labels.under_construction}</p>
@@ -158,7 +173,7 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
           <button
             type="button"
             onClick={() => setAnswers({})}
-            className="inline-flex items-center gap-2 min-h-11 px-3 rounded-lg underline underline-offset-4 hover:no-underline focus-visible:outline-3 focus-visible:outline-[var(--hero-secondary-background)]"
+            className="hidden md:inline-flex items-center gap-2 min-h-11 px-3 rounded-lg underline underline-offset-4 hover:no-underline focus-visible:outline-3 focus-visible:outline-[var(--hero-secondary-background)]"
             data-testid="kt-reset"
           >
             <FontAwesomeIcon icon={faRotateLeft} className="w-3.5 h-3.5" aria-hidden="true" />

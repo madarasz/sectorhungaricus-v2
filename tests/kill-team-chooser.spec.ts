@@ -102,6 +102,99 @@ test.describe('Kill Team chooser', () => {
     await expect(detail).toHaveCount(0);
   });
 
+  test.describe('mobile filters', () => {
+    test.beforeEach(async ({ page }) => {
+      await page.setViewportSize({ width: 360, height: 740 });
+    });
+
+    test('teams show first and the questions are in a closed sheet', async ({ page }) => {
+      await page.goto(PAGE_URL);
+
+      await expect(page.getByTestId('kt-filters-open')).toBeVisible();
+      await expect(page.getByTestId('kt-filter-sheet')).toBeHidden();
+      await expect(page.getByTestId('kt-filters-count')).toHaveCount(0);
+
+      // First team card is above the fold
+      const firstCard = page.getByTestId('kt-grid').locator('[data-testid^="kt-card-"]').first();
+      const box = await firstCard.boundingBox();
+      expect(box).not.toBeNull();
+      expect(box!.y).toBeLessThan(740);
+    });
+
+    test('result count and under construction note are below the teams', async ({ page }) => {
+      await page.goto(PAGE_URL);
+
+      const grid = await page.getByTestId('kt-grid').boundingBox();
+      const count = await page.getByTestId('kt-result-count').boundingBox();
+      const note = await page.getByTestId('kt-under-construction').boundingBox();
+      expect(grid && count && note).toBeTruthy();
+      expect(count!.y).toBeGreaterThanOrEqual(grid!.y + grid!.height);
+      expect(note!.y).toBeGreaterThanOrEqual(grid!.y + grid!.height);
+    });
+
+    test('answers in the sheet filter the teams and show the result count', async ({ page }) => {
+      await page.goto(PAGE_URL);
+      const cards = page.locator('[data-testid^="kt-card-"]').filter({ has: page.getByTestId('kt-card-name') });
+      const total = await cards.count();
+
+      await page.getByTestId('kt-filters-open').click();
+      const sheet = page.getByTestId('kt-filter-sheet');
+      await expect(sheet).toBeVisible();
+      await expect(sheet).toHaveAttribute('role', 'dialog');
+      await expect(page.getByTestId('kt-filters-show')).toHaveText(`Show ${total} teams`);
+
+      await page.getByTestId('kt-answer-exp-new').click();
+      await page.getByTestId('kt-answer-faction-imperium').click();
+      const filtered = await cards.count();
+      expect(filtered).toBeLessThan(total);
+      await expect(page.getByTestId('kt-filters-show')).toHaveText(`Show ${filtered} teams`);
+
+      await page.getByTestId('kt-filters-show').click();
+      await expect(sheet).toBeHidden();
+      await expect(page.getByTestId('kt-filters-count')).toHaveText('2');
+      await expect(page).toHaveURL(/exp=new/);
+    });
+
+    test('sheet reset clears answers and close button, Escape and backdrop close the sheet', async ({ page }) => {
+      await page.goto(`${PAGE_URL}?exp=new`);
+      const sheet = page.getByTestId('kt-filter-sheet');
+
+      await page.getByTestId('kt-filters-open').click();
+      await page.getByTestId('kt-filters-reset').click();
+      await expect(page.getByTestId('kt-answer-exp-new')).toHaveAttribute('aria-pressed', 'false');
+      await expect(page.getByTestId('kt-filters-reset')).toHaveCount(0);
+      await page.getByTestId('kt-filters-close').click();
+      await expect(sheet).toBeHidden();
+
+      await page.getByTestId('kt-filters-open').click();
+      await page.keyboard.press('Escape');
+      await expect(sheet).toBeHidden();
+
+      await page.getByTestId('kt-filters-open').click();
+      await page.getByTestId('kt-filters-backdrop').click({ position: { x: 20, y: 20 } });
+      await expect(sheet).toBeHidden();
+    });
+
+    test('Hungarian page uses Hungarian filter labels', async ({ page }) => {
+      await page.goto('/hu/kill-team/choose-a-team/');
+      await expect(page.getByTestId('kt-filters-open')).toHaveText('Szűrők');
+      await page.getByTestId('kt-filters-open').click();
+      await expect(page.getByTestId('kt-filters-show')).toContainText('csapat megjelenítése');
+    });
+  });
+
+  test('desktop shows the questions in place without the filters button', async ({ page }) => {
+    await page.goto(PAGE_URL);
+    await expect(page.getByTestId('kt-filters-open')).toBeHidden();
+    await expect(page.getByTestId('kt-questions')).toBeVisible();
+    await expect(page.getByTestId('kt-filter-sheet')).not.toHaveAttribute('role', 'dialog');
+
+    // Result count stays above the teams
+    const grid = await page.getByTestId('kt-grid').boundingBox();
+    const count = await page.getByTestId('kt-result-count').boundingBox();
+    expect(count!.y).toBeLessThan(grid!.y);
+  });
+
   test('team with operatives range shows min–max', async ({ page }) => {
     await page.goto(PAGE_URL);
     await expect(page.getByTestId('kt-card-brood-brothers')).toContainText('10–14');

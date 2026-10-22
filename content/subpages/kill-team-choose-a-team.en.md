@@ -50,6 +50,9 @@ content_blocks:
         - {value: ork, label: Ork}
       result_count: "Showing {shown} of {total} teams"
       reset: Clear answers
+      filters_button: Filters
+      filters_close_label: Close filters
+      show_results: "Show {shown} teams"
       empty_state: No team fits every answer. Change one answer to see more teams.
       declassified_separator: Non-classified teams – not legal on most tournaments
       under_construction: This page is under construction. We will add more teams soon.
