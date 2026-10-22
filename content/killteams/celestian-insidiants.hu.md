@@ -17,4 +17,4 @@ legal_until: 2029
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108125_KTCelestianInsidiants03.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108125_KTCelestianInsidiants02.jpg?fm=webp&w=892&h=920
 ---
-Az Adepta Sororitas veterán Celestian harcosai, a Celestian Insidiants tagjai boszorkányokra és eretnekekre vadásznak, és mindannyian mártírhalálra vágynak. Kis létszámú, elit csapat: szívós Sisters of Battle egységek, akik főleg közelharcban küzdenek, és pszichikusok elleni fegyvereket és felszerelést hordanak. Ha egy inspirált nővér elesik, egy közeli társa tartós áldást kap, amellyel többet cselekedhet, gyógyulhat vagy dash-t hajthat végre.
+Az Adepta Sororitas veterán harcosai, a Celestian Insidiants tagjai boszorkányokra és eretnekekre vadásznak, és mindannyian mártírhalálra vágynak. Sisters of Battle egységek, akik főleg közelharcban küzdenek, és pszichikusok elleni fegyvereket és felszerelést hordanak. Ha egy inspirált nővér elesik, egy közeli társa tartós áldást kap, amellyel többet cselekedhet, gyógyulhat vagy dash-t hajthat végre.
