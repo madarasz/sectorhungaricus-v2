@@ -84,6 +84,7 @@ Shared sources (the Tournament Companion PDF and the Reddit tables) are the same
 
 When the subagents are finished, review each result against references/playstyle.md before you report to the user. Look especially for:
 - texts that are too long,
+- the number of operatives in the play style (it is in the `operatives` fields),
 - sentences that are true for every team,
 - guessed tactics,
 - wrong Hungarian agreement or suffixes on English names.

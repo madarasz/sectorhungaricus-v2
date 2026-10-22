@@ -1,18 +1,21 @@
 ---
 name: Plague Marines
-reviewed: ""
+reviewed: Madarász
 factions:
   - chaos
   - space-marine
 operatives: 6
 boxes: 1
-tier: ""
+boxes_note: No dedicated Kill Team box. The Kill Team Starter Set has all the
+  models that the team needs.
+tier: B
 beginner_friendly: true
 combat:
   - ranged
   - melee
   - melee
-legal_until: 2027
-image: https://instagram.fbud4-1.fna.fbcdn.net/v/t51.82787-15/651900966_17942044098000675_8404323910702532671_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=100&_nc_map=urlgen_bucketless&ig_cache_key=MzQ3ODcxMTM2MjU1NjYxODU4OA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&_nc_aid=0&efg=eyJ2ZW5jb2RlX3RhZyI6IkNBUk9VU0VMX0lURU0ueHBpZHMuMTQ0MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=gJUxefuDXjYQ7kNvwGxCLbk&_nc_oc=AdqTA4AuEiiUHzTeyoWD2scyK0U36J6s__iS8Xz99-dI7GAZlEeX_ladXPV4YyXencs&_nc_zt=23&_nc_ht=instagram.fbud4-1.fna&_nc_gid=jhLksWS_Af1c1Wwd53LzRA&_nc_ss=7b689&oh=00_AQNluKULquIXIsdCR_JicIl6w7NABntg9dSdkY4P7A_i1Q&oe=6ADEFD30
+legal_until: 2028
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/60010199071_ENGKTStarterSet8.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/60010199071_ENGKTStarterSet7.jpg?fm=webp&w=892&h=920
 ---
-Slow and very durable. Poison spreads damage over time.
+Swollen with rot and disease, the Plague Marines of the Death Guard are fallen sons of Mortarion, who advance slowly but steadily on their objectives and spread infection wherever they go. They are a chaos space marine team of extremely resilient operatives. Their poisoned weapons infect enemy units, who then take damage each activation and additional damage the next time they are hit.

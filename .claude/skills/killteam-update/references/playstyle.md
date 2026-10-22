@@ -15,7 +15,7 @@ For examples, read the body of the reviewed teams (the teams with a non-empty `r
 ## Sentence plan
 
 1. **Lore (1 sentence).** One vivid sentence about who they are in the setting. Paraphrase the source. Do not copy it.
-2. **Identity (1 sentence).** Faction, and the type of team: elite or horde, melee or ranged, roster style.
+2. **Identity (1 sentence).** Faction, and the type of team: elite or horde, melee or ranged, roster style. Do not write the number of operatives ("eight operatives", "a team of six"). The `operatives` fields show it already.
 3. **Why it is special (0–2 sentences, optional).** Concrete strength, weakness or matchup of the team, only if the source states it. Leave it out if you have nothing concrete.
 4. **Signature ability (1 sentence).** Only the single most characteristic faction rule. Say what it lets the team do on the table, not how it works.
 
@@ -64,3 +64,4 @@ For examples, read the body of the reviewed teams (the teams with a non-empty `r
 - Common limitations used as content: "once per turning point".
 - Guessed tactics from operative abilities or ploys.
 - A separate sentence for one or two adjectives. Put them into another sentence.
+- The number of operatives in the text ("an elite team of only eight operatives"). The site already shows it from the `operatives` fields.
