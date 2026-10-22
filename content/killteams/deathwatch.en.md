@@ -4,6 +4,7 @@ reviewed: Madarász
 factions:
   - imperium
   - space-marine
+  - inquisition
 operatives: 5
 operatives_min: ""
 operatives_max: ""
