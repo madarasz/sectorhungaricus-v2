@@ -1,14 +1,13 @@
 ---
-name: "Blades of Khaine"
-reviewed: ""
+name: Blades of Khaine
+reviewed: Madarász
 factions:
   - xenos
   - aeldari
-operatives_min: 8
-operatives_max: 10
+operatives: 8
 boxes: 2
 boxes_note: Mix of two Aspect Warrior boxes
-tier: ""
+tier: A
 beginner_friendly: false
 combat:
   - ranged
@@ -17,4 +16,4 @@ combat:
 legal_until: 2027
 image: https://assets.warhammer-community.com/articles/a49451d7-345c-41e9-9697-85d216449b22/lsf0bsz6ayozrzis.jpg
 ---
-Fast Aspect Warriors with a high skill ceiling. One bad activation can lose the game.
+Athletic, graceful and utterly lethal, the Blades of Khaine are Aeldari Aspect Warriors sent to cut the strands of fate before foreseen disasters can happen. The team mixes warriors from three Aspect shrines, and each shrine has its own combat techniques. Howling Banshees leap across the battlefield, Striking Scorpions strike from hiding, and Dire Avengers are sharpshooters who can shoot on the move. The team moves fast and hits hard, but it is fragile for an elite team.

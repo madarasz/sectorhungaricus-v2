@@ -59,6 +59,6 @@ content_blocks:
       tier_label: Erősség
       legal_until_label: "Classified {year}. {month} végéig"
       rotates_soon_label: Ez a csapat hamarosan kikerül a versenyjátékból.
-      not_legal_label: Nem versenylegális (non-classified)
+      not_legal_label: Legtöbb versenyen nem használható (non-classified)
       close_label: Csapat részleteinek bezárása
 ---

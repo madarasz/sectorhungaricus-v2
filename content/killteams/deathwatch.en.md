@@ -19,4 +19,4 @@ combat:
 legal_until: 2029
 image: https://assets.warhammer-community.com/kt_dwkitfocus-aug25-1-feature-23tke9ryjt.jpg
 ---
-The Deathwatch is the military arm of the Ordo Xenos, the part of the Inquisition that deals in investigating and hunting aliens. They are one of the most elite teams in the game, only fielding 5 operatives. You can chose from a collection of 11 veterans, each of which specializes in a particular method of warfare. They have special ammunition options adding various weapon rules and can carry out two actions during a counteract.
+The Deathwatch is the military arm of the Ordo Xenos, the part of the Inquisition that investigates and hunts aliens. They are one of the most elite teams in the game, only fielding 5 operatives. You can choose from a collection of 11 veterans, each of which specializes in a particular method of warfare. They have special ammunition options that add various weapon rules, and they can carry out two actions during a counteract.

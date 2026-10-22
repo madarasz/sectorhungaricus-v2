@@ -15,4 +15,4 @@ beginner_friendly: true
 legal_until: 2029
 image: https://assets.warhammer-community.com/kt_dwkitfocus-aug25-1-feature-23tke9ryjt.jpg
 ---
-A Deathwatch az Ordo Xenos fegyveres ereje – az Inkvizíció azon szerve, amely az idegen fajok felderítésére és levadászására szakosodott. A játék egyik legelitebb csapata, mindössze 5 opertatívval játszanak. A 11 különböző veteránból válogathatsz, akik mindegyike a hadviselés egy-egy specifikus formájára szakosodott. Különleges lőszer opcióik különböző bónuszokat adnak és két akciót is végrehajthatnak egy counteract során.
+A Deathwatch az Ordo Xenos fegyveres ereje. Ők az Inkvizíció azon szerve, amely az idegen fajok felderítésére és levadászására szakosodott. A játék egyik legelitebb csapata, mindössze 5 operatívval játszanak. A 11 különböző veteránból válogathatsz, akik mindegyike a hadviselés egy-egy specifikus formájára szakosodott. Különleges lőszeropcióik különböző bónuszokat adnak, és két akciót is végrehajthatnak egy counteract során.
