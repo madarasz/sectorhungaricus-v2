@@ -75,10 +75,10 @@ test.describe('Kill Team chooser', () => {
   });
 
   test('selected team opens from the URL and Escape closes it', async ({ page }) => {
-    await page.goto(`${PAGE_URL}?team=legionaries`);
+    await page.goto(`${PAGE_URL}?team=nemesis-claw`);
 
     const detail = page.getByTestId('kt-detail');
-    await expect(detail.getByTestId('kt-detail-name')).toHaveText('Legionaries');
+    await expect(detail.getByTestId('kt-detail-name')).toHaveText('Nemesis Claw');
 
     await page.keyboard.press('Escape');
     await expect(detail).toHaveCount(0);
@@ -88,7 +88,7 @@ test.describe('Kill Team chooser', () => {
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto(PAGE_URL);
 
-    await page.getByTestId('kt-card-kasrkin').click();
+    await page.getByTestId('kt-card-deathwatch').click();
     const detail = page.getByTestId('kt-detail');
     await expect(detail).toBeVisible();
     await expect(page.getByTestId('kt-detail-backdrop')).toBeVisible();
@@ -103,8 +103,8 @@ test.describe('Kill Team chooser', () => {
 
   test('team with operatives range shows min–max', async ({ page }) => {
     await page.goto(PAGE_URL);
-    await expect(page.getByTestId('kt-card-blades-of-khaine')).toContainText('8–10');
-    await expect(page.getByTestId('kt-card-kasrkin')).toContainText('10');
+    await expect(page.getByTestId('kt-card-brood-brothers')).toContainText('10–14');
+    await expect(page.getByTestId('kt-card-deathwatch')).toContainText('5');
   });
 
   test('faction question shows only filter factions', async ({ page }) => {
@@ -116,78 +116,98 @@ test.describe('Kill Team chooser', () => {
   test('horde answer shows only teams with 11 or more operatives', async ({ page }) => {
     await page.goto(`${PAGE_URL}?size=horde`);
     await expect(page.getByTestId('kt-answer-size-horde')).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.getByTestId('kt-card-pathfinders')).toBeVisible();
-    await expect(page.getByTestId('kt-card-kasrkin')).toHaveCount(0);
+    await expect(page.getByTestId('kt-card-chaos-cult')).toBeVisible();
+    await expect(page.getByTestId('kt-card-deathwatch')).toHaveCount(0);
   });
 
-  test('reviewed checkbox hides unreviewed teams and updates the URL', async ({ page }) => {
+  test('shows only reviewed teams and an under construction note', async ({ page }) => {
     await page.goto(PAGE_URL);
-    const cards = page.locator('[data-testid^="kt-card-"]').filter({ has: page.getByTestId('kt-card-name') });
-    const total = await cards.count();
+    await expect(page.getByTestId('kt-card-deathwatch')).toBeVisible();
+    // Kasrkin has no reviewer
+    await expect(page.getByTestId('kt-card-kasrkin')).toHaveCount(0);
 
-    await page.getByTestId('kt-reviewed-filter').check();
-    await expect(page).toHaveURL(/reviewed=yes/);
-    expect(await cards.count()).toBeLessThanOrEqual(total);
+    const note = page.getByTestId('kt-under-construction');
+    await expect(note).toBeVisible();
+    await expect(note).toHaveCSS('font-style', 'italic');
 
-    await page.getByTestId('kt-reviewed-filter').uncheck();
-    await expect(page).not.toHaveURL(/reviewed=/);
-    await expect(cards).toHaveCount(total);
+    // Unreviewed team in the URL does not open
+    await page.goto(`${PAGE_URL}?team=kasrkin`);
+    await expect(page.getByTestId('kt-detail')).toHaveCount(0);
+  });
+
+  test('non-classified teams are at the end of the list after a separator', async ({ page }) => {
+    await page.clock.setFixedTime(new Date('2026-03-01T12:00:00'));
+    await page.goto(PAGE_URL);
+
+    // Blooded has no legal until year
+    const separator = page.getByTestId('kt-declassified-separator');
+    await expect(separator).toContainText('Non-classified teams');
+    const items = page.getByTestId('kt-grid').locator('> *');
+    const testIds = await items.evaluateAll((elements) => elements.map((e) => e.getAttribute('data-testid')));
+    const separatorIndex = testIds.indexOf('kt-declassified-separator');
+    expect(separatorIndex).toBeGreaterThan(0);
+    expect(testIds.indexOf('kt-card-deathwatch')).toBeLessThan(separatorIndex);
+    expect(testIds.indexOf('kt-card-blooded')).toBeGreaterThan(separatorIndex);
+
+    // The classified filter removes the separator
+    await page.getByTestId('kt-answer-legal-classified').check();
+    await expect(separator).toHaveCount(0);
   });
 
   test('Hungarian page shows combat icons from the shared data', async ({ page }) => {
     await page.goto('/hu/kill-team/choose-a-team/');
-    await expect(page.getByTestId('kt-card-kasrkin').getByTestId('kt-combat-icons').locator('svg')).toHaveCount(3);
+    await expect(page.getByTestId('kt-card-deathwatch').getByTestId('kt-combat-icons').locator('svg')).toHaveCount(3);
   });
 
   test.describe('tournament legality', () => {
-    // Kasrkin is tournament legal until 30 November 2027, Angels of Death until 30 November 2028
+    // Battleclade is tournament legal until 30 November 2027, Angels of Death until 30 November 2028
 
     test('shows the legal until date in English and Hungarian', async ({ page }) => {
       await page.clock.setFixedTime(new Date('2026-03-01T12:00:00'));
-      await page.goto(`${PAGE_URL}?team=kasrkin`);
+      await page.goto(`${PAGE_URL}?team=battleclade`);
       const legal = page.getByTestId('kt-detail-legal');
       await expect(legal).toContainText('Classified until November, 2027');
       await expect(legal).toHaveAttribute('data-legality', 'classified');
 
-      await page.goto('/hu/kill-team/choose-a-team/?team=kasrkin');
+      await page.goto('/hu/kill-team/choose-a-team/?team=battleclade');
       await expect(page.getByTestId('kt-detail-legal')).toContainText('Classified 2027. november végéig');
     });
 
     test('is still classified on 30 November a year before', async ({ page }) => {
       await page.clock.setFixedTime(new Date('2026-11-30T12:00:00'));
-      await page.goto(`${PAGE_URL}?team=kasrkin`);
+      await page.goto(`${PAGE_URL}?team=battleclade`);
       await expect(page.getByTestId('kt-detail-legal')).toHaveAttribute('data-legality', 'classified');
     });
 
     test('rotates out soon less than a year before the legal until date', async ({ page }) => {
       await page.clock.setFixedTime(new Date('2026-12-01T12:00:00'));
-      await page.goto(`${PAGE_URL}?team=kasrkin`);
+      await page.goto(`${PAGE_URL}?team=battleclade`);
       await expect(page.getByTestId('kt-detail-legal')).toHaveAttribute('data-legality', 'rotates_soon');
     });
 
     test('is non-classified after the legal until date', async ({ page }) => {
       await page.clock.setFixedTime(new Date('2027-12-01T12:00:00'));
-      await page.goto(`${PAGE_URL}?team=kasrkin`);
+      await page.goto(`${PAGE_URL}?team=battleclade`);
       const legal = page.getByTestId('kt-detail-legal');
       await expect(legal).toHaveAttribute('data-legality', 'declassified');
-      await expect(legal).toContainText('Not tournament legal');
+      await expect(legal).toContainText('Not legal on most tournaments');
     });
 
     test('classified checkbox hides non-classified teams', async ({ page }) => {
       await page.clock.setFixedTime(new Date('2027-12-01T12:00:00'));
       await page.goto(PAGE_URL);
       await expect(page.getByTestId('kt-question-legal')).toContainText('Legal on all tournaments');
-      await expect(page.getByTestId('kt-card-kasrkin')).toBeVisible();
+      await expect(page.getByTestId('kt-card-battleclade')).toBeVisible();
 
       const checkbox = page.getByTestId('kt-answer-legal-classified');
       await checkbox.check();
       await expect(page).toHaveURL(/legal=classified/);
-      await expect(page.getByTestId('kt-card-kasrkin')).toHaveCount(0);
+      await expect(page.getByTestId('kt-card-battleclade')).toHaveCount(0);
       await expect(page.getByTestId('kt-card-angels-of-death')).toBeVisible();
 
       await checkbox.uncheck();
       await expect(page).not.toHaveURL(/legal=/);
-      await expect(page.getByTestId('kt-card-kasrkin')).toBeVisible();
+      await expect(page.getByTestId('kt-card-battleclade')).toBeVisible();
     });
   });
 

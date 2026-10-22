@@ -3,8 +3,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotateLeft } from '@fortawesome/free-solid-svg-icons'
-import { ContentBlock } from '@/types/content'
+import { ContentBlock, KillTeam } from '@/types/content'
 import { AnswerKey, Answers, TEAM_PARAM, answersFromSearch, buildSearch, matchesAnswers } from './filters'
+import { getLegality } from './legality'
 import QuestionFilters, { Question } from './QuestionFilters'
 import TeamCard from './TeamCard'
 import TeamDetail from './TeamDetail'
@@ -76,6 +77,10 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
     labels.factions.filter((f) => values.includes(f.value)).map((f) => f.label).join(', ')
 
   const visibleTeams = teams.filter((team) => matchesAnswers(team, answers, now))
+  // Non-classified teams go to the end of the list, after a separator
+  const isDeclassified = (team: KillTeam) => getLegality(team.legal_until, now) === 'declassified'
+  const classifiedTeams = visibleTeams.filter((team) => !isDeclassified(team))
+  const declassifiedTeams = visibleTeams.filter(isDeclassified)
   const selectedTeam = teams.find((team) => team.slug === selectedSlug)
   const hasAnswers = Object.keys(answers).length > 0
 
@@ -99,6 +104,17 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
     <TeamDetail team={selectedTeam} labels={labels} locale={locale} now={now} factionNames={factionNames} onClose={closeDetail} />
   )
 
+  const renderCard = (team: KillTeam) => (
+    <TeamCard
+      key={team.slug}
+      team={team}
+      labels={labels}
+      factionNames={factionNames}
+      selected={team.slug === selectedSlug}
+      onSelect={(slug) => setSelectedSlug((current) => (current === slug ? null : slug))}
+    />
+  )
+
   return (
     <div data-testid="kt-chooser">
       <QuestionFilters questions={questions} answers={answers} onAnswer={toggleAnswer} />
@@ -106,16 +122,7 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
       <div className="flex flex-wrap items-center justify-between gap-2 my-4 font-poppins text-sm">
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
           <p aria-live="polite" data-testid="kt-result-count">{resultCount}</p>
-          <label className="inline-flex items-center gap-2 min-h-11 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={answers.reviewed === 'yes'}
-              onChange={() => toggleAnswer('reviewed', 'yes')}
-              className="w-5 h-5 accent-[var(--hero-background)]"
-              data-testid="kt-reviewed-filter"
-            />
-            {labels.reviewed_filter}
-          </label>
+          <p className="italic" data-testid="kt-under-construction">{labels.under_construction}</p>
         </div>
         {hasAnswers && (
           <button
@@ -134,16 +141,15 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
       {visibleTeams.length > 0 ? (
         <div className="grid grid-cols-[repeat(auto-fill,minmax(min(10rem,100%),1fr))] md:grid-cols-[repeat(auto-fill,minmax(12rem,1fr))] gap-3 md:gap-4" data-testid="kt-grid">
           {detail}
-          {visibleTeams.map((team) => (
-            <TeamCard
-              key={team.slug}
-              team={team}
-              labels={labels}
-              factionNames={factionNames}
-              selected={team.slug === selectedSlug}
-              onSelect={(slug) => setSelectedSlug((current) => (current === slug ? null : slug))}
-            />
-          ))}
+          {classifiedTeams.map(renderCard)}
+          {declassifiedTeams.length > 0 && (
+            <div className="col-span-full flex items-center gap-4 mt-4 font-poppins text-sm" data-testid="kt-declassified-separator">
+              <hr className="flex-1 border-current opacity-30" />
+              <span>{labels.declassified_separator}</span>
+              <hr className="flex-1 border-current opacity-30" />
+            </div>
+          )}
+          {declassifiedTeams.map(renderCard)}
         </div>
       ) : (
         <div className="flex flex-col gap-4">

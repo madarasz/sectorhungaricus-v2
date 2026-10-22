@@ -46,10 +46,11 @@ content_blocks:
         - {value: adeptus-mechanicus, label: Adeptus Mechanicus, in_filter: false}
         - {value: genestealer-cults, label: Genestealer Cults, in_filter: false}
         - {value: drukhari, label: Drukhari, in_filter: false}
-      reviewed_filter: Show only reviewed teams
       result_count: "Showing {shown} of {total} teams"
       reset: Clear answers
       empty_state: No team fits every answer. Change one answer to see more teams.
+      declassified_separator: Non-classified teams – not legal on most tournaments
+      under_construction: This page is under construction. We will add more teams soon.
       beginner_tag: Beginner-friendly
       operatives_label: Operatives
       boxes_label: Boxes to buy

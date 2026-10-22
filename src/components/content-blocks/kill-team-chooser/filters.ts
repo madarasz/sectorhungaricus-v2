@@ -8,19 +8,17 @@ export interface Answers {
   boxes?: 'one' | 'more'
   legal?: 'classified'
   faction?: string
-  reviewed?: 'yes'
 }
 
 export type AnswerKey = keyof Answers
 
-export const ANSWER_KEYS: AnswerKey[] = ['exp', 'fight', 'size', 'boxes', 'legal', 'faction', 'reviewed']
+export const ANSWER_KEYS: AnswerKey[] = ['exp', 'fight', 'size', 'boxes', 'legal', 'faction']
 
 const FIXED_VALUES: Record<Exclude<AnswerKey, 'faction'>, string[]> = {
   exp: ['new', 'played'],
   fight: ['ranged', 'melee', 'mixed'],
   size: ['few', 'many', 'horde'],
   legal: ['classified'],
-  reviewed: ['yes'],
   boxes: ['one', 'more'],
 }
 
@@ -59,8 +57,6 @@ export function matchesAnswers(team: KillTeam, answers: Answers, now: Date): boo
   }
 
   if (answers.faction && !team.factions.includes(answers.faction)) return false
-
-  if (answers.reviewed && !team.reviewed) return false
 
   return true
 }

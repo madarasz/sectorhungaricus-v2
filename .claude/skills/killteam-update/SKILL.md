@@ -36,6 +36,8 @@ Fields have different i18n modes in `config.yml`. Keep both files consistent:
 - **Same value in both files** (`i18n: "duplicate"`): `operatives`, `operatives_min`, `operatives_max`, `boxes`, `legal_until`. Write the same value to the `.en.md` and the `.hu.md` file.
 - **Translated** (`i18n: true`): body (play style) and `boxes_note`. Write an English text and a Hungarian text with the same content.
 
+Capitalization (all languages, all texts): write general words for factions, races and armies in lowercase, for example "chaos", "space marines", "humans", also as an adjective ("a chaos team", "egy káosz csapat"). Capitalize them only inside a proper name (team, unit, operative or rule name, for example Chaos Cult).
+
 Hungarian text rules (also in references/playstyle.md):
 - Natural and fluent Hungarian, not a word-by-word translation. Correct spelling, punctuation and agreement.
 - Do not translate English proper nouns (team, faction, unit, operative and rule names).

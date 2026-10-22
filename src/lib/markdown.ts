@@ -104,7 +104,8 @@ async function processContentBlocks(blocks: ContentBlock[], locale?: string): Pr
 
     // Load all kill teams for the team chooser block
     if (block.type === 'kill_team_chooser') {
-      processedBlock.killTeams = await getKillTeams(locale)
+      // Only reviewed teams are shown
+      processedBlock.killTeams = (await getKillTeams(locale)).filter((team) => team.reviewed)
     }
 
     processedBlocks.push(processedBlock)

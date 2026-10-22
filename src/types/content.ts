@@ -153,11 +153,12 @@ export interface KillTeamChooserLabels {
   q_legal: string
   a_legal_classified: string
   q_faction: string
-  reviewed_filter: string
   factions: KillTeamFactionOption[]
   result_count: string
   reset: string
   empty_state: string
+  declassified_separator: string
+  under_construction: string
   beginner_tag: string
   operatives_label: string
   boxes_label: string

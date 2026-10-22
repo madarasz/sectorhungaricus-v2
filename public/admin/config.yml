@@ -263,10 +263,11 @@ collections:
                       - {label: "Value", name: "value", widget: "string"}
                       - {label: "Label", name: "label", widget: "string"}
                       - {label: "Show as answer in the faction question", name: "in_filter", widget: "boolean", default: false}
-                  - {label: "Reviewed filter checkbox", name: "reviewed_filter", widget: "string"}
                   - {label: "Result count", name: "result_count", widget: "string", hint: "Use {shown} and {total}"}
                   - {label: "Reset button", name: "reset", widget: "string"}
                   - {label: "Empty state", name: "empty_state", widget: "string"}
+                  - {label: "Non-classified teams separator", name: "declassified_separator", widget: "string"}
+                  - {label: "Under construction note", name: "under_construction", widget: "string", hint: "Shown at the end of the team list"}
                   - {label: "Beginner tag", name: "beginner_tag", widget: "string"}
                   - {label: "Operatives label", name: "operatives_label", widget: "string"}
                   - {label: "Boxes label", name: "boxes_label", widget: "string"}

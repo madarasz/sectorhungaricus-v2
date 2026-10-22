@@ -46,10 +46,11 @@ content_blocks:
         - {value: adeptus-mechanicus, label: Adeptus Mechanicus, in_filter: false}
         - {value: genestealer-cults, label: Genestealer kultuszok, in_filter: false}
         - {value: drukhari, label: Drukhari, in_filter: false}
-      reviewed_filter: Csak az ellenőrzött csapatok
       result_count: "{shown} / {total} csapat"
       reset: Válaszok törlése
       empty_state: Egyik csapat sem felel meg minden válasznak. Változtass meg egy választ, hogy több csapatot láss.
+      declassified_separator: Non-classified csapatok – a legtöbb versenyen nem használhatók
+      under_construction: Az oldal fejlesztés alatt áll. Hamarosan további csapatokkal bővül.
       beginner_tag: Kezdőbarát
       operatives_label: Operatívok
       boxes_label: Szükséges dobozok

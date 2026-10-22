@@ -51,6 +51,7 @@ For examples, read the body of the reviewed teams (the teams with a non-empty `r
 
 - English: plain, correct grammar. Same tone as the reviewed texts.
 - Hungarian: natural and fluent, not a word-by-word translation. Correct spelling, punctuation and agreement.
+- Do not capitalize general words for factions, races and armies in any language: "chaos", "space marines", "humans", also as an adjective ("a chaos team", "egy káosz csapat"). Capitalize them only inside a proper name (team, unit, operative or rule name, for example Chaos Cult).
 - Do not translate English proper nouns (team, faction, unit and operative names, e.g. Blades of Khaine, Adeptus Mechanicus, Tech-Priest, Dark Gods).
 - Keep game terms in English in the Hungarian text (counteract, obscured, concealed, turning point, heavy). Use "operatív" for operative.
 - Do not use the "-ek/-ok" plural suffix on an English proper noun that is already plural. Write "a Brood Brothers tagjai", not "a Brood Brother-ek".

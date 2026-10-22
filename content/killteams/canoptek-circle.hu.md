@@ -1,16 +1,18 @@
 ---
 name: Canoptek Circle
-reviewed: ""
+reviewed: Madarász
 factions:
   - xenos
   - necrons
-operatives: null
-operatives_min: 5
-operatives_max: 7
+operatives: 8
+operatives_min: null
+operatives_max: null
 boxes: 1
-tier: ""
+boxes_note: Egy dobozból minden specialista megépíthető. Fegyveropciók csak a
+  Warrior operatívoknál vannak.
+tier: A
 beginner_friendly: false
-legal_until: 2027
+legal_until: 2029
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120110086_KTCanoptekCircle02.jpg?fm=webp&w=892&h=920
 ---
-Necron konstrukciók, amelyek javítják magukat és uralják a pályát.
+Az érzelemmentes Canoptek konstrukciók Cryptek uruk szolgálatában sziklán, fémen és élő húson is áttörnek, uruk pedig ősi energiacsomópontokból tölti fel őket még nagyobb erővel. Ez a Necrons csapat nyolc operatívból áll: a Geomancer; strapabíró, erős fegyverekkel felszerelt Tomb Crawlerek és gyors, feláldozható Macrocyte operatívokból, amelyek újra és újra visszatérnek a harcba. Az obelisk node-ok energiamátrixszá kapcsolódnak össze, és az ebben álló operatívok megbízhatóbban támadnak, és többet akciót hajthatnak végre.

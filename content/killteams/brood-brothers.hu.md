@@ -1,13 +1,14 @@
 ---
 name: Brood Brothers
-reviewed: ""
+reviewed: Madarász
 factions:
   - xenos
   - genestealer-cults
+operatives: null
 operatives_min: 10
 operatives_max: 14
 boxes: 1
-tier: ""
+tier: S
 beginner_friendly: false
 legal_until: 2027
 image: https://assets.warhammer-community.com/articles/71d9a627-0558-4965-8094-c5d410c1db9b/u3vo7amhrs84vnma.jpg
