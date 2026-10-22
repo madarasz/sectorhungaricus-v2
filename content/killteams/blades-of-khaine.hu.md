@@ -7,7 +7,7 @@ factions:
 operatives: 8
 operatives_min: null
 operatives_max: null
-boxes: 2
+boxes: 3
 boxes_note: Két Aspect Warrior doboz kombinációja
 tier: A
 beginner_friendly: false

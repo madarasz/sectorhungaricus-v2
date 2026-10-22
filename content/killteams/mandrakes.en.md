@@ -3,7 +3,7 @@ name: "Mandrakes"
 reviewed: ""
 factions:
   - xenos
-  - drukhari
+  - aeldari
 operatives_min: 8
 operatives_max: 9
 boxes: 1

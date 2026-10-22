@@ -3,7 +3,7 @@ name: Canoptek Circle
 reviewed: Madarász
 factions:
   - xenos
-  - necrons
+  - necron
 operatives: 8
 operatives_min: null
 operatives_max: null

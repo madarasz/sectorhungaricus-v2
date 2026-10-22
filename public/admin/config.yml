@@ -116,7 +116,7 @@ collections:
         multiple: true
         i18n: "duplicate"
         hint: "Values must match the faction options of the Kill Team Chooser block."
-        options: ["imperium", "chaos", "xenos", "aeldari", "orks", "tyranids", "space-marine", "astra-militarum", "tau", "votann", "necrons", "adepta-sororitas", "adeptus-mechanicus", "genestealer-cults", "drukhari"]
+        options: ["imperium", "chaos", "xenos", "baseline-human", "space-marine", "astra-militarum", "adepta-sororitas", "inquisition", "abhuman", "mutant", "adeptus-mechanicus", "aeldari", "tyranid", "genestealer-cult", "necron", "tau", "votann", "ork"]
       - {label: "Operatives", name: "operatives", widget: "number", value_type: "int", required: false, i18n: "duplicate", hint: "Fix number of operatives. Leave empty if the team size is a range."}
       - {label: "Operatives minimum", name: "operatives_min", widget: "number", value_type: "int", required: false, i18n: "duplicate", hint: "Used when Operatives is empty"}
       - {label: "Operatives maximum", name: "operatives_max", widget: "number", value_type: "int", required: false, i18n: "duplicate", hint: "Used when Operatives is empty"}
@@ -250,19 +250,17 @@ collections:
                   - {label: "Answer: many (7-10)", name: "a_size_many", widget: "string"}
                   - {label: "Answer: horde (11+)", name: "a_size_horde", widget: "string"}
                   - {label: "Question: boxes", name: "q_boxes", widget: "string"}
-                  - {label: "Answer: one box", name: "a_boxes_one", widget: "string"}
-                  - {label: "Answer: more boxes", name: "a_boxes_more", widget: "string"}
+                  - {label: "Checkbox: only one box", name: "a_boxes_one", widget: "string"}
                   - {label: "Question: tournament legality", name: "q_legal", widget: "string"}
                   - {label: "Checkbox: classified", name: "a_legal_classified", widget: "string"}
                   - {label: "Question: faction", name: "q_faction", widget: "string"}
                   - label: "Factions"
                     name: "factions"
                     widget: "list"
-                    hint: "Faction answers in the filter and tag labels on the cards"
+                    hint: "Labels of the faction tags. Main and sub faction grouping of the filter is set in the code."
                     fields:
                       - {label: "Value", name: "value", widget: "string"}
                       - {label: "Label", name: "label", widget: "string"}
-                      - {label: "Show as answer in the faction question", name: "in_filter", widget: "boolean", default: false}
                   - {label: "Result count", name: "result_count", widget: "string", hint: "Use {shown} and {total}"}
                   - {label: "Reset button", name: "reset", widget: "string"}
                   - {label: "Empty state", name: "empty_state", widget: "string"}

@@ -3,7 +3,7 @@ name: "Wyrmblade"
 reviewed: ""
 factions:
   - xenos
-  - genestealer-cults
+  - genestealer-cult
 operatives_min: 10
 operatives_max: 12
 boxes: 1

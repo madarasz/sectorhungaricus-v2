@@ -3,6 +3,7 @@ name: Blooded
 reviewed: Madarász
 factions:
   - chaos
+  - baseline-human
 operatives_min: 12
 operatives_max: 14
 boxes: 1

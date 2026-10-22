@@ -3,7 +3,7 @@ name: "Hierotek Circle"
 reviewed: ""
 factions:
   - xenos
-  - necrons
+  - necron
 operatives_min: 7
 operatives_max: 8
 boxes: 2

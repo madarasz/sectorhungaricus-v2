@@ -2,7 +2,8 @@
 name: "Wrecka Krew"
 reviewed: ""
 factions:
-  - orks
+  - xenos
+  - ork
 operatives_min: 6
 operatives_max: 7
 boxes: 1

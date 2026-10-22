@@ -3,6 +3,8 @@ name: "Gellerpox Infected"
 reviewed: ""
 factions:
   - chaos
+  - abhuman
+  - mutant
 operatives_min: 9
 operatives_max: 10
 boxes: 1

@@ -4,6 +4,7 @@ reviewed: Madarász
 factions:
   - imperium
   - adepta-sororitas
+  - baseline-human
 operatives: 9
 boxes: 1
 boxes_note: One box builds every specialist at the same time, plus one extra

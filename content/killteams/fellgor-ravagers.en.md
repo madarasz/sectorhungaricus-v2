@@ -3,6 +3,7 @@ name: "Fellgor Ravagers"
 reviewed: ""
 factions:
   - chaos
+  - abhuman
 operatives: 10
 boxes: 1
 tier: ""

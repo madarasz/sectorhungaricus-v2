@@ -49,3 +49,4 @@ public/uploads/*-mobile.*
 public/uploads/*-desktop.*
 
 .codemie
+.claude/launch.json

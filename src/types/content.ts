@@ -132,7 +132,6 @@ export interface KillTeam {
 export interface KillTeamFactionOption {
   value: string
   label: string
-  in_filter: boolean
 }
 
 export interface KillTeamChooserLabels {
@@ -149,7 +148,6 @@ export interface KillTeamChooserLabels {
   a_size_horde: string
   q_boxes: string
   a_boxes_one: string
-  a_boxes_more: string
   q_legal: string
   a_legal_classified: string
   q_faction: string

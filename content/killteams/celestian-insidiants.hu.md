@@ -4,6 +4,7 @@ reviewed: Madarász
 factions:
   - imperium
   - adepta-sororitas
+  - baseline-human
 operatives: 9
 operatives_min: null
 operatives_max: null

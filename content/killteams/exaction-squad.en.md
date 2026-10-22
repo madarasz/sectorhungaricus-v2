@@ -3,6 +3,7 @@ name: "Exaction Squad"
 reviewed: ""
 factions:
   - imperium
+  - baseline-human
 operatives_min: 10
 operatives_max: 11
 boxes: 1

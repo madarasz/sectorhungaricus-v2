@@ -13,7 +13,7 @@ import { Legality, formatLegalUntil, getLegality } from './legality'
 interface TeamDetailProps {
   team: KillTeam
   labels: KillTeamChooserLabels
-  factionNames: (values: string[]) => string
+  factionLabels: (values: string[]) => string[]
   locale: string
   now: Date
   onClose: () => void
@@ -37,7 +37,7 @@ const LEGALITY_STYLES: Record<Legality, string> = {
 
 const DESKTOP_QUERY = '(min-width: 1280px)'
 
-export default function TeamDetail({ team, labels, factionNames, locale, now, onClose }: TeamDetailProps) {
+export default function TeamDetail({ team, labels, factionLabels, locale, now, onClose }: TeamDetailProps) {
   const closeRef = useRef<HTMLButtonElement>(null)
   const panelRef = useRef<HTMLElement>(null)
 
@@ -102,56 +102,65 @@ export default function TeamDetail({ team, labels, factionNames, locale, now, on
         </TeamImage>
 
         <div className="p-4 md:p-5 xl:p-6 xl:grid xl:grid-cols-2 xl:gap-x-8 xl:content-start">
-          <div className="xl:col-span-2">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 xl:col-span-2">
             <h2 id="kt-detail-title" className="font-namdhinggo text-xl md:text-2xl font-semibold leading-tight" data-testid="kt-detail-name">
               {team.name}
             </h2>
-            <p className="text-xs opacity-75 mt-1">{factionNames(team.factions)}</p>
+            <ul className="flex flex-wrap gap-1.5" data-testid="kt-detail-factions">
+              {factionLabels(team.factions).map((label) => (
+                <li key={label} className="px-2.5 py-0.5 rounded-full border border-[var(--card-text)]/25 bg-[var(--hero-secondary-background)]/15 text-xs font-medium">
+                  {label}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="prose prose-sm max-w-none mt-3 text-sm" dangerouslySetInnerHTML={{ __html: team.playstyleHtml }} />
 
-          <dl className="grid grid-cols-[1.25rem_1fr_auto] gap-x-2 gap-y-2 items-center text-sm mt-2 xl:mt-3 xl:col-start-2 xl:row-start-2 xl:row-span-2 xl:self-start">
-            {rows.map((row) => (
-              <div key={row.label} className="contents">
-                <FontAwesomeIcon icon={row.icon} className="w-4 h-4" aria-hidden="true" />
-                <dt className="opacity-80">{row.label}</dt>
-                <dd className="text-right font-medium">{row.value}</dd>
-                {row.note && <dd className="col-start-2 col-span-2 text-xs opacity-75 -mt-1">{row.note}</dd>}
-              </div>
-            ))}
-            <span className="text-base leading-none" aria-hidden="true"><SwordIcon /></span>
-            <dt className="opacity-80">{labels.combat_label}</dt>
-            <dd className="text-right">
-              <CombatIcons combat={team.combat} rangedLabel={labels.ranged_label} meleeLabel={labels.melee_label} />
-            </dd>
-            {team.tier && (
-              <>
-                <FontAwesomeIcon icon={faTrophy} className="w-4 h-4" aria-hidden="true" />
-                <dt className="opacity-80">{labels.tier_label}</dt>
-                <dd className="text-right">
-                  <span className={`inline-flex items-center justify-center min-w-8 h-8 rounded-md font-namdhinggo text-lg font-semibold ${TIER_COLORS[team.tier]}`} data-testid="kt-detail-tier">
-                    {team.tier}
-                  </span>
-                </dd>
-              </>
-            )}
-          </dl>
+          {/* Second column on desktop: team facts and tournament legality */}
+          <div className="xl:col-start-2 xl:row-start-2 xl:self-start">
+            <dl className="grid grid-cols-[1.25rem_1fr_auto] gap-x-2 gap-y-2 items-center text-sm mt-2 xl:mt-3">
+              {rows.map((row) => (
+                <div key={row.label} className="contents">
+                  <FontAwesomeIcon icon={row.icon} className="w-4 h-4" aria-hidden="true" />
+                  <dt className="opacity-80">{row.label}</dt>
+                  <dd className="text-right font-medium">{row.value}</dd>
+                  {row.note && <dd className="col-start-2 col-span-2 text-xs opacity-75 -mt-1">{row.note}</dd>}
+                </div>
+              ))}
+              <span className="text-base leading-none" aria-hidden="true"><SwordIcon /></span>
+              <dt className="opacity-80">{labels.combat_label}</dt>
+              <dd className="text-right">
+                <CombatIcons combat={team.combat} rangedLabel={labels.ranged_label} meleeLabel={labels.melee_label} />
+              </dd>
+              {team.tier && (
+                <>
+                  <FontAwesomeIcon icon={faTrophy} className="w-4 h-4" aria-hidden="true" />
+                  <dt className="opacity-80">{labels.tier_label}</dt>
+                  <dd className="text-right">
+                    <span className={`inline-flex items-center justify-center min-w-8 h-8 rounded-md font-namdhinggo text-lg font-semibold ${TIER_COLORS[team.tier]}`} data-testid="kt-detail-tier">
+                      {team.tier}
+                    </span>
+                  </dd>
+                </>
+              )}
+            </dl>
 
-          <div
-            className={`mt-4 xl:col-start-1 xl:self-start flex items-center gap-2 rounded-lg px-3 py-2 text-sm ${LEGALITY_STYLES[legality]}`}
-            data-legality={legality}
-            data-testid="kt-detail-legal"
-          >
-            <FontAwesomeIcon icon={legality === 'classified' ? faShieldHalved : legality === 'rotates_soon' ? faHourglassHalf : faBan} className="w-4 h-4" aria-hidden="true" />
-            {legality === 'declassified' || team.legal_until === undefined ? (
-              <span>{labels.not_legal_label}</span>
-            ) : (
-              <span>
-                {formatLegalUntil(labels.legal_until_label, team.legal_until, locale)}
-                {legality === 'rotates_soon' && <span className="block text-xs">{labels.rotates_soon_label}</span>}
-              </span>
-            )}
+            <div
+              className={`mt-4 flex items-center gap-2 rounded-lg px-3 py-2 text-sm ${LEGALITY_STYLES[legality]}`}
+              data-legality={legality}
+              data-testid="kt-detail-legal"
+            >
+              <FontAwesomeIcon icon={legality === 'classified' ? faShieldHalved : legality === 'rotates_soon' ? faHourglassHalf : faBan} className="w-4 h-4" aria-hidden="true" />
+              {legality === 'declassified' || team.legal_until === undefined ? (
+                <span>{labels.not_legal_label}</span>
+              ) : (
+                <span>
+                  {formatLegalUntil(labels.legal_until_label, team.legal_until, locale)}
+                  {legality === 'rotates_soon' && <span className="block text-xs">{labels.rotates_soon_label}</span>}
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </aside>

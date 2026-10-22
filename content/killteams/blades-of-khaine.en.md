@@ -5,7 +5,7 @@ factions:
   - xenos
   - aeldari
 operatives: 8
-boxes: 2
+boxes: 3
 boxes_note: Mix of two Aspect Warrior boxes
 tier: A
 beginner_friendly: false

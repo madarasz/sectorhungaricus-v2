@@ -51,7 +51,7 @@ test.describe('Kill Team chooser', () => {
   });
 
   test('shows empty state and reset clears answers', async ({ page }) => {
-    await page.goto(`${PAGE_URL}?exp=new&fight=ranged&faction=orks`);
+    await page.goto(`${PAGE_URL}?exp=new&fight=ranged&faction=xenos`);
 
     await expect(page.getByTestId('kt-empty')).toBeVisible();
     await page.getByTestId('kt-reset').click();
@@ -67,6 +67,7 @@ test.describe('Kill Team chooser', () => {
     await expect(detail).toBeVisible();
     await expect(detail.getByTestId('kt-detail-name')).toHaveText('Blades of Khaine');
     await expect(detail.getByTestId('kt-detail-legal')).toBeVisible();
+    await expect(detail.getByTestId('kt-detail-factions').locator('li')).toHaveText(['Xenos', 'Aeldari']);
     await expect(page).toHaveURL(/team=blades-of-khaine/);
 
     await page.getByTestId('kt-detail-close').click();
@@ -107,10 +108,115 @@ test.describe('Kill Team chooser', () => {
     await expect(page.getByTestId('kt-card-deathwatch')).toContainText('5');
   });
 
-  test('faction question shows only filter factions', async ({ page }) => {
+  test('filters are in two columns in the requested order', async ({ page }) => {
+    await page.goto(PAGE_URL);
+    const order = (column: number) =>
+      page.getByTestId(`kt-question-column-${column}`).locator('> fieldset').evaluateAll((elements) => elements.map((e) => e.getAttribute('data-testid')));
+    expect(await order(1)).toEqual(['kt-question-exp', 'kt-question-faction', 'kt-question-fight']);
+    expect((await order(2)).slice(0, 2)).toEqual(['kt-question-size', 'kt-question-boxes']);
+  });
+
+  test('faction question shows main factions and sub factions of the selected ones in one place', async ({ page }) => {
     await page.goto(PAGE_URL);
     await expect(page.getByTestId('kt-answer-faction-imperium')).toBeVisible();
-    await expect(page.getByTestId('kt-answer-faction-necrons')).toHaveCount(0);
+    await expect(page.getByTestId('kt-answer-faction-chaos')).toBeVisible();
+    await expect(page.getByTestId('kt-answer-faction-xenos')).toBeVisible();
+    await expect(page.getByTestId('kt-answer-faction-necron')).toHaveCount(0);
+    await expect(page.getByTestId('kt-subfactions')).toHaveCount(0);
+
+    const subs = page.getByTestId('kt-subfactions').locator('[data-testid^="kt-answer-sub-"]');
+    await page.getByTestId('kt-answer-faction-chaos').click();
+    await expect(subs).toHaveCount(4);
+
+    // Shared sub factions show only once
+    await page.getByTestId('kt-answer-faction-imperium').click();
+    await expect(subs).toHaveCount(8);
+    await expect(page.getByTestId('kt-answer-sub-space-marine')).toHaveCount(1);
+  });
+
+  test('multiple main factions show teams of any selected faction', async ({ page }) => {
+    await page.goto(PAGE_URL);
+    await page.getByTestId('kt-answer-faction-imperium').click();
+    await page.getByTestId('kt-answer-faction-xenos').click();
+    await expect(page).toHaveURL(/faction=imperium&faction=xenos/);
+
+    await expect(page.getByTestId('kt-card-deathwatch')).toBeVisible();
+    await expect(page.getByTestId('kt-card-canoptek-circle')).toBeVisible();
+    await expect(page.getByTestId('kt-card-nemesis-claw')).toHaveCount(0);
+  });
+
+  test('selected sub factions list only their teams', async ({ page }) => {
+    await page.goto(`${PAGE_URL}?faction=imperium&faction=xenos`);
+    await page.getByTestId('kt-answer-sub-necron').click();
+    await expect(page).toHaveURL(/sub=necron/);
+
+    await expect(page.getByTestId('kt-card-canoptek-circle')).toBeVisible();
+    await expect(page.getByTestId('kt-card-blades-of-khaine')).toHaveCount(0);
+    await expect(page.getByTestId('kt-card-deathwatch')).toHaveCount(0);
+
+    // Second sub faction adds its teams
+    await page.getByTestId('kt-answer-sub-space-marine').click();
+    await expect(page.getByTestId('kt-card-deathwatch')).toBeVisible();
+    await expect(page.getByTestId('kt-card-canoptek-circle')).toBeVisible();
+
+    // Deselecting the main faction removes its sub factions
+    await page.getByTestId('kt-answer-faction-xenos').click();
+    await expect(page.getByTestId('kt-answer-sub-necron')).toHaveCount(0);
+    await expect(page).not.toHaveURL(/xenos|necron/);
+    await expect(page.getByTestId('kt-card-canoptek-circle')).toHaveCount(0);
+    await expect(page.getByTestId('kt-card-deathwatch')).toBeVisible();
+  });
+
+  test('shared sub faction shows teams only of the selected main factions', async ({ page }) => {
+    await page.goto(`${PAGE_URL}?faction=chaos&sub=space-marine`);
+    await expect(page.getByTestId('kt-answer-sub-space-marine')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByTestId('kt-card-nemesis-claw')).toBeVisible();
+    await expect(page.getByTestId('kt-card-deathwatch')).toHaveCount(0);
+
+    // The sub faction stays selected while a main faction still has it
+    await page.getByTestId('kt-answer-faction-imperium').click();
+    await expect(page.getByTestId('kt-card-deathwatch')).toBeVisible();
+    await page.getByTestId('kt-answer-faction-chaos').click();
+    await expect(page.getByTestId('kt-answer-sub-space-marine')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByTestId('kt-card-nemesis-claw')).toHaveCount(0);
+    await expect(page.getByTestId('kt-card-deathwatch')).toBeVisible();
+  });
+
+  test('mutant sub faction shows mutant teams', async ({ page }) => {
+    await page.goto(`${PAGE_URL}?faction=chaos&sub=mutant`);
+    await expect(page.getByTestId('kt-card-chaos-cult')).toBeVisible();
+    await expect(page.getByTestId('kt-card-blooded')).toHaveCount(0);
+  });
+
+  test('sub faction in the URL without its main faction is ignored', async ({ page }) => {
+    await page.goto(`${PAGE_URL}?faction=imperium&sub=necron`);
+    await expect(page.getByTestId('kt-card-deathwatch')).toBeVisible();
+    await expect(page.getByTestId('kt-card-canoptek-circle')).toHaveCount(0);
+    await expect(page).not.toHaveURL(/sub=/);
+  });
+
+  test('Hungarian page shows Hungarian sub faction labels', async ({ page }) => {
+    await page.goto('/hu/kill-team/choose-a-team/?faction=imperium');
+    await expect(page.getByTestId('kt-answer-sub-baseline-human')).toHaveText('Közönséges ember');
+    await expect(page.getByTestId('kt-answer-sub-inquisition')).toHaveText('Inkvizíció');
+  });
+
+  test('only one box checkbox hides teams that need more boxes', async ({ page }) => {
+    await page.goto(PAGE_URL);
+    await expect(page.getByTestId('kt-question-boxes')).toContainText('How many boxes are you willing to buy?');
+
+    const cards = page.locator('[data-testid^="kt-card-"]').filter({ has: page.getByTestId('kt-card-name') });
+    const total = await cards.count();
+    const checkbox = page.getByTestId('kt-answer-boxes-one');
+    await checkbox.check();
+    await expect(page).toHaveURL(/boxes=one/);
+    // Angels of Death needs more than one box
+    await expect(page.getByTestId('kt-card-angels-of-death')).toHaveCount(0);
+    await expect(page.getByTestId('kt-card-nemesis-claw')).toBeVisible();
+
+    await checkbox.uncheck();
+    await expect(page).not.toHaveURL(/boxes=/);
+    await expect(cards).toHaveCount(total);
   });
 
   test('horde answer shows only teams with 11 or more operatives', async ({ page }) => {

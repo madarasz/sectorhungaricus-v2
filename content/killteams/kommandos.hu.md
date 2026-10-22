@@ -2,7 +2,8 @@
 name: "Kommandos"
 reviewed: ""
 factions:
-  - orks
+  - xenos
+  - ork
 operatives: 10
 boxes: 1
 tier: ""

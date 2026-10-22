@@ -20,32 +20,34 @@ content_blocks:
       a_fight_ranged: Távolról
       a_fight_melee: Közelharcban
       a_fight_mixed: Mindkettő
-      q_size: Hány figurát szeretnél festeni?
+      q_size: Hány figurával szeretnél játszani?
       a_size_few: Néhány elit figurát
       a_size_many: Sok figurát
       a_size_horde: Egy egész hordát
-      q_boxes: Hány dobozt vennél?
-      a_boxes_one: Csak egyet
-      a_boxes_more: Kettő vagy több is jó
+      q_boxes: Hány dobozt vagy hajlandó megvenni?
+      a_boxes_one: Csak egy dobozt
       q_legal: Minden versenyen legális
       a_legal_classified: Igen, classified
-      q_faction: Melyik frakció?
+      q_faction: Melyik frakció tetszik?
       factions:
-        - {value: imperium, label: Imperium, in_filter: true}
-        - {value: chaos, label: Káosz, in_filter: true}
-        - {value: xenos, label: Xenos, in_filter: true}
-        - {value: aeldari, label: Aeldari, in_filter: true}
-        - {value: orks, label: Orkok, in_filter: true}
-        - {value: tyranids, label: Tyranidák, in_filter: false}
-        - {value: space-marine, label: Űrgárdisták, in_filter: false}
-        - {value: astra-militarum, label: Astra Militarum, in_filter: false}
-        - {value: tau, label: T'au Birodalom, in_filter: false}
-        - {value: votann, label: Leagues of Votann, in_filter: false}
-        - {value: necrons, label: Necronok, in_filter: false}
-        - {value: adepta-sororitas, label: Adepta Sororitas, in_filter: false}
-        - {value: adeptus-mechanicus, label: Adeptus Mechanicus, in_filter: false}
-        - {value: genestealer-cults, label: Genestealer kultuszok, in_filter: false}
-        - {value: drukhari, label: Drukhari, in_filter: false}
+        - {value: imperium, label: Imperium}
+        - {value: chaos, label: Káosz}
+        - {value: xenos, label: Xenos}
+        - {value: baseline-human, label: Közönséges ember}
+        - {value: space-marine, label: Űrgárdista}
+        - {value: astra-militarum, label: Astra Militarum}
+        - {value: adepta-sororitas, label: Adepta Sororitas}
+        - {value: inquisition, label: Inkvizíció}
+        - {value: abhuman, label: Abhumán}
+        - {value: mutant, label: Mutáns}
+        - {value: adeptus-mechanicus, label: Adeptus Mechanicus}
+        - {value: aeldari, label: Aeldari}
+        - {value: tyranid, label: Tyranida}
+        - {value: genestealer-cult, label: Génorzó szekta}
+        - {value: necron, label: Necron}
+        - {value: tau, label: T'au Birodalom}
+        - {value: votann, label: Votann}
+        - {value: ork, label: Ork}
       result_count: "{shown} / {total} csapat"
       reset: Válaszok törlése
       empty_state: Egyik csapat sem felel meg minden válasznak. Változtass meg egy választ, hogy több csapatot láss.

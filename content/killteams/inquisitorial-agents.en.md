@@ -3,6 +3,7 @@ name: "Inquisitorial Agents"
 reviewed: ""
 factions:
   - imperium
+  - inquisition
 operatives_min: 8
 operatives_max: 12
 boxes: 1

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotateLeft } from '@fortawesome/free-solid-svg-icons'
 import { ContentBlock, KillTeam } from '@/types/content'
-import { AnswerKey, Answers, TEAM_PARAM, answersFromSearch, buildSearch, matchesAnswers } from './filters'
+import { Answers, FACTION_TREE, SingleAnswerKey, TEAM_PARAM, answersFromSearch, buildSearch, matchesAnswers, subFactionsOf } from './filters'
 import { getLegality } from './legality'
 import QuestionFilters, { Question } from './QuestionFilters'
 import TeamCard from './TeamCard'
@@ -25,17 +25,14 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
   // Answers and details render only after mount, so server and client output stay the same
   const now = useMemo(() => new Date(), [])
 
-  const filterFactions = useMemo(() => labels?.factions.filter((f) => f.in_filter) ?? [], [labels])
-  const factionValues = useMemo(() => filterFactions.map((f) => f.value), [filterFactions])
-
   // Restore answers and selected team from the URL
   useEffect(() => {
     const search = window.location.search
-    setAnswers(answersFromSearch(search, factionValues))
+    setAnswers(answersFromSearch(search))
     const team = new URLSearchParams(search).get(TEAM_PARAM)
     if (team && teams.some((t) => t.slug === team)) setSelectedSlug(team)
     setUrlLoaded(true)
-  }, [factionValues, teams])
+  }, [teams])
 
   // Keep the URL in sync so filtered views can be shared
   useEffect(() => {
@@ -48,33 +45,39 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
 
   if (!labels) return null
 
-  const questions: Question[] = [
+  // Faction tags without a CMS label are not shown
+  const factionOption = (value: string) => labels.factions.find((f) => f.value === value)
+  const mainFactions = Object.keys(FACTION_TREE).flatMap((main) => factionOption(main) ?? [])
+  const subFactions = subFactionsOf(answers.faction ?? []).flatMap((sub) => factionOption(sub) ?? [])
+
+  const questionColumns: Question[][] = [[
     { key: 'exp', label: labels.q_experience, options: [
       { value: 'new', label: labels.a_experience_new },
       { value: 'played', label: labels.a_experience_played },
     ] },
+    { key: 'faction', label: labels.q_faction, mains: mainFactions, subs: subFactions },
     { key: 'fight', label: labels.q_fight, options: [
       { value: 'ranged', label: labels.a_fight_ranged },
       { value: 'melee', label: labels.a_fight_melee },
       { value: 'mixed', label: labels.a_fight_mixed },
     ] },
+  ], [
     { key: 'size', label: labels.q_size, options: [
       { value: 'few', label: labels.a_size_few },
       { value: 'many', label: labels.a_size_many },
       { value: 'horde', label: labels.a_size_horde },
     ] },
-    { key: 'boxes', label: labels.q_boxes, options: [
+    { key: 'boxes', label: labels.q_boxes, checkbox: true, options: [
       { value: 'one', label: labels.a_boxes_one },
-      { value: 'more', label: labels.a_boxes_more },
     ] },
-    { key: 'faction', label: labels.q_faction, options: filterFactions },
     { key: 'legal', label: labels.q_legal, checkbox: true, options: [
       { value: 'classified', label: labels.a_legal_classified },
     ] },
-  ]
+  ]]
 
-  const factionNames = (values: string[]) =>
-    labels.factions.filter((f) => values.includes(f.value)).map((f) => f.label).join(', ')
+  const factionLabels = (values: string[]) =>
+    labels.factions.filter((f) => values.includes(f.value)).map((f) => f.label)
+  const factionNames = (values: string[]) => factionLabels(values).join(', ')
 
   const visibleTeams = teams.filter((team) => matchesAnswers(team, answers, now))
   // Non-classified teams go to the end of the list, after a separator
@@ -84,7 +87,7 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
   const selectedTeam = teams.find((team) => team.slug === selectedSlug)
   const hasAnswers = Object.keys(answers).length > 0
 
-  const toggleAnswer = (key: AnswerKey, value: string) => {
+  const toggleAnswer = (key: SingleAnswerKey, value: string) => {
     setAnswers((prev) => {
       const next = { ...prev }
       if (next[key] === value) {
@@ -96,12 +99,39 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
     })
   }
 
+  const toggleFaction = (main: string) => {
+    setAnswers((prev) => {
+      const next = { ...prev }
+      const factions = prev.faction ?? []
+      if (factions.includes(main)) {
+        // Sub factions that no selected main faction has are deselected too
+        next.faction = factions.filter((f) => f !== main)
+        const validSubs = subFactionsOf(next.faction)
+        next.sub = (prev.sub ?? []).filter((sub) => validSubs.includes(sub))
+      } else {
+        next.faction = [...factions, main]
+      }
+      if (!next.faction.length) delete next.faction
+      if (!next.sub?.length) delete next.sub
+      return next
+    })
+  }
+
+  const toggleSub = (sub: string) => {
+    setAnswers((prev) => {
+      const subs = prev.sub ?? []
+      const next: Answers = { ...prev, sub: subs.includes(sub) ? subs.filter((s) => s !== sub) : [...subs, sub] }
+      if (!next.sub?.length) delete next.sub
+      return next
+    })
+  }
+
   const resultCount = labels.result_count
     .replace('{shown}', String(visibleTeams.length))
     .replace('{total}', String(teams.length))
 
   const detail = selectedTeam && (
-    <TeamDetail team={selectedTeam} labels={labels} locale={locale} now={now} factionNames={factionNames} onClose={closeDetail} />
+    <TeamDetail team={selectedTeam} labels={labels} locale={locale} now={now} factionLabels={factionLabels} onClose={closeDetail} />
   )
 
   const renderCard = (team: KillTeam) => (
@@ -117,7 +147,7 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
 
   return (
     <div data-testid="kt-chooser">
-      <QuestionFilters questions={questions} answers={answers} onAnswer={toggleAnswer} />
+      <QuestionFilters columns={questionColumns} answers={answers} onAnswer={toggleAnswer} onFaction={toggleFaction} onSub={toggleSub} />
 
       <div className="flex flex-wrap items-center justify-between gap-2 my-4 font-poppins text-sm">
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2">

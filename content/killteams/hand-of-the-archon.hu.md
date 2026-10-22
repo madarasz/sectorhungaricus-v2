@@ -3,7 +3,7 @@ name: "Hand of the Archon"
 reviewed: ""
 factions:
   - xenos
-  - drukhari
+  - aeldari
 operatives_min: 9
 operatives_max: 10
 boxes: 1

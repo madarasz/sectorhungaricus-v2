@@ -3,6 +3,7 @@ name: "Imperial Navy Breachers"
 reviewed: ""
 factions:
   - imperium
+  - baseline-human
 operatives: 10
 boxes: 1
 tier: ""

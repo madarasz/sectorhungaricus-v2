@@ -3,6 +3,8 @@ name: Chaos Cult
 reviewed: Madarász
 factions:
   - chaos
+  - baseline-human
+  - mutant
 operatives: 14
 operatives_min: null
 operatives_max: null

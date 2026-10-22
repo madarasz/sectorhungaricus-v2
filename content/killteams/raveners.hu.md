@@ -3,7 +3,7 @@ name: "Raveners"
 reviewed: ""
 factions:
   - xenos
-  - tyranids
+  - tyranid
 operatives: 5
 boxes: 1
 tier: ""

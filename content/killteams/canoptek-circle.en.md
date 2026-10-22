@@ -3,7 +3,7 @@ name: Canoptek Circle
 reviewed: Madarász
 factions:
   - xenos
-  - necrons
+  - necron
 operatives: 8
 boxes: 1
 boxes_note: One box builds every specialist. Only the warriors have weapon options.

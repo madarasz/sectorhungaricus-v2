@@ -4,6 +4,7 @@ reviewed: ""
 factions:
   - imperium
   - astra-militarum
+  - abhuman
 operatives: 10
 boxes: 1
 tier: ""

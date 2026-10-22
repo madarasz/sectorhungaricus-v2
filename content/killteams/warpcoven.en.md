@@ -3,6 +3,7 @@ name: "Warpcoven"
 reviewed: ""
 factions:
   - chaos
+  - space-marine
 operatives_min: 6
 operatives_max: 8
 boxes: 1

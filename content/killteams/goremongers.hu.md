@@ -3,6 +3,7 @@ name: "Goremongers"
 reviewed: ""
 factions:
   - chaos
+  - baseline-human
 operatives_min: 9
 operatives_max: 10
 boxes: 1

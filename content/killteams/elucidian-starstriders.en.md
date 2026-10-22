@@ -3,6 +3,7 @@ name: "Elucidian Starstriders"
 reviewed: ""
 factions:
   - imperium
+  - baseline-human
 operatives: 10
 boxes: 1
 tier: ""

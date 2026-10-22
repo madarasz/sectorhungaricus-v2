@@ -3,7 +3,8 @@ name: Brood Brothers
 reviewed: Madarász
 factions:
   - xenos
-  - genestealer-cults
+  - genestealer-cult
+  - tyranid
 operatives: null
 operatives_min: 10
 operatives_max: 14

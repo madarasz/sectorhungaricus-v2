@@ -20,32 +20,34 @@ content_blocks:
       a_fight_ranged: From range
       a_fight_melee: Up close
       a_fight_mixed: Bit of both
-      q_size: How many models do you want to paint?
+      q_size: How many models do you want to play?
       a_size_few: A few elite models
       a_size_many: Many models
       a_size_horde: A horde
-      q_boxes: How many boxes will you buy?
+      q_boxes: How many boxes are you willing to buy?
       a_boxes_one: Only one box
-      a_boxes_more: Two or more is fine
       q_legal: Legal on all tournaments
       a_legal_classified: Yes, classified
-      q_faction: Which faction?
+      q_faction: Which faction do you like?
       factions:
-        - {value: imperium, label: Imperium, in_filter: true}
-        - {value: chaos, label: Chaos, in_filter: true}
-        - {value: xenos, label: Xenos, in_filter: true}
-        - {value: aeldari, label: Aeldari, in_filter: true}
-        - {value: orks, label: Orks, in_filter: true}
-        - {value: tyranids, label: Tyranids, in_filter: false}
-        - {value: space-marine, label: Space Marines, in_filter: false}
-        - {value: astra-militarum, label: Astra Militarum, in_filter: false}
-        - {value: tau, label: T'au Empire, in_filter: false}
-        - {value: votann, label: Leagues of Votann, in_filter: false}
-        - {value: necrons, label: Necrons, in_filter: false}
-        - {value: adepta-sororitas, label: Adepta Sororitas, in_filter: false}
-        - {value: adeptus-mechanicus, label: Adeptus Mechanicus, in_filter: false}
-        - {value: genestealer-cults, label: Genestealer Cults, in_filter: false}
-        - {value: drukhari, label: Drukhari, in_filter: false}
+        - {value: imperium, label: Imperium}
+        - {value: chaos, label: Chaos}
+        - {value: xenos, label: Xenos}
+        - {value: baseline-human, label: Baseline human}
+        - {value: space-marine, label: Space Marine}
+        - {value: astra-militarum, label: Astra Militarum}
+        - {value: adepta-sororitas, label: Adepta Sororitas}
+        - {value: inquisition, label: Inquisition}
+        - {value: abhuman, label: Abhuman}
+        - {value: mutant, label: Mutant}
+        - {value: adeptus-mechanicus, label: Adeptus Mechanicus}
+        - {value: aeldari, label: Aeldari}
+        - {value: tyranid, label: Tyranid}
+        - {value: genestealer-cult, label: Genestealer Cult}
+        - {value: necron, label: Necron}
+        - {value: tau, label: T'au Empire}
+        - {value: votann, label: Votann}
+        - {value: ork, label: Ork}
       result_count: "Showing {shown} of {total} teams"
       reset: Clear answers
       empty_state: No team fits every answer. Change one answer to see more teams.
