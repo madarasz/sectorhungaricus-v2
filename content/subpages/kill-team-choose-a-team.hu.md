@@ -27,7 +27,7 @@ content_blocks:
       q_boxes: Hány dobozt vagy hajlandó megvenni?
       a_boxes_one: Csak egy dobozt
       q_legal: Minden versenyen legális
-      a_legal_classified: Igen, classified
+      a_legal_classified: Igen, csak classified csapatok
       q_faction: Melyik frakció tetszik?
       factions:
         - {value: imperium, label: Imperium}

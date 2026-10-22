@@ -27,7 +27,7 @@ content_blocks:
       q_boxes: How many boxes are you willing to buy?
       a_boxes_one: Only one box
       q_legal: Legal on all tournaments
-      a_legal_classified: Yes, classified
+      a_legal_classified: Yes, classified teams only
       q_faction: Which faction do you like?
       factions:
         - {value: imperium, label: Imperium}
