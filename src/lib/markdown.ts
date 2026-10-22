@@ -245,7 +245,7 @@ export async function getKillTeams(locale?: string): Promise<KillTeam[]> {
       const { content_blocks, reviewed, ...rest } = data
       const defaultData = defaultTeams.find((t) => t.slug === slug)?.data ?? {}
       const shared = Object.fromEntries(KILL_TEAM_SHARED_FIELDS.map((field) => [field, defaultData[field]]))
-      const team = { ...rest, ...shared } as unknown as Omit<KillTeam, 'slug' | 'playstyleHtml' | 'imageVariants'>
+      const team = { ...rest, ...shared } as unknown as Omit<KillTeam, 'slug' | 'playstyleHtml' | 'imageVariants' | 'secondImageVariants'>
       return {
         ...team,
         slug,
@@ -259,6 +259,8 @@ export async function getKillTeams(locale?: string): Promise<KillTeam[]> {
         image: team.image || undefined,
         // Remote images have no generated size variants
         imageVariants: team.image && !/^https?:\/\//.test(team.image) ? generateImageVariants(team.image) : undefined,
+        second_image: team.second_image || undefined,
+        secondImageVariants: team.second_image && !/^https?:\/\//.test(team.second_image) ? generateImageVariants(team.second_image) : undefined,
         playstyleHtml: contentHtml,
       }
     })

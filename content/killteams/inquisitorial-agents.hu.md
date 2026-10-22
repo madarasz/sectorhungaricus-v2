@@ -10,6 +10,7 @@ boxes: 1
 tier: ""
 beginner_friendly: false
 legal_until: 2027
-image: https://assets.warhammer-community.com/articles/8d633b0e-8153-4a75-ba18-cbe25ee57bc1/mbhfettbt5gueads.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108110_InquisitorialAgents3.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108110_InquisitorialAgents4.jpg?fm=webp&w=892&h=920
 ---
 Inkvizítor vegyes csapattal. Nagyon rugalmas, sok választási lehetőség.

@@ -34,7 +34,7 @@ export default function TeamCard({ team, labels, factionNames, selected, onSelec
       className={`group flex flex-col text-left rounded-xl overflow-hidden bg-[var(--card-background)] text-[var(--card-text)] shadow-[0_1px_3px_var(--card-shadow)] hover:shadow-[0_4px_12px_var(--card-shadow)] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--hero-secondary-background)] ${selected ? 'outline-3 outline-offset-2 outline-[var(--hero-secondary-background)]' : ''}`}
       data-testid={`kt-card-${team.slug}`}
     >
-      <TeamImage team={team} context="thumbnail" sizes="(max-width: 767px) 50vw, 240px" className="aspect-[4/3]">
+      <TeamImage team={team} context="thumbnail" sizes="(max-width: 767px) 50vw, 240px" className="aspect-[6/5]"catalogFrameClassName="-inset-y-[3%] inset-x-0 bg-white [&>img]:object-contain">
         {team.beginner_friendly && (
           <span className="absolute left-2 bottom-2">
             <BeginnerTag label={labels.beginner_tag} />

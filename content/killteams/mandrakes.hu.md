@@ -10,6 +10,7 @@ boxes: 1
 tier: ""
 beginner_friendly: false
 legal_until: 2027
-image: https://assets.warhammer-community.com/articles/ff507b8d-04c6-4d02-9e89-e33321739174/0uxgfvunu8qgfeuy.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120112055_KTMandrakes2.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120112055_KTMandrakes3.jpg?fm=webp&w=892&h=920
 ---
 Árnyakon át teleportáló orgyilkosok. Tiszta közelharc.

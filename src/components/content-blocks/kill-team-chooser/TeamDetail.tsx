@@ -83,7 +83,9 @@ export default function TeamDetail({ team, labels, factionLabels, locale, now, o
         className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] overflow-y-auto rounded-t-2xl bg-[var(--card-background)] text-[var(--card-text)] font-poppins shadow-[0_-4px_24px_var(--card-shadow)] motion-safe:animate-[kt-sheet-in_200ms_ease-out] xl:motion-safe:animate-none xl:static xl:z-auto xl:col-span-full xl:max-h-none xl:overflow-hidden xl:rounded-2xl xl:outline-3 xl:outline-offset-[0.375rem] xl:outline-[var(--hero-secondary-background)] xl:m-[0.5625rem] xl:scroll-mt-4 xl:shadow-[0_8px_24px_var(--card-shadow)]"
         data-testid="kt-detail"
       >
-        <TeamImage team={team} context="mobile" sizes="(max-width: 1279px) 100vw, 75vw" className="aspect-[21/9] xl:aspect-[5/2]" imageClassName="object-top">
+        <TeamImage team={team} context="mobile" sizes="(max-width: 1279px) 100vw, 75vw" className="aspect-[21/9] xl:aspect-[2/1]" imageClassName="object-top" catalogFrameClassName="top-0 bottom-0 -inset-x-[3.5%] -mt-[3.5%] xl:mt-0 xl:inset-x-0 xl:-inset-y-[3%] xl:bg-white xl:[&>img]:object-contain"
+          pair={{ className: 'aspect-[2/1]', sizes: '(max-width: 1279px) 50vw, 38vw', catalogFrameClassName: '-inset-[3%] bg-white [&>img]:object-contain' }}
+        >
           <button
             ref={closeRef}
             type="button"

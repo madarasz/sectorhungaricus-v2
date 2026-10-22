@@ -13,6 +13,7 @@ combat:
   - melee
   - melee
 legal_until: 2027
-image: https://assets.warhammer-community.com/kt_shmurderwingrules-jan20-1-feature-f6hf1mww3n.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102232_MURDERWING2.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102232_MURDERWING3.jpg?fm=webp&w=892&h=920
 ---
 Raptors that dive from the sky and terrify their prey.

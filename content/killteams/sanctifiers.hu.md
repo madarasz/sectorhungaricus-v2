@@ -10,6 +10,7 @@ boxes: 1
 tier: ""
 beginner_friendly: true
 legal_until: 2027
-image: https://assets.warhammer-community.com/kt_zealteamreveal-mar20-1-feature-u9fl9pwzu5.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108116_KillTeamSanctifiers2.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108116_KillTeamSanctifiers3.jpg?fm=webp&w=892&h=920
 ---
 Fanatikusok tűzzel és hittel. Közeli harc, sok kiabálás.

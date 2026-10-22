@@ -14,6 +14,7 @@ combat:
   - melee
   - melee
 legal_until: 2027
-image: https://assets.warhammer-community.com/kt_bloodteam-mar17-1-feature-n0tcoks1m4.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102208_KillTeamGoremongers2.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102208_KillTeamGoremongers3.jpg?fm=webp&w=892&h=920
 ---
 Khorne cultists who rush into melee and gain power from blood.

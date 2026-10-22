@@ -8,12 +8,13 @@ operatives_min: 12
 operatives_max: 14
 boxes: 1
 tier: B
-beginner_friendly: true
+beginner_friendly: false
 combat:
   - ranged
   - melee
   - melee
 legal_until: ""
-image: https://duplaegy.hu/wp-content/uploads/2022/09/KT-Blooded-Kill-Team.jpg.webp
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102213_KTBlooded3.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102213_KTBlooded2.jpg?fm=webp&w=892&h=920
 ---
 Once loyal Imperial Guardsmen, the Blooded have fallen to Chaos and now fight under cruel tyrants to prove themselves to the Chaos Gods. This is a large chaos team of cheap, fragile operatives with many specialists and even an Ogryn. Each kill or casualty draws the attention of the Dark Gods, and their attacks become deadlier with each one.

@@ -15,6 +15,7 @@ combat:
   - ranged
   - melee
 legal_until: 2027
-image: https://assets.warhammer-community.com/articles/71d9a627-0558-4965-8094-c5d410c1db9b/u3vo7amhrs84vnma.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120117029_KTBroodBrothers4.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120117029_KTBroodBrothers3.jpg?fm=webp&w=892&h=920
 ---
 Tainted by xenos blood, the Brood Brothers hide among Imperial soldiers and wait for the moment to turn their guns on their former comrades. This Genestealer Cults team has many fragile operatives, with many specialists and special weapons to choose from. A Magus, a Primus or even a Patriarch can lead them into battle. Every attack on an enemy makes the next ones against it more reliable, so they are strongest when they gang up on one target.

@@ -14,6 +14,6 @@ combat:
   - ranged
   - ranged
 legal_until: 2027
-image: https://assets.warhammer-community.com/kt_-cadianinfluencer-may08-1-feature-wtub6vraug.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105153_KillTeamSpectreSquad02.jpg?fm=webp&w=892&h=920
 ---
 Elite Cadian stealth team. Hard to spot, strong shots.

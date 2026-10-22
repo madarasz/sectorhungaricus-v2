@@ -13,6 +13,7 @@ boxes_note: A Kill Team doboz már nem kapható, de ugyanez a készlet megvan a
 tier: B
 beginner_friendly: false
 legal_until: null
-image: https://assets.warhammer-community.com/articles/afc52bf4-d2fa-447f-b0b0-15c316c17740/dancxfgnidgpegfb.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120104115_AeldariCorsairVoidreavers03.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120104115_AeldariCorsairVoidreavers02.jpg?fm=webp&w=892&h=920
 ---
 A Corsair kalózok kapzsi Aeldari fosztogatók, akik a craftworldökről és a sötét városból egyaránt érkeznek, a Voidscarred tagjai pedig a legtapasztaltabbak közülük, akiket több életnyi űrbéli kalózkodás edzett meg. Ez a kilenc operatívból álló Aeldari csapat egy Felarch vezetésével harcol, és szinte minden tagja egyedi specialista: vannak köztük pengemesterek, psykerek, mesterlövész és nehézfegyveresek. Fürge portyázók: minden operatívjuk tehet egy plusz Dash mozgást az aktivációja során.

@@ -1,6 +1,6 @@
 ---
 name: killteam-update
-description: Update Kill Team entries in content/killteams/ (English and Hungarian) from official sources - play style text, operative numbers, "Tournament legal until" year, boxes to buy and boxes note. Use this skill whenever the user wants to refresh, rewrite, fill in, check or correct any Kill Team team entry or one of these fields, even if they only say "update the killteams", "fix Battleclade's operatives", "rewrite the playstyles", "which teams are still legal" or name a team and a field.
+description: Update Kill Team entries in content/killteams/ (English and Hungarian) from official sources - play style text, operative numbers, "Tournament legal until" year, boxes to buy, boxes note and the two team images from the warhammer.com webshop. Use this skill whenever the user wants to refresh, rewrite, fill in, check or correct any Kill Team team entry or one of these fields, even if they only say "update the killteams", "fix Battleclade's operatives", "rewrite the playstyles", "which teams are still legal", "update the team photos" or name a team and a field.
 ---
 
 # Kill Team entry update
@@ -27,13 +27,14 @@ Teams with a non-empty `reviewed` field were checked by a person. Change them on
 | `legal_until` | Approved Ops Tournament Companion PDF, Classified Rotation | [references/legal-until.md](references/legal-until.md) |
 | `boxes` | Reddit "Number of boxes per team super guide" | [references/boxes.md](references/boxes.md) |
 | `boxes_note` | Reddit wiki "one-box-teams", explanation column | [references/boxes.md](references/boxes.md) |
+| `image`, `second_image` | warhammer.com webshop product page, 2x2 gallery photos | [references/images.md](references/images.md) |
 
 Read only the reference files for the fields that the user asked for.
 
 ## Languages
 
 Fields have different i18n modes in `config.yml`. Keep both files consistent:
-- **Same value in both files** (`i18n: "duplicate"`): `operatives`, `operatives_min`, `operatives_max`, `boxes`, `legal_until`. Write the same value to the `.en.md` and the `.hu.md` file.
+- **Same value in both files** (`i18n: "duplicate"`): `operatives`, `operatives_min`, `operatives_max`, `boxes`, `legal_until`, `image`, `second_image`. Write the same value to the `.en.md` and the `.hu.md` file.
 - **Translated** (`i18n: true`): body (play style) and `boxes_note`. Write an English text and a Hungarian text with the same content.
 
 Capitalization (all languages, all texts): write general words for factions, races and armies in lowercase, for example "chaos", "space marines", "humans", also as an adjective ("a chaos team", "egy káosz csapat"). Capitalize them only inside a proper name (team, unit, operative or rule name, for example Chaos Cult).
@@ -66,6 +67,8 @@ The link text is the team name (for example "Battleclade"). The file names chang
 
 **Reading PDFs.** Use `pdftotext -layout` for text. For pages where the layout carries the meaning (charts, columns), render the page with `pdftoppm -f <page> -l <page> -r 70 -png` and look at the image.
 
+**Webshop.** The warhammer.com product pages need the built-in browser. curl can download the image files. See references/images.md.
+
 **Reddit.** WebFetch, curl and the built-in browser cannot open reddit.com. Use Claude in Chrome (the user's Chrome) for the two Reddit pages. If Claude in Chrome is not available, ask the user to paste the relevant table rows.
 
 ## Parallel work
@@ -73,7 +76,7 @@ The link text is the team name (for example "Battleclade"). The file names chang
 For more than one team, start one subagent per team (or per small group of teams). Give each subagent:
 - the team slug and the two file paths,
 - the fields to update,
-- the source links that you found (the PDF URL, and the Reddit data if needed),
+- the source links that you found (the PDF URL, the Reddit data and the webshop product URL if needed),
 - the paths to this skill's reference files,
 - the instruction to change only the requested fields, and to report the final EN and HU texts and the source facts that it used.
 
@@ -92,5 +95,5 @@ When the subagents are finished, review each result against references/playstyle
 - Do not commit.
 - Report to the user:
   - a short table of what changed per team (old value → new value),
-  - the facts that you could not verify (for example, a PDF without a "Designer's commentary" section),
+  - the facts that you could not verify (for example, a PDF without a "Designer's commentary" section, or a product with only one 2x2 photo),
   - the differences that you found in fields that you did not change.

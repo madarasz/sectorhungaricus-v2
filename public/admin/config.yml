@@ -146,6 +146,7 @@ collections:
         field: {label: "Icon", name: "icon", widget: "select", options: ["ranged", "melee"]}
       - {label: "Tournament legal until (year)", name: "legal_until", widget: "number", value_type: "int", required: false, i18n: "duplicate", hint: "The team is tournament legal until 30 November of this year. Empty means not tournament legal (non-classified)."}
       - {label: "Image", name: "image", widget: "image", required: false, i18n: "duplicate"}
+      - {label: "Second image", name: "second_image", widget: "image", required: false, i18n: "duplicate", hint: "Shown next to the first image in the team details."}
       - {label: "Play style", name: "body", widget: "markdown", i18n: true}
 
   - name: "subpages"

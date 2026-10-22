@@ -13,6 +13,7 @@ combat:
   - ranged
   - melee
 legal_until: 2027
-image: https://assets.warhammer-community.com/articles/905f1a91-08f5-4a57-89db-ceeaea071a0d/znrqohdhxtp0v6wx.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120118018_KTHernkynYaegirs3.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120118018_KTHernkynYaegirs2.jpg?fm=webp&w=892&h=920
 ---
 Votann pioneers. Durable scouts with good guns.

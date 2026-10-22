@@ -126,6 +126,8 @@ export interface KillTeam {
   legal_until?: number
   image?: string
   imageVariants?: ImageVariants
+  second_image?: string
+  secondImageVariants?: ImageVariants
   playstyleHtml: string
 }
 

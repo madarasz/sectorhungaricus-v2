@@ -14,6 +14,7 @@ combat:
   - melee
   - melee
 legal_until: 2027
-image: https://assets.warhammer-community.com/kt_zealteamreveal-mar20-1-feature-u9fl9pwzu5.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108116_KillTeamSanctifiers2.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108116_KillTeamSanctifiers3.jpg?fm=webp&w=892&h=920
 ---
 Zealots with fire and faith. Close range and loud.

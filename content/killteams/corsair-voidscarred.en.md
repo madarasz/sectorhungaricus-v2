@@ -14,6 +14,7 @@ combat:
   - ranged
   - ranged
   - melee
-image: https://assets.warhammer-community.com/articles/afc52bf4-d2fa-447f-b0b0-15c316c17740/dancxfgnidgpegfb.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120104115_AeldariCorsairVoidreavers03.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120104115_AeldariCorsairVoidreavers02.jpg?fm=webp&w=892&h=920
 ---
 Corsairs are greedy Aeldari raiders who come from both the craftworlds and the Dark City, and the Voidscarred are their veterans, hardened by lifetimes of piracy among the stars. This Aeldari team of nine operatives is led by a Felarch, and almost every operative is a unique specialist, such as blademasters, psykers, a sniper and heavy gunners. They are swift raiders, and each operative can make an extra Dash move during its activation.
