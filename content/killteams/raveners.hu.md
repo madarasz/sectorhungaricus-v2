@@ -10,7 +10,7 @@ operatives_max: null
 boxes: 1
 boxes_note: Egy dobozból minden specialista megépíthető. A Warrior nem kell.
 tier: A
-beginner_friendly: true
+beginner_friendly: false
 legal_until: 2028
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120106083_ENGKillTeamTyphonCoreGame10.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120106083_ENGKillTeamTyphonCoreGame11.jpg?fm=webp&w=892&h=920

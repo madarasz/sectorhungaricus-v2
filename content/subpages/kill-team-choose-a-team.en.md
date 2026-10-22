@@ -10,7 +10,7 @@ content_blocks:
   - type: text_block
     style: normal
     content: >-
-      Let us help you find the best team for you.
+      Let us help you find the best team
   - type: kill_team_chooser
     labels:
       q_experience: Have you played Kill Team before?

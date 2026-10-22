@@ -1,6 +1,6 @@
 ---
 name: "Mandrakes"
-reviewed: ""
+reviewed: Madarász
 factions:
   - xenos
   - aeldari

@@ -8,7 +8,7 @@ operatives: 5
 boxes: 1
 boxes_note: One box builds every specialist. The Warrior is not needed
 tier: A
-beginner_friendly: true
+beginner_friendly: false
 combat:
   - melee
   - melee
