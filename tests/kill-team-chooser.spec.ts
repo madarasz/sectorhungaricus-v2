@@ -3,6 +3,11 @@ import { test, expect } from '@playwright/test';
 const PAGE_URL = '/en/kill-team/choose-a-team/';
 
 test.describe('Kill Team chooser', () => {
+  // Team photos come from the warhammer.com shop; slow responses from it make page loads time out
+  test.beforeEach(async ({ page }) => {
+    await page.route(/^https:\/\/www\.warhammer\.com\//, (route) => route.abort());
+  });
+
   test('shows all teams as cards without power tier', async ({ page }) => {
     await page.goto(PAGE_URL);
 
