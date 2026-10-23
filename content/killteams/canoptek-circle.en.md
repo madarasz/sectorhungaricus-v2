@@ -6,7 +6,7 @@ factions:
   - necron
 operatives: 8
 boxes: 1
-boxes_note: One box builds every specialist. Only the warriors have weapon options.
+box_type: kill-team
 tier: A
 beginner_friendly: false
 combat:

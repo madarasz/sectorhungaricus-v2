@@ -1,18 +1,21 @@
 ---
-name: "Death Korps"
-reviewed: ""
+name: Death Korps
+reviewed: Madarász
 factions:
   - imperium
   - astra-militarum
-operatives: 14
-boxes: 1
-tier: ""
-beginner_friendly: true
+operatives_min: 10
+operatives_max: 14
+boxes: 3
+boxes_note: "Death Korps of Krieg WH40 box, but you will need additional bits from Krieg Command Squad and Combat Engineers boxes to build all the specialists."
+box_type: wh40k
+tier: D
+beginner_friendly: false
 combat:
   - ranged
   - ranged
   - ranged
-legal_until: 2027
-image: https://assets.warhammer-community.com/articles/9b2991d5-028f-419d-93e1-a2c69e622567/ajczznfeuo6nhp6v.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105127_AstraMilitarumKriegCommandSquad2.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105127_AstraMilitarumKriegCommandSquad3.jpg?fm=webp&w=892&h=920
 ---
-Grim Krieg guardsmen. Many bodies and gas weapons, very forgiving.
+The grim, fatalistic Death Korps of Krieg are known for their endurance and for fighting on in the most horrific conditions. Every soldier expects to die in battle, and there is always another one to step into the gap. This Astra Militarum team has lightly armoured, lasgun-armed veterans and many specialists, such as Gunners with different special weapons, a Sniper, a Sapper, a Medic, etc. The Watchmaster gives orders to nearby troops, so they shoot or fight more reliably, move faster or hold cover better.

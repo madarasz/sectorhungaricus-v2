@@ -59,6 +59,10 @@ content_blocks:
       beginner_tag: Kezdőbarát
       operatives_label: Operatívok
       boxes_label: Szükséges dobozok
+      wh40k_badge: WH40k doboz
+      wh40k_note: Ezt a csapatot már nem árulják Kill Team dobozban. A figurái Warhammer 40,000 dobozokban kaphatók. A Kill Team tokeneket nem tartalmazzák a dobozok
+      discontinued_badge: Megszűnt
+      discontinued_note: Ennek a csapatnak a doboza már nem kapható, mert megszűnt a gyártása.
       combat_label: Harcmodor
       ranged_label: Távolsági
       melee_label: Közelharci

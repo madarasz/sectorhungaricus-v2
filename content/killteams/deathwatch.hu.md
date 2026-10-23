@@ -11,6 +11,7 @@ operatives_max: ""
 boxes: 2
 boxes_note: A 11 féle operatívból 5-öt tudsz megépíteni egy dobozból. A Breacher
   egység ritkán használható, de könnyen mágnesezhető vagy proxyzható.
+box_type: kill-team
 tier: B
 beginner_friendly: true
 legal_until: 2029

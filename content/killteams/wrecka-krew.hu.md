@@ -7,6 +7,7 @@ factions:
 operatives: 8
 boxes: 1
 boxes_note: "Egy dobozból minden specialista megépíthető, a Boss Nob fegyverei mágnesezhetők. Extra figurákkal további Gunner vagy Fighter operatívokat is összerakhatsz."
+box_type: kill-team
 tier: B
 beginner_friendly: true
 legal_until: 2028

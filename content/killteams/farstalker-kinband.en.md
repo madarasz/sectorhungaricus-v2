@@ -1,19 +1,21 @@
 ---
 name: "Farstalker Kinband"
-reviewed: ""
+reviewed: Madarász
 factions:
   - xenos
   - tau
-operatives_min: 12
-operatives_max: 14
+operatives: 12
 boxes: 1
-tier: ""
+boxes_note: "Kroot Farstalkers WH40k box. You must choose between the Stalker and the Tracker when you build it."
+box_type: wh40k
+tier: A
 beginner_friendly: false
 combat:
   - ranged
   - melee
   - melee
-legal_until: 2027
-image: https://assets.warhammer-community.com/articles/c6b8eb5b-1e59-4fe2-a151-66eb168f0c6e/aqwe1ojnep29qqvo.jpg
+legal_until: 2026
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120113120_KrootFarstalkers5.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120113120_KrootFarstalkers4.jpg?fm=webp&w=892&h=920
 ---
-Kroot hunters with hounds. Many models that ambush from cover.
+Farstalker Kinbands are kroot scouts who roam the galaxy as trackers, hunters and guerrilla fighters, and bring new genetic material back to their Shapers. This xenos team has many specialists and kroot hounds, and its rifles and blades work both at range and in melee. The kroot react with inhuman speed and can change the orders of their operatives at unexpected moments. They are good climbers and can disrupt the mission in surprising ways.

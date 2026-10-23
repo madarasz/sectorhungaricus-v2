@@ -8,8 +8,8 @@ operatives: 9
 operatives_min: null
 operatives_max: null
 boxes: 1
-boxes_note: A Kill Team doboz már nem kapható, de ugyanez a készlet megvan a
-  Warhammer 40,000 kínálatában, csak a csapat tokenjei nélkül.
+box_type: wh40k
+box_notes: "Corsair Voidreavers WH40k doboz"
 tier: B
 beginner_friendly: false
 legal_until: null

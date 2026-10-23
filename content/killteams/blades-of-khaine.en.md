@@ -6,7 +6,8 @@ factions:
   - aeldari
 operatives: 8
 boxes: 3
-boxes_note: Mix of two Aspect Warrior boxes
+boxes_note: "You need additional Howling Banshees and Dire Avengers WH40k boxes."
+box_type: kill-team
 tier: A
 beginner_friendly: false
 combat:

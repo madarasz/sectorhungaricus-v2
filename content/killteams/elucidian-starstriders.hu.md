@@ -1,14 +1,15 @@
 ---
-name: "Elucidian Starstriders"
-reviewed: ""
+name: Elucidian Starstriders
+reviewed: Madarász
 factions:
   - imperium
   - baseline-human
 operatives: 10
 boxes: 1
-tier: ""
+boxes_note: "Egy WH40k dobozból a teljes csapat kijön: Rogue Trader Entourage and Voidsmen-at-Arms"
+box_type: wh40k
+tier: A
 beginner_friendly: false
-legal_until: 2027
-image: https://assets.warhammer-community.com/articles/c9932bb0-d2e8-45c1-b146-0c595e9d522b/k2tek5yquspur9ay.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108113_RTEntourageVoidsmen2.jpg?fm=webp&w=892&h=920
 ---
-Rogue Trader legénység sok egyedi karakterrel és képességgel.
+A Rogue Trader Elucia Vhane egy régi kereskedődinasztia örököse, aki az Eastern Fringe-re vezette az Elucidian Starstriders csapatát, hogy túlszárnyalja őseit, vagy belehaljon a próbálkozásba. Ez az Imperiumhoz tartozó csapat rögzített összeállítású, szokatlan specialistákból áll, köztük egy Death Cult Executionerből, egy Lectro-Maesterből és egy Voidsmen osztagból. A Warrant of Trade szabály a csata előtt és alatt is extra lehetőségeket ad, például több felszerelést, egy plusz command pointot, vagy azt, hogy az ellenfél rakja fel először az operatívjait. A New Dawn nevű csillaghajójuk a csatatér fölött kering, és tüzérsége felülről csap le az ellenségre.

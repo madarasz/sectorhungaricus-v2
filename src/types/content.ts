@@ -109,6 +109,7 @@ export interface ContentBlock {
 
 export type KillTeamCombat = 'ranged' | 'melee'
 export type KillTeamTier = 'S' | 'A' | 'B' | 'C' | 'D' | 'E'
+export type KillTeamBoxType = 'kill-team' | 'wh40k' | 'discontinued'
 
 export interface KillTeam {
   slug: string
@@ -119,6 +120,7 @@ export interface KillTeam {
   operatives_max?: number
   boxes: number
   boxes_note?: string
+  box_type: KillTeamBoxType
   tier?: KillTeamTier
   reviewed: boolean
   beginner_friendly: boolean
@@ -165,6 +167,10 @@ export interface KillTeamChooserLabels {
   beginner_tag: string
   operatives_label: string
   boxes_label: string
+  wh40k_badge: string
+  wh40k_note: string
+  discontinued_badge: string
+  discontinued_note: string
   combat_label: string
   ranged_label: string
   melee_label: string

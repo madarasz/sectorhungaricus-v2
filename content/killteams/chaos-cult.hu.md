@@ -9,10 +9,8 @@ operatives: 14
 operatives_min: null
 operatives_max: null
 boxes: 3
-boxes_note: "Ehhez a csapathoz soha nem volt külön Kill Team doboz, a figurái
-  csak az egyszer gyártott Ashes of Faith csomagban jelentek meg. Most három
-  Warhammer 40k doboz kell hozzá: Chaos Cultists, Accursed Cultists és Dark
-  Commune."
+boxes_note: "Három WH40k doboz kell hozzá: Chaos Cultists, Accursed Cultists és Dark Commune."
+box_type: wh40k
 tier: S
 beginner_friendly: false
 legal_until: 2027

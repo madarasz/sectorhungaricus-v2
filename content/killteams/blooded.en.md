@@ -6,7 +6,9 @@ factions:
   - baseline-human
 operatives_min: 12
 operatives_max: 14
-boxes: 1
+boxes: 2
+boxes_note: "Traitor Guardsmen Squad and Traitor Enforcer WH40k boxes"
+box_type: wh40k
 tier: B
 beginner_friendly: false
 combat:

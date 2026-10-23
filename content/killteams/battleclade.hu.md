@@ -8,6 +8,7 @@ operatives: 10
 operatives_min: null
 operatives_max: null
 boxes: 1
+box_type: kill-team
 tier: B
 beginner_friendly: false
 legal_until: 2027

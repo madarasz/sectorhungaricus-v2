@@ -8,7 +8,8 @@ operatives: 8
 operatives_min: null
 operatives_max: null
 boxes: 3
-boxes_note: Két Aspect Warrior doboz kombinációja
+boxes_note: "További Howling Banshees és Dire Avengers WH40k dobozokra van szükséged."
+box_type: kill-team
 tier: A
 beginner_friendly: false
 legal_until: 2027

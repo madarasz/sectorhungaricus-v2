@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBoxOpen, faSeedling, faUsers } from '@fortawesome/free-solid-svg-icons'
-import { KillTeam, KillTeamChooserLabels } from '@/types/content'
+import { faBan, faBoxOpen, faCubes, faSeedling, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { KillTeam, KillTeamBoxType, KillTeamChooserLabels } from '@/types/content'
 import CombatIcons from './CombatIcons'
 import TeamImage from './TeamImage'
 import { operativesText } from './filters'
@@ -22,6 +22,34 @@ export function BeginnerTag({ label }: { label: string }) {
   )
 }
 
+// Teams that cannot be bought as a Kill Team box
+type SpecialBoxType = Exclude<KillTeamBoxType, 'kill-team'>
+
+export const BOX_TYPE_STYLES: Record<SpecialBoxType, { icon: typeof faBan; badgeClassName: string; noteClassName: string }> = {
+  wh40k: { icon: faCubes, badgeClassName: 'bg-[#1A1251] text-[#EAE9E9]', noteClassName: 'bg-[#E2E0F0] text-[#1A1251]' },
+  discontinued: { icon: faBan, badgeClassName: 'bg-red-800 text-white', noteClassName: 'bg-red-100 text-red-900' },
+}
+
+export function boxTypeTexts(boxType: KillTeamBoxType, labels: KillTeamChooserLabels) {
+  if (boxType === 'wh40k') return { badge: labels.wh40k_badge, note: labels.wh40k_note }
+  if (boxType === 'discontinued') return { badge: labels.discontinued_badge, note: labels.discontinued_note }
+  return undefined
+}
+
+export function BoxTypeBadge({ boxType, labels }: { boxType: KillTeamBoxType; labels: KillTeamChooserLabels }) {
+  const texts = boxTypeTexts(boxType, labels)
+  if (boxType === 'kill-team' || !texts) return null
+  const style = BOX_TYPE_STYLES[boxType]
+
+  return (
+    // Diagonal banner across the top right corner of the image
+    <span className={`absolute top-[2rem] -right-[2.625rem] w-[11rem] rotate-45 inline-flex items-center justify-center gap-1.5 py-1 text-sm leading-5 font-semibold shadow-[0_1px_3px_rgba(0,0,0,0.4)] ${style.badgeClassName}`} data-box-type={boxType} data-testid="kt-box-type-badge">
+      <FontAwesomeIcon icon={style.icon} className="w-3.5 h-3.5" aria-hidden="true" />
+      {texts.badge}
+    </span>
+  )
+}
+
 export default function TeamCard({ team, labels, factionNames, selected, onSelect }: TeamCardProps) {
   const operatives = operativesText(team)
 
@@ -35,6 +63,7 @@ export default function TeamCard({ team, labels, factionNames, selected, onSelec
       data-testid={`kt-card-${team.slug}`}
     >
       <TeamImage team={team} context="thumbnail" sizes="(max-width: 767px) 50vw, 240px" className="aspect-[6/5]"catalogFrameClassName="-inset-y-[3%] inset-x-0 bg-white [&>img]:object-contain">
+        <BoxTypeBadge boxType={team.box_type} labels={labels} />
         {team.beginner_friendly && (
           <span className="absolute left-2 bottom-2">
             <BeginnerTag label={labels.beginner_tag} />

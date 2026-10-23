@@ -11,6 +11,7 @@ operatives_max: null
 boxes: 1
 boxes_note: Egy dobozból egyszerre megépíthető az összes specialista, és még egy
   extra Warrior is marad. Csak a vezető fegyverét kell kiválasztanod.
+box_type: kill-team
 tier: S
 beginner_friendly: false
 legal_until: 2029

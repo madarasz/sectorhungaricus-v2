@@ -75,6 +75,26 @@ test.describe('Kill Team chooser', () => {
     await expect(page).not.toHaveURL(/team=/);
   });
 
+  test('team sold in WH40k boxes shows a badge on the card and a note in the details', async ({ page }) => {
+    await page.goto(PAGE_URL);
+
+    const card = page.getByTestId('kt-card-warpcoven');
+    await expect(card.getByTestId('kt-box-type-badge')).toHaveText('WH40k box');
+    await expect(page.getByTestId('kt-card-nemesis-claw').getByTestId('kt-box-type-badge')).toHaveCount(0);
+
+    await card.click();
+    const boxType = page.getByTestId('kt-detail').getByTestId('kt-detail-box-type');
+    await expect(boxType).toHaveAttribute('data-box-type', 'wh40k');
+    await expect(boxType).toContainText('no longer sold as a Kill Team box');
+  });
+
+  test('team sold in a Kill Team box has no box type note in the details', async ({ page }) => {
+    await page.goto(`${PAGE_URL}?team=nemesis-claw`);
+
+    await expect(page.getByTestId('kt-detail')).toBeVisible();
+    await expect(page.getByTestId('kt-detail-box-type')).toHaveCount(0);
+  });
+
   test('selected team opens from the URL and Escape closes it', async ({ page }) => {
     await page.goto(`${PAGE_URL}?team=nemesis-claw`);
 

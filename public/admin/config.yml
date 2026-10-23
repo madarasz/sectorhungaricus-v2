@@ -122,6 +122,16 @@ collections:
       - {label: "Operatives maximum", name: "operatives_max", widget: "number", value_type: "int", required: false, i18n: "duplicate", hint: "Used when Operatives is empty"}
       - {label: "Boxes to buy", name: "boxes", widget: "number", value_type: "int", min: 1, max: 3, i18n: "duplicate"}
       - {label: "Boxes note", name: "boxes_note", widget: "string", required: false, i18n: true}
+      - label: "Box type"
+        name: "box_type"
+        widget: "select"
+        default: "kill-team"
+        i18n: "duplicate"
+        hint: "Where the team can be bought."
+        options:
+          - {label: "Kill Team box", value: "kill-team"}
+          - {label: "Warhammer 40,000 boxes", value: "wh40k"}
+          - {label: "Discontinued", value: "discontinued"}
       - label: "Power tier"
         name: "tier"
         widget: "select"
@@ -273,6 +283,10 @@ collections:
                   - {label: "Beginner tag", name: "beginner_tag", widget: "string"}
                   - {label: "Operatives label", name: "operatives_label", widget: "string"}
                   - {label: "Boxes label", name: "boxes_label", widget: "string"}
+                  - {label: "WH40k box badge", name: "wh40k_badge", widget: "string", hint: "Shown on the team image when the team is sold in Warhammer 40,000 boxes"}
+                  - {label: "WH40k box note", name: "wh40k_note", widget: "string", hint: "Shown in the team details when the team is sold in Warhammer 40,000 boxes"}
+                  - {label: "Discontinued badge", name: "discontinued_badge", widget: "string", hint: "Shown on the team image when the box is discontinued"}
+                  - {label: "Discontinued note", name: "discontinued_note", widget: "string", hint: "Shown in the team details when the box is discontinued"}
                   - {label: "Combat label", name: "combat_label", widget: "string"}
                   - {label: "Ranged icon label", name: "ranged_label", widget: "string"}
                   - {label: "Melee icon label", name: "melee_label", widget: "string"}

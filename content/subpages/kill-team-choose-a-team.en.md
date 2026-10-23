@@ -59,6 +59,10 @@ content_blocks:
       beginner_tag: Beginner-friendly
       operatives_label: Operatives
       boxes_label: Boxes to buy
+      wh40k_badge: WH40k box
+      wh40k_note: This team is no longer sold as a Kill Team box. You can buy its models in Warhammer 40,000 boxes. They do not contain Kill Team specific tokens.
+      discontinued_badge: Discontinued
+      discontinued_note: You cannot buy the box of this team anymore, because it is discontinued.
       combat_label: Fighting style
       ranged_label: Ranged
       melee_label: Melee

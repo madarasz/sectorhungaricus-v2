@@ -11,6 +11,7 @@ boxes: 1
 boxes_note: Több fegyveropcióval is rendelkeznek. A fusion blasterek átlalában a
   Loadstarra és a Neutralizerre kerülnek, de könnyen mágnesezheted is őket, ha
   cserélgetni szeretnéd.
+box_type: kill-team
 tier: B
 beginner_friendly: false
 legal_until: 2029

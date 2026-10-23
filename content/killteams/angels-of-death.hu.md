@@ -11,6 +11,7 @@ boxes: 2
 boxes_note: Nincs külön dobozuk. A Starter Set tartalmazza őket, de pár
   lehetséges figura hiányzik. Valószínűleg meg tudod őket venni WH40k
   játékosoktól..
+box_type: kill-team
 tier: B
 beginner_friendly: true
 legal_until: 2028

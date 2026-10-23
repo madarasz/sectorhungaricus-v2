@@ -1,19 +1,19 @@
 ---
 name: Exodite Dragon Masters
-reviewed: ""
+reviewed: Madarász
 factions:
   - xenos
   - aeldari
-operatives_min: 4
-operatives_max: 6
+operatives: 5
 boxes: 1
-tier: ""
+box_type: kill-team
+tier: A
 beginner_friendly: false
 combat:
   - ranged
   - melee
   - melee
-legal_until: 2027
-image: https://assets.warhammer-community.com/articles/0-2026/july/wc20-07/kt_exoditerules2-jul21-1-feature-jbf8roqfft.jpg
+legal_until: 2029
+image: https://www.metagames.hu/store/?path=/upload/images/2026_07/60010199084_eng-1784960611.png
 ---
-Aeldari riders on dragons. Few, fast and very hard-hitting models.
+Exodite clan champions ride ferocious drakesteeds as a bonded trio and hunt their prey with the help of keen-sensed Drakolithes. Their mounts are blisteringly fast, but they mostly move forward in straight lines. The faster a rider moves, the harder it is to hit with ranged attacks. You can customize each Dragon Master by selecting two from their five unique upgrades, making them more suited to specific battle.

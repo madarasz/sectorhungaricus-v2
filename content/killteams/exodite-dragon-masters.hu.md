@@ -1,16 +1,15 @@
 ---
 name: Exodite Dragon Masters
-reviewed: ""
+reviewed: Madarász
 factions:
   - xenos
   - aeldari
-operatives: null
-operatives_min: 4
-operatives_max: 6
+operatives: 5
 boxes: 1
-tier: ""
+box_type: kill-team
+tier: A
 beginner_friendly: false
-legal_until: 2027
-image: https://assets.warhammer-community.com/articles/0-2026/july/wc20-07/kt_exoditerules2-jul21-1-feature-jbf8roqfft.jpg
+legal_until: 2029
+image: https://www.metagames.hu/store/?path=/upload/images/2026_07/60010199084_eng-1784960611.png
 ---
-Sárkányon lovagló Aeldarik. Kevés, gyors és nagyon erősen ütő figura.
+Az Exodite klánok bajnokai hármasban, vad drakesteed hátasokon lovagolva vadásznak, kiváló érzékű Drakolithe-jeik segítségével. Hátasaik villámgyorsak, de többnyire csak egyenes vonalban, előre tudnak haladni. Minél gyorsabban mozog egy lovas, annál nehezebb lövésekkel eltalálni. Minden Dragon Masterhez két upgrade-t választhatsz az öt egyedi lehetőségből, így még jobban alkalmazkodhatnak az aktuális csatákhoz.

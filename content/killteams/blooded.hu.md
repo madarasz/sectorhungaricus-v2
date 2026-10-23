@@ -7,7 +7,9 @@ factions:
 operatives: null
 operatives_min: 12
 operatives_max: 14
-boxes: 1
+boxes: 2
+boxes_note: "Traitor Guardsmen Squad és Traitor Enforcer WH40k dobozok"
+box_type: wh40k
 tier: B
 beginner_friendly: false
 legal_until: ""

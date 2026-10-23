@@ -8,6 +8,7 @@ operatives: 6
 boxes: 2
 boxes_note: No dedicated Kill Team box. The Starter Set has this team, but a few
   model options are missing. You can probably get them from WH40k players.
+box_type: kill-team
 tier: B
 beginner_friendly: true
 combat:

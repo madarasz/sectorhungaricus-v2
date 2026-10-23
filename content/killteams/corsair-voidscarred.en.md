@@ -6,8 +6,8 @@ factions:
   - aeldari
 operatives: 9
 boxes: 1
-boxes_note: The Kill Team box is discontinued, but the same kit is sold in the
-  Warhammer 40,000 range, without the team tokens.
+box_type: wh40k
+box_notes: "Corsair Voidreavers WH40k box"
 tier: B
 beginner_friendly: false
 combat:

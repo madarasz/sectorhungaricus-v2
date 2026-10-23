@@ -11,6 +11,7 @@ operatives_max: ""
 boxes: 2
 boxes_note: 11 operative options, you can build 5 from each box. The Breacer
   operative is rarely used, you can magnetize or proxy it.
+box_type: kill-team
 tier: B
 beginner_friendly: true
 combat:

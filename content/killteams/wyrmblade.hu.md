@@ -7,6 +7,7 @@ factions:
 operatives_min: 10
 operatives_max: 12
 boxes: 1
+box_type: kill-team
 tier: ""
 beginner_friendly: false
 legal_until: 2027

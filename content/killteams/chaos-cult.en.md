@@ -7,9 +7,8 @@ factions:
   - mutant
 operatives: 14
 boxes: 3
-boxes_note: "There was never a Kill Team box for this team, and its models came
-  in the one-time Ashes of Faith bundle. Now you need three Warhammer 40k boxes:
-  Chaos Cultists, Accursed Cultists and Dark Commune."
+boxes_note: "You need three WH40k boxes: Chaos Cultists, Accursed Cultists and Dark Commune."
+box_type: wh40k
 tier: S
 beginner_friendly: false
 combat:

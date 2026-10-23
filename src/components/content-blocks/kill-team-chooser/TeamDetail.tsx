@@ -6,7 +6,7 @@ import { faBan, faBoxOpen, faHourglassHalf, faShieldHalved, faTrophy, faUsers, f
 import { KillTeam, KillTeamChooserLabels, KillTeamTier } from '@/types/content'
 import CombatIcons, { SwordIcon } from './CombatIcons'
 import TeamImage from './TeamImage'
-import { BeginnerTag } from './TeamCard'
+import { BOX_TYPE_STYLES, BeginnerTag, boxTypeTexts } from './TeamCard'
 import { operativesText } from './filters'
 import { Legality, formatLegalUntil, getLegality } from './legality'
 
@@ -68,6 +68,7 @@ export default function TeamDetail({ team, labels, factionLabels, locale, now, o
 
   const operatives = operativesText(team)
   const legality = getLegality(team.legal_until, now)
+  const boxTypeNote = boxTypeTexts(team.box_type, labels)?.note
   const rows = [
     ...(operatives ? [{ icon: faUsers, label: labels.operatives_label, value: operatives, note: undefined }] : []),
     { icon: faBoxOpen, label: labels.boxes_label, value: String(team.boxes), note: team.boxes_note },
@@ -117,7 +118,20 @@ export default function TeamDetail({ team, labels, factionLabels, locale, now, o
             </ul>
           </div>
 
-          <div className="prose prose-sm max-w-none mt-3 text-sm" dangerouslySetInnerHTML={{ __html: team.playstyleHtml }} />
+          {/* First column on desktop: play style and where to buy the team */}
+          <div>
+            <div className="prose prose-sm max-w-none mt-3 text-sm" dangerouslySetInnerHTML={{ __html: team.playstyleHtml }} />
+            {team.box_type !== 'kill-team' && boxTypeNote && (
+              <div
+                className={`mt-4 flex items-center gap-2 rounded-lg px-3 py-2 text-sm ${BOX_TYPE_STYLES[team.box_type].noteClassName}`}
+                data-box-type={team.box_type}
+                data-testid="kt-detail-box-type"
+              >
+                <FontAwesomeIcon icon={BOX_TYPE_STYLES[team.box_type].icon} className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <span>{boxTypeNote}</span>
+              </div>
+            )}
+          </div>
 
           {/* Second column on desktop: team facts and tournament legality */}
           <div className="xl:col-start-2 xl:row-start-2 xl:self-start">
