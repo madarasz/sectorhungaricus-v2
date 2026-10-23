@@ -8,6 +8,7 @@ operatives: 6
 boxes: 1
 boxes_note: Nincs külön Kill Team dobozuk. A Kill Team Starter Set tartalmazza
   a csapathoz szükséges összes figurát.
+box_type: kill-team
 tier: B
 beginner_friendly: true
 legal_until: 2028

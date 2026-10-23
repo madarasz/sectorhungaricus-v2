@@ -7,8 +7,8 @@ factions:
 operatives_min: 5
 operatives_max: 9
 boxes: 3
-boxes_note: This team never had a Kill Team box. Buy the Rubric Marines,
-  Tzaangors and Sorcerer kits from the 40k range.
+boxes_note: "The Rubric Marines, Tzaangors and Exalted Sorcerer WH40k boxes."
+box_type: wh40k
 tier: C
 beginner_friendly: false
 combat:

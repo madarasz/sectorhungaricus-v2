@@ -8,6 +8,7 @@ operatives: 9
 boxes: 1
 boxes_note: Egy dobozban minden specialistához van elég figura, és nincsenek
   fegyveropciók.
+box_type: kill-team
 tier: B
 beginner_friendly: false
 legal_until: 2027

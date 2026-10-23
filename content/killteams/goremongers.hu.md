@@ -6,7 +6,7 @@ factions:
   - baseline-human
 operatives: 8
 boxes: 1
-boxes_note: Egy dobozban minden specialistához van elég figura.
+box_type: kill-team
 tier: S
 beginner_friendly: false
 legal_until: 2028

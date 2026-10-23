@@ -9,6 +9,7 @@ operatives_min: null
 operatives_max: null
 boxes: 1
 boxes_note: Némelyik operatívnak többfajta fegyver opciója van, de könnyen mágnesezhetőek.
+box_type: kill-team
 tier: B
 beginner_friendly: true
 legal_until: 2027

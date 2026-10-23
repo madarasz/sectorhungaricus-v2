@@ -11,6 +11,7 @@ boxes: 2
 boxes_note: A Kill Team dobozban nincs Chronomancer és Technomancer, ezeket
   külön lehet megvenni a 40k termékcsaládból. Esetleges második Deathmarkhoz
   szükség lehet egy extra figurára.
+box_type: kill-team
 tier: C
 beginner_friendly: false
 legal_until: 2026

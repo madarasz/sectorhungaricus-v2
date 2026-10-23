@@ -9,6 +9,7 @@ operatives_min: null
 operatives_max: null
 boxes: 1
 boxes_note: Egy dobozból minden specialista megépíthető. A Warrior nem kell.
+box_type: kill-team
 tier: A
 beginner_friendly: false
 legal_until: 2028

@@ -8,8 +8,7 @@ operatives: null
 operatives_min: 10
 operatives_max: 11
 boxes: 1
-boxes_note: A Kill Team doboz már nem kapható, de ugyanez a készlet
-  megvásárolható a 40k termékcsaládban, csak a csapat saját tokenjei nélkül.
+box_type: wh40k
 tier: C
 beginner_friendly: false
 legal_until: null

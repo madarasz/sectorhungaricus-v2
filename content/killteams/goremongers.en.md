@@ -6,7 +6,7 @@ factions:
   - baseline-human
 operatives: 8
 boxes: 1
-boxes_note: One box has enough models for every specialist.
+box_type: kill-team
 tier: S
 beginner_friendly: false
 combat:

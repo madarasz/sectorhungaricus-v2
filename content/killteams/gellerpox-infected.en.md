@@ -1,20 +1,21 @@
 ---
 name: "Gellerpox Infected"
-reviewed: ""
+reviewed: Madarász
 factions:
   - chaos
   - abhuman
   - mutant
-operatives_min: 9
-operatives_max: 10
+operatives_min: 11
+operatives_max: 15
 boxes: 1
-tier: ""
+boxes_note: "You need to find an original box, 3D-print the models or use proxies."
+box_type: discontinued
+tier: D
 beginner_friendly: false
 combat:
-  - ranged
   - melee
   - melee
-legal_until: 2027
-image: https://assets.warhammer-community.com/articles/c9932bb0-d2e8-45c1-b146-0c595e9d522b/k2tek5yquspur9ay.jpg
+  - melee
+image: https://duplaegy.hu/wp-content/uploads/2022/09/gellerpoxinfected__37528.jpg
 ---
-Mutants and vermin. Tough, slow and very strange.
+Once loyal servants of the Imperium, the Gellerpox Infected are now nightmarish fusions of flesh, machinery and disease that spread their sickness across the stars. This chaos team fights mostly in melee, with huge, slow and tough Nightmare Hulks, mutants, small Glitchlings and optional swarms of vermin. Before the battle, they choose a Techno-curse that weakens every enemy close to them, for example by making their guns less effective or by hurting them when they miss in melee.

@@ -8,9 +8,8 @@ operatives: null
 operatives_min: 5
 operatives_max: 9
 boxes: 3
-boxes_note: Ehhez a csapathoz soha nem volt Kill Team doboz. A 40k
-  termékcsaládból kell megvenni a Rubric Marines, a Tzaangors és a Sorcerer
-  készletet.
+boxes_note: "Rubric Marines, a Tzaangors és a Exalted Sorcerer WH40k dobozok"
+box_type: wh40k
 tier: C
 beginner_friendly: false
 legal_until: null

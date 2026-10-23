@@ -7,6 +7,7 @@ factions:
 operatives: 6
 boxes: 1
 boxes_note: Some operatives have several weapon options which you can magnetize.
+box_type: kill-team
 tier: B
 beginner_friendly: true
 combat:

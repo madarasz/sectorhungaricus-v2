@@ -7,8 +7,7 @@ factions:
 operatives_min: 10
 operatives_max: 11
 boxes: 1
-boxes_note: The Kill Team box is out of production, but the same kit is sold in
-  the 40k range without the team tokens.
+box_type: wh40k
 tier: C
 beginner_friendly: false
 combat:

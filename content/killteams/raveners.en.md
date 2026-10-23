@@ -7,6 +7,7 @@ factions:
 operatives: 5
 boxes: 1
 boxes_note: One box builds every specialist. The Warrior is not needed
+box_type: kill-team
 tier: A
 beginner_friendly: false
 combat:

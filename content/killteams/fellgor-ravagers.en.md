@@ -1,19 +1,21 @@
 ---
 name: "Fellgor Ravagers"
-reviewed: ""
+reviewed: Madarász
 factions:
   - chaos
   - abhuman
 operatives: 10
 boxes: 1
-tier: ""
-beginner_friendly: true
+boxes_note: "Fellgor Beastmen WH40k box"
+box_type: wh40k
+tier: C
+beginner_friendly: false
 combat:
-  - ranged
   - melee
   - melee
-legal_until: 2027
+  - melee
+legal_until: 2026
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102214_KTFellgorRavagers3.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102214_KTFellgorRavagers4.jpg?fm=webp&w=892&h=920
 ---
-Frenzied beastmen. Charge in and fight harder when wounded.
+Fellgor Ravagers are mutant beastmen of the Dark Gods who stalk space hulks, underhives and warp-tainted ruins, tracking prey through the dark before they butcher it. They are a chaos melee team, armed mostly with blades and bludgeons. Their frenzy keeps an operative fighting for a short time even after it received deadly damage.
