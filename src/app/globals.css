@@ -154,6 +154,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Kill Team chooser bottom sheet */
+@keyframes kt-sheet-in {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
 /* Theme transitions - only active after initial theme is set */
 .theme-transitions-enabled * {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, fill 0.3s ease;
