@@ -1,18 +1,25 @@
 ---
 name: "Imperial Navy Breachers"
-reviewed: ""
+reviewed: Madarász
 factions:
   - imperium
   - baseline-human
-operatives: 10
+operatives_min: 10
+operatives_max: 11
 boxes: 1
-tier: ""
-beginner_friendly: true
+boxes_note: One box builds only one of the three Gunner options, but the team can
+  take two, so field an extra Armsman instead or convert one (this needs an extra
+  28mm base). The Kill Team box is discontinued, and the 40k box may not include
+  the upgrade sprue.
+box_type: wh40k
+tier: B
+beginner_friendly: false
 combat:
   - ranged
   - ranged
   - melee
-legal_until: 2027
-image: https://assets.warhammer-community.com/articles/63eaf941-6915-4b7e-9241-d6ae6604b3b6/fbnojvyl6lrd6fhs.jpg
+legal_until: 2026
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108152_ImperialNavyBreachers2.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108152_ImperialNavyBreachers3.jpg?fm=webp&w=892&h=920
 ---
-Breach walls and fight close quarters. Great in killzone Gallowdark.
+Imperial Navy Breachers are elite voidsmen, drilled to board enemy ships. This human team of the Imperium is built for fighting narrow corridors, with shotguns, hatchets, cutting gear and boarding shields, and it has many specialists to choose from. Their Breach and Clear rule lets two Breachers who stand close together activate one after the other, before the opponent can respond.

@@ -12,7 +12,7 @@ box_type: kill-team
 tier: B
 beginner_friendly: false
 combat:
-  - melee
+  - ranged
   - melee
   - melee
 legal_until: 2027

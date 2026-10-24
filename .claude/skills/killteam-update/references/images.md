@@ -11,12 +11,15 @@ The site shows `image` on the team card, and both images next to each other in t
 
 ## Finding the product page
 
-Open the team list in the built-in browser: https://www.warhammer.com/en-WW/shop/other-games/kill-team/choose-a-kill-team , then run:
+Open the team list with the Playwright CLI (see "Web pages: Playwright CLI" in SKILL.md, and wait 10 seconds between warhammer.com requests):
 
-```js
-await new Promise(r => setTimeout(r, 3000));
-[...new Set([...document.querySelectorAll('a[href*="/shop/kill-team-"]')]
-  .map(a => a.href.split('?')[0] + ' | ' + a.textContent.trim()))].join('\n')
+```bash
+playwright-cli -s=killteam open --browser=chrome --headed --persistent https://www.warhammer.com/en-WW/shop/other-games/kill-team/choose-a-kill-team
+playwright-cli -s=killteam --raw eval "async () => {
+  await new Promise(r => setTimeout(r, 3000));
+  return [...new Set([...document.querySelectorAll('a[href*=\"/shop/kill-team-\"]')]
+    .map(a => a.href.split('?')[0] + ' | ' + a.textContent.trim()))].join('\n');
+}"
 ```
 
 Product URLs look like `https://www.warhammer.com/en-WW/shop/kill-team-<team>-<year>`. Ignore the datacard products (`kill-team-datacards-...`).
@@ -25,25 +28,28 @@ Some teams have no dedicated box (for example Angels of Death). Use the product 
 
 ## Listing the gallery photos
 
-On the warhammer.com origin in the built-in browser, `fetch()` the product page and read the image URLs from the HTML:
+In the same Playwright CLI session (on the warhammer.com origin), `fetch()` the product page and read the image URLs from the HTML. Run `sleep 10` before each product page:
 
-```js
-const r = await fetch('/en-WW/shop/kill-team-battleclade-2025');
-const t = await r.text();
-[...new Set(t.match(/catalog\/product\/920x950\/[^"?\\ ]+/g) || [])].join('\n')
+```bash
+sleep 10
+playwright-cli -s=killteam --raw eval "async () => {
+  const t = await (await fetch('/en-WW/shop/kill-team-battleclade-2025')).text();
+  return [...new Set(t.match(/catalog\/product\/920x950\/[^\"?\\\\ ]+/g) || [])].join('\n');
+}"
 ```
 
 The list also contains photos of other products (paints, related teams). The gallery photos of the product come first and have the same product code prefix (for example `99120116048_`). Use only these.
 
 ## Looking at the photos
 
-curl can download the image files (but not the product pages). Download small versions into a new empty folder in the scratchpad, and make one contact sheet with ImageMagick:
+curl can download the image files (but not the product pages). Run `sleep 10` between the downloads too. Download small versions into a new empty folder in the scratchpad, and make one contact sheet with ImageMagick:
 
 ```bash
 B=https://www.warhammer.com/app/resources/catalog/product/920x950
 mkdir -p <scratchpad>/img-<slug>
 for n in <file names without .jpg>; do
   curl -s -A "Mozilla/5.0" -o <scratchpad>/img-<slug>/$n.jpg "$B/$n.jpg?fm=jpg&w=300&h=310"
+  sleep 10
 done
 montage <scratchpad>/img-<slug>/*.jpg -geometry 200x206+4+4 -tile 6x <scratchpad>/img-<slug>-sheet.jpg
 ```

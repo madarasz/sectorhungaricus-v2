@@ -1,6 +1,6 @@
 # Boxes to buy (`boxes`) and boxes note (`boxes_note`)
 
-Both sources are on Reddit. WebFetch, curl and the built-in browser cannot open reddit.com. Use Claude in Chrome (the user's Chrome) and read the page text. If Claude in Chrome is not available, ask the user to paste the table rows for the requested teams.
+Both sources are on Reddit. Open them with the Playwright CLI (see "Web pages: Playwright CLI" in SKILL.md) and read the page text with `playwright-cli -s=killteam --raw eval "document.body.innerText"`. If Reddit shows a challenge page that the user cannot complete, ask the user to paste the table rows for the requested teams.
 
 ## `boxes`
 

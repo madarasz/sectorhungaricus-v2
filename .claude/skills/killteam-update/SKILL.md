@@ -67,9 +67,27 @@ The link text is the team name (for example "Battleclade"). The file names chang
 
 **Reading PDFs.** Use `pdftotext -layout` for text. For pages where the layout carries the meaning (charts, columns), render the page with `pdftoppm -f <page> -l <page> -r 70 -png` and look at the image.
 
-**Webshop.** The warhammer.com product pages need the built-in browser. curl can download the image files. See references/images.md.
+## Web pages: Playwright CLI
 
-**Reddit.** WebFetch, curl and the built-in browser cannot open reddit.com. Use Claude in Chrome (the user's Chrome) for the two Reddit pages. If Claude in Chrome is not available, ask the user to paste the relevant table rows.
+Use the Playwright CLI (`playwright-cli`) for the Reddit pages and the warhammer.com webshop pages. Do not use WebFetch, curl, the built-in browser or Claude in Chrome for these pages. curl can download the warhammer.com image files only (see references/images.md).
+
+Use one named session and a headed Chrome with a persistent profile. Run the commands from the scratchpad directory, because the CLI writes snapshot files into `.playwright-cli/` in the current folder.
+
+```bash
+cd <scratchpad>
+playwright-cli -s=killteam open --browser=chrome --headed --persistent <url>
+playwright-cli -s=killteam goto <url>
+playwright-cli -s=killteam --raw eval "document.body.innerText"
+playwright-cli -s=killteam --raw eval "async () => { await new Promise(r => setTimeout(r, 3000)); return document.title }"
+playwright-cli -s=killteam close
+```
+
+- `eval` takes an expression or a function. Use an `async` function when the code must wait or `fetch()`. Return a string (for example with `.join('\n')` or `JSON.stringify(...)`).
+- Close the session when you are finished.
+
+**Warhammer store: wait 10 seconds between requests.** warhammer.com has a web application firewall (WAF). Run `sleep 10` before each `goto` or `fetch()` to warhammer.com, including the first request after the team list. Do not send requests in parallel, and do not start more than one session or subagent that opens warhammer.com at the same time. If the page shows "Human Verification" or an access-denied page, stop. Do not retry in a loop. Tell the user.
+
+**Reddit.** reddit.com can show a "Prove your humanity" page or a login page (old.reddit.com) to automated browsers. Do not try to solve or bypass the challenge. Leave the headed window open, ask the user to complete the challenge in that window, and continue when the user says it is done. If this does not work, ask the user to paste the relevant table rows.
 
 ## Parallel work
 
@@ -81,6 +99,8 @@ For more than one team, start one subagent per team (or per small group of teams
 - the instruction to change only the requested fields, and to report the final EN and HU texts and the source facts that it used.
 
 Shared sources (the Tournament Companion PDF and the Reddit tables) are the same for all teams. Read them once yourself, and give each subagent only the values for its team.
+
+Do all warhammer.com requests yourself, one after the other with 10 seconds between them (see "Web pages: Playwright CLI"). Give each subagent the product URL and the list of gallery image file names. Subagents must not open warhammer.com pages.
 
 When the subagents are finished, review each result against references/playstyle.md before you report to the user. Look especially for:
 - texts that are too long,
