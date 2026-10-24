@@ -11,7 +11,7 @@ boxes_note: Egy doboz elég, de néhány specialista ugyanazt a testet használj
   hármat vihetsz, ezért el kell döntened, mit építesz meg.
 box_type: kill-team
 tier: C
-beginner_friendly: true
+beginner_friendly: false
 legal_until: 2026
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120118007_LoVHearthkynWarriorsFeature01.jpg?fm=webp&w=892&h=920
 ---
