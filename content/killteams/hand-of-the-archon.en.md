@@ -6,8 +6,8 @@ factions:
   - aeldari
 operatives: 9
 boxes: 1
-boxes_note: "One box has enough bodies for every operative; you only choose weapons for the leader and the gunners."
-box_type: kill-team
+boxes_note: "One box of the original Kill Team box has enough bodies for every operative; you only choose weapons for the leader and the gunners. Currently It's not available, we are unsure if this is going to be a WH40k box."
+box_type: discontinued
 tier: ""
 beginner_friendly: false
 combat:

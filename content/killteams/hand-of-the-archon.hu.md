@@ -6,8 +6,8 @@ factions:
   - aeldari
 operatives: 9
 boxes: 1
-boxes_note: "Egy dobozban minden operatívhoz van elég figura, csak a vezető és a gunnerek fegyvereit kell fixálni vagy mágnesezni."
-box_type: kill-team
+boxes_note: "Az eredeti Kill Team dobozban minden operatívhoz van elég figura, csak a vezető és a gunnerek fegyvereit kell fixálni vagy mágnesezni. Jelenleg nem elérhető; nem biztos, hogy WH40k dobozként újra kiadják."
+box_type: discontinued
 tier: ""
 beginner_friendly: false
 legal_until: 2026

@@ -9,8 +9,7 @@ operatives: 5
 operatives_min: ""
 operatives_max: ""
 boxes: 2
-boxes_note: A 11 féle operatívból 5-öt tudsz megépíteni egy dobozból. A Breacher
-  egység ritkán használható, de könnyen mágnesezhető vagy proxyzható.
+boxes_note: A 11 féle operatívból 5-öt tudsz megépíteni egy dobozból. A harmadik gravis egység proxyzható vagy könnyen mágnesezhető.
 box_type: kill-team
 tier: B
 beginner_friendly: true

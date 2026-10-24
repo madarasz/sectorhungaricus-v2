@@ -16,4 +16,4 @@ combat:
 legal_until: 2029
 image: https://www.metagames.hu/store/?path=/upload/images/2026_07/60010199084_eng-1784960611.png
 ---
-Exodite clan champions ride ferocious drakesteeds as a bonded trio and hunt their prey with the help of keen-sensed Drakolithes. Their mounts are blisteringly fast, but they mostly move forward in straight lines. The faster a rider moves, the harder it is to hit with ranged attacks. You can customize each Dragon Master by selecting two from their five unique upgrades, making them more suited to specific battle.
+Exodite clan champions ride ferocious drakesteeds as a bonded trio and hunt their prey with the help of keen-sensed Drakolithes. Their mounts are blisteringly fast, but they mostly move forward in straight lines. The faster a rider moves, the harder it is to hit with ranged attacks. The drakesteeds are huge, and their movement restrictions make them hard to maneuver around terrain. You can customize each Dragon Master with two of their five unique upgrades to suit a specific battle.
