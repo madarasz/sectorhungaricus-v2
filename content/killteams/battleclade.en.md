@@ -8,7 +8,7 @@ operatives: 10
 boxes: 1
 box_type: kill-team
 tier: B
-beginner_friendly: false
+skill: pro-only
 combat:
   - ranged
   - ranged

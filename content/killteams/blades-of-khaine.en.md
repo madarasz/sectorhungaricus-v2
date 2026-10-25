@@ -1,6 +1,6 @@
 ---
 name: Blades of Khaine
-reviewed: Madarász
+reviewed: Áron
 factions:
   - xenos
   - aeldari
@@ -9,7 +9,7 @@ boxes: 3
 boxes_note: "The Kill Team box only contains Striking Scorpions. You need additional Howling Banshees and Dire Avengers WH40k boxes."
 box_type: kill-team
 tier: A
-beginner_friendly: false
+skill: pro-only
 combat:
   - ranged
   - melee

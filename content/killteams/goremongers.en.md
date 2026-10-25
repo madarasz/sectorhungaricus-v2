@@ -8,7 +8,7 @@ operatives: 8
 boxes: 1
 box_type: kill-team
 tier: S
-beginner_friendly: false
+skill: normal
 combat:
   - melee
   - melee

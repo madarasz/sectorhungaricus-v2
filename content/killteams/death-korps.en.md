@@ -10,7 +10,7 @@ boxes: 3
 boxes_note: "Death Korps of Krieg WH40 box, but you will need additional bits from Krieg Command Squad and Combat Engineers boxes to build all the specialists."
 box_type: wh40k
 tier: D
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - ranged

@@ -9,7 +9,7 @@ boxes: 1
 boxes_note: "Fellgor Beastmen WH40k box"
 box_type: wh40k
 tier: C
-beginner_friendly: false
+skill: normal
 combat:
   - melee
   - melee

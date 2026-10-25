@@ -110,6 +110,7 @@ export interface ContentBlock {
 export type KillTeamCombat = 'ranged' | 'melee'
 export type KillTeamTier = 'S' | 'A' | 'B' | 'C' | 'D' | 'E'
 export type KillTeamBoxType = 'kill-team' | 'wh40k' | 'discontinued'
+export type KillTeamSkill = 'beginner-friendly' | 'normal' | 'pro-only'
 
 export interface KillTeam {
   slug: string
@@ -123,7 +124,7 @@ export interface KillTeam {
   box_type: KillTeamBoxType
   tier?: KillTeamTier
   reviewed: boolean
-  beginner_friendly: boolean
+  skill: KillTeamSkill
   combat: KillTeamCombat[]
   legal_until?: number
   image?: string
@@ -142,6 +143,7 @@ export interface KillTeamChooserLabels {
   q_experience: string
   a_experience_new: string
   a_experience_played: string
+  a_experience_pro: string
   q_fight: string
   a_fight_ranged: string
   a_fight_melee: string
@@ -164,6 +166,7 @@ export interface KillTeamChooserLabels {
   empty_state: string
   declassified_separator: string
   beginner_tag: string
+  pro_tag: string
   operatives_label: string
   boxes_label: string
   wh40k_badge: string

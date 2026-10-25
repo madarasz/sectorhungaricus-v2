@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBan, faBoxOpen, faCubes, faSeedling, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faBan, faBoxOpen, faCrown, faCubes, faSeedling, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { KillTeam, KillTeamBoxType, KillTeamChooserLabels } from '@/types/content'
 import CombatIcons from './CombatIcons'
 import TeamImage from './TeamImage'
@@ -13,13 +13,25 @@ interface TeamCardProps {
   onSelect: (slug: string) => void
 }
 
-export function BeginnerTag({ label }: { label: string }) {
-  return (
-    <span className="inline-flex items-center gap-1 rounded-md bg-green-100 text-green-900 px-2 py-0.5 text-xs font-medium" data-testid="kt-beginner-tag">
-      <FontAwesomeIcon icon={faSeedling} className="w-3 h-3" aria-hidden="true" />
-      {label}
-    </span>
-  )
+// Tag shown for the skill levels other than normal
+export function SkillTag({ skill, labels }: { skill: KillTeam['skill']; labels: KillTeamChooserLabels }) {
+  if (skill === 'beginner-friendly') {
+    return (
+      <span className="inline-flex items-center gap-1 rounded-md bg-green-100 text-green-900 px-2 py-0.5 text-xs font-medium" data-testid="kt-beginner-tag">
+        <FontAwesomeIcon icon={faSeedling} className="w-3 h-3" aria-hidden="true" />
+        {labels.beginner_tag}
+      </span>
+    )
+  }
+  if (skill === 'pro-only') {
+    return (
+      <span className="inline-flex items-center gap-1 rounded-md bg-red-100 text-red-900 px-2 py-0.5 text-xs font-medium" data-testid="kt-pro-tag">
+        <FontAwesomeIcon icon={faCrown} className="w-3 h-3" aria-hidden="true" />
+        {labels.pro_tag}
+      </span>
+    )
+  }
+  return null
 }
 
 // Teams that cannot be bought as a Kill Team box
@@ -64,9 +76,9 @@ export default function TeamCard({ team, labels, factionNames, selected, onSelec
     >
       <TeamImage team={team} context="thumbnail" sizes="(max-width: 767px) 50vw, 240px" className="aspect-[6/5]"catalogFrameClassName="-inset-y-[3%] inset-x-0 bg-white [&>img]:object-contain">
         <BoxTypeBadge boxType={team.box_type} labels={labels} />
-        {team.beginner_friendly && (
+        {team.skill !== 'normal' && (
           <span className="absolute left-2 bottom-2">
-            <BeginnerTag label={labels.beginner_tag} />
+            <SkillTag skill={team.skill} labels={labels} />
           </span>
         )}
       </TeamImage>

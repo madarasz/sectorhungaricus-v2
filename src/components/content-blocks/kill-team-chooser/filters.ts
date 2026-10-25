@@ -2,7 +2,7 @@ import { KillTeam } from '@/types/content'
 import { getLegality } from './legality'
 
 export interface Answers {
-  exp?: 'new' | 'played'
+  exp?: 'new' | 'played' | 'pro'
   fight?: 'ranged' | 'melee' | 'mixed'
   size?: 'few' | 'many' | 'horde'
   boxes?: 'one'
@@ -32,7 +32,7 @@ export function subFactionsOf(mains: string[]): string[] {
 }
 
 const FIXED_VALUES: Record<SingleAnswerKey, string[]> = {
-  exp: ['new', 'played'],
+  exp: ['new', 'played', 'pro'],
   fight: ['ranged', 'melee', 'mixed'],
   size: ['few', 'many', 'horde'],
   legal: ['classified'],
@@ -49,7 +49,9 @@ const SIZE_RANGES: Record<NonNullable<Answers['size']>, [number, number]> = {
 }
 
 export function matchesAnswers(team: KillTeam, answers: Answers, now: Date): boolean {
-  if (answers.exp === 'new' && !team.beginner_friendly) return false
+  if (answers.exp === 'new' && team.skill !== 'beginner-friendly') return false
+  if (answers.exp === 'played' && team.skill === 'pro-only') return false
+  if (answers.exp === 'pro' && team.skill !== 'pro-only') return false
 
   if (answers.fight) {
     const ranged = team.combat.filter((c) => c === 'ranged').length

@@ -9,7 +9,7 @@ boxes: 1
 boxes_note: "One box builds a full team, and you need to magnetize or a second box to build every weapon option."
 box_type: wh40k
 tier: B
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - melee

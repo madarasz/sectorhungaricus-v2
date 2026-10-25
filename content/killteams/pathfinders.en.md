@@ -10,7 +10,7 @@ boxes: 2
 boxes_note: "The Kill Team box is discontinued, and the older 40k Pathfinders box does not have the upgrade sprue for some build options, but the T’au Combat Patrol box still includes it. One box builds the team, two are recommended, and you need three to build every drone."
 box_type: wh40k
 tier: A
-beginner_friendly: false
+skill: pro-only
 combat:
   - ranged
   - ranged

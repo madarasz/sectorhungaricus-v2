@@ -6,7 +6,7 @@ import { faBan, faBoxOpen, faHourglassHalf, faShieldHalved, faTrophy, faUsers, f
 import { KillTeam, KillTeamChooserLabels, KillTeamTier } from '@/types/content'
 import CombatIcons, { SwordIcon } from './CombatIcons'
 import TeamImage from './TeamImage'
-import { BOX_TYPE_STYLES, BeginnerTag, boxTypeTexts } from './TeamCard'
+import { BOX_TYPE_STYLES, SkillTag, boxTypeTexts } from './TeamCard'
 import { operativesText } from './filters'
 import { Legality, formatLegalUntil, getLegality } from './legality'
 
@@ -97,9 +97,9 @@ export default function TeamDetail({ team, labels, factionLabels, locale, now, o
           >
             <FontAwesomeIcon icon={faXmark} className="w-4 h-4" aria-hidden="true" />
           </button>
-          {team.beginner_friendly && (
+          {team.skill !== 'normal' && (
             <span className="absolute left-3 bottom-3">
-              <BeginnerTag label={labels.beginner_tag} />
+              <SkillTag skill={team.skill} labels={labels} />
             </span>
           )}
         </TeamImage>

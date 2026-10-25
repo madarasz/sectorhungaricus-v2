@@ -57,7 +57,8 @@ export default function Navigation({ calendarTitle, aboutTitle: _aboutTitle, sup
     if (!setLocale || !mounted) return
     
     const newLocale = locale === 'hu' ? 'en' : 'hu'
-    const newPath = getLocalizedPath(pathname, newLocale)
+    // Keep the query, for example the Kill Team chooser answers and selected team
+    const newPath = `${getLocalizedPath(pathname, newLocale)}${window.location.search}`
     setLocale(newLocale)
     router.push(newPath)
   }

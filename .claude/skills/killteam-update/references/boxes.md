@@ -8,7 +8,7 @@ Source: https://www.reddit.com/r/killteam/comments/1run1eg/number_of_boxes_per_t
 
 - Use the "minimum amount of boxes" number for the team.
 - The CMS allows 1–3 (`min: 1, max: 3` in `config.yml`). If the source says more than 3, or gives no number, do not write a value. Tell the user.
-- Write the same value to the `.en.md` and the `.hu.md` file.
+- Write the value only to the `.en.md` file. The `.hu.md` file does not have it.
 
 ## `box_type`
 
@@ -21,7 +21,7 @@ Sources: the Reddit wiki explanation column (see `boxes_note`), and the team lis
 | `discontinued` | You cannot buy the models anymore. |
 
 - The site shows a fixed note for `wh40k` and `discontinued` (`wh40k_note` and `discontinued_note` in `content/subpages/kill-team-choose-a-team.*.md`). For `wh40k` the note says that the team is not sold as a Kill Team box, that the models are in Warhammer 40,000 boxes, and that these boxes do not contain the Kill Team tokens.
-- Write the same value to the `.en.md` and the `.hu.md` file.
+- Write the value only to the `.en.md` file. The `.hu.md` file does not have it.
 
 ## `boxes_note`
 

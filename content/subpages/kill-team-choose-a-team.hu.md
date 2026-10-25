@@ -15,7 +15,8 @@ content_blocks:
     labels:
       q_experience: Játszottál már Kill Teamet?
       a_experience_new: Nem, ez az első csapatom
-      a_experience_played: Igen
+      a_experience_played: Van némi tapasztalatom
+      a_experience_pro: A legösszetettebb csapatokat kérem
       q_fight: Hogyan szeretsz harcolni?
       a_fight_ranged: Távolról
       a_fight_melee: Közelharcban
@@ -56,6 +57,7 @@ content_blocks:
       empty_state: Egyik csapat sem felel meg minden válasznak. Változtass meg egy választ, hogy több csapatot láss.
       declassified_separator: Non-classified csapatok – a legtöbb versenyen nem használhatók
       beginner_tag: Kezdőbarát
+      pro_tag: Profiknak
       operatives_label: Operatívok
       boxes_label: Szükséges dobozok
       wh40k_badge: WH40k doboz

@@ -12,7 +12,7 @@ boxes_note: "All options are in the box, but besides the Chaos Lord you can buil
   operatives. To build every option, you need a second box."
 box_type: kill-team
 tier: B
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - melee

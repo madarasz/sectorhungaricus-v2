@@ -11,7 +11,7 @@ boxes_note: One box builds every specialist at the same time, plus one extra
   warrior. The only choice is the leader's weapon.
 box_type: kill-team
 tier: S
-beginner_friendly: false
+skill: normal
 combat:
   - melee
   - melee

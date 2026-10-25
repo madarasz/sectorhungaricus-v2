@@ -12,7 +12,7 @@ boxes: 2
 boxes_note: 11 operative options, you can build 5 from each box. You can proxy or magnetize the third gravis operative.
 box_type: kill-team
 tier: B
-beginner_friendly: true
+skill: beginner-friendly
 combat:
   - ranged
   - ranged

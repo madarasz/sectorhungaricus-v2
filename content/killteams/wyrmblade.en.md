@@ -13,7 +13,7 @@ boxes_note: "Two Neophyte Hybrids boxes build a full team. For every option you 
   one for the Talon."
 box_type: wh40k
 tier: C
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - ranged

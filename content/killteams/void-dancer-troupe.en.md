@@ -9,7 +9,7 @@ boxes: 3
 boxes_note: "There was never a Kill Team box for this team; all models come from the WH40k range. To cover all options you need three boxes: Harlequin Troupe, Death Jester and Shadowseer."
 box_type: wh40k
 tier: A
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - melee

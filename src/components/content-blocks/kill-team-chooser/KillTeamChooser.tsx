@@ -55,6 +55,7 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
     { key: 'exp', label: labels.q_experience, options: [
       { value: 'new', label: labels.a_experience_new },
       { value: 'played', label: labels.a_experience_played },
+      { value: 'pro', label: labels.a_experience_pro },
     ] },
     { key: 'faction', label: labels.q_faction, mains: mainFactions, subs: subFactions },
     { key: 'fight', label: labels.q_fight, options: [

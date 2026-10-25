@@ -9,7 +9,7 @@ boxes: 1
 boxes_note: "One WH40k box called Rogue Trader Entourage and Voidsmen-at-Arms"
 box_type: wh40k
 tier: A
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - ranged

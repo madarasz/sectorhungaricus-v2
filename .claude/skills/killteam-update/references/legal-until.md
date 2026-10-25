@@ -32,6 +32,6 @@ The user gave these values. If the PDF shows a season that is not in this table,
 
 ## Teams not on the list
 
-If a team is not in the Classified Rotation, it is not tournament legal (non-classified). Then remove the `legal_until` line from both files. Do not write `0`, `null`, `""` or a past year, and do not invent a year. (`src/lib/markdown.ts` turns any non-number into `undefined`, and `getLegality()` shows `undefined` as "declassified". The CMS hint also says: "Empty means not tournament legal".) Tell the user which teams are not on the list, because a missing team can also be a name mismatch (for example "XV26 Stealth Battlesuits" in the PDF and "xv26-stealth-battlesuits" as the file slug).
+If a team is not in the Classified Rotation, it is not tournament legal (non-classified). Then remove the `legal_until` line from the `.en.md` file. Do not write `0`, `null`, `""` or a past year, and do not invent a year. (`src/lib/markdown.ts` turns any non-number into `undefined`, and `getLegality()` shows `undefined` as "declassified". The CMS hint also says: "Empty means not tournament legal".) Tell the user which teams are not on the list, because a missing team can also be a name mismatch (for example "XV26 Stealth Battlesuits" in the PDF and "xv26-stealth-battlesuits" as the file slug).
 
-Write the same value to the `.en.md` and the `.hu.md` file.
+Write the value only to the `.en.md` file. The `.hu.md` file does not have it.

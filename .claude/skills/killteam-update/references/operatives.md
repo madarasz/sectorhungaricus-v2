@@ -16,7 +16,7 @@ Read the footnotes under the lists too. They often change the count.
 - Variable size: write `operatives_min` and `operatives_max`, and remove `operatives`.
 - Remove empty lines such as `operatives: null`.
 - Put the fields before `boxes:`, as in the other files.
-- Write the same values to the `.en.md` and the `.hu.md` file.
+- Write the values only to the `.en.md` file. The `.hu.md` file does not have them.
 
 ## How to count
 

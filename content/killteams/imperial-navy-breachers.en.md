@@ -13,7 +13,7 @@ boxes_note: One box builds only one of the three Gunner options, but the team ca
   the upgrade sprue.
 box_type: wh40k
 tier: B
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - ranged

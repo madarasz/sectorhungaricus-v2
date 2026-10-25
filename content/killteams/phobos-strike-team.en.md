@@ -10,7 +10,7 @@ boxes_note: "You build the team from
   space marine kits such as Incursors, Infiltrators and Reivers."
 box_type: wh40k
 tier: A
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - ranged

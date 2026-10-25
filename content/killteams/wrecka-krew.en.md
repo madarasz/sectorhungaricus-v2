@@ -9,7 +9,7 @@ boxes: 1
 boxes_note: "One box builds every specialist, and the Boss Nob weapons can be magnetized. Optional extra models let you add more Gunners or Fighters."
 box_type: kill-team
 tier: B
-beginner_friendly: true
+skill: beginner-friendly
 combat:
   - melee
   - melee

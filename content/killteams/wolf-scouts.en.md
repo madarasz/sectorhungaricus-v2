@@ -9,7 +9,7 @@ boxes: 2
 boxes_note: "One box builds a full team, but you must choose between the Pack Leader and the Frosteye. You need a second box or a spare phobos body to build every operative."
 box_type: kill-team
 tier: B
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - melee

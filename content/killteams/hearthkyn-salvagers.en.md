@@ -11,7 +11,7 @@ boxes_note: One box is enough, but some specialists share bodies with the Gunner
   so you have to choose what to build.
 box_type: wh40k
 tier: C
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - ranged

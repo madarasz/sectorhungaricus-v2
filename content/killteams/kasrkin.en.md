@@ -11,7 +11,7 @@ boxes_note: The Kill Team box is discontinued, but the same Kasrkin kit is sold 
   and gunners to build.
 box_type: wh40k
 tier: A
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - ranged

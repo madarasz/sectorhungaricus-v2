@@ -9,7 +9,7 @@ boxes: 1
 boxes_note: "Kroot Farstalkers WH40k box. You must choose between the Stalker and the Tracker when you build it."
 box_type: wh40k
 tier: A
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - melee

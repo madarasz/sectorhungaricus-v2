@@ -66,4 +66,4 @@ second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99
 ```
 
 - Put `second_image` on the line after `image`.
-- Both fields are `i18n: "duplicate"`: write the same values to the `.en.md` and the `.hu.md` file.
+- Both fields are shared: write the values only to the `.en.md` file. The `.hu.md` file does not have them.

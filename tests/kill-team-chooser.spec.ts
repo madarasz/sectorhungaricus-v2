@@ -22,6 +22,8 @@ test.describe('Kill Team chooser', () => {
     // Power tier is only visible in the detail view
     await expect(page.getByTestId('kt-detail-tier')).toHaveCount(0);
     await expect(page.getByTestId('kt-beginner-tag').first()).toHaveText('Beginner-friendly');
+    await expect(page.getByTestId('kt-card-battleclade').getByTestId('kt-pro-tag')).toHaveText('For Pros');
+    await expect(page.getByTestId('kt-card-angels-of-death').getByTestId('kt-pro-tag')).toHaveCount(0);
   });
 
   test('answers filter the teams and update the URL', async ({ page }) => {
@@ -53,6 +55,23 @@ test.describe('Kill Team chooser', () => {
     await page.getByTestId('kt-answer-exp-new').click();
     await expect(cards).toHaveCount(total);
     await expect(page).not.toHaveURL(/exp=/);
+  });
+
+  test('experience answers hide or show pro-only teams', async ({ page }) => {
+    await page.goto(`${PAGE_URL}?exp=played`);
+    const cards = page.locator('[data-testid^="kt-card-"]').filter({ has: page.getByTestId('kt-card-name') });
+    await expect(page.getByTestId('kt-answer-exp-played')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByTestId('kt-card-angels-of-death')).toBeVisible();
+    await expect(page.getByTestId('kt-pro-tag')).toHaveCount(0);
+
+    await page.getByTestId('kt-answer-exp-pro').click();
+    await expect(page).toHaveURL(/exp=pro/);
+    await expect(page.getByTestId('kt-card-battleclade')).toBeVisible();
+    const filtered = await cards.count();
+    expect(filtered).toBeGreaterThan(0);
+    for (let i = 0; i < filtered; i++) {
+      await expect(cards.nth(i).getByTestId('kt-pro-tag')).toBeVisible();
+    }
   });
 
   test('shows empty state and reset clears answers', async ({ page }) => {
@@ -364,6 +383,31 @@ test.describe('Kill Team chooser', () => {
   test('Hungarian page shows combat icons from the shared data', async ({ page }) => {
     await page.goto('/hu/kill-team/choose-a-team/');
     await expect(page.getByTestId('kt-card-deathwatch').getByTestId('kt-combat-icons').locator('svg')).toHaveCount(3);
+  });
+
+  test('language switch keeps the answers and the selected team', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto(`${PAGE_URL}?exp=played&team=battleclade`);
+    await expect(page.getByTestId('kt-detail')).toBeVisible();
+    await page.getByTestId('kt-detail-close').click();
+    await page.getByTestId('kt-answer-fight-melee').click();
+    await page.getByTestId('kt-card-angels-of-death').click();
+    await expect(page.getByTestId('kt-detail-name')).toHaveText('Angels of Death');
+
+    await page.getByTestId('desktop-language-switch').getByRole('button', { name: 'HU' }).click();
+    await expect(page).toHaveURL(/\/hu\/kill-team\/choose-a-team\/\?/);
+    await expect(page).toHaveURL(/exp=played/);
+    await expect(page).toHaveURL(/fight=melee/);
+    await expect(page).toHaveURL(/team=angels-of-death/);
+    await expect(page.getByTestId('kt-answer-exp-played')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByTestId('kt-answer-fight-melee')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByTestId('kt-detail-name')).toHaveText('Angels of Death');
+  });
+
+  test('Hungarian page shows skill tags from the shared data', async ({ page }) => {
+    await page.goto('/hu/kill-team/choose-a-team/');
+    await expect(page.getByTestId('kt-card-battleclade').getByTestId('kt-pro-tag')).toHaveText('Profiknak');
+    await expect(page.getByTestId('kt-card-deathwatch').getByTestId('kt-beginner-tag')).toHaveText('Kezdőbarát');
   });
 
   test.describe('tournament legality', () => {

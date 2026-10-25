@@ -10,7 +10,7 @@ boxes_note: One box has enough models for every specialist, and there are no
   weapon options.
 box_type: kill-team
 tier: B
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - melee

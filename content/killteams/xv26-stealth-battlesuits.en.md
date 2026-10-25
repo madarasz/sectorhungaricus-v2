@@ -12,7 +12,7 @@ boxes_note: They have flexible weapon loadouts. Fusion blasters are ideally on
   Lodestar and Neutraliser, but you can magnetize if you want to change it.
 box_type: kill-team
 tier: B
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - ranged

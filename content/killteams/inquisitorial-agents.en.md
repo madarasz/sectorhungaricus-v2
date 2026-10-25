@@ -13,7 +13,7 @@ boxes_note: Two Inquisitorial Agents boxes build every option except one of the
   most cases, Kasrkin and Exaction Squad are enough.
 box_type: kill-team
 tier: S
-beginner_friendly: false
+skill: pro-only
 combat:
   - ranged
   - ranged

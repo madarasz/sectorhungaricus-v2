@@ -9,7 +9,7 @@ boxes: 2
 boxes_note: "One box forces a fixed build because the Chirurgant and the Leashmaster share a body and the dog becomes mandatory, so a second box is recommended for more operative choices."
 box_type: wh40k
 tier: A
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - ranged

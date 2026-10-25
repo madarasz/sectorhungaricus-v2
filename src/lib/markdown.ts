@@ -229,7 +229,7 @@ function optionalNumber(value: unknown): number | undefined {
 }
 
 // Kill team fields that are stored only in the default locale file
-const KILL_TEAM_SHARED_FIELDS = ['combat']
+const KILL_TEAM_SHARED_FIELDS = ['factions', 'operatives', 'operatives_min', 'operatives_max', 'boxes', 'box_type', 'tier', 'skill', 'combat', 'legal_until', 'image', 'second_image']
 const KILL_TEAM_DEFAULT_LOCALE = 'en'
 
 export async function getKillTeams(locale?: string): Promise<KillTeam[]> {

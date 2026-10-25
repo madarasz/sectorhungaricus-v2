@@ -1,6 +1,6 @@
 ---
 name: Exodite Dragon Masters
-reviewed: Madarász
+reviewed: Áron
 factions:
   - xenos
   - aeldari
@@ -8,7 +8,7 @@ operatives: 5
 boxes: 1
 box_type: kill-team
 tier: A
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - melee

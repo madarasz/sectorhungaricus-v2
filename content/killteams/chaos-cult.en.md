@@ -10,7 +10,7 @@ boxes: 3
 boxes_note: "You need three WH40k boxes: Chaos Cultists, Accursed Cultists and Dark Commune."
 box_type: wh40k
 tier: S
-beginner_friendly: false
+skill: pro-only
 combat:
   - melee
   - melee

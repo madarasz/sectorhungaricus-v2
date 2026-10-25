@@ -11,7 +11,7 @@ boxes_note: One box has enough bodies for every specialist and the Missionary's
   specialists, so you need a second box to build both.
 box_type: kill-team
 tier: A
-beginner_friendly: false
+skill: pro-only
 combat:
   - ranged
   - melee

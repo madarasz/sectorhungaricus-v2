@@ -11,7 +11,7 @@ boxes_note: The Kill Team box has no Chronomancer or Technomancer, but you can
   extra model.
 box_type: wh40k
 tier: C
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - ranged

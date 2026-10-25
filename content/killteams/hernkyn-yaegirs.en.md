@@ -10,7 +10,7 @@ boxes_note: One box has enough models for every specialist. Only the Warriors ha
   various weapon options.
 box_type: kill-team
 tier: B
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - ranged

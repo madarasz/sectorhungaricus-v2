@@ -11,7 +11,7 @@ boxes: 1
 boxes_note: "You need to find an original box, 3D-print the models or use proxies."
 box_type: discontinued
 tier: D
-beginner_friendly: false
+skill: normal
 combat:
   - melee
   - melee

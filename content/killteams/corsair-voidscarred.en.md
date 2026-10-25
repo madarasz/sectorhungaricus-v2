@@ -9,7 +9,7 @@ boxes: 1
 box_type: wh40k
 box_notes: "Corsair Voidreavers WH40k box"
 tier: B
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - ranged

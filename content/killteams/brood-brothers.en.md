@@ -11,7 +11,7 @@ boxes: 2
 boxes_note: "You will need an additional Broodcoven WH40k box for the leaders"
 box_type: kill-team
 tier: S
-beginner_friendly: false
+skill: pro-only
 combat:
   - ranged
   - ranged

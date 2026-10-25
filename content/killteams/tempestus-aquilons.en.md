@@ -9,7 +9,7 @@ boxes: 1
 boxes_note: One box builds every specialist, but the second Gunner has to be converted from a Trooper. The Tempestor and the Servo-Sentry have weapon options, but you can magnetize those.
 box_type: kill-team
 tier: B
-beginner_friendly: true
+skill: beginner-friendly
 combat:
   - ranged
   - ranged

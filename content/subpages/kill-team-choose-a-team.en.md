@@ -15,7 +15,8 @@ content_blocks:
     labels:
       q_experience: Have you played Kill Team before?
       a_experience_new: No, this is my first team
-      a_experience_played: "Yes"
+      a_experience_played: I have some experience
+      a_experience_pro: Give me the most complex teams
       q_fight: Which kind of combat do you prefer?
       a_fight_ranged: From range
       a_fight_melee: Up close
@@ -56,6 +57,7 @@ content_blocks:
       empty_state: No team fits every answer. Change one answer to see more teams.
       declassified_separator: Non-classified teams – not legal on most tournaments
       beginner_tag: Beginner-friendly
+      pro_tag: For Pros
       operatives_label: Operatives
       boxes_label: Boxes to buy
       wh40k_badge: WH40k box

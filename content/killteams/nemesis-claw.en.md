@@ -9,7 +9,7 @@ boxes: 1
 boxes_note: Some operatives have several weapon options which you can magnetize.
 box_type: kill-team
 tier: B
-beginner_friendly: true
+skill: beginner-friendly
 combat:
   - ranged
   - melee

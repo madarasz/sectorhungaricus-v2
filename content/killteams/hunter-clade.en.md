@@ -12,7 +12,7 @@ boxes_note: You build the team from the
   one of every operative.
 box_type: wh40k
 tier: A
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - ranged

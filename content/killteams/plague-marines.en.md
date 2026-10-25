@@ -10,7 +10,7 @@ boxes_note: No dedicated Kill Team box. The Kill Team Starter Set has all the
   models that the team needs.
 box_type: kill-team
 tier: B
-beginner_friendly: true
+skill: beginner-friendly
 combat:
   - ranged
   - melee

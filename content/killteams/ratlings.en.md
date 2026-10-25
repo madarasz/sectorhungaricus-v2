@@ -13,7 +13,7 @@ boxes_note: One box gives a playable team, but without the Ogryn and Bullgryn
   choose between the two builds.
 box_type: kill-team
 tier: A
-beginner_friendly: false
+skill: normal
 combat:
   - ranged
   - ranged
