@@ -11,10 +11,11 @@ boxes_note: One box has enough models for every specialist. Only the Warriors ha
 box_type: kill-team
 tier: B
 skill: normal
-combat:
-  - ranged
-  - ranged
-  - melee
+style:
+  - shooting
+  - slow
+  - tough
+  - control
 legal_until: 2027
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120118018_KTHernkynYaegirs3.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120118018_KTHernkynYaegirs2.jpg?fm=webp&w=892&h=920

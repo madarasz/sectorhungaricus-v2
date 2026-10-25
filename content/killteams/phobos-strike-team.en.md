@@ -10,11 +10,13 @@ boxes_note: "You build the team from
   space marine kits such as Incursors, Infiltrators and Reivers."
 box_type: wh40k
 tier: A
-skill: normal
-combat:
-  - ranged
-  - ranged
-  - melee
+skill: pro-only
+style:
+  - shooting
+  - control
+  - high-damage
+  - tough
+  - mobile
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120101186_SpaceMarineRievers02.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120101263_SMPrimarisIncursors01.jpg?fm=webp&w=892&h=920
 ---

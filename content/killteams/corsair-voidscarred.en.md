@@ -10,10 +10,11 @@ box_type: wh40k
 box_notes: "Corsair Voidreavers WH40k box"
 tier: B
 skill: normal
-combat:
-  - ranged
-  - ranged
-  - melee
+style:
+  - shooting
+  - mobile
+  - fragile
+  - high-damage
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120104115_AeldariCorsairVoidreavers03.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120104115_AeldariCorsairVoidreavers02.jpg?fm=webp&w=892&h=920
 ---

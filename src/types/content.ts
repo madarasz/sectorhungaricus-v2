@@ -107,7 +107,7 @@ export interface ContentBlock {
   killTeams?: KillTeam[]
 }
 
-export type KillTeamCombat = 'ranged' | 'melee'
+export type KillTeamStyle = 'melee' | 'shooting' | 'combo' | 'mobile' | 'slow' | 'fragile' | 'tough' | 'high-damage' | 'control'
 export type KillTeamTier = 'S' | 'A' | 'B' | 'C' | 'D' | 'E'
 export type KillTeamBoxType = 'kill-team' | 'wh40k' | 'discontinued'
 export type KillTeamSkill = 'beginner-friendly' | 'normal' | 'pro-only'
@@ -125,7 +125,7 @@ export interface KillTeam {
   tier?: KillTeamTier
   reviewed: boolean
   skill: KillTeamSkill
-  combat: KillTeamCombat[]
+  style: KillTeamStyle[]
   legal_until?: number
   image?: string
   imageVariants?: ImageVariants
@@ -139,15 +139,18 @@ export interface KillTeamFactionOption {
   label: string
 }
 
+export interface KillTeamStyleOption {
+  value: KillTeamStyle
+  label: string
+  description: string
+}
+
 export interface KillTeamChooserLabels {
   q_experience: string
   a_experience_new: string
   a_experience_played: string
   a_experience_pro: string
-  q_fight: string
-  a_fight_ranged: string
-  a_fight_melee: string
-  a_fight_mixed: string
+  q_style: string
   q_size: string
   a_size_few: string
   a_size_many: string
@@ -155,7 +158,7 @@ export interface KillTeamChooserLabels {
   q_boxes: string
   a_boxes_one: string
   q_legal: string
-  a_legal_classified: string
+  a_legal_declassified: string
   q_faction: string
   factions: KillTeamFactionOption[]
   result_count: string
@@ -173,9 +176,8 @@ export interface KillTeamChooserLabels {
   wh40k_note: string
   discontinued_badge: string
   discontinued_note: string
-  combat_label: string
-  ranged_label: string
-  melee_label: string
+  styles_label: string
+  styles: KillTeamStyleOption[]
   tier_label: string
   legal_until_label: string
   rotates_soon_label: string

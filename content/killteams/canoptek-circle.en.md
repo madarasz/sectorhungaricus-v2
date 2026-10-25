@@ -9,10 +9,10 @@ boxes: 1
 box_type: kill-team
 tier: A
 skill: pro-only
-combat:
-  - ranged
-  - ranged
-  - ranged
+style:
+  - shooting
+  - tough
+  - combo
 legal_until: 2029
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120110086_KTCanoptekCircle02.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120110086_KTCanoptekCircle01.jpg?fm=webp&w=892&h=920

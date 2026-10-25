@@ -10,10 +10,10 @@ boxes_note: One box builds every specialist, but the second Gunner has to be con
 box_type: kill-team
 tier: B
 skill: beginner-friendly
-combat:
-  - ranged
-  - ranged
-  - ranged
+style:
+  - shooting
+  - mobile
+  - fragile
 legal_until: 2028
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105123_KTTempestusAquilons3.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105123_KTTempestusAquilons4.jpg?fm=webp&w=892&h=920

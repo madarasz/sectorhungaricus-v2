@@ -11,10 +11,10 @@ boxes_note: "The Kill Team box is discontinued, and the older 40k Pathfinders bo
 box_type: wh40k
 tier: A
 skill: pro-only
-combat:
-  - ranged
-  - ranged
-  - ranged
+style:
+  - shooting
+  - fragile
+  - combo
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120113040_TauEmpirePathFinderTeam01.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120113080_TAUPathfinderTeamFeature.jpg?fm=webp&w=892&h=920
 ---

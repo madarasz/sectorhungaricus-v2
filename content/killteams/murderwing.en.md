@@ -13,10 +13,11 @@ boxes_note: "All options are in the box, but besides the Chaos Lord you can buil
 box_type: kill-team
 tier: B
 skill: normal
-combat:
-  - ranged
+style:
   - melee
-  - melee
+  - mobile
+  - tough
+  - high-damage
 legal_until: 2029
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102232_MURDERWING2.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102232_MURDERWING3.jpg?fm=webp&w=892&h=920

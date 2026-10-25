@@ -11,10 +11,11 @@ boxes_note: No dedicated Kill Team box. The Kill Team Starter Set has all the
 box_type: kill-team
 tier: B
 skill: beginner-friendly
-combat:
-  - ranged
+style:
   - melee
-  - melee
+  - slow
+  - tough
+  - high-damage
 legal_until: 2028
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/60010199071_ENGKTStarterSet8.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/60010199071_ENGKTStarterSet7.jpg?fm=webp&w=892&h=920

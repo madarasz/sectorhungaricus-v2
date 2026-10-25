@@ -10,10 +10,12 @@ boxes_note: One box builds every specialist. The Warrior is not needed
 box_type: kill-team
 tier: A
 skill: normal
-combat:
+style:
   - melee
-  - melee
-  - melee
+  - mobile
+  - high-damage
+  - tough
+  - control
 legal_until: 2028
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120106083_ENGKillTeamTyphonCoreGame10.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120106083_ENGKillTeamTyphonCoreGame11.jpg?fm=webp&w=892&h=920

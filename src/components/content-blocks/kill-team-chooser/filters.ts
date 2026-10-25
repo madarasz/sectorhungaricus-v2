@@ -1,22 +1,24 @@
-import { KillTeam } from '@/types/content'
+import { KillTeam, KillTeamStyle } from '@/types/content'
 import { getLegality } from './legality'
 
 export interface Answers {
   exp?: 'new' | 'played' | 'pro'
-  fight?: 'ranged' | 'melee' | 'mixed'
   size?: 'few' | 'many' | 'horde'
   boxes?: 'one'
-  legal?: 'classified'
+  // Non-classified teams are hidden unless this is set
+  legal?: 'declassified'
   // Main faction values
   faction?: string[]
   // Sub faction values, valid only for a selected main faction
   sub?: string[]
+  // Play styles that the team must all have
+  style?: KillTeamStyle[]
 }
 
 export type AnswerKey = keyof Answers
-export type SingleAnswerKey = Exclude<AnswerKey, 'faction' | 'sub'>
+export type SingleAnswerKey = Exclude<AnswerKey, 'faction' | 'sub' | 'style'>
 
-export const ANSWER_KEYS: SingleAnswerKey[] = ['exp', 'fight', 'size', 'boxes', 'legal']
+export const ANSWER_KEYS: SingleAnswerKey[] = ['exp', 'size', 'boxes', 'legal']
 
 // Main faction tags and the sub faction tags shown when the main faction is selected
 export const FACTION_TREE: Record<string, string[]> = {
@@ -33,9 +35,8 @@ export function subFactionsOf(mains: string[]): string[] {
 
 const FIXED_VALUES: Record<SingleAnswerKey, string[]> = {
   exp: ['new', 'played', 'pro'],
-  fight: ['ranged', 'melee', 'mixed'],
   size: ['few', 'many', 'horde'],
-  legal: ['classified'],
+  legal: ['declassified'],
   boxes: ['one'],
 }
 
@@ -53,13 +54,7 @@ export function matchesAnswers(team: KillTeam, answers: Answers, now: Date): boo
   if (answers.exp === 'played' && team.skill === 'pro-only') return false
   if (answers.exp === 'pro' && team.skill !== 'pro-only') return false
 
-  if (answers.fight) {
-    const ranged = team.combat.filter((c) => c === 'ranged').length
-    const melee = team.combat.length - ranged
-    if (answers.fight === 'ranged' && ranged < 2) return false
-    if (answers.fight === 'melee' && melee < 2) return false
-    if (answers.fight === 'mixed' && (ranged === 0 || melee === 0)) return false
-  }
+  if (answers.style && !answers.style.every((style) => team.style.includes(style))) return false
 
   if (answers.size) {
     // A team matches when its operative count range overlaps the answer's range
@@ -71,9 +66,7 @@ export function matchesAnswers(team: KillTeam, answers: Answers, now: Date): boo
 
   if (answers.boxes === 'one' && team.boxes > 1) return false
 
-  if (answers.legal) {
-    if (getLegality(team.legal_until, now) === 'declassified') return false
-  }
+  if (!answers.legal && getLegality(team.legal_until, now) === 'declassified') return false
 
   // Selected sub factions replace the main faction filter
   if (answers.sub?.length) {
@@ -98,6 +91,8 @@ export function operativesText(team: KillTeam): string | undefined {
   return `${team.operatives_min}–${team.operatives_max}`
 }
 
+const STYLE_VALUES: KillTeamStyle[] = ['melee', 'shooting', 'combo', 'mobile', 'slow', 'fragile', 'tough', 'high-damage', 'control']
+
 export function answersFromSearch(search: string): Answers {
   const params = new URLSearchParams(search)
   const answers: Answers = {}
@@ -117,6 +112,9 @@ export function answersFromSearch(search: string): Answers {
   const subs = validSubs.filter((sub) => params.getAll('sub').includes(sub))
   if (subs.length) answers.sub = subs
 
+  const styles = STYLE_VALUES.filter((style) => params.getAll('style').includes(style))
+  if (styles.length) answers.style = styles
+
   return answers
 }
 
@@ -128,6 +126,7 @@ export function buildSearch(answers: Answers, selectedSlug: string | null): stri
   }
   answers.faction?.forEach((main) => params.append('faction', main))
   answers.sub?.forEach((sub) => params.append('sub', sub))
+  answers.style?.forEach((style) => params.append('style', style))
   if (selectedSlug) params.set(TEAM_PARAM, selectedSlug)
   const query = params.toString()
   return query ? `?${query}` : ''

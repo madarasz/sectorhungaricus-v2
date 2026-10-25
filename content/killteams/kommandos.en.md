@@ -10,10 +10,10 @@ boxes: 1
 box_type: wh40k
 tier: C
 skill: normal
-combat:
-  - ranged
+style:
   - melee
-  - melee
+  - shooting
+  - tough
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120103127_KTKommandos2.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120103127_KTKommandos3.jpg?fm=webp&w=892&h=920
 ---

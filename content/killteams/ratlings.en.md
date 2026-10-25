@@ -5,8 +5,7 @@ factions:
   - imperium
   - astra-militarum
   - abhuman
-operatives_min: 8
-operatives_max: 11
+operatives: 11
 boxes: 2
 boxes_note: One box gives a playable team, but without the Ogryn and Bullgryn
   options. These come from the Warhammer 40,000 Ogryns box, where you have to
@@ -14,10 +13,11 @@ boxes_note: One box gives a playable team, but without the Ogryn and Bullgryn
 box_type: kill-team
 tier: A
 skill: normal
-combat:
-  - ranged
-  - ranged
-  - ranged
+style:
+  - shooting
+  - fragile
+  - mobile
+  - combo
 legal_until: 2028
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105132_ENGKTBrutalCunning6.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105117_AMBullgryns6.jpg?fm=webp&w=892&h=920

@@ -14,10 +14,11 @@ boxes_note: Two Inquisitorial Agents boxes build every option except one of the
 box_type: kill-team
 tier: S
 skill: pro-only
-combat:
-  - ranged
-  - ranged
-  - melee
+style:
+  - fragile
+  - combo
+  - control
+  - shooting
 legal_until: 2027
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108110_InquisitorialAgents3.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108110_InquisitorialAgents4.jpg?fm=webp&w=892&h=920

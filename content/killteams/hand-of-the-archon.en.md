@@ -10,10 +10,10 @@ boxes_note: "One box of the original Kill Team box has enough bodies for every o
 box_type: discontinued
 tier: ""
 skill: normal
-combat:
-  - ranged
-  - melee
-  - melee
+style:
+  - mobile
+  - fragile
+  - high-damage
 legal_until: 2026
 image: https://preview.redd.it/the-hand-of-the-archon-kill-team-will-finally-be-sold-on-v0-b8h2f25ytxhb1.jpg?auto=webp&s=f9b8836089c4d908801e891ccb9258c19d583b79
 ---

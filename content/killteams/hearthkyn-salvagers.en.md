@@ -12,10 +12,11 @@ boxes_note: One box is enough, but some specialists share bodies with the Gunner
 box_type: wh40k
 tier: C
 skill: normal
-combat:
-  - ranged
-  - ranged
-  - melee
+style:
+  - shooting
+  - tough
+  - combo
+  - slow
 legal_until: 2026
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120118007_LoVHearthkynWarriorsFeature01.jpg?fm=webp&w=892&h=920
 ---

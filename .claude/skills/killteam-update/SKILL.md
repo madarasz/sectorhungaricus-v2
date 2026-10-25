@@ -35,7 +35,7 @@ Read only the reference files for the fields that the user asked for.
 ## Languages
 
 Fields have different i18n modes in `config.yml`:
-- **Shared** (no `i18n` key, listed in `KILL_TEAM_SHARED_FIELDS` in `src/lib/markdown.ts`): `factions`, `operatives`, `operatives_min`, `operatives_max`, `boxes`, `box_type`, `tier`, `skill`, `combat`, `legal_until`, `image`, `second_image`. Write them only to the `.en.md` file. The Hungarian page reads them from there. Do not add them to the `.hu.md` file.
+- **Shared** (no `i18n` key, listed in `KILL_TEAM_SHARED_FIELDS` in `src/lib/markdown.ts`): `factions`, `operatives`, `operatives_min`, `operatives_max`, `boxes`, `box_type`, `tier`, `skill`, `style`, `legal_until`, `image`, `second_image`. Write them only to the `.en.md` file. The Hungarian page reads them from there. Do not add them to the `.hu.md` file.
 - **Translated** (`i18n: true`): body (play style) and `boxes_note`. Write an English text and a Hungarian text with the same content.
 
 Capitalization (all languages, all texts): write general words for factions, races and armies in lowercase, for example "chaos", "space marines", "humans", also as an adjective ("a chaos team", "egy káosz csapat"). Capitalize them only inside a proper name (team, unit, operative or rule name, for example Chaos Cult).

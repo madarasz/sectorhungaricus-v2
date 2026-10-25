@@ -8,11 +8,12 @@ operatives: 5
 boxes: 1
 box_type: kill-team
 tier: A
-skill: normal
-combat:
-  - ranged
+skill: pro-only
+style:
   - melee
-  - melee
+  - mobile
+  - high-damage
+  - tough
 legal_until: 2029
 image: https://www.metagames.hu/store/?path=/upload/images/2026_07/60010199084_eng-1784960611.png
 ---

@@ -10,10 +10,11 @@ boxes_note: "One box builds a full team, and you need to magnetize or a second b
 box_type: wh40k
 tier: B
 skill: normal
-combat:
-  - ranged
+style:
   - melee
-  - melee
+  - tough
+  - shooting
+  - high-damage
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102218_CSMLegionaries2.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102218_CSMLegionaries3.jpg?fm=webp&w=892&h=920
 ---

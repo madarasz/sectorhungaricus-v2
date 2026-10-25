@@ -10,10 +10,11 @@ boxes_note: Some operatives have several weapon options which you can magnetize.
 box_type: kill-team
 tier: B
 skill: beginner-friendly
-combat:
-  - ranged
+style:
   - melee
-  - melee
+  - control
+  - high-damage
+  - tough
 legal_until: 2027
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102182_KTNemesisClaw3.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102182_KTNemesisClaw4.jpg?fm=webp&w=892&h=920

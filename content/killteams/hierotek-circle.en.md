@@ -12,10 +12,11 @@ boxes_note: The Kill Team box has no Chronomancer or Technomancer, but you can
 box_type: wh40k
 tier: C
 skill: normal
-combat:
-  - ranged
-  - ranged
-  - ranged
+style:
+  - shooting
+  - tough
+  - high-damage
+  - combo
 legal_until: 2026
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120110057_NECImmortalsFeature1.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99070110003_NECChronomancerFeature01.jpg?fm=webp&w=892&h=920

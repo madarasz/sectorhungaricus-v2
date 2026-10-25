@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBan, faBoxOpen, faHourglassHalf, faShieldHalved, faTrophy, faUsers, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { KillTeam, KillTeamChooserLabels, KillTeamTier } from '@/types/content'
-import CombatIcons, { SwordIcon } from './CombatIcons'
+import { StylePills } from './StyleIcons'
 import TeamImage from './TeamImage'
 import { BOX_TYPE_STYLES, SkillTag, boxTypeTexts } from './TeamCard'
 import { operativesText } from './filters'
@@ -117,6 +117,7 @@ export default function TeamDetail({ team, labels, factionLabels, locale, now, o
               ))}
             </ul>
           </div>
+          <StylePills key={team.slug} style={team.style} styles={labels.styles} label={labels.styles_label} />
 
           {/* First column on desktop: play style and where to buy the team */}
           <div>
@@ -134,7 +135,7 @@ export default function TeamDetail({ team, labels, factionLabels, locale, now, o
           </div>
 
           {/* Second column on desktop: team facts and tournament legality */}
-          <div className="xl:col-start-2 xl:row-start-2 xl:self-start">
+          <div className="xl:col-start-2 xl:row-start-3 xl:self-start">
             <dl className="grid grid-cols-[1.25rem_1fr_auto] gap-x-2 gap-y-2 items-center text-sm mt-2 xl:mt-3">
               {rows.map((row) => (
                 <div key={row.label} className="contents">
@@ -144,11 +145,6 @@ export default function TeamDetail({ team, labels, factionLabels, locale, now, o
                   {row.note && <dd className="col-start-2 col-span-2 text-xs opacity-75 -mt-1">{row.note}</dd>}
                 </div>
               ))}
-              <span className="text-base leading-none" aria-hidden="true"><SwordIcon /></span>
-              <dt className="opacity-80">{labels.combat_label}</dt>
-              <dd className="text-right">
-                <CombatIcons combat={team.combat} rangedLabel={labels.ranged_label} meleeLabel={labels.melee_label} />
-              </dd>
               {team.tier && (
                 <>
                   <FontAwesomeIcon icon={faTrophy} className="w-4 h-4" aria-hidden="true" />

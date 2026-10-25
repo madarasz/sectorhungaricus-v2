@@ -12,10 +12,11 @@ boxes_note: One box has enough bodies for every specialist and the Missionary's
 box_type: kill-team
 tier: A
 skill: pro-only
-combat:
-  - ranged
+style:
   - melee
-  - melee
+  - fragile
+  - combo
+  - mobile
 legal_until: 2028
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108116_KillTeamSanctifiers2.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108116_KillTeamSanctifiers3.jpg?fm=webp&w=892&h=920

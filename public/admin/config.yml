@@ -151,13 +151,21 @@ collections:
           - {label: "Beginner-friendly", value: "beginner-friendly"}
           - {label: "Normal", value: "normal"}
           - {label: "Pro-only", value: "pro-only"}
-      - label: "Combat (3 icons)"
-        name: "combat"
-        widget: "list"
-        min: 3
-        max: 3
-        hint: "Add exactly 3 icons, e.g. ranged, ranged, melee. Same for all languages."
-        field: {label: "Icon", name: "icon", widget: "select", options: ["ranged", "melee"]}
+      - label: "Play style"
+        name: "style"
+        widget: "select"
+        multiple: true
+        hint: "Each style can be selected once. Names and descriptions are set in the chooser labels. Same for all languages."
+        options:
+          - {label: "Melee", value: "melee"}
+          - {label: "Shooting", value: "shooting"}
+          - {label: "Combo", value: "combo"}
+          - {label: "Mobile", value: "mobile"}
+          - {label: "Slow", value: "slow"}
+          - {label: "Fragile", value: "fragile"}
+          - {label: "Tough", value: "tough"}
+          - {label: "High damage", value: "high-damage"}
+          - {label: "Control", value: "control"}
       - {label: "Tournament legal until (year)", name: "legal_until", widget: "number", value_type: "int", required: false, hint: "The team is tournament legal until 30 November of this year. Empty means not tournament legal (non-classified)."}
       - {label: "Image", name: "image", widget: "image", required: false}
       - {label: "Second image", name: "second_image", widget: "image", required: false, hint: "Shown next to the first image in the team details."}
@@ -257,10 +265,7 @@ collections:
                   - {label: "Answer: first team", name: "a_experience_new", widget: "string"}
                   - {label: "Answer: played before", name: "a_experience_played", widget: "string"}
                   - {label: "Answer: most complex teams", name: "a_experience_pro", widget: "string"}
-                  - {label: "Question: fighting style", name: "q_fight", widget: "string"}
-                  - {label: "Answer: ranged", name: "a_fight_ranged", widget: "string"}
-                  - {label: "Answer: melee", name: "a_fight_melee", widget: "string"}
-                  - {label: "Answer: mixed", name: "a_fight_mixed", widget: "string"}
+                  - {label: "Question: play style", name: "q_style", widget: "string", hint: "The answers are the play styles below. A team must have all selected styles."}
                   - {label: "Question: team size", name: "q_size", widget: "string"}
                   - {label: "Answer: few elite (up to 6)", name: "a_size_few", widget: "string"}
                   - {label: "Answer: many (7-10)", name: "a_size_many", widget: "string"}
@@ -268,7 +273,7 @@ collections:
                   - {label: "Question: boxes", name: "q_boxes", widget: "string"}
                   - {label: "Checkbox: only one box", name: "a_boxes_one", widget: "string"}
                   - {label: "Question: tournament legality", name: "q_legal", widget: "string"}
-                  - {label: "Checkbox: classified", name: "a_legal_classified", widget: "string"}
+                  - {label: "Checkbox: show non-classified teams", name: "a_legal_declassified", widget: "string", hint: "Non-classified teams are hidden while this is not checked"}
                   - {label: "Question: faction", name: "q_faction", widget: "string"}
                   - label: "Factions"
                     name: "factions"
@@ -292,9 +297,15 @@ collections:
                   - {label: "WH40k box note", name: "wh40k_note", widget: "string", hint: "Shown in the team details when the team is sold in Warhammer 40,000 boxes"}
                   - {label: "Discontinued badge", name: "discontinued_badge", widget: "string", hint: "Shown on the team image when the box is discontinued"}
                   - {label: "Discontinued note", name: "discontinued_note", widget: "string", hint: "Shown in the team details when the box is discontinued"}
-                  - {label: "Combat label", name: "combat_label", widget: "string"}
-                  - {label: "Ranged icon label", name: "ranged_label", widget: "string"}
-                  - {label: "Melee icon label", name: "melee_label", widget: "string"}
+                  - {label: "Play styles label", name: "styles_label", widget: "string", hint: "Name of the play style list in the team details"}
+                  - label: "Play styles"
+                    name: "styles"
+                    widget: "list"
+                    hint: "Names and descriptions of the play styles. The order here is the display order."
+                    fields:
+                      - {label: "Value", name: "value", widget: "select", options: ["melee", "shooting", "combo", "mobile", "slow", "fragile", "tough", "high-damage", "control"]}
+                      - {label: "Name", name: "label", widget: "string"}
+                      - {label: "Description", name: "description", widget: "string"}
                   - {label: "Tier label", name: "tier_label", widget: "string"}
                   - {label: "Legal until label", name: "legal_until_label", widget: "string", hint: "Use {month} and {year} placeholders"}
                   - {label: "Rotates soon label", name: "rotates_soon_label", widget: "string"}

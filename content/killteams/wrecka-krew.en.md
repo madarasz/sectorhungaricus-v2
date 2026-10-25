@@ -10,10 +10,10 @@ boxes_note: "One box builds every specialist, and the Boss Nob weapons can be ma
 box_type: kill-team
 tier: B
 skill: beginner-friendly
-combat:
+style:
   - melee
-  - melee
-  - ranged
+  - high-damage
+  - tough
 legal_until: 2028
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120103123_ENGKTBrutalCunning7.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120103123_ENGKTBrutalCunning8.jpg?fm=webp&w=892&h=920

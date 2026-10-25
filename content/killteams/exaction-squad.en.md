@@ -10,10 +10,10 @@ boxes_note: "One box forces a fixed build because the Chirurgant and the Leashma
 box_type: wh40k
 tier: A
 skill: normal
-combat:
-  - ranged
-  - ranged
-  - melee
+style:
+  - shooting
+  - combo
+  - control
 legal_until: 2026
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108153_ImperialAgentsExactionSquad04.jpg?fm=webp&w=892&h=920
 ---

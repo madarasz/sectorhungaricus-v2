@@ -11,9 +11,8 @@ boxes_note: "Traitor Guardsmen Squad and Traitor Enforcer WH40k boxes"
 box_type: wh40k
 tier: B
 skill: normal
-combat:
-  - ranged
-  - melee
+style:
+  - fragile
   - melee
 legal_until: ""
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102213_KTBlooded3.jpg?fm=webp&w=892&h=920

@@ -11,10 +11,11 @@ boxes_note: One box has enough models for every specialist, and there are no
 box_type: kill-team
 tier: B
 skill: normal
-combat:
-  - ranged
+style:
+  - mobile
   - melee
-  - melee
+  - shooting
+  - control
 legal_until: 2027
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120112055_KTMandrakes2.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120112055_KTMandrakes3.jpg?fm=webp&w=892&h=920

@@ -11,10 +11,10 @@ boxes_note: "Death Korps of Krieg WH40 box, but you will need additional bits fr
 box_type: wh40k
 tier: D
 skill: normal
-combat:
-  - ranged
-  - ranged
-  - ranged
+style:
+  - shooting
+  - combo
+  - fragile
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105127_AstraMilitarumKriegCommandSquad2.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105127_AstraMilitarumKriegCommandSquad3.jpg?fm=webp&w=892&h=920
 ---

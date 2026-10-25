@@ -10,10 +10,11 @@ boxes_note: "The Kill Team box only contains Striking Scorpions. You need additi
 box_type: kill-team
 tier: A
 skill: pro-only
-combat:
-  - ranged
+style:
   - melee
-  - melee
+  - mobile
+  - fragile
+  - high-damage
 legal_until: 2027
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120104105_KTBladesKhaine3.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120104105_KTBladesKhaine4.jpg?fm=webp&w=892&h=920

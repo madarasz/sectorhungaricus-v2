@@ -10,10 +10,9 @@ boxes_note: "It has more options than models, and the Purgatus is built in place
 box_type: wh40k
 tier: C
 skill: normal
-combat:
-  - ranged
+style:
   - melee
-  - melee
+  - fragile
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108121_KillTeamAdeptaSororitasNovitiates20253.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108121_KillTeamAdeptaSororitasNovitiates20251.jpg?fm=webp&w=892&h=920
 ---

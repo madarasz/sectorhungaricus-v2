@@ -13,10 +13,11 @@ boxes_note: 11 operative options, you can build 5 from each box. You can proxy o
 box_type: kill-team
 tier: B
 skill: beginner-friendly
-combat:
-  - ranged
-  - ranged
+style:
+  - shooting
   - melee
+  - tough
+  - high-damage
 legal_until: 2029
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108119_KTDeathwatch03.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108119_KTDeathwatch04.jpg?fm=webp&w=892&h=920

@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBan, faBoxOpen, faCrown, faCubes, faSeedling, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { KillTeam, KillTeamBoxType, KillTeamChooserLabels } from '@/types/content'
-import CombatIcons from './CombatIcons'
+import CardTooltip from './CardTooltip'
+import StyleIcons from './StyleIcons'
 import TeamImage from './TeamImage'
 import { operativesText } from './filters'
 
@@ -83,25 +84,30 @@ export default function TeamCard({ team, labels, factionNames, selected, onSelec
         )}
       </TeamImage>
 
-      <div className="p-[0.75em] font-poppins">
+      <div className="relative flex-1 flex flex-col p-[0.75em] font-poppins">
         <h3 className="font-namdhinggo text-base md:text-lg font-semibold leading-tight" data-testid="kt-card-name">
           {team.name}
         </h3>
         <p className="text-xs opacity-75 mt-0.5 mb-2">{factionNames(team.factions)}</p>
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+        <div className="mt-auto flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm">
           {operatives && (
-            <span className="inline-flex items-center gap-1" title={labels.operatives_label}>
+            <span className="group/tip inline-flex items-center gap-1" data-testid="kt-card-operatives">
               <FontAwesomeIcon icon={faUsers} className="w-[1em] h-[1em]" aria-hidden="true" />
               <span className="sr-only">{labels.operatives_label}:</span>
               {operatives}
+              <CardTooltip label={labels.operatives_label}>{operatives}</CardTooltip>
             </span>
           )}
-          <span className="inline-flex items-center gap-1" title={labels.boxes_label}>
+          <span className="group/tip inline-flex items-center gap-1" data-testid="kt-card-boxes">
             <FontAwesomeIcon icon={faBoxOpen} className="w-[1em] h-[1em]" aria-hidden="true" />
             <span className="sr-only">{labels.boxes_label}:</span>
             {team.boxes}
+            <CardTooltip label={labels.boxes_label}>
+              {team.boxes}
+              {team.boxes_note && <span className="block mt-0.5 opacity-85">{team.boxes_note}</span>}
+            </CardTooltip>
           </span>
-          <CombatIcons combat={team.combat} rangedLabel={labels.ranged_label} meleeLabel={labels.melee_label} />
+          <StyleIcons style={team.style} styles={labels.styles} />
         </div>
       </div>
     </button>

@@ -9,10 +9,10 @@ boxes: 1
 box_type: kill-team
 tier: B
 skill: normal
-combat:
-  - ranged
-  - ranged
-  - ranged
+style:
+  - shooting
+  - fragile
+  - control
 legal_until: 2029
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105153_KillTeamSpectreSquad02.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/60010199078_engKTTerrorOnDevlan04.jpg?fm=webp&w=892&h=920

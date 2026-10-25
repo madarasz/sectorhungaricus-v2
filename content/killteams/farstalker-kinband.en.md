@@ -10,10 +10,10 @@ boxes_note: "Kroot Farstalkers WH40k box. You must choose between the Stalker an
 box_type: wh40k
 tier: A
 skill: normal
-combat:
-  - ranged
-  - melee
-  - melee
+style:
+  - shooting
+  - mobile
+  - fragile
 legal_until: 2026
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120113120_KrootFarstalkers5.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120113120_KrootFarstalkers4.jpg?fm=webp&w=892&h=920

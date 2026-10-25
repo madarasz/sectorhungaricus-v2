@@ -3,13 +3,14 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotateLeft } from '@fortawesome/free-solid-svg-icons'
-import { ContentBlock, KillTeam } from '@/types/content'
+import { ContentBlock, KillTeam, KillTeamStyle } from '@/types/content'
 import { Answers, FACTION_TREE, SingleAnswerKey, TEAM_PARAM, answersFromSearch, buildSearch, matchesAnswers, subFactionsOf } from './filters'
 import { getLegality } from './legality'
 import FilterSheet from './FilterSheet'
 import QuestionFilters, { Question } from './QuestionFilters'
 import TeamCard from './TeamCard'
 import TeamDetail from './TeamDetail'
+import { StyleIcon } from './StyleIcons'
 
 interface KillTeamChooserProps {
   block: ContentBlock & { type: 'kill_team_chooser' }
@@ -58,22 +59,18 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
       { value: 'pro', label: labels.a_experience_pro },
     ] },
     { key: 'faction', label: labels.q_faction, mains: mainFactions, subs: subFactions },
-    { key: 'fight', label: labels.q_fight, options: [
-      { value: 'ranged', label: labels.a_fight_ranged },
-      { value: 'melee', label: labels.a_fight_melee },
-      { value: 'mixed', label: labels.a_fight_mixed },
-    ] },
-  ], [
     { key: 'size', label: labels.q_size, options: [
       { value: 'few', label: labels.a_size_few },
       { value: 'many', label: labels.a_size_many },
       { value: 'horde', label: labels.a_size_horde },
     ] },
+  ], [
+    { key: 'style', label: labels.q_style, options: labels.styles.map((style) => ({ ...style, icon: <StyleIcon style={style.value} /> })) },
     { key: 'boxes', label: labels.q_boxes, checkbox: true, options: [
       { value: 'one', label: labels.a_boxes_one },
     ] },
     { key: 'legal', label: labels.q_legal, checkbox: true, options: [
-      { value: 'classified', label: labels.a_legal_classified },
+      { value: 'declassified', label: labels.a_legal_declassified },
     ] },
   ]]
 
@@ -130,6 +127,15 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
     })
   }
 
+  const toggleStyle = (style: KillTeamStyle) => {
+    setAnswers((prev) => {
+      const styles = prev.style ?? []
+      const next: Answers = { ...prev, style: styles.includes(style) ? styles.filter((s) => s !== style) : [...styles, style] }
+      if (!next.style?.length) delete next.style
+      return next
+    })
+  }
+
   const resultCount = labels.result_count
     .replace('{shown}', String(visibleTeams.length))
     .replace('{total}', String(teams.length))
@@ -161,7 +167,7 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
         activeCount={answerCount}
         onReset={() => setAnswers({})}
       >
-        <QuestionFilters columns={questionColumns} answers={answers} onAnswer={toggleAnswer} onFaction={toggleFaction} onSub={toggleSub} />
+        <QuestionFilters columns={questionColumns} answers={answers} onAnswer={toggleAnswer} onFaction={toggleFaction} onSub={toggleSub} onStyle={toggleStyle} />
       </FilterSheet>
 
       <div className="flex justify-end my-4 font-poppins text-sm" data-testid="kt-result-bar">

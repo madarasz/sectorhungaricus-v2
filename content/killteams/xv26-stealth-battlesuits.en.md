@@ -12,11 +12,12 @@ boxes_note: They have flexible weapon loadouts. Fusion blasters are ideally on
   Lodestar and Neutraliser, but you can magnetize if you want to change it.
 box_type: kill-team
 tier: B
-skill: normal
-combat:
-  - ranged
-  - ranged
-  - ranged
+skill: pro-only
+style:
+  - shooting
+  - mobile
+  - high-damage
+  - combo
 legal_until: 2029
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/60010199076_engKTDeadSilence07.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/60010199076_engKTDeadSilence06.jpg?fm=webp&w=892&h=920

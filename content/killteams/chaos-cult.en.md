@@ -11,10 +11,10 @@ boxes_note: "You need three WH40k boxes: Chaos Cultists, Accursed Cultists and D
 box_type: wh40k
 tier: S
 skill: pro-only
-combat:
+style:
   - melee
-  - melee
-  - melee
+  - fragile
+  - combo
 legal_until: 2027
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102147_AccursedCultistsFeature2.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102146_CSMDarkCommuneFeature.jpg?fm=webp&w=892&h=920

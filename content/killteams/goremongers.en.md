@@ -9,10 +9,10 @@ boxes: 1
 box_type: kill-team
 tier: S
 skill: normal
-combat:
+style:
   - melee
-  - melee
-  - melee
+  - mobile
+  - high-damage
 legal_until: 2028
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102208_KillTeamGoremongers2.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102208_KillTeamGoremongers3.jpg?fm=webp&w=892&h=920

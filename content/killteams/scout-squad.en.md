@@ -10,10 +10,9 @@ boxes_note: "One box builds the whole team. You need a second box only if you wa
 box_type: kill-team
 tier: C
 skill: normal
-combat:
-  - ranged
-  - ranged
-  - melee
+style:
+  - shooting
+  - control
 legal_until: 2027
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/60010199064_KTSalvation7.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/60010199064_KTSalvation6.jpg?fm=webp&w=892&h=920

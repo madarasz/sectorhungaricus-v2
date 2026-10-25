@@ -17,18 +17,15 @@ content_blocks:
       a_experience_new: Nem, ez az első csapatom
       a_experience_played: Van némi tapasztalatom
       a_experience_pro: A legösszetettebb csapatokat kérem
-      q_fight: Hogyan szeretsz harcolni?
-      a_fight_ranged: Távolról
-      a_fight_melee: Közelharcban
-      a_fight_mixed: Mindkettő
+      q_style: Milyen csapatot szeretnél?
       q_size: Hány figurával szeretnél játszani?
       a_size_few: Néhány elit figurát
       a_size_many: Sok figurát
       a_size_horde: Egy egész hordát
       q_boxes: Hány dobozt vagy hajlandó megvenni?
       a_boxes_one: Csak egy dobozt
-      q_legal: Minden versenyen legális
-      a_legal_classified: Igen, csak classified csapatok
+      q_legal: Versenylegalitás
+      a_legal_declassified: A declassified csapatokat is mutasd - a legtöbb versenyen nem használhatók
       q_faction: Melyik frakció tetszik?
       factions:
         - {value: imperium, label: Imperium}
@@ -64,9 +61,35 @@ content_blocks:
       wh40k_note: Ezt a csapatot már nem árulják Kill Team dobozként. A figurái Warhammer 40,000 dobozokban kaphatók, de a Kill Team tokeneket nem tartalmazzák.
       discontinued_badge: Megszűnt
       discontinued_note: Ennek a csapatnak a doboza már nem kapható, mert megszűnt a gyártása.
-      combat_label: Harcmodor
-      ranged_label: Távolsági
-      melee_label: Közelharci
+      styles_label: Játékstílus
+      styles:
+        - value: melee
+          label: Közelharc
+          description: Erős közelharcban
+        - value: shooting
+          label: Lövészet
+          description: Erős távolsági lövésben
+        - value: combo
+          label: Kombó
+          description: Az operatívok között sok a szinergia
+        - value: mobile
+          label: Mozgékony
+          description: Gyors mozgás és/vagy egyéb mozgás lehetőségek 
+        - value: slow
+          label: Lassú
+          description: Kevesebbet mozog, mint a többi csapat
+        - value: fragile
+          label: Sérülékeny
+          description: Kevés életerő, gyenge páncél és alacsony túlélőképesség
+        - value: tough
+          label: Szívós
+          description: Sok életerő, jó páncél és magas túlélőképesség
+        - value: high-damage
+          label: Nagy sebzés
+          description: A legtöbb operatív nagy sebzést tud okozni
+        - value: control
+          label: Kontroll
+          description: Korlátozza az ellenfél lehetőségeit, befolyásolja a csatateret
       tier_label: Erősség
       legal_until_label: "Classified {year}. {month} végéig"
       rotates_soon_label: Ez a csapat hamarosan kikerül a versenyjátékból.

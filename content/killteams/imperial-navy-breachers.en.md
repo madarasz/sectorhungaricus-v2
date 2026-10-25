@@ -14,10 +14,10 @@ boxes_note: One box builds only one of the three Gunner options, but the team ca
 box_type: wh40k
 tier: B
 skill: normal
-combat:
-  - ranged
-  - ranged
-  - melee
+style:
+  - shooting
+  - combo
+  - control
 legal_until: 2026
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108152_ImperialNavyBreachers2.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108152_ImperialNavyBreachers3.jpg?fm=webp&w=892&h=920

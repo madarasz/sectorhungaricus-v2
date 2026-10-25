@@ -17,18 +17,15 @@ content_blocks:
       a_experience_new: No, this is my first team
       a_experience_played: I have some experience
       a_experience_pro: Give me the most complex teams
-      q_fight: Which kind of combat do you prefer?
-      a_fight_ranged: From range
-      a_fight_melee: Up close
-      a_fight_mixed: Bit of both
+      q_style: What kind of team do you prefer?
       q_size: How many models do you want to play?
       a_size_few: A few elite models
       a_size_many: Many models
       a_size_horde: A horde
       q_boxes: How many boxes are you willing to buy?
       a_boxes_one: Only one box
-      q_legal: Legal on all tournaments
-      a_legal_classified: Yes, classified teams only
+      q_legal: Tournament legality
+      a_legal_declassified: Show declassified teams as well - not legal on most tournaments
       q_faction: Which faction do you like?
       factions:
         - {value: imperium, label: Imperium}
@@ -64,9 +61,35 @@ content_blocks:
       wh40k_note: This team is no longer sold as a Kill Team box. You can buy its models in Warhammer 40,000 boxes, but they do not contain Kill Team specific tokens.
       discontinued_badge: Discontinued
       discontinued_note: You cannot buy the box of this team anymore, because it is discontinued.
-      combat_label: Fighting style
-      ranged_label: Ranged
-      melee_label: Melee
+      styles_label: Play style
+      styles:
+        - value: melee
+          label: Melee
+          description: Strong in close combat
+        - value: shooting
+          label: Shooting
+          description: Strong at ranged shooting
+        - value: combo
+          label: Combo
+          description: Operatives have many synergies with each other
+        - value: mobile
+          label: Mobile
+          description: Lot of movement and/or maybe additional movement options
+        - value: slow
+          label: Slow
+          description: Less movement than other teams
+        - value: fragile
+          label: Fragile
+          description: Few wounds, weak armor and low survivability
+        - value: tough
+          label: Tough
+          description: Many wounds, good armor and high survivability
+        - value: high-damage
+          label: High damage
+          description: Most operatives can do high damage
+        - value: control
+          label: Control
+          description: Limits the enemy's options, affects battlefield
       tier_label: Power level
       legal_until_label: "Classified until {month}, {year}"
       rotates_soon_label: This team rotates out of tournament play soon.

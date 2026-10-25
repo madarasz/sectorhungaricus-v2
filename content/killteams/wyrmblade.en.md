@@ -14,10 +14,10 @@ boxes_note: "Two Neophyte Hybrids boxes build a full team. For every option you 
 box_type: wh40k
 tier: C
 skill: normal
-combat:
-  - ranged
-  - ranged
-  - ranged
+style:
+  - shooting
+  - fragile
+  - combo
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120117004_GenestealerNeophytes06.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/threeSixty/99070117007_Locus360/01.jpg?fm=webp&w=892
 ---

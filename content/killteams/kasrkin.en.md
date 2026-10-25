@@ -12,10 +12,10 @@ boxes_note: The Kill Team box is discontinued, but the same Kasrkin kit is sold 
 box_type: wh40k
 tier: A
 skill: normal
-combat:
-  - ranged
-  - ranged
-  - ranged
+style:
+  - shooting
+  - combo
+  - fragile
 legal_until: 2026
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105155_AstraMilitarumKasrkin03.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105155_AstraMilitarumKasrkin02.jpg?fm=webp&w=892&h=920

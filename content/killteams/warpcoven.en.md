@@ -10,11 +10,13 @@ boxes: 3
 boxes_note: "The Rubric Marines, Tzaangors and Exalted Sorcerer WH40k boxes."
 box_type: wh40k
 tier: C
-skill: normal
-combat:
-  - ranged
-  - ranged
+skill: pro-only
+style:
+  - shooting
+  - tough
   - melee
+  - high-damage
+  - combo
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102067_ExhaltedSorcerers06.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102063_RubicMarines03.jpg?fm=webp&w=892&h=920
 ---

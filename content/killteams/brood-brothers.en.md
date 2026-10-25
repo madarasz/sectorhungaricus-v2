@@ -11,11 +11,11 @@ boxes: 2
 boxes_note: "You will need an additional Broodcoven WH40k box for the leaders"
 box_type: kill-team
 tier: S
-skill: pro-only
-combat:
-  - ranged
-  - ranged
-  - melee
+skill: normal
+style:
+  - shooting
+  - fragile
+  - combo
 legal_until: 2027
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120117029_KTBroodBrothers4.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120117001_Broodcoven05.jpg?fm=webp&w=892&h=920
