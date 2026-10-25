@@ -49,3 +49,6 @@ public/uploads/*-mobile.*
 public/uploads/*-desktop.*
 
 .codemie
+.claude/launch.json
+# Playwright CLI output (may contain credentials)
+.playwright-cli/

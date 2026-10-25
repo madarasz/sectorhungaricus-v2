@@ -67,7 +67,7 @@ export interface ArtistContent {
 }
 
 export interface ContentBlock {
-  type: 'text_block' | 'hero_block' | 'two_column_block' | 'gallery_block' | 'page_reference_block' | 'artist_block'
+  type: 'text_block' | 'hero_block' | 'two_column_block' | 'gallery_block' | 'page_reference_block' | 'artist_block' | 'kill_team_chooser'
   content?: string
   style?: 'normal' | 'bordered'
   block_title?: string
@@ -103,6 +103,82 @@ export interface ContentBlock {
       }>
     }
   }
+  labels?: KillTeamChooserLabels
+  killTeams?: KillTeam[]
+}
+
+export type KillTeamCombat = 'ranged' | 'melee'
+export type KillTeamTier = 'S' | 'A' | 'B' | 'C' | 'D' | 'E'
+export type KillTeamBoxType = 'kill-team' | 'wh40k' | 'discontinued'
+
+export interface KillTeam {
+  slug: string
+  name: string
+  factions: string[]
+  operatives?: number
+  operatives_min?: number
+  operatives_max?: number
+  boxes: number
+  boxes_note?: string
+  box_type: KillTeamBoxType
+  tier?: KillTeamTier
+  reviewed: boolean
+  beginner_friendly: boolean
+  combat: KillTeamCombat[]
+  legal_until?: number
+  image?: string
+  imageVariants?: ImageVariants
+  second_image?: string
+  secondImageVariants?: ImageVariants
+  playstyleHtml: string
+}
+
+export interface KillTeamFactionOption {
+  value: string
+  label: string
+}
+
+export interface KillTeamChooserLabels {
+  q_experience: string
+  a_experience_new: string
+  a_experience_played: string
+  q_fight: string
+  a_fight_ranged: string
+  a_fight_melee: string
+  a_fight_mixed: string
+  q_size: string
+  a_size_few: string
+  a_size_many: string
+  a_size_horde: string
+  q_boxes: string
+  a_boxes_one: string
+  q_legal: string
+  a_legal_classified: string
+  q_faction: string
+  factions: KillTeamFactionOption[]
+  result_count: string
+  reset: string
+  filters_button: string
+  filters_close_label: string
+  show_results: string
+  empty_state: string
+  declassified_separator: string
+  under_construction: string
+  beginner_tag: string
+  operatives_label: string
+  boxes_label: string
+  wh40k_badge: string
+  wh40k_note: string
+  discontinued_badge: string
+  discontinued_note: string
+  combat_label: string
+  ranged_label: string
+  melee_label: string
+  tier_label: string
+  legal_until_label: string
+  rotates_soon_label: string
+  not_legal_label: string
+  close_label: string
 }
 
 export interface SubpageContent {

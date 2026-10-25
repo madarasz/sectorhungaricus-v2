@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
-import { ContentBlock } from '@/types/content'
+import { ContentBlock, KillTeam } from '@/types/content'
 import { generateImageVariants } from './imageVariants'
 
 const contentDirectory = path.join(process.cwd(), 'content')
@@ -20,7 +20,7 @@ async function processMarkdownString(content: string): Promise<string> {
   return processedContent.toString()
 }
 
-async function processContentBlocks(blocks: ContentBlock[]): Promise<ContentBlock[]> {
+async function processContentBlocks(blocks: ContentBlock[], locale?: string): Promise<ContentBlock[]> {
   const processedBlocks = []
   
   for (const block of blocks) {
@@ -102,6 +102,12 @@ async function processContentBlocks(blocks: ContentBlock[]): Promise<ContentBloc
       }
     }
 
+    // Load all kill teams for the team chooser block
+    if (block.type === 'kill_team_chooser') {
+      // Only reviewed teams are shown
+      processedBlock.killTeams = (await getKillTeams(locale)).filter((team) => team.reviewed)
+    }
+
     processedBlocks.push(processedBlock)
   }
   
@@ -130,7 +136,7 @@ export async function getMarkdownContent(collection: string, slug: string, local
 
   // Process content blocks for subpages
   if (collection === 'subpages' && data.content_blocks) {
-    data.content_blocks = await processContentBlocks(data.content_blocks as ContentBlock[])
+    data.content_blocks = await processContentBlocks(data.content_blocks as ContentBlock[], locale)
   }
 
   // Generate image variants for featured images in games
@@ -216,4 +222,47 @@ export async function getGameWithSubpages(gameSlug: string, locale?: string) {
     })
   
   return { game, subpages }
+}
+// Empty optional number fields from the CMS can be saved as an empty string
+function optionalNumber(value: unknown): number | undefined {
+  return typeof value === 'number' ? value : undefined
+}
+
+// Kill team fields that are stored only in the default locale file
+const KILL_TEAM_SHARED_FIELDS = ['combat']
+const KILL_TEAM_DEFAULT_LOCALE = 'en'
+
+export async function getKillTeams(locale?: string): Promise<KillTeam[]> {
+  const teams = await getAllContent('killteams', locale)
+  const defaultTeams = locale && locale !== KILL_TEAM_DEFAULT_LOCALE
+    ? await getAllContent('killteams', KILL_TEAM_DEFAULT_LOCALE)
+    : teams
+
+  return teams
+    .map(({ slug, data, contentHtml }) => {
+      // Only whether a team is reviewed reaches the page, not the reviewer's nickname
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { content_blocks, reviewed, ...rest } = data
+      const defaultData = defaultTeams.find((t) => t.slug === slug)?.data ?? {}
+      const shared = Object.fromEntries(KILL_TEAM_SHARED_FIELDS.map((field) => [field, defaultData[field]]))
+      const team = { ...rest, ...shared } as unknown as Omit<KillTeam, 'slug' | 'playstyleHtml' | 'imageVariants' | 'secondImageVariants'>
+      return {
+        ...team,
+        slug,
+        tier: team.tier || undefined,
+        reviewed: typeof reviewed === 'string' && reviewed.trim() !== '',
+        operatives: optionalNumber(team.operatives),
+        operatives_min: optionalNumber(team.operatives_min),
+        operatives_max: optionalNumber(team.operatives_max),
+        legal_until: optionalNumber(team.legal_until),
+        boxes_note: team.boxes_note || undefined,
+        image: team.image || undefined,
+        // Remote images have no generated size variants
+        imageVariants: team.image && !/^https?:\/\//.test(team.image) ? generateImageVariants(team.image) : undefined,
+        second_image: team.second_image || undefined,
+        secondImageVariants: team.second_image && !/^https?:\/\//.test(team.second_image) ? generateImageVariants(team.second_image) : undefined,
+        playstyleHtml: contentHtml,
+      }
+    })
+    .sort((a, b) => a.name.localeCompare(b.name))
 }
