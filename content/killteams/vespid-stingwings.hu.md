@@ -1,6 +1,6 @@
 ---
 name: "Vespid Stingwings"
-reviewed: ""
+reviewed: Madarász
 factions:
   - xenos
   - tau

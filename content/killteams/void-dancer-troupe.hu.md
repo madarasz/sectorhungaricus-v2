@@ -1,15 +1,16 @@
 ---
 name: "Void-Dancer Troupe"
-reviewed: ""
+reviewed: Madarász
 factions:
   - xenos
   - aeldari
-operatives_min: 6
-operatives_max: 8
-boxes: 1
-tier: ""
+operatives: 8
+boxes: 3
+boxes_note: "Ehhez a csapathoz soha nem volt Kill Team doboz, minden figura a WH40k kínálatból érhető el. Az összes opcióhoz három doboz kell: Harlequin Troupe, Death Jester és Shadowseer."
+box_type: wh40k
+tier: A
 beginner_friendly: false
-legal_until: 2027
-image: https://assets.warhammer-community.com/articles/733ce68f-0866-4363-9216-3f68e55af773/wr5ihpxjw15bf0bp.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120111007_AELHarlequinTroupeLead.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99070111001_HarlequinDeathJester01.jpg?fm=webp&w=892&h=920
 ---
-Harlequin akrobaták. Nagyon gyorsak és nagyon törékenyek.
+A Void-Dancer Troupe Harlequinjei akrobatikus aeldari harcosok, akiknek a háború egy előadás, amellyel fajuk sorsát alakítják. Gyors csapat, amely távolról és közelharcban is harcol, főleg pisztolyokkal és pengékkel. Felszerelésükkel könnyedén másznak, elhaladhatnak az ellenséges operatívok mellett, és a páncéltörő lövések is kevésbé hatnak rájuk.

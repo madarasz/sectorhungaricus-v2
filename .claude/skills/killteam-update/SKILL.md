@@ -26,6 +26,7 @@ Teams with a non-empty `reviewed` field were checked by a person. Change them on
 | `operatives` or `operatives_min` / `operatives_max` | Team rules PDF, Operatives (Kill Team Selection) card | [references/operatives.md](references/operatives.md) |
 | `legal_until` | Approved Ops Tournament Companion PDF, Classified Rotation | [references/legal-until.md](references/legal-until.md) |
 | `boxes` | Reddit "Number of boxes per team super guide" | [references/boxes.md](references/boxes.md) |
+| `box_type` | Reddit wiki "one-box-teams", explanation column, and warhammer.com Kill Team list | [references/boxes.md](references/boxes.md) |
 | `boxes_note` | Reddit wiki "one-box-teams", explanation column | [references/boxes.md](references/boxes.md) |
 | `image`, `second_image` | warhammer.com webshop product page, 2x2 gallery photos | [references/images.md](references/images.md) |
 
@@ -34,7 +35,7 @@ Read only the reference files for the fields that the user asked for.
 ## Languages
 
 Fields have different i18n modes in `config.yml`. Keep both files consistent:
-- **Same value in both files** (`i18n: "duplicate"`): `operatives`, `operatives_min`, `operatives_max`, `boxes`, `legal_until`, `image`, `second_image`. Write the same value to the `.en.md` and the `.hu.md` file.
+- **Same value in both files** (`i18n: "duplicate"`): `operatives`, `operatives_min`, `operatives_max`, `boxes`, `box_type`, `legal_until`, `image`, `second_image`. Write the same value to the `.en.md` and the `.hu.md` file.
 - **Translated** (`i18n: true`): body (play style) and `boxes_note`. Write an English text and a Hungarian text with the same content.
 
 Capitalization (all languages, all texts): write general words for factions, races and armies in lowercase, for example "chaos", "space marines", "humans", also as an adjective ("a chaos team", "egy káosz csapat"). Capitalize them only inside a proper name (team, unit, operative or rule name, for example Chaos Cult).

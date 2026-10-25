@@ -1,14 +1,19 @@
 ---
 name: "Hunter Clade"
-reviewed: ""
+reviewed: Madarász
 factions:
   - imperium
   - adeptus-mechanicus
 operatives: 10
-boxes: 1
-tier: ""
-beginner_friendly: true
-legal_until: 2027
-image: https://assets.warhammer-community.com/articles/9f7b97ed-e8f9-401e-a404-2dedf1f9c42d/9qul8b76992g4fqn.jpg
+boxes: 2
+boxes_note: A csapatot a Warhammer 40,000
+  Skitarii és Sicarian készletekből építed meg. Egy Skitarii Rangers doboz is
+  elég, ha több Warriort viszel, egy második, Sicarian Infiltrators dobozzal
+  pedig minden operatívból lehet egyed.
+box_type: wh40k
+tier: A
+beginner_friendly: false
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120116002_SkitariiRangers03.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120116003_SicarianRuststalkers01.jpg?fm=webp&w=892&h=920
 ---
-Skitariik erős lőfegyverekkel és doktrínákkal.
+Az Adeptus Mechanicus számára a tudás megszerzése szent feladat, ezért kibernetikusan átalakított Skitarii és Sicarian harcosait küldi el a feladatra. A csapat rugalmasan összeállítható, és távolról lövő Skitarii Rangers, sugárzó Skitarii Vanguard és Sicarian orgyilkos operatívokból áll. A Tech-Priest vezető minden turning pointban új doktrínát hírdet ki, amely a csapat egyik képességét javítja, például a lövést, a közelharcot, a sebességet vagy a szívósságot, egy másikat viszont általában gyengít.

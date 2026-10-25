@@ -1,18 +1,21 @@
 ---
 name: "Pathfinders"
-reviewed: ""
+reviewed: Madarász
 factions:
   - xenos
   - tau
-operatives: 12
-boxes: 1
-tier: ""
+operatives_min: 11
+operatives_max: 12
+boxes: 2
+boxes_note: "The Kill Team box is discontinued, and the older 40k Pathfinders box does not have the upgrade sprue for some build options, but the T’au Combat Patrol box still includes it. One box builds the team, two are recommended, and you need three to build every drone."
+box_type: wh40k
+tier: A
 beginner_friendly: false
 combat:
   - ranged
   - ranged
   - ranged
-legal_until: 2027
-image: https://assets.warhammer-community.com/articles/ed929ddb-17b3-4a54-b593-c3250387e332/q06t7l46ce37mdaq.jpg
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120113040_TauEmpirePathFinderTeam01.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120113080_TAUPathfinderTeamFeature.jpg?fm=webp&w=892&h=920
 ---
-Markerlights and drones. Strong at range, fragile up close.
+Pathfinders are reconnaissance specialists of the T’au Empire who range far ahead of the main army to sabotage, cut communications and destroy targets. They are a ranged xenos team of infantry and specialised drones. With their Markerlights, some operatives mark enemy targets, and each extra mark makes the whole team more effective against that target, until it can no longer hide in cover.
