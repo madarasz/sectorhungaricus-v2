@@ -55,7 +55,6 @@ content_blocks:
       show_results: "{shown} csapat megjelenítése"
       empty_state: Egyik csapat sem felel meg minden válasznak. Változtass meg egy választ, hogy több csapatot láss.
       declassified_separator: Non-classified csapatok – a legtöbb versenyen nem használhatók
-      under_construction: Az oldal fejlesztés alatt áll. Hamarosan további csapatokkal bővül.
       beginner_tag: Kezdőbarát
       operatives_label: Operatívok
       boxes_label: Szükséges dobozok

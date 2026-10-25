@@ -146,15 +146,13 @@ test.describe('Kill Team chooser', () => {
       expect(box!.y).toBeLessThan(740);
     });
 
-    test('result count and under construction note are below the teams', async ({ page }) => {
+    test('result count is above the teams', async ({ page }) => {
       await page.goto(PAGE_URL);
 
       const grid = await page.getByTestId('kt-grid').boundingBox();
       const count = await page.getByTestId('kt-result-count').boundingBox();
-      const note = await page.getByTestId('kt-under-construction').boundingBox();
-      expect(grid && count && note).toBeTruthy();
-      expect(count!.y).toBeGreaterThanOrEqual(grid!.y + grid!.height);
-      expect(note!.y).toBeGreaterThanOrEqual(grid!.y + grid!.height);
+      expect(grid && count).toBeTruthy();
+      expect(count!.y).toBeLessThan(grid!.y);
     });
 
     test('answers in the sheet filter the teams and show the result count', async ({ page }) => {

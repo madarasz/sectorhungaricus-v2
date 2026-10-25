@@ -279,7 +279,6 @@ collections:
                   - {label: "Show results button (mobile)", name: "show_results", widget: "string", hint: "Use {shown}"}
                   - {label: "Empty state", name: "empty_state", widget: "string"}
                   - {label: "Non-classified teams separator", name: "declassified_separator", widget: "string"}
-                  - {label: "Under construction note", name: "under_construction", widget: "string", hint: "Shown at the end of the team list"}
                   - {label: "Beginner tag", name: "beginner_tag", widget: "string"}
                   - {label: "Operatives label", name: "operatives_label", widget: "string"}
                   - {label: "Boxes label", name: "boxes_label", widget: "string"}

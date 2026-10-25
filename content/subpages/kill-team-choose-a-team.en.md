@@ -55,7 +55,6 @@ content_blocks:
       show_results: "Show {shown} teams"
       empty_state: No team fits every answer. Change one answer to see more teams.
       declassified_separator: Non-classified teams – not legal on most tournaments
-      under_construction: This page is under construction. We will add more teams soon.
       beginner_tag: Beginner-friendly
       operatives_label: Operatives
       boxes_label: Boxes to buy

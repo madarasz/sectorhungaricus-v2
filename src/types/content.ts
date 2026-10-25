@@ -163,7 +163,6 @@ export interface KillTeamChooserLabels {
   show_results: string
   empty_state: string
   declassified_separator: string
-  under_construction: string
   beginner_tag: string
   operatives_label: string
   boxes_label: string

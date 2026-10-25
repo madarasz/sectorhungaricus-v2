@@ -163,12 +163,8 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
         <QuestionFilters columns={questionColumns} answers={answers} onAnswer={toggleAnswer} onFaction={toggleFaction} onSub={toggleSub} />
       </FilterSheet>
 
-      {/* On mobile the result count and the note go below the teams */}
-      <div className="order-last md:order-none flex flex-wrap items-center justify-between gap-2 my-4 font-poppins text-sm" data-testid="kt-result-bar">
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-          <p aria-live="polite" data-testid="kt-result-count">{resultCount}</p>
-          <p className="italic" data-testid="kt-under-construction">{labels.under_construction}</p>
-        </div>
+      <div className="flex flex-wrap items-center justify-between gap-2 my-4 font-poppins text-sm" data-testid="kt-result-bar">
+        <p aria-live="polite" data-testid="kt-result-count">{resultCount}</p>
         {hasAnswers && (
           <button
             type="button"
