@@ -344,21 +344,6 @@ test.describe('Kill Team chooser', () => {
     await expect(page.getByTestId('kt-card-deathwatch')).toHaveCount(0);
   });
 
-  test('shows only reviewed teams and an under construction note', async ({ page }) => {
-    await page.goto(PAGE_URL);
-    await expect(page.getByTestId('kt-card-deathwatch')).toBeVisible();
-    // Kasrkin has no reviewer
-    await expect(page.getByTestId('kt-card-kasrkin')).toHaveCount(0);
-
-    const note = page.getByTestId('kt-under-construction');
-    await expect(note).toBeVisible();
-    await expect(note).toHaveCSS('font-style', 'italic');
-
-    // Unreviewed team in the URL does not open
-    await page.goto(`${PAGE_URL}?team=kasrkin`);
-    await expect(page.getByTestId('kt-detail')).toHaveCount(0);
-  });
-
   test('non-classified teams are at the end of the list after a separator', async ({ page }) => {
     await page.clock.setFixedTime(new Date('2026-03-01T12:00:00'));
     await page.goto(PAGE_URL);

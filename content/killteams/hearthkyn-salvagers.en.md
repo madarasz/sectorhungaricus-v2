@@ -9,7 +9,7 @@ boxes: 1
 boxes_note: One box is enough, but some specialists share bodies with the Gunner
   operatives. Gunners have five weapon options and a team can take only three,
   so you have to choose what to build.
-box_type: kill-team
+box_type: wh40k
 tier: C
 beginner_friendly: false
 combat:

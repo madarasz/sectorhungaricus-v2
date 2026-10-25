@@ -9,7 +9,7 @@ boxes: 1
 boxes_note: Egy doboz elég, de néhány specialista ugyanazt a testet használja,
   mint a Gunner operatívok. A Gunnereknek öt fegyveropciójuk van, de csak
   hármat vihetsz, ezért el kell döntened, mit építesz meg.
-box_type: kill-team
+box_type: wh40k
 tier: C
 beginner_friendly: false
 legal_until: 2026

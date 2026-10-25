@@ -9,7 +9,7 @@ boxes: 2
 boxes_note: The Kill Team box has no Chronomancer or Technomancer, but you can
   buy them separately in the 40k range. An optional second Deathmark needs an
   extra model.
-box_type: kill-team
+box_type: wh40k
 tier: C
 beginner_friendly: false
 combat:

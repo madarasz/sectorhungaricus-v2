@@ -1,14 +1,15 @@
 ---
 name: "Scout Squad"
-reviewed: ""
+reviewed: Madarász
 factions:
   - imperium
   - space-marine
-operatives_min: 9
-operatives_max: 10
+operatives: 9
 boxes: 1
-tier: ""
-beginner_friendly: true
+boxes_note: "One box builds the whole team. You need a second box only if you want every weapon option for the Sergeant and the Warriors."
+box_type: kill-team
+tier: C
+beginner_friendly: false
 combat:
   - ranged
   - ranged
@@ -17,4 +18,4 @@ legal_until: 2027
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/60010199064_KTSalvation7.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/60010199064_KTSalvation6.jpg?fm=webp&w=892&h=920
 ---
-Space Marine Scouts. Fast and stealthy with many weapon options.
+Scouts are Neophytes who range ahead of their Chapter's strike force, laying traps, harassing enemy patrols and scouting the ground before the main assault. This space marine team wears lighter armour than full battle-brothers, operatives have only 2 actions per turn and they fight with shotguns, boltguns, heavy weapons and a sniper rifle. Before the battle, their Forward Scouting rule lets them prepare the killzone with booby traps and trip alarms, move operatives into new positions and gain various benefits against marked targets.
