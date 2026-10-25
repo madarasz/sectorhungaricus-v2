@@ -9,7 +9,7 @@ boxes: 2
 boxes_note: "It has more options than models, and the Purgatus is built in place of some specialists, so you need a second box to build every option."
 box_type: wh40k
 tier: C
-beginner_friendly: true
+beginner_friendly: false
 combat:
   - ranged
   - melee
