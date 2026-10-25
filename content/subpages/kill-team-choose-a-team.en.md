@@ -74,7 +74,7 @@ content_blocks:
           description: Operatives have many synergies with each other
         - value: mobile
           label: Mobile
-          description: Lot of movement and/or maybe additional movement options
+          description: Lot of movement and/or additional movement options
         - value: slow
           label: Slow
           description: Less movement than other teams
