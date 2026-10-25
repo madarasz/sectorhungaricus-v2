@@ -1,6 +1,80 @@
 import { test, expect } from '@playwright/test';
+import { FACTION_TREE, subFactionsOf } from '@/components/content-blocks/kill-team-chooser/filters';
+import { formatLegalUntil, getLegality } from '@/components/content-blocks/kill-team-chooser/legality';
+import type { KillTeamStyle } from '@/types/content';
+import {
+  TestKillTeam,
+  chooserFactionLabel,
+  chooserFactionLabels,
+  chooserLabels,
+  chooserStyleLabels,
+  chooserStyleText,
+  fillTemplate,
+  findKillTeam,
+  killTeam,
+  killTeams,
+} from './helpers/content';
 
 const PAGE_URL = '/en/kill-team/choose-a-team/';
+const HU_PAGE_URL = '/hu/kill-team/choose-a-team/';
+const EN = chooserLabels('en');
+const HU = chooserLabels('hu');
+
+// Teams that the chooser shows without the declassified answer today
+const isLegal = (team: TestKillTeam, now = new Date()) => getLegality(team.legal_until, now) !== 'declassified';
+const largestSize = (team: TestKillTeam) => team.operatives ?? team.operatives_max ?? 0;
+const smallestSize = (team: TestKillTeam) => team.operatives ?? team.operatives_min ?? 0;
+
+const proTeam = findKillTeam('legal pro-only', (t) => isLegal(t) && t.skill === 'pro-only');
+const nonProTeam = findKillTeam('legal not pro-only', (t) => isLegal(t) && t.skill !== 'pro-only');
+const beginnerTeam = findKillTeam('legal beginner-friendly', (t) => isLegal(t) && t.skill === 'beginner-friendly');
+const legalTeam = findKillTeam('legal with factions and styles', (t) => isLegal(t) && t.factions.length > 0 && t.style.length > 1);
+const wh40kTeam = findKillTeam('sold in WH40k boxes', (t) => t.box_type === 'wh40k');
+const killTeamBoxTeam = findKillTeam('legal sold in a Kill Team box', (t) => isLegal(t) && t.box_type === 'kill-team');
+const rangeTeam = findKillTeam('legal with operatives range', (t) =>
+  isLegal(t) && t.operatives === undefined && t.operatives_min !== undefined && t.operatives_max !== undefined && t.operatives_min !== t.operatives_max);
+const fixedSizeTeam = findKillTeam('legal with fixed operatives', (t) => isLegal(t) && t.operatives !== undefined);
+const oneBoxTeam = findKillTeam('legal needing one box', (t) => isLegal(t) && t.boxes <= 1);
+const multiBoxTeam = findKillTeam('legal needing more boxes', (t) => isLegal(t) && t.boxes > 1);
+const hordeTeam = findKillTeam('legal horde', (t) => isLegal(t) && largestSize(t) >= 11);
+const smallTeam = findKillTeam('legal not horde', (t) => isLegal(t) && largestSize(t) < 11 && smallestSize(t) > 0);
+
+// Faction teams
+const has = (team: TestKillTeam, ...factions: string[]) => factions.every((f) => team.factions.includes(f));
+const hasNone = (team: TestKillTeam, ...factions: string[]) => factions.every((f) => !team.factions.includes(f));
+const imperiumTeam = findKillTeam('legal imperium, not xenos', (t) => isLegal(t) && has(t, 'imperium') && hasNone(t, 'xenos'));
+const xenosTeam = findKillTeam('legal xenos', (t) => isLegal(t) && has(t, 'xenos'));
+const chaosOnlyTeam = findKillTeam('legal chaos, not imperium or xenos', (t) => isLegal(t) && has(t, 'chaos') && hasNone(t, 'imperium', 'xenos'));
+
+const xenosSub = FACTION_TREE.xenos.find((sub) => killTeams().some((t) => isLegal(t) && has(t, 'xenos', sub)))!;
+const xenosSubTeam = findKillTeam(`legal xenos ${xenosSub}`, (t) => isLegal(t) && has(t, 'xenos', xenosSub));
+const otherXenosTeam = findKillTeam(`legal xenos without ${xenosSub}`, (t) => isLegal(t) && has(t, 'xenos') && hasNone(t, xenosSub));
+const imperiumSub = FACTION_TREE.imperium.find((sub) =>
+  !FACTION_TREE.xenos.includes(sub) && killTeams().some((t) => isLegal(t) && has(t, 'imperium', sub) && hasNone(t, 'xenos', xenosSub)))!;
+const imperiumSubTeam = findKillTeam(`legal imperium ${imperiumSub}`, (t) => isLegal(t) && has(t, 'imperium', imperiumSub) && hasNone(t, 'xenos', xenosSub));
+
+// Sub faction of both chaos and imperium, with a team of each main faction only
+const sharedSub = FACTION_TREE.chaos.find((sub) =>
+  FACTION_TREE.imperium.includes(sub) &&
+  killTeams().some((t) => isLegal(t) && has(t, 'chaos', sub) && hasNone(t, 'imperium')) &&
+  killTeams().some((t) => isLegal(t) && has(t, 'imperium', sub) && hasNone(t, 'chaos')))!;
+const sharedSubChaosTeam = findKillTeam(`legal chaos ${sharedSub}`, (t) => isLegal(t) && has(t, 'chaos', sharedSub) && hasNone(t, 'imperium'));
+const sharedSubImperiumTeam = findKillTeam(`legal imperium ${sharedSub}`, (t) => isLegal(t) && has(t, 'imperium', sharedSub) && hasNone(t, 'chaos'));
+
+// Chaos sub faction with a chaos team that does not have it
+const chaosSub = FACTION_TREE.chaos.find((sub) =>
+  killTeams().some((t) => isLegal(t) && has(t, 'chaos', sub)) && killTeams().some((t) => isLegal(t) && has(t, 'chaos') && hasNone(t, sub)))!;
+const chaosSubTeam = findKillTeam(`legal chaos ${chaosSub}`, (t) => isLegal(t) && has(t, 'chaos', chaosSub));
+const otherChaosTeam = findKillTeam(`legal chaos without ${chaosSub}`, (t) => isLegal(t) && has(t, 'chaos') && hasNone(t, chaosSub));
+
+// Two styles that a legal team has together, in the CMS label order
+const styleTeam = legalTeam;
+const [firstStyle, secondStyle] = EN.styles.map((s) => s.value).filter((value) => styleTeam.style.includes(value)) as KillTeamStyle[];
+
+// Two styles that no team has together
+const ALL_STYLES = EN.styles.map((s) => s.value);
+const noMatchStyles = ALL_STYLES.flatMap((a) => ALL_STYLES.map((b) => [a, b])).find(
+  ([a, b]) => a !== b && !killTeams().some((t) => t.style.includes(a) && t.style.includes(b)))!;
 
 test.describe('Kill Team chooser', () => {
   // Team photos come from the warhammer.com shop; slow responses from it make page loads time out
@@ -9,25 +83,27 @@ test.describe('Kill Team chooser', () => {
   });
 
   test('shows all teams as cards without power tier', async ({ page }) => {
-    await page.goto(PAGE_URL);
+    // Shows the non-classified teams too
+    await page.goto(`${PAGE_URL}?legal=declassified`);
 
     const chooser = page.getByTestId('kt-chooser');
     await expect(chooser).toBeVisible();
 
     const cards = page.locator('[data-testid^="kt-card-"]').filter({ has: page.getByTestId('kt-card-name') });
     const total = await cards.count();
-    expect(total).toBeGreaterThan(1);
-    await expect(page.getByTestId('kt-result-count')).toContainText(`${total} of ${total}`);
+    expect(total).toBe(killTeams().length);
+    await expect(page.getByTestId('kt-result-count')).toHaveText(fillTemplate(EN.result_count, { shown: total, total }));
 
     // Power tier is only visible in the detail view
     await expect(page.getByTestId('kt-detail-tier')).toHaveCount(0);
-    await expect(page.getByTestId('kt-beginner-tag').first()).toHaveText('Beginner-friendly');
-    await expect(page.getByTestId('kt-card-battleclade').getByTestId('kt-pro-tag')).toHaveText('For Pros');
-    await expect(page.getByTestId('kt-card-angels-of-death').getByTestId('kt-pro-tag')).toHaveCount(0);
+    await expect(page.getByTestId('kt-beginner-tag').first()).toHaveText(EN.beginner_tag);
+    await expect(page.getByTestId(`kt-card-${proTeam.slug}`).getByTestId('kt-pro-tag')).toHaveText(EN.pro_tag);
+    await expect(page.getByTestId(`kt-card-${nonProTeam.slug}`).getByTestId('kt-pro-tag')).toHaveCount(0);
   });
 
   test('answers filter the teams and update the URL', async ({ page }) => {
-    await page.goto(PAGE_URL);
+    // Shows the non-classified teams too
+    await page.goto(`${PAGE_URL}?legal=declassified`);
 
     const cards = page.locator('[data-testid^="kt-card-"]').filter({ has: page.getByTestId('kt-card-name') });
     const total = await cards.count();
@@ -38,8 +114,8 @@ test.describe('Kill Team chooser', () => {
     await expect(page).toHaveURL(/exp=new/);
 
     const filtered = await cards.count();
-    expect(filtered).toBeLessThan(total);
-    await expect(page.getByTestId('kt-result-count')).toContainText(`${filtered} of ${total}`);
+    expect(filtered).toBe(killTeams().filter((t) => t.skill === 'beginner-friendly').length);
+    await expect(page.getByTestId('kt-result-count')).toHaveText(fillTemplate(EN.result_count, { shown: filtered, total }));
 
     // Every visible card is beginner-friendly
     for (let i = 0; i < filtered; i++) {
@@ -61,12 +137,12 @@ test.describe('Kill Team chooser', () => {
     await page.goto(`${PAGE_URL}?exp=played`);
     const cards = page.locator('[data-testid^="kt-card-"]').filter({ has: page.getByTestId('kt-card-name') });
     await expect(page.getByTestId('kt-answer-exp-played')).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.getByTestId('kt-card-angels-of-death')).toBeVisible();
+    await expect(page.getByTestId(`kt-card-${nonProTeam.slug}`)).toBeVisible();
     await expect(page.getByTestId('kt-pro-tag')).toHaveCount(0);
 
     await page.getByTestId('kt-answer-exp-pro').click();
     await expect(page).toHaveURL(/exp=pro/);
-    await expect(page.getByTestId('kt-card-battleclade')).toBeVisible();
+    await expect(page.getByTestId(`kt-card-${proTeam.slug}`)).toBeVisible();
     const filtered = await cards.count();
     expect(filtered).toBeGreaterThan(0);
     for (let i = 0; i < filtered; i++) {
@@ -75,9 +151,9 @@ test.describe('Kill Team chooser', () => {
   });
 
   test('shows empty state and reset clears answers', async ({ page }) => {
-    await page.goto(`${PAGE_URL}?exp=new&fight=ranged&faction=xenos`);
+    await page.goto(`${PAGE_URL}?style=${noMatchStyles[0]}&style=${noMatchStyles[1]}`);
 
-    await expect(page.getByTestId('kt-empty')).toBeVisible();
+    await expect(page.getByTestId('kt-empty')).toHaveText(EN.empty_state);
     await page.getByTestId('kt-reset').click();
     await expect(page.getByTestId('kt-empty')).toHaveCount(0);
     await expect(page.getByTestId('kt-reset')).toHaveCount(0);
@@ -86,13 +162,13 @@ test.describe('Kill Team chooser', () => {
   test('card opens team details and closes', async ({ page }) => {
     await page.goto(PAGE_URL);
 
-    await page.getByTestId('kt-card-blades-of-khaine').click();
+    await page.getByTestId(`kt-card-${legalTeam.slug}`).click();
     const detail = page.getByTestId('kt-detail');
     await expect(detail).toBeVisible();
-    await expect(detail.getByTestId('kt-detail-name')).toHaveText('Blades of Khaine');
+    await expect(detail.getByTestId('kt-detail-name')).toHaveText(legalTeam.name);
     await expect(detail.getByTestId('kt-detail-legal')).toBeVisible();
-    await expect(detail.getByTestId('kt-detail-factions').locator('li')).toHaveText(['Xenos', 'Aeldari']);
-    await expect(page).toHaveURL(/team=blades-of-khaine/);
+    await expect(detail.getByTestId('kt-detail-factions').locator('li')).toHaveText(chooserFactionLabels('en', legalTeam.factions));
+    await expect(page).toHaveURL(new RegExp(`team=${legalTeam.slug}`));
 
     await page.getByTestId('kt-detail-close').click();
     await expect(detail).toHaveCount(0);
@@ -100,30 +176,31 @@ test.describe('Kill Team chooser', () => {
   });
 
   test('team sold in WH40k boxes shows a badge on the card and a note in the details', async ({ page }) => {
-    await page.goto(PAGE_URL);
+    // Shows the non-classified teams too
+    await page.goto(`${PAGE_URL}?legal=declassified`);
 
-    const card = page.getByTestId('kt-card-warpcoven');
-    await expect(card.getByTestId('kt-box-type-badge')).toHaveText('WH40k box');
-    await expect(page.getByTestId('kt-card-nemesis-claw').getByTestId('kt-box-type-badge')).toHaveCount(0);
+    const card = page.getByTestId(`kt-card-${wh40kTeam.slug}`);
+    await expect(card.getByTestId('kt-box-type-badge')).toHaveText(EN.wh40k_badge);
+    await expect(page.getByTestId(`kt-card-${killTeamBoxTeam.slug}`).getByTestId('kt-box-type-badge')).toHaveCount(0);
 
     await card.click();
     const boxType = page.getByTestId('kt-detail').getByTestId('kt-detail-box-type');
     await expect(boxType).toHaveAttribute('data-box-type', 'wh40k');
-    await expect(boxType).toContainText('no longer sold as a Kill Team box');
+    await expect(boxType).toContainText(EN.wh40k_note);
   });
 
   test('team sold in a Kill Team box has no box type note in the details', async ({ page }) => {
-    await page.goto(`${PAGE_URL}?team=nemesis-claw`);
+    await page.goto(`${PAGE_URL}?team=${killTeamBoxTeam.slug}`);
 
     await expect(page.getByTestId('kt-detail')).toBeVisible();
     await expect(page.getByTestId('kt-detail-box-type')).toHaveCount(0);
   });
 
   test('selected team opens from the URL and Escape closes it', async ({ page }) => {
-    await page.goto(`${PAGE_URL}?team=nemesis-claw`);
+    await page.goto(`${PAGE_URL}?team=${legalTeam.slug}`);
 
     const detail = page.getByTestId('kt-detail');
-    await expect(detail.getByTestId('kt-detail-name')).toHaveText('Nemesis Claw');
+    await expect(detail.getByTestId('kt-detail-name')).toHaveText(legalTeam.name);
 
     await page.keyboard.press('Escape');
     await expect(detail).toHaveCount(0);
@@ -133,7 +210,7 @@ test.describe('Kill Team chooser', () => {
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto(PAGE_URL);
 
-    await page.getByTestId('kt-card-deathwatch').click();
+    await page.getByTestId(`kt-card-${legalTeam.slug}`).click();
     const detail = page.getByTestId('kt-detail');
     await expect(detail).toBeVisible();
     await expect(page.getByTestId('kt-detail-backdrop')).toBeVisible();
@@ -165,15 +242,6 @@ test.describe('Kill Team chooser', () => {
       expect(box!.y).toBeLessThan(740);
     });
 
-    test('result count is above the teams', async ({ page }) => {
-      await page.goto(PAGE_URL);
-
-      const grid = await page.getByTestId('kt-grid').boundingBox();
-      const count = await page.getByTestId('kt-result-count').boundingBox();
-      expect(grid && count).toBeTruthy();
-      expect(count!.y).toBeLessThan(grid!.y);
-    });
-
     test('answers in the sheet filter the teams and show the result count', async ({ page }) => {
       await page.goto(PAGE_URL);
       const cards = page.locator('[data-testid^="kt-card-"]').filter({ has: page.getByTestId('kt-card-name') });
@@ -183,13 +251,13 @@ test.describe('Kill Team chooser', () => {
       const sheet = page.getByTestId('kt-filter-sheet');
       await expect(sheet).toBeVisible();
       await expect(sheet).toHaveAttribute('role', 'dialog');
-      await expect(page.getByTestId('kt-filters-show')).toHaveText(`Show ${total} teams`);
+      await expect(page.getByTestId('kt-filters-show')).toHaveText(fillTemplate(EN.show_results, { shown: total }));
 
       await page.getByTestId('kt-answer-exp-new').click();
       await page.getByTestId('kt-answer-faction-imperium').click();
       const filtered = await cards.count();
       expect(filtered).toBeLessThan(total);
-      await expect(page.getByTestId('kt-filters-show')).toHaveText(`Show ${filtered} teams`);
+      await expect(page.getByTestId('kt-filters-show')).toHaveText(fillTemplate(EN.show_results, { shown: filtered }));
 
       await page.getByTestId('kt-filters-show').click();
       await expect(sheet).toBeHidden();
@@ -218,10 +286,12 @@ test.describe('Kill Team chooser', () => {
     });
 
     test('Hungarian page uses Hungarian filter labels', async ({ page }) => {
-      await page.goto('/hu/kill-team/choose-a-team/');
-      await expect(page.getByTestId('kt-filters-open')).toHaveText('Szűrők');
+      await page.goto(HU_PAGE_URL);
+      const cards = page.locator('[data-testid^="kt-card-"]').filter({ has: page.getByTestId('kt-card-name') });
+      await expect(page.getByTestId('kt-filters-open')).toHaveText(HU.filters_button);
+      const total = await cards.count();
       await page.getByTestId('kt-filters-open').click();
-      await expect(page.getByTestId('kt-filters-show')).toContainText('csapat megjelenítése');
+      await expect(page.getByTestId('kt-filters-show')).toHaveText(fillTemplate(HU.show_results, { shown: total }));
     });
   });
 
@@ -230,43 +300,38 @@ test.describe('Kill Team chooser', () => {
     await expect(page.getByTestId('kt-filters-open')).toBeHidden();
     await expect(page.getByTestId('kt-questions')).toBeVisible();
     await expect(page.getByTestId('kt-filter-sheet')).not.toHaveAttribute('role', 'dialog');
-
-    // Result count stays above the teams
-    const grid = await page.getByTestId('kt-grid').boundingBox();
-    const count = await page.getByTestId('kt-result-count').boundingBox();
-    expect(count!.y).toBeLessThan(grid!.y);
   });
 
   test('team with operatives range shows min–max', async ({ page }) => {
     await page.goto(PAGE_URL);
-    await expect(page.getByTestId('kt-card-brood-brothers')).toContainText('10–14');
-    await expect(page.getByTestId('kt-card-deathwatch')).toContainText('5');
+    await expect(page.getByTestId(`kt-card-${rangeTeam.slug}`)).toContainText(`${rangeTeam.operatives_min}–${rangeTeam.operatives_max}`);
+    await expect(page.getByTestId(`kt-card-${fixedSizeTeam.slug}`)).toContainText(String(fixedSizeTeam.operatives));
   });
 
   test('filters are in two columns in the requested order', async ({ page }) => {
     await page.goto(PAGE_URL);
     const order = (column: number) =>
       page.getByTestId(`kt-question-column-${column}`).locator('> fieldset').evaluateAll((elements) => elements.map((e) => e.getAttribute('data-testid')));
-    expect(await order(1)).toEqual(['kt-question-exp', 'kt-question-faction', 'kt-question-fight']);
-    expect((await order(2)).slice(0, 2)).toEqual(['kt-question-size', 'kt-question-boxes']);
+    expect(await order(1)).toEqual(['kt-question-exp', 'kt-question-faction', 'kt-question-size']);
+    expect(await order(2)).toEqual(['kt-question-style', 'kt-question-boxes', 'kt-question-legal']);
   });
 
   test('faction question shows main factions and sub factions of the selected ones in one place', async ({ page }) => {
     await page.goto(PAGE_URL);
-    await expect(page.getByTestId('kt-answer-faction-imperium')).toBeVisible();
-    await expect(page.getByTestId('kt-answer-faction-chaos')).toBeVisible();
-    await expect(page.getByTestId('kt-answer-faction-xenos')).toBeVisible();
-    await expect(page.getByTestId('kt-answer-faction-necron')).toHaveCount(0);
+    for (const main of Object.keys(FACTION_TREE)) {
+      await expect(page.getByTestId(`kt-answer-faction-${main}`)).toHaveText(chooserFactionLabel('en', main));
+    }
+    await expect(page.getByTestId(`kt-answer-faction-${FACTION_TREE.xenos[0]}`)).toHaveCount(0);
     await expect(page.getByTestId('kt-subfactions')).toHaveCount(0);
 
     const subs = page.getByTestId('kt-subfactions').locator('[data-testid^="kt-answer-sub-"]');
     await page.getByTestId('kt-answer-faction-chaos').click();
-    await expect(subs).toHaveCount(4);
+    await expect(subs).toHaveCount(FACTION_TREE.chaos.length);
 
     // Shared sub factions show only once
     await page.getByTestId('kt-answer-faction-imperium').click();
-    await expect(subs).toHaveCount(8);
-    await expect(page.getByTestId('kt-answer-sub-space-marine')).toHaveCount(1);
+    await expect(subs).toHaveCount(subFactionsOf(['chaos', 'imperium']).length);
+    await expect(page.getByTestId(`kt-answer-sub-${sharedSub}`)).toHaveCount(1);
   });
 
   test('multiple main factions show teams of any selected faction', async ({ page }) => {
@@ -275,79 +340,79 @@ test.describe('Kill Team chooser', () => {
     await page.getByTestId('kt-answer-faction-xenos').click();
     await expect(page).toHaveURL(/faction=imperium&faction=xenos/);
 
-    await expect(page.getByTestId('kt-card-deathwatch')).toBeVisible();
-    await expect(page.getByTestId('kt-card-canoptek-circle')).toBeVisible();
-    await expect(page.getByTestId('kt-card-nemesis-claw')).toHaveCount(0);
+    await expect(page.getByTestId(`kt-card-${imperiumTeam.slug}`)).toBeVisible();
+    await expect(page.getByTestId(`kt-card-${xenosTeam.slug}`)).toBeVisible();
+    await expect(page.getByTestId(`kt-card-${chaosOnlyTeam.slug}`)).toHaveCount(0);
   });
 
   test('selected sub factions list only their teams', async ({ page }) => {
     await page.goto(`${PAGE_URL}?faction=imperium&faction=xenos`);
-    await page.getByTestId('kt-answer-sub-necron').click();
-    await expect(page).toHaveURL(/sub=necron/);
+    await page.getByTestId(`kt-answer-sub-${xenosSub}`).click();
+    await expect(page).toHaveURL(new RegExp(`sub=${xenosSub}`));
 
-    await expect(page.getByTestId('kt-card-canoptek-circle')).toBeVisible();
-    await expect(page.getByTestId('kt-card-blades-of-khaine')).toHaveCount(0);
-    await expect(page.getByTestId('kt-card-deathwatch')).toHaveCount(0);
+    await expect(page.getByTestId(`kt-card-${xenosSubTeam.slug}`)).toBeVisible();
+    await expect(page.getByTestId(`kt-card-${otherXenosTeam.slug}`)).toHaveCount(0);
+    await expect(page.getByTestId(`kt-card-${imperiumSubTeam.slug}`)).toHaveCount(0);
 
     // Second sub faction adds its teams
-    await page.getByTestId('kt-answer-sub-space-marine').click();
-    await expect(page.getByTestId('kt-card-deathwatch')).toBeVisible();
-    await expect(page.getByTestId('kt-card-canoptek-circle')).toBeVisible();
+    await page.getByTestId(`kt-answer-sub-${imperiumSub}`).click();
+    await expect(page.getByTestId(`kt-card-${imperiumSubTeam.slug}`)).toBeVisible();
+    await expect(page.getByTestId(`kt-card-${xenosSubTeam.slug}`)).toBeVisible();
 
     // Deselecting the main faction removes its sub factions
     await page.getByTestId('kt-answer-faction-xenos').click();
-    await expect(page.getByTestId('kt-answer-sub-necron')).toHaveCount(0);
-    await expect(page).not.toHaveURL(/xenos|necron/);
-    await expect(page.getByTestId('kt-card-canoptek-circle')).toHaveCount(0);
-    await expect(page.getByTestId('kt-card-deathwatch')).toBeVisible();
+    await expect(page.getByTestId(`kt-answer-sub-${xenosSub}`)).toHaveCount(0);
+    await expect(page).not.toHaveURL(new RegExp(`xenos|sub=${xenosSub}`));
+    await expect(page.getByTestId(`kt-card-${xenosSubTeam.slug}`)).toHaveCount(0);
+    await expect(page.getByTestId(`kt-card-${imperiumSubTeam.slug}`)).toBeVisible();
   });
 
   test('shared sub faction shows teams only of the selected main factions', async ({ page }) => {
-    await page.goto(`${PAGE_URL}?faction=chaos&sub=space-marine`);
-    await expect(page.getByTestId('kt-answer-sub-space-marine')).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.getByTestId('kt-card-nemesis-claw')).toBeVisible();
-    await expect(page.getByTestId('kt-card-deathwatch')).toHaveCount(0);
+    await page.goto(`${PAGE_URL}?faction=chaos&sub=${sharedSub}`);
+    await expect(page.getByTestId(`kt-answer-sub-${sharedSub}`)).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByTestId(`kt-card-${sharedSubChaosTeam.slug}`)).toBeVisible();
+    await expect(page.getByTestId(`kt-card-${sharedSubImperiumTeam.slug}`)).toHaveCount(0);
 
     // The sub faction stays selected while a main faction still has it
     await page.getByTestId('kt-answer-faction-imperium').click();
-    await expect(page.getByTestId('kt-card-deathwatch')).toBeVisible();
+    await expect(page.getByTestId(`kt-card-${sharedSubImperiumTeam.slug}`)).toBeVisible();
     await page.getByTestId('kt-answer-faction-chaos').click();
-    await expect(page.getByTestId('kt-answer-sub-space-marine')).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.getByTestId('kt-card-nemesis-claw')).toHaveCount(0);
-    await expect(page.getByTestId('kt-card-deathwatch')).toBeVisible();
+    await expect(page.getByTestId(`kt-answer-sub-${sharedSub}`)).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByTestId(`kt-card-${sharedSubChaosTeam.slug}`)).toHaveCount(0);
+    await expect(page.getByTestId(`kt-card-${sharedSubImperiumTeam.slug}`)).toBeVisible();
   });
 
-  test('mutant sub faction shows mutant teams', async ({ page }) => {
-    await page.goto(`${PAGE_URL}?faction=chaos&sub=mutant`);
-    await expect(page.getByTestId('kt-card-chaos-cult')).toBeVisible();
-    await expect(page.getByTestId('kt-card-blooded')).toHaveCount(0);
+  test('chaos sub faction shows only its teams', async ({ page }) => {
+    await page.goto(`${PAGE_URL}?faction=chaos&sub=${chaosSub}`);
+    await expect(page.getByTestId(`kt-card-${chaosSubTeam.slug}`)).toBeVisible();
+    await expect(page.getByTestId(`kt-card-${otherChaosTeam.slug}`)).toHaveCount(0);
   });
 
   test('sub faction in the URL without its main faction is ignored', async ({ page }) => {
-    await page.goto(`${PAGE_URL}?faction=imperium&sub=necron`);
-    await expect(page.getByTestId('kt-card-deathwatch')).toBeVisible();
-    await expect(page.getByTestId('kt-card-canoptek-circle')).toHaveCount(0);
+    await page.goto(`${PAGE_URL}?faction=imperium&sub=${xenosSub}`);
+    await expect(page.getByTestId(`kt-card-${imperiumTeam.slug}`)).toBeVisible();
+    await expect(page.getByTestId(`kt-card-${xenosSubTeam.slug}`)).toHaveCount(0);
     await expect(page).not.toHaveURL(/sub=/);
   });
 
   test('Hungarian page shows Hungarian sub faction labels', async ({ page }) => {
-    await page.goto('/hu/kill-team/choose-a-team/?faction=imperium');
-    await expect(page.getByTestId('kt-answer-sub-baseline-human')).toHaveText('Közönséges ember');
-    await expect(page.getByTestId('kt-answer-sub-inquisition')).toHaveText('Inkvizíció');
+    await page.goto(`${HU_PAGE_URL}?faction=imperium`);
+    for (const sub of FACTION_TREE.imperium) {
+      await expect(page.getByTestId(`kt-answer-sub-${sub}`)).toHaveText(chooserFactionLabel('hu', sub));
+    }
   });
 
   test('only one box checkbox hides teams that need more boxes', async ({ page }) => {
     await page.goto(PAGE_URL);
-    await expect(page.getByTestId('kt-question-boxes')).toContainText('How many boxes are you willing to buy?');
+    await expect(page.getByTestId('kt-question-boxes')).toContainText(EN.q_boxes);
 
     const cards = page.locator('[data-testid^="kt-card-"]').filter({ has: page.getByTestId('kt-card-name') });
     const total = await cards.count();
     const checkbox = page.getByTestId('kt-answer-boxes-one');
     await checkbox.check();
     await expect(page).toHaveURL(/boxes=one/);
-    // Angels of Death needs more than one box
-    await expect(page.getByTestId('kt-card-angels-of-death')).toHaveCount(0);
-    await expect(page.getByTestId('kt-card-nemesis-claw')).toBeVisible();
+    await expect(page.getByTestId(`kt-card-${multiBoxTeam.slug}`)).toHaveCount(0);
+    await expect(page.getByTestId(`kt-card-${oneBoxTeam.slug}`)).toBeVisible();
 
     await checkbox.uncheck();
     await expect(page).not.toHaveURL(/boxes=/);
@@ -357,114 +422,191 @@ test.describe('Kill Team chooser', () => {
   test('horde answer shows only teams with 11 or more operatives', async ({ page }) => {
     await page.goto(`${PAGE_URL}?size=horde`);
     await expect(page.getByTestId('kt-answer-size-horde')).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.getByTestId('kt-card-chaos-cult')).toBeVisible();
-    await expect(page.getByTestId('kt-card-deathwatch')).toHaveCount(0);
+    await expect(page.getByTestId(`kt-card-${hordeTeam.slug}`)).toBeVisible();
+    await expect(page.getByTestId(`kt-card-${smallTeam.slug}`)).toHaveCount(0);
   });
 
   test('non-classified teams are at the end of the list after a separator', async ({ page }) => {
-    await page.clock.setFixedTime(new Date('2026-03-01T12:00:00'));
-    await page.goto(PAGE_URL);
+    const now = new Date('2026-03-01T12:00:00');
+    const classifiedTeam = findKillTeam('legal on the fixed date', (t) => isLegal(t, now));
+    const declassifiedTeam = findKillTeam('not legal on the fixed date', (t) => !isLegal(t, now));
+    await page.clock.setFixedTime(now);
+    await page.goto(`${PAGE_URL}?legal=declassified`);
 
-    // Blooded has no legal until year
     const separator = page.getByTestId('kt-declassified-separator');
-    await expect(separator).toContainText('Non-classified teams');
+    await expect(separator).toContainText(EN.declassified_separator);
     const items = page.getByTestId('kt-grid').locator('> *');
     const testIds = await items.evaluateAll((elements) => elements.map((e) => e.getAttribute('data-testid')));
     const separatorIndex = testIds.indexOf('kt-declassified-separator');
     expect(separatorIndex).toBeGreaterThan(0);
-    expect(testIds.indexOf('kt-card-deathwatch')).toBeLessThan(separatorIndex);
-    expect(testIds.indexOf('kt-card-blooded')).toBeGreaterThan(separatorIndex);
+    expect(testIds.indexOf(`kt-card-${classifiedTeam.slug}`)).toBeLessThan(separatorIndex);
+    expect(testIds.indexOf(`kt-card-${declassifiedTeam.slug}`)).toBeGreaterThan(separatorIndex);
 
-    // The classified filter removes the separator
-    await page.getByTestId('kt-answer-legal-classified').check();
+    // Unchecking the declassified checkbox hides the separator and the non-classified teams
+    await page.getByTestId('kt-answer-legal-declassified').uncheck();
     await expect(separator).toHaveCount(0);
+    await expect(page.getByTestId(`kt-card-${declassifiedTeam.slug}`)).toHaveCount(0);
   });
 
-  test('Hungarian page shows combat icons from the shared data', async ({ page }) => {
-    await page.goto('/hu/kill-team/choose-a-team/');
-    await expect(page.getByTestId('kt-card-deathwatch').getByTestId('kt-combat-icons').locator('svg')).toHaveCount(3);
+  test('selected play styles show only teams that have all of them', async ({ page }) => {
+    await page.goto(PAGE_URL);
+    await expect(page.getByTestId('kt-question-style')).toContainText(EN.q_style);
+
+    const cards = page.locator('[data-testid^="kt-card-"]').filter({ has: page.getByTestId('kt-card-name') });
+    const total = await cards.count();
+
+    await page.getByTestId(`kt-answer-style-${firstStyle}`).click();
+    const firstCount = await cards.count();
+    expect(firstCount).toBeLessThanOrEqual(total);
+
+    await page.getByTestId(`kt-answer-style-${secondStyle}`).click();
+    await expect(page).toHaveURL(new RegExp(`style=${firstStyle}&style=${secondStyle}`));
+    await expect(page.getByTestId(`kt-answer-style-${secondStyle}`)).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByTestId('kt-style-descriptions').locator('li')).toHaveText([
+      chooserStyleText('en', firstStyle),
+      chooserStyleText('en', secondStyle),
+    ]);
+    const bothCount = await cards.count();
+    expect(bothCount).toBeGreaterThan(0);
+    expect(bothCount).toBeLessThanOrEqual(firstCount);
+    for (let i = 0; i < bothCount; i++) {
+      await expect(cards.nth(i).getByTestId('kt-style-icons').locator(`[data-style="${firstStyle}"]`)).toHaveCount(1);
+      await expect(cards.nth(i).getByTestId('kt-style-icons').locator(`[data-style="${secondStyle}"]`)).toHaveCount(1);
+    }
+
+    // Deselecting a style shows the teams of the other style again
+    await page.getByTestId(`kt-answer-style-${secondStyle}`).click();
+    await expect(cards).toHaveCount(firstCount);
+  });
+
+  test('Hungarian page shows style icons from the shared data', async ({ page }) => {
+    await page.goto(HU_PAGE_URL);
+    const icons = page.getByTestId(`kt-card-${styleTeam.slug}`).getByTestId('kt-style-icons');
+    await expect(icons.locator('svg')).toHaveCount(styleTeam.style.length);
+    await expect(icons).toHaveAttribute('aria-label', chooserStyleLabels('hu', styleTeam.style).join(', '));
+    const tooltip = icons.locator(`[data-style="${firstStyle}"]`).getByTestId('kt-style-tooltip');
+    await expect(tooltip).toBeHidden();
+    await icons.locator(`[data-style="${firstStyle}"]`).hover();
+    await expect(tooltip).toBeVisible();
+    await expect(tooltip).toHaveText(chooserStyleText('hu', firstStyle));
+    await expect(tooltip.locator('.font-semibold')).toHaveText(`${chooserStyleLabels('hu', [firstStyle])[0]}:`);
+  });
+
+  test('style pills in the details show the description on tap and hover', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto(`${PAGE_URL}?team=${styleTeam.slug}`);
+    const styles = page.getByTestId('kt-detail').getByTestId('kt-detail-styles');
+    await expect(styles.getByRole('button')).toHaveText(chooserStyleLabels('en', styleTeam.style));
+    const description = styles.getByTestId('kt-style-description');
+    await expect(description).toBeHidden();
+
+    const first = styles.getByTestId(`kt-style-${firstStyle}`);
+    await first.click();
+    await expect(first).toHaveAttribute('aria-pressed', 'true');
+    await expect(description).toHaveText(chooserStyleText('en', firstStyle));
+
+    // Hover previews another style, leaving restores the selected one
+    await styles.getByTestId(`kt-style-${secondStyle}`).hover();
+    await expect(description).toHaveText(chooserStyleText('en', secondStyle));
+    await page.getByTestId('kt-detail-name').hover();
+    await expect(description).toHaveText(chooserStyleText('en', firstStyle));
+
+    await first.click();
+    await expect(first).toHaveAttribute('aria-pressed', 'false');
+    await page.getByTestId('kt-detail-name').hover();
+    await expect(description).toBeHidden();
   });
 
   test('language switch keeps the answers and the selected team', async ({ page }) => {
+    const style = nonProTeam.style[0];
     await page.setViewportSize({ width: 1280, height: 900 });
-    await page.goto(`${PAGE_URL}?exp=played&team=battleclade`);
+    await page.goto(`${PAGE_URL}?exp=played&team=${proTeam.slug}`);
     await expect(page.getByTestId('kt-detail')).toBeVisible();
     await page.getByTestId('kt-detail-close').click();
-    await page.getByTestId('kt-answer-fight-melee').click();
-    await page.getByTestId('kt-card-angels-of-death').click();
-    await expect(page.getByTestId('kt-detail-name')).toHaveText('Angels of Death');
+    await page.getByTestId(`kt-answer-style-${style}`).click();
+    await page.getByTestId(`kt-card-${nonProTeam.slug}`).click();
+    await expect(page.getByTestId('kt-detail-name')).toHaveText(nonProTeam.name);
 
     await page.getByTestId('desktop-language-switch').getByRole('button', { name: 'HU' }).click();
     await expect(page).toHaveURL(/\/hu\/kill-team\/choose-a-team\/\?/);
     await expect(page).toHaveURL(/exp=played/);
-    await expect(page).toHaveURL(/fight=melee/);
-    await expect(page).toHaveURL(/team=angels-of-death/);
+    await expect(page).toHaveURL(new RegExp(`style=${style}`));
+    await expect(page).toHaveURL(new RegExp(`team=${nonProTeam.slug}`));
     await expect(page.getByTestId('kt-answer-exp-played')).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.getByTestId('kt-answer-fight-melee')).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.getByTestId('kt-detail-name')).toHaveText('Angels of Death');
+    await expect(page.getByTestId(`kt-answer-style-${style}`)).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByTestId('kt-detail-name')).toHaveText(killTeam(nonProTeam.slug, 'hu').name);
   });
 
   test('Hungarian page shows skill tags from the shared data', async ({ page }) => {
-    await page.goto('/hu/kill-team/choose-a-team/');
-    await expect(page.getByTestId('kt-card-battleclade').getByTestId('kt-pro-tag')).toHaveText('Profiknak');
-    await expect(page.getByTestId('kt-card-deathwatch').getByTestId('kt-beginner-tag')).toHaveText('Kezdőbarát');
+    await page.goto(HU_PAGE_URL);
+    await expect(page.getByTestId(`kt-card-${proTeam.slug}`).getByTestId('kt-pro-tag')).toHaveText(HU.pro_tag);
+    await expect(page.getByTestId(`kt-card-${beginnerTeam.slug}`).getByTestId('kt-beginner-tag')).toHaveText(HU.beginner_tag);
   });
 
   test.describe('tournament legality', () => {
-    // Battleclade is tournament legal until 30 November 2027, Angels of Death until 30 November 2028
+    // Teams are tournament legal until 30 November of their legal until year
+    const legalUntil = Math.min(...killTeams().flatMap((t) => (t.legal_until === undefined ? [] : [t.legal_until])));
+    const team = findKillTeam(`legal until ${legalUntil}`, (t) => t.legal_until === legalUntil);
+    const laterTeam = findKillTeam(`legal after ${legalUntil}`, (t) => (t.legal_until ?? 0) > legalUntil);
+    const teamUrl = `${PAGE_URL}?team=${team.slug}`;
 
     test('shows the legal until date in English and Hungarian', async ({ page }) => {
-      await page.clock.setFixedTime(new Date('2026-03-01T12:00:00'));
-      await page.goto(`${PAGE_URL}?team=battleclade`);
+      await page.clock.setFixedTime(new Date(`${legalUntil - 1}-03-01T12:00:00`));
+      await page.goto(teamUrl);
       const legal = page.getByTestId('kt-detail-legal');
-      await expect(legal).toContainText('Classified until November, 2027');
+      await expect(legal).toContainText(formatLegalUntil(EN.legal_until_label, legalUntil, 'en'));
       await expect(legal).toHaveAttribute('data-legality', 'classified');
 
-      await page.goto('/hu/kill-team/choose-a-team/?team=battleclade');
-      await expect(page.getByTestId('kt-detail-legal')).toContainText('Classified 2027. november végéig');
+      await page.goto(`${HU_PAGE_URL}?team=${team.slug}`);
+      await expect(page.getByTestId('kt-detail-legal')).toContainText(formatLegalUntil(HU.legal_until_label, legalUntil, 'hu'));
     });
 
     test('is still classified on 30 November a year before', async ({ page }) => {
-      await page.clock.setFixedTime(new Date('2026-11-30T12:00:00'));
-      await page.goto(`${PAGE_URL}?team=battleclade`);
+      await page.clock.setFixedTime(new Date(`${legalUntil - 1}-11-30T12:00:00`));
+      await page.goto(teamUrl);
       await expect(page.getByTestId('kt-detail-legal')).toHaveAttribute('data-legality', 'classified');
     });
 
     test('rotates out soon less than a year before the legal until date', async ({ page }) => {
-      await page.clock.setFixedTime(new Date('2026-12-01T12:00:00'));
-      await page.goto(`${PAGE_URL}?team=battleclade`);
-      await expect(page.getByTestId('kt-detail-legal')).toHaveAttribute('data-legality', 'rotates_soon');
+      await page.clock.setFixedTime(new Date(`${legalUntil - 1}-12-01T12:00:00`));
+      await page.goto(teamUrl);
+      const legal = page.getByTestId('kt-detail-legal');
+      await expect(legal).toHaveAttribute('data-legality', 'rotates_soon');
+      await expect(legal).toContainText(EN.rotates_soon_label);
     });
 
     test('is non-classified after the legal until date', async ({ page }) => {
-      await page.clock.setFixedTime(new Date('2027-12-01T12:00:00'));
-      await page.goto(`${PAGE_URL}?team=battleclade`);
+      await page.clock.setFixedTime(new Date(`${legalUntil}-12-01T12:00:00`));
+      await page.goto(teamUrl);
       const legal = page.getByTestId('kt-detail-legal');
       await expect(legal).toHaveAttribute('data-legality', 'declassified');
-      await expect(legal).toContainText('Not legal on most tournaments');
+      await expect(legal).toContainText(EN.not_legal_label);
     });
 
-    test('classified checkbox hides non-classified teams', async ({ page }) => {
-      await page.clock.setFixedTime(new Date('2027-12-01T12:00:00'));
+    test('non-classified teams are hidden until the declassified checkbox is checked', async ({ page }) => {
+      await page.clock.setFixedTime(new Date(`${legalUntil}-12-01T12:00:00`));
       await page.goto(PAGE_URL);
-      await expect(page.getByTestId('kt-question-legal')).toContainText('Legal on all tournaments');
-      await expect(page.getByTestId('kt-card-battleclade')).toBeVisible();
+      await expect(page.getByTestId('kt-question-legal')).toContainText(EN.q_legal);
+      const checkbox = page.getByTestId('kt-answer-legal-declassified');
+      await expect(checkbox).not.toBeChecked();
+      await expect(page.getByTestId(`kt-card-${team.slug}`)).toHaveCount(0);
+      await expect(page.getByTestId(`kt-card-${laterTeam.slug}`)).toBeVisible();
+      await expect(page.getByTestId('kt-declassified-separator')).toHaveCount(0);
 
-      const checkbox = page.getByTestId('kt-answer-legal-classified');
       await checkbox.check();
-      await expect(page).toHaveURL(/legal=classified/);
-      await expect(page.getByTestId('kt-card-battleclade')).toHaveCount(0);
-      await expect(page.getByTestId('kt-card-angels-of-death')).toBeVisible();
+      await expect(page).toHaveURL(/legal=declassified/);
+      await expect(page.getByTestId(`kt-card-${team.slug}`)).toBeVisible();
+      await expect(page.getByTestId('kt-declassified-separator')).toBeVisible();
 
       await checkbox.uncheck();
       await expect(page).not.toHaveURL(/legal=/);
-      await expect(page.getByTestId('kt-card-battleclade')).toBeVisible();
+      await expect(page.getByTestId(`kt-card-${team.slug}`)).toHaveCount(0);
     });
   });
 
   test('Hungarian page uses Hungarian labels', async ({ page }) => {
-    await page.goto('/hu/kill-team/choose-a-team/');
-    await expect(page.getByTestId('kt-beginner-tag').first()).toHaveText('Kezdőbarát');
-    await expect(page.getByTestId('kt-question-exp')).toContainText('Játszottál már Kill Teamet?');
+    await page.goto(HU_PAGE_URL);
+    await expect(page.getByTestId('kt-beginner-tag').first()).toHaveText(HU.beginner_tag);
+    await expect(page.getByTestId('kt-question-exp')).toContainText(HU.q_experience);
   });
 });

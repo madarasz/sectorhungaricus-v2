@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test';
+import { galleryImageCount, subpageData } from './helpers/content';
+
+// Gallery of the first gallery block on the page
+const blocks = subpageData('kill-team-what-is-kill-team', 'hu').content_blocks as Array<{ type: string; gallery?: string }>;
+const IMAGE_COUNT = galleryImageCount(blocks.find((block) => block.type === 'gallery_block')!.gallery!);
 
 test.describe('Gallery Block Tests', () => {
   test('Gallery functionality on Kill Team what-is-kill-team page', async ({ page }) => {
@@ -30,33 +35,33 @@ test.describe('Gallery Block Tests', () => {
     const overlayImage = page.getByTestId('gallery-overlay-image');
     await expect(overlayImage).toBeVisible();
 
-    // Verify image counter shows "1 / 6"
+    // Verify image counter shows the first of all images
     const imageCounter = page.getByTestId('gallery-image-counter');
     await expect(imageCounter).toBeVisible();
-    await expect(imageCounter).toHaveText('1 / 6');
+    await expect(imageCounter).toHaveText(`1 / ${IMAGE_COUNT}`);
 
     // Test forward navigation
     const nextButton = page.getByTestId('gallery-next-button');
     await expect(nextButton).toBeVisible();
     await nextButton.click();
 
-    // Verify counter shows "2 / 6"
-    await expect(imageCounter).toHaveText('2 / 6');
+    // Verify counter shows the second image
+    await expect(imageCounter).toHaveText(`2 / ${IMAGE_COUNT}`);
 
     // Test backward navigation
     const prevButton = page.getByTestId('gallery-prev-button');
     await expect(prevButton).toBeVisible();
     await prevButton.click();
 
-    // Verify counter shows "1 / 6" again
-    await expect(imageCounter).toHaveText('1 / 6');
+    // Verify counter shows the first image again
+    await expect(imageCounter).toHaveText(`1 / ${IMAGE_COUNT}`);
 
     // Test navigation with arrow keys
     await page.keyboard.press('ArrowRight');
-    await expect(imageCounter).toHaveText('2 / 6');
+    await expect(imageCounter).toHaveText(`2 / ${IMAGE_COUNT}`);
 
     await page.keyboard.press('ArrowLeft');
-    await expect(imageCounter).toHaveText('1 / 6');
+    await expect(imageCounter).toHaveText(`1 / ${IMAGE_COUNT}`);
 
     // Close the overlay using the close button
     const closeButton = page.getByTestId('gallery-close-button');

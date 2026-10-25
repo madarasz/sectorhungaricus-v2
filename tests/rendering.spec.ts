@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { SITE_NAME } from '@/lib/seo';
 
 test.describe('Rendering Tests', () => {
   test('Hungarian page renders without React errors', async ({ page }) => {
@@ -11,7 +12,7 @@ test.describe('Rendering Tests', () => {
 
     const response = await page.goto('/hu/');
     expect(response?.status()).toBe(200);
-    await expect(page).toHaveTitle(/Sector Hungaricus/);
+    await expect(page).toHaveTitle(new RegExp(SITE_NAME));
 
     // Check that no React errors occurred
     const reactErrors = consoleErrors.filter(error => 
@@ -33,7 +34,7 @@ test.describe('Rendering Tests', () => {
 
     const response = await page.goto('/en/');
     expect(response?.status()).toBe(200);
-    await expect(page).toHaveTitle(/Sector Hungaricus/);
+    await expect(page).toHaveTitle(new RegExp(SITE_NAME));
 
     // Check that no React errors occurred
     const reactErrors = consoleErrors.filter(error => 
@@ -55,7 +56,7 @@ test.describe('Rendering Tests', () => {
 
     const response = await page.goto('/hu/calendar');
     expect(response?.status()).toBe(200);
-    await expect(page).toHaveTitle(/Sector Hungaricus/);
+    await expect(page).toHaveTitle(new RegExp(SITE_NAME));
 
     // Check that no React errors occurred
     const reactErrors = consoleErrors.filter(error => 
@@ -77,7 +78,7 @@ test.describe('Rendering Tests', () => {
 
     const response = await page.goto('/en/calendar');
     expect(response?.status()).toBe(200);
-    await expect(page).toHaveTitle(/Sector Hungaricus/);
+    await expect(page).toHaveTitle(new RegExp(SITE_NAME));
 
     // Check that no React errors occurred
     const reactErrors = consoleErrors.filter(error => 

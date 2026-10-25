@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { pageData } from './helpers/content';
 
 test.describe('Responsive Design Tests', () => {
   const breakpoints = {
@@ -52,12 +53,12 @@ test.describe('Responsive Design Tests', () => {
       // Calendar should show as icon + text on tablet (md+)
       const navCalendarIcon = page.locator('nav [data-icon="calendar-days"]').first();
       await expect(navCalendarIcon).toBeVisible();
-      const navCalendarText = page.locator('nav').locator('text=Naptár').first();
+      const navCalendarText = page.locator('nav').getByText(pageData('calendar', 'hu').title).first();
       await expect(navCalendarText).toBeVisible();
 
       // Support Us should be hidden on tablet
-      const aboutUs = page.locator('nav').locator('text=Támogass').or(page.locator('nav').locator('text=About Us'));
-      await expect(aboutUs).toBeHidden();
+      const supportUs = page.locator('nav').getByText(pageData('support-us', 'hu').title);
+      await expect(supportUs).toBeHidden();
 
       // Full language switcher should be visible (desktop buttons in the hidden div)
       const desktopLanguageSwitch = page.locator('[data-testid="desktop-language-switch"]');
@@ -88,12 +89,12 @@ test.describe('Responsive Design Tests', () => {
       await page.goto('/hu/');
 
       // Calendar should show as text (link) in navigation
-      const navCalendarLink = page.locator('nav a[href*="/calendar"]').filter({ hasText: 'Naptár' }).first();
+      const navCalendarLink = page.locator('nav a[href*="/calendar"]').filter({ hasText: pageData('calendar', 'hu').title }).first();
       await expect(navCalendarLink).toBeVisible();
 
       // Support Us should be visible in navigation
-      const navAboutUs = page.locator('nav').locator('text=Támogass').or(page.locator('nav').locator('text=About Us')).first();
-      await expect(navAboutUs).toBeVisible();
+      const navSupportUs = page.locator('nav').getByText(pageData('support-us', 'hu').title).first();
+      await expect(navSupportUs).toBeVisible();
 
       // Full language switcher should be visible (desktop buttons in the hidden div)
       const desktopLanguageSwitch = page.locator('[data-testid="desktop-language-switch"]');

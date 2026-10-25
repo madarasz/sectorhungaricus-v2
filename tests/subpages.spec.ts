@@ -1,10 +1,11 @@
 import { test, expect, Page } from '@playwright/test';
+import { subpageData } from './helpers/content';
 
 test.describe('Subpages Navigation Tests', () => {
   // Pages excluded from content length check
   const EXCLUDED_TITLES = [
-    'Képek',
-    'Gallery',
+    subpageData('kill-team-killteam-gallery', 'hu').title,
+    subpageData('kill-team-killteam-gallery', 'en').title,
   ];
 
   // Helper function to check content has at least 100 characters

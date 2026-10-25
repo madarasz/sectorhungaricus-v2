@@ -1,44 +1,39 @@
 import { test, expect } from '@playwright/test';
+import { Locale, markdownHeadings, markdownListTerms, pageData, readContent, upcomingTournaments } from './helpers/content';
 
 // Date mocking is now handled via TEST_CURRENT_DATE environment variable
 // set in playwright.config.ts, so no client-side mocking is needed
+const NOW = new Date(process.env.TEST_CURRENT_DATE!);
 
 test.describe('Calendar Page Tests', () => {
   test('Calendar page displays upcoming tournaments in hero section', async ({ page }) => {
     await page.goto('/hu/calendar');
 
     // Check that the hero section is visible
-    await expect(page.locator('h1:text("Kiemelt események")')).toBeVisible();
-    
+    await expect(page.locator('h1').filter({ hasText: pageData('calendar', 'hu').hero })).toBeVisible();
+
     // Check for upcoming tournaments list
-    await expect(page.locator('text=Contrast Clash').first()).toBeVisible();
+    const [firstTournament] = upcomingTournaments(NOW);
+    expect(firstTournament).toBeDefined();
+    await expect(page.getByText(firstTournament.title, { exact: true }).first()).toBeVisible();
   });
 
-  test('Calendar page displays markdown content from CMS', async ({ page }) => {
-    await page.goto('/en/calendar');
+  for (const locale of ['en', 'hu'] as Locale[]) {
+    test(`Calendar page displays markdown content from CMS (${locale})`, async ({ page }) => {
+      await page.goto(`/${locale}/calendar`);
+      const { body } = readContent('pages', 'calendar', locale);
 
-    // Check for content sections from the calendar.en.md file using heading selectors
-    await expect(page.locator('h3:text("Club Days")')).toBeVisible();
-    await expect(page.locator('h3:text("Tournaments")')).toBeVisible();
-    await expect(page.locator('h3:text("Leagues")')).toBeVisible();
-    
-    // Check for specific content that should be in the markdown
-    await expect(page.locator('text=Meta Club Day')).toBeVisible();
-    await expect(page.locator('text=Contrast Phase Club Day')).toBeVisible();
-  });
+      // Check for content sections from the calendar markdown file using heading selectors
+      const headings = markdownHeadings(body, 3);
+      expect(headings.length).toBeGreaterThan(0);
+      for (const heading of headings) {
+        await expect(page.locator('h3').filter({ hasText: heading })).toBeVisible();
+      }
 
-  test('Hungarian calendar page shows correct localized content', async ({ page }) => {
-    await page.goto('/hu/calendar');
-
-    // Check Hungarian hero text
-    await expect(page.locator('h1:text("Kiemelt események")')).toBeVisible();
-    
-    // Check Hungarian content sections using heading selectors
-    await expect(page.locator('h3:text("Klubnapok")')).toBeVisible();
-    await expect(page.locator('h3:text("Versenyek")')).toBeVisible();
-    await expect(page.locator('h3:text("Ligák")')).toBeVisible();
-    
-    // Check for Hungarian tournament text pattern
-    await expect(page.locator('text=verseny:').first()).toBeVisible();
-  });
+      // Check for the list item terms of the markdown
+      for (const term of markdownListTerms(body)) {
+        await expect(page.locator('strong').filter({ hasText: term }).first()).toBeVisible();
+      }
+    });
+  }
 });

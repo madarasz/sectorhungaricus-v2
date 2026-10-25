@@ -1,21 +1,21 @@
 import { test, expect } from '@playwright/test';
+import { composeTitle } from '@/lib/seo';
+import { pageData, subpageData } from './helpers/content';
 
 test.describe('SEO metadata', () => {
   test('homepage has keyword-rich title and canonical', async ({ page }) => {
+    const home = pageData('welcome-to-sector-hungaricus', 'en');
     await page.goto('/en/');
-    await expect(page).toHaveTitle(/Kill Team/);
-    await expect(page).toHaveTitle(/Sector Hungaricus/);
+    await expect(page).toHaveTitle(composeTitle(home.metaTitle, home.title));
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/en\/$/);
     await expect(page.locator('link[rel="alternate"][hreflang="hu-HU"]')).toHaveCount(1);
   });
 
   test('Kill Team landing page targets the keywords', async ({ page }) => {
+    const subpage = subpageData('kill-team-what-is-kill-team', 'en') as Record<string, string>;
     await page.goto('/en/kill-team/what-is-kill-team/');
-    await expect(page).toHaveTitle(/Kill Team/);
-    const description = await page
-      .locator('meta[name="description"]')
-      .getAttribute('content');
-    expect(description).toMatch(/Budapest|Hungary/);
+    await expect(page).toHaveTitle(subpage.metaTitle);
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', subpage.metaDescription);
   });
 
   test('Organization JSON-LD is present', async ({ page }) => {

@@ -1,27 +1,21 @@
 import { test, expect } from '@playwright/test';
+import { Locale, firstParagraphText, pageData, readContent } from './helpers/content';
 
 test.describe('Language Tests', () => {
-  test('Hungarian page displays correct texts', async ({ page }) => {
-    // Set desktop viewport to ensure navigation texts are visible
-    await page.setViewportSize({ width: 1280, height: 720 });
-    await page.goto('/hu/');
+  for (const locale of ['hu', 'en'] as Locale[]) {
+    test(`${locale} page displays texts from the content files`, async ({ page }) => {
+      // Set desktop viewport to ensure navigation texts are visible
+      await page.setViewportSize({ width: 1280, height: 720 });
+      await page.goto(`/${locale}/`);
 
-    // Check for Hungarian texts from content files and navigation - use first() to avoid strict mode violations
-    await expect(page.locator('text=Naptár').first()).toBeVisible();
-    await expect(page.locator('text=Rólunk').first()).toBeVisible();
-    await expect(page.locator('text=Üdvözlünk').first()).toBeVisible();
-    await expect(page.locator('text=Közösségünk').first()).toBeVisible();
-  });
+      // Navigation and footer texts are page titles - use first() to avoid strict mode violations
+      await expect(page.getByText(pageData('calendar', locale).title, { exact: true }).first()).toBeVisible();
+      await expect(page.getByText(pageData('about-us', locale).title, { exact: true }).first()).toBeVisible();
 
-  test('English page displays correct texts', async ({ page }) => {
-    // Set desktop viewport to ensure navigation texts are visible
-    await page.setViewportSize({ width: 1280, height: 720 });
-    await page.goto('/en/');
-
-    // Check for English texts from content files and navigation - use first() to avoid strict mode violations
-    await expect(page.locator('text=Calendar').first()).toBeVisible();
-    await expect(page.locator('text=About us').first()).toBeVisible();
-    await expect(page.locator('text=Welcome').first()).toBeVisible();
-    await expect(page.locator('text=community').first()).toBeVisible();
-  });
+      // Homepage content
+      const home = readContent('pages', 'welcome-to-sector-hungaricus', locale);
+      await expect(page.getByText(home.data.title as string, { exact: true }).first()).toBeVisible();
+      await expect(page.locator('body')).toContainText(firstParagraphText(home.body));
+    });
+  }
 });
