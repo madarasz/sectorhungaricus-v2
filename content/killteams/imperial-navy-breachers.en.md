@@ -9,9 +9,8 @@ operatives_max: 11
 boxes: 1
 boxes_note: One box builds only one of the three Gunner options, but the team can
   take two, so field an extra Armsman instead or convert one (this needs an extra
-  28mm base). The Kill Team box is discontinued, and the 40k box may not include
-  the upgrade sprue.
-box_type: wh40k
+  28mm base). The Kill Team upgrade sprue is not available anymore, so you have to kitbash some of the specialists.
+box_type: discontinued
 tier: B
 skill: normal
 style:

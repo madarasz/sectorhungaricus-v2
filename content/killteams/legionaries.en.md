@@ -6,8 +6,8 @@ factions:
   - space-marine
 operatives: 6
 boxes: 1
-boxes_note: "One box builds a full team, and you need to magnetize or a second box to build every weapon option."
-box_type: wh40k
+boxes_note: "One box builds a full team, some magnetizing is required to build all the options. The Kill Team upgrade sprue is not available anymore, so you have to kitbash some of the weapons."
+box_type: discontinued
 tier: B
 skill: normal
 style:

@@ -6,10 +6,10 @@ factions:
   - votann
 operatives: 10
 boxes: 1
-boxes_note: One box is enough, but some specialists share bodies with the Gunner
+boxes_note: "One box is enough, but some specialists share bodies with the Gunner
   operatives. Gunners have five weapon options and a team can take only three,
-  so you have to choose what to build.
-box_type: wh40k
+  so you have to choose what to build. The Kill Team upgrade sprue is not available anymore, so you have to kitbash some of the specialists."
+box_type: discontinued
 tier: C
 skill: normal
 style:

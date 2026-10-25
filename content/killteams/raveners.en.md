@@ -15,7 +15,6 @@ style:
   - mobile
   - high-damage
   - tough
-  - control
 legal_until: 2028
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120106083_ENGKillTeamTyphonCoreGame10.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120106083_ENGKillTeamTyphonCoreGame11.jpg?fm=webp&w=892&h=920

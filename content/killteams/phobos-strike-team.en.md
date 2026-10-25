@@ -12,7 +12,6 @@ box_type: wh40k
 tier: A
 skill: pro-only
 style:
-  - shooting
   - control
   - high-damage
   - tough

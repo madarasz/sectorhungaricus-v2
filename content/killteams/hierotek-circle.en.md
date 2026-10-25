@@ -5,10 +5,8 @@ factions:
   - xenos
   - necron
 operatives: 8
-boxes: 2
-boxes_note: The Kill Team box has no Chronomancer or Technomancer, but you can
-  buy them separately in the 40k range. An optional second Deathmark needs an
-  extra model.
+boxes: 4
+boxes_note: You need at least one Cryptek box (Chromomancer, Technomancer, Psyhomancer), Immortals, Deathmarks and the Skorpekh Destroyers box has the Plasmacytes.
 box_type: wh40k
 tier: C
 skill: normal

@@ -14,7 +14,6 @@ skill: pro-only
 style:
   - shooting
   - tough
-  - melee
   - high-damage
   - combo
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102067_ExhaltedSorcerers06.jpg?fm=webp&w=892&h=920
