@@ -10,7 +10,8 @@ export default function SubpageRenderer({ subpage, locale }: SubpageRendererProp
   return (
     <div className="max-w-4xl mx-auto">
       {!subpage.data['hide-title'] && (
-        <h1 className="text-2xl lg:text-3xl font-bold mb-4 lg:mb-8">{subpage.data.title}</h1>
+        // Below lg the subpage nav already shows the title, so keep it only for screen readers
+        <h1 className="sr-only lg:not-sr-only text-2xl lg:text-3xl font-bold lg:mb-8">{subpage.data.title}</h1>
       )}
 
       <div className="space-y-8">

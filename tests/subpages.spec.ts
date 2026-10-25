@@ -102,4 +102,17 @@ test.describe('Subpages Navigation Tests', () => {
       expect(thumbnailCount).toBeGreaterThan(0);
     }
   });
+
+  test('Subpage title is visually hidden on mobile and visible on desktop', async ({ page }) => {
+    const title = page.locator('[data-testid="subpage-content"] h1');
+
+    await page.setViewportSize({ width: 375, height: 812 });
+    await page.goto('/hu/kill-team/choose-a-team/');
+    await expect(title).toHaveCount(1);
+    await expect(title).toHaveClass(/sr-only/);
+    expect((await title.boundingBox())?.height ?? 0).toBeLessThanOrEqual(1);
+
+    await page.setViewportSize({ width: 1280, height: 720 });
+    expect((await title.boundingBox())?.height ?? 0).toBeGreaterThan(1);
+  });
 });

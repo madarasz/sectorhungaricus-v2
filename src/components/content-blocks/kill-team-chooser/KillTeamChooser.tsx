@@ -163,8 +163,7 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
         <QuestionFilters columns={questionColumns} answers={answers} onAnswer={toggleAnswer} onFaction={toggleFaction} onSub={toggleSub} />
       </FilterSheet>
 
-      <div className="flex flex-wrap items-center justify-between gap-2 my-4 font-poppins text-sm" data-testid="kt-result-bar">
-        <p aria-live="polite" data-testid="kt-result-count">{resultCount}</p>
+      <div className="flex justify-end my-4 font-poppins text-sm" data-testid="kt-result-bar">
         {hasAnswers && (
           <button
             type="button"
@@ -200,6 +199,8 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
           </p>
         </div>
       )}
+
+      <p className="mt-4 font-poppins text-sm" aria-live="polite" data-testid="kt-result-count">{resultCount}</p>
     </div>
   )
 }
