@@ -14,6 +14,7 @@ style:
   - melee
   - mobile
   - high-damage
+  - fragile
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120111007_AELHarlequinTroupeLead.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99070111001_HarlequinDeathJester01.jpg?fm=webp&w=892&h=920
 ---

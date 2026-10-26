@@ -13,7 +13,7 @@ style:
   - shooting
   - slow
   - combo
-  - fragile
+  - high-damage
 legal_until: 2027
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120116048_KillTeamBattlecladeSquad20252.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120116048_KillTeamBattlecladeSquad20253.jpg?fm=webp&w=892&h=920

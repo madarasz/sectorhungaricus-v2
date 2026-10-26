@@ -19,14 +19,14 @@ interface TeamDetailProps {
   onClose: () => void
 }
 
-// Darkest shade for the strongest tier
+// Strongest tiers have the hottest colors
 const TIER_COLORS: Record<KillTeamTier, string> = {
-  S: 'bg-[#1A1251] text-[#EAE9E9]',
-  A: 'bg-[#2E2670] text-[#EAE9E9]',
-  B: 'bg-[#4D448E] text-[#EAE9E9]',
-  C: 'bg-[#7F77B8] text-[#1A1251]',
-  D: 'bg-[#B9B4DA] text-[#1A1251]',
-  E: 'bg-[#E2E0F0] text-[#1A1251]',
+  S: 'bg-red-300',
+  A: 'bg-orange-300',
+  B: 'bg-yellow-200',
+  C: 'bg-purple-300',
+  D: 'bg-[#B9B4DA]',
+  E: 'bg-[#E2E0F0]',
 }
 
 const LEGALITY_STYLES: Record<Legality, string> = {
@@ -150,7 +150,7 @@ export default function TeamDetail({ team, labels, factionLabels, locale, now, o
                   <FontAwesomeIcon icon={faTrophy} className="w-4 h-4" aria-hidden="true" />
                   <dt className="opacity-80">{labels.tier_label}</dt>
                   <dd className="text-right">
-                    <span className={`inline-flex items-center justify-center min-w-8 h-8 rounded-md font-namdhinggo text-lg font-semibold ${TIER_COLORS[team.tier]}`} data-testid="kt-detail-tier">
+                    <span className={`inline-flex items-center justify-center min-w-8 h-8 rounded-md font-namdhinggo text-lg font-semibold text-[#1A1251] ${TIER_COLORS[team.tier]}`} data-testid="kt-detail-tier">
                       {team.tier}
                     </span>
                   </dd>

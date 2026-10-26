@@ -15,6 +15,7 @@ tier: A
 skill: normal
 style:
   - shooting
+  - melee
   - combo
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120116002_SkitariiRangers03.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120116003_SicarianRuststalkers01.jpg?fm=webp&w=892&h=920

@@ -12,8 +12,7 @@ tier: C
 skill: normal
 style:
   - melee
-  - shooting
-  - tough
+  - combo
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120103127_KTKommandos2.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120103127_KTKommandos3.jpg?fm=webp&w=892&h=920
 ---

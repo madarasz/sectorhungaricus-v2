@@ -13,6 +13,7 @@ style:
   - shooting
   - mobile
   - high-damage
+  - fragile
 legal_until: 2028
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120113096_KTHivestorm9.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120113096_KTHivestorm8.jpg?fm=webp&w=892&h=920

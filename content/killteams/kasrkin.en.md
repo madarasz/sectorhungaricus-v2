@@ -16,6 +16,7 @@ style:
   - shooting
   - combo
   - fragile
+  - high-damage
 legal_until: 2026
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105155_AstraMilitarumKasrkin03.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105155_AstraMilitarumKasrkin02.jpg?fm=webp&w=892&h=920

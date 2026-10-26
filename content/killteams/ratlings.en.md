@@ -17,7 +17,7 @@ style:
   - shooting
   - fragile
   - mobile
-  - combo
+  - control
 legal_until: 2028
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105132_ENGKTBrutalCunning6.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105117_AMBullgryns6.jpg?fm=webp&w=892&h=920

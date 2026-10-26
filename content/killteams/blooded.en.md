@@ -14,6 +14,7 @@ skill: normal
 style:
   - fragile
   - melee
+  - combo
 legal_until: ""
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102213_KTBlooded3.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102213_KTBlooded2.jpg?fm=webp&w=892&h=920
