@@ -17,7 +17,7 @@ style:
   - tough
   - high-damage
 legal_until: 2028
-image: https://www.warhammer.com/app/resources/catalog/product/920x950/60010199071_ENGKTStarterSet8.jpg?fm=webp&w=892&h=920
-second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/60010199071_ENGKTStarterSet7.jpg?fm=webp&w=892&h=920
+image: https://www.warhammer.com/app/resources/catalog/product/threeSixty/60010199071_KTStarterSetPlagueMarineKillTeamOTT8360/01-01.jpg?fm=webp&w=892
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/60010199071_ENGKTStarterSet8.jpg?fm=webp&w=892&h=920
 ---
 Swollen with rot and disease, the Plague Marines of the Death Guard are fallen sons of Mortarion, who advance slowly but steadily on their objectives and spread infection wherever they go. They are a chaos space marine team of extremely resilient operatives. Their poisoned weapons infect enemy units, who then take damage each activation and additional damage the next time they are hit.

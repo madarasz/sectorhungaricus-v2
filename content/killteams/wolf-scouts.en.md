@@ -16,7 +16,7 @@ style:
   - tough
   - mobile
 legal_until: 2029
-image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120101457_KTWolfScouts02.jpg?fm=webp&w=892&h=920
-second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120101457_KTWolfScouts03.jpg?fm=webp&w=892&h=920
+image: https://www.warhammer.com/app/resources/catalog/product/threeSixty/99120101457_WH40kKTWolfScoutsOTT1360/01-01.jpg?fm=webp&w=892
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120101457_KTWolfScouts02.jpg?fm=webp&w=892&h=920
 ---
 Wolf Scouts are the most feared hunters of their Great Company, and they range far ahead of the Space Wolves to spread death and sabotage behind enemy lines. They are an elite, melee-focused space marine team with strong plasma weapons and a Fenrisian Wolf. They can call a storm onto the killzone, and inside it they get stronger, their enemies get weaker, and they can charge while concealed.

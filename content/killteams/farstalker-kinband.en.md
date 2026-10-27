@@ -15,7 +15,7 @@ style:
   - mobile
   - fragile
 legal_until: 2026
-image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120113120_KrootFarstalkers5.jpg?fm=webp&w=892&h=920
-second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120113120_KrootFarstalkers4.jpg?fm=webp&w=892&h=920
+image: https://www.warhammer.com/app/resources/catalog/product/threeSixty/99120113120_TauEmpireKrootFarstalkers2026OTT1360/01-01.jpg?fm=webp&w=892
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120113120_KrootFarstalkers5.jpg?fm=webp&w=892&h=920
 ---
 Farstalker Kinbands are kroot scouts who roam the galaxy as trackers, hunters and guerrilla fighters, and bring new genetic material back to their Shapers. This xenos team has many specialists and kroot hounds, and its rifles and blades work both at range and in melee. The kroot react with inhuman speed and can change the orders of their operatives at unexpected moments. They are good climbers and can disrupt the mission in surprising ways.

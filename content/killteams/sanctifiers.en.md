@@ -18,7 +18,7 @@ style:
   - combo
   - mobile
 legal_until: 2028
-image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108116_KillTeamSanctifiers2.jpg?fm=webp&w=892&h=920
-second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108116_KillTeamSanctifiers3.jpg?fm=webp&w=892&h=920
+image: https://www.warhammer.com/app/resources/catalog/product/threeSixty/99120108116_KTSanctifiersOTT1360/01-01.jpg?fm=webp&w=892
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108116_KillTeamSanctifiers2.jpg?fm=webp&w=892&h=920
 ---
 Sanctifiers are zealots of the Adeptus Ministorum who believe that only holy fire can purge heresy. They are an Imperial human team led by a Confessor, and their fragile operatives fight with short-range flamers and close-combat weapons. When the Confessor moves, nearby faithful can follow it. An orator's sermon inspires the faithful around it, so they can shrug off some of the damage. Their holy fire can set enemies ablaze, burning them for several turns.

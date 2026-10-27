@@ -15,6 +15,7 @@ style:
   - combo
   - control
   - fragile
-image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108113_RTEntourageVoidsmen2.jpg?fm=webp&w=892&h=920
+image: https://www.warhammer.com/app/resources/catalog/product/threeSixty/99120108083_KTElucidianStarstridersSPIN1360/01.jpg?fm=webp&w=892
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108113_RTEntourageVoidsmen2.jpg?fm=webp&w=892&h=920
 ---
 Rogue Trader Elucia Vhane, heir of an old merchant dynasty, led her Elucidian Starstriders to the Eastern Fringe to outshine her ancestors or die in the attempt. This Imperium team has a fixed roster of unusual specialists, including a Death Cult Executioner, a Lectro-Maester and a squad of naval Voidsmen. Her Warrant of Trade gives the team extra options before and during the battle, such as more equipment, one more command point or making the opponent set up first. Their starship, the New Dawn, stays overhead, and its artillery can strike enemies from above.

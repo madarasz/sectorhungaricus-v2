@@ -18,7 +18,7 @@ style:
   - fragile
   - high-damage
 legal_until: 2026
-image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105155_AstraMilitarumKasrkin03.jpg?fm=webp&w=892&h=920
-second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105155_AstraMilitarumKasrkin02.jpg?fm=webp&w=892&h=920
+image: https://www.warhammer.com/app/resources/catalog/product/threeSixty/99120105155_WH40kAMKasrkinOTT1360/01-01.jpg?fm=webp&w=892
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105155_AstraMilitarumKasrkin03.jpg?fm=webp&w=892&h=920
 ---
 Amongst Cadia's best soldiers, the Kasrkin are special forces trained for war from birth and sent on near-impossible missions. They are an elite Astra Militarum ranged team in carapace armour, and each specialist has its own role and wargear, from the combat medic to the special weapon gunners. An operative that does not move can shoot twice with its basic gun in its activation. Each turn, you can make the whole team shoot harder, move faster or shrug off heavy hits.

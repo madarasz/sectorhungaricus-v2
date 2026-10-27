@@ -15,7 +15,7 @@ style:
   - mobile
   - high-damage
   - fragile
-image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120111007_AELHarlequinTroupeLead.jpg?fm=webp&w=892&h=920
-second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99070111001_HarlequinDeathJester01.jpg?fm=webp&w=892&h=920
+image: https://www.warhammer.com/app/resources/catalog/product/threeSixty/99120111007_AeldariHarlequinTroupeOTT1360/01-01.jpg?fm=webp&w=892
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120111007_AELHarlequinTroupeLead.jpg?fm=webp&w=892&h=920
 ---
 The Harlequins of the Void-Dancer Troupes are acrobatic aeldari warriors who treat war as a performance that shapes the fate of their race. They are a fast team that fights both at range and in melee, mostly with pistols and blades. Their wargear lets them climb easily and move past enemy operatives, and armour-piercing shots are less effective against them.

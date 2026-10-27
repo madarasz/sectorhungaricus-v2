@@ -16,7 +16,7 @@ style:
   - melee
   - combo
 legal_until: ""
-image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102213_KTBlooded3.jpg?fm=webp&w=892&h=920
-second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102213_KTBlooded2.jpg?fm=webp&w=892&h=920
+image: https://www.warhammer.com/app/resources/catalog/product/threeSixty/99120102219_WH40kCSMTraitorGuardsmenOTT1360/01-01.jpg?fm=webp&w=892
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120102213_KTBlooded3.jpg?fm=webp&w=892&h=920
 ---
 Once loyal Imperial Guardsmen, the Blooded have fallen to Chaos and now fight under cruel tyrants to prove themselves to the Chaos Gods. This is a large chaos team of cheap, fragile operatives with many specialists and even an Ogryn. Each kill or casualty draws the attention of the Dark Gods, and their attacks become deadlier with each one.

@@ -19,7 +19,7 @@ style:
   - mobile
   - control
 legal_until: 2028
-image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105132_ENGKTBrutalCunning6.jpg?fm=webp&w=892&h=920
-second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105117_AMBullgryns6.jpg?fm=webp&w=892&h=920
+image: https://www.warhammer.com/app/resources/catalog/product/threeSixty/99120105132_KTRatlingsOTT1360/01-01.jpg?fm=webp&w=892
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120105132_ENGKTBrutalCunning6.jpg?fm=webp&w=892&h=920
 ---
 Small and often underestimated, ratlings are abhumans with a talent for deadly accurate sniping. This fragile Astra Militarum team fights at long range with sniper rifles, and it can add Ogryns and Bullgryns for close combat. They are weak in melee and lose fair fights, so they use sneaky tricks, such as shooting into ongoing melee or stealing objective markers that the enemy controls. After each enemy activation, one of them can dash to escape danger or reach an important position.

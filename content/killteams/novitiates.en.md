@@ -13,6 +13,7 @@ skill: normal
 style:
   - melee
   - fragile
+  - combo
 image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108121_KillTeamAdeptaSororitasNovitiates20253.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108121_KillTeamAdeptaSororitasNovitiates20251.jpg?fm=webp&w=892&h=920
 ---
