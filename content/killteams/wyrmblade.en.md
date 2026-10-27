@@ -18,7 +18,7 @@ style:
   - shooting
   - fragile
   - combo
-image: https://www.warhammer.com/app/resources/catalog/product/threeSixty/99120117004_GenestealerCultsNeophyteHybrids1360/01-01.jpg?fm=webp&w=892
+image: https://www.warhammer.com/app/resources/catalog/product/920x950/99070117010_Kelemorph01.jpg?fm=webp&w=892&h=920
 second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120117004_GenestealerNeophytes06.jpg?fm=webp&w=892&h=920
 ---
 Genestealer cults are human and xenos hybrids that spread unseen on imperial worlds, and their Wyrmblade kill teams slip undetected into ambush positions. The team is a horde of lightly armoured Neophytes, with a few tougher hybrid specialists such as the Kelermorph, the Locus and the Sanctus assassins. Up to a third of the team can start the battle in hiding and emerge later near their own drop zone.

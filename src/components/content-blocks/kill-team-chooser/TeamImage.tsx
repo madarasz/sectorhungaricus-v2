@@ -11,7 +11,7 @@ const SPIN_ZOOM_CLASS_NAME = 'scale-[1.35] origin-[50%_55%]'
 // Write full class names: Tailwind only finds classes that appear literally in the code.
 const STRONG_SPIN_ZOOM = 'scale-[1.6] origin-[50%_55%]'
 const TEAM_SPIN_ZOOM_CLASS_NAMES: Record<string, string> = {
-  'deathwatch': 'scale-[1.9] origin-[50%_68%]',
+  'deathwatch': 'scale-[2.1] origin-[60%_68%]',
   'hearthkyn-salvagers': STRONG_SPIN_ZOOM,
   'tempestus-aquilons': STRONG_SPIN_ZOOM,
   'wolf-scouts': STRONG_SPIN_ZOOM,

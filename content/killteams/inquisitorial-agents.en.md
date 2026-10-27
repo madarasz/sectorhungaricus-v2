@@ -19,6 +19,6 @@ style:
   - shooting
 legal_until: 2027
 image: https://www.warhammer.com/app/resources/catalog/product/threeSixty/60010199056_KTAshesOfFaithInquisitorialAgentsOTT3360/01-01.jpg?fm=webp&w=892
-second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108110_InquisitorialAgents3.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120108112_InquisitorialAgents2.jpg?fm=webp&w=892&h=920
 ---
 The Inquisition answers to almost no one in the Imperium and has vowed to exterminate daemons, traitors and xenos alike. An Interrogator and a Tome-Skull lead a mixed band of lightly armoured human specialists. Instead of regular agents, the team can requisition soldiers from one other Imperium force, such as Kasrkin, Death Korps or Sisters of Silence. The team has many operatives and a myriad of possible combos, and it rewards familiarity with the opposing team. Because of this, Inquisitorial Agents puts a huge mental load on the player and is one of the hardest teams to play.

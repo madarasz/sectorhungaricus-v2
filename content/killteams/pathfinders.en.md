@@ -16,6 +16,6 @@ style:
   - fragile
   - combo
 image: https://www.warhammer.com/app/resources/catalog/product/threeSixty/99120113054_TauPathfinder360/01-01.jpg?fm=webp&w=892
-second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120113040_TauEmpirePathFinderTeam01.jpg?fm=webp&w=892&h=920
+second_image: https://www.warhammer.com/app/resources/catalog/product/920x950/99120113080_TAUPathfinderTeamFeature.jpg?fm=webp&w=892&h=920
 ---
 Pathfinders are reconnaissance specialists of the T’au Empire who range far ahead of the main army to sabotage, cut communications and destroy targets. They are a ranged xenos team of infantry and specialised drones. With their Markerlights, some operatives mark enemy targets, and each extra mark makes the whole team more effective against that target, until it can no longer hide in cover.
