@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBan, faBoxOpen, faHourglassHalf, faShieldHalved, faTrophy, faUsers, faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -18,6 +19,13 @@ interface TeamDetailProps {
   now: Date
   onClose: () => void
 }
+
+// Webstores of a store box, shown as favicon links after the product name (which links to the Warhammer Store)
+const STORE_ICONS = [
+  { id: 'contrastphase', name: 'ContrastPhase', field: 'contrastphase_url', icon: '/images/stores/contrastphase.png' },
+  { id: 'epicarium', name: 'Epicarium', field: 'epicarium_url', icon: '/images/stores/epicarium.svg' },
+  { id: 'warhammer', name: 'Warhammer Store', field: 'url', icon: '/images/stores/warhammer.png' },
+] as const
 
 // Strongest tiers have the hottest colors
 const TIER_COLORS: Record<KillTeamTier, string> = {
@@ -145,12 +153,29 @@ export default function TeamDetail({ team, labels, factionLabels, locale, now, o
                   {row.note && <dd className="col-start-2 col-span-2 text-xs opacity-75 -mt-1">{row.note}</dd>}
                   {row.storeBoxes && (
                     <dd className="col-start-2 col-span-2 -mt-1">
-                      <ul className="list-disc pl-4 text-xs space-y-0.5" data-testid="kt-detail-store-boxes">
+                      <ul className="list-disc pl-4 text-xs space-y-3.5 xl:space-y-1.5" data-testid="kt-detail-store-boxes">
                         {row.storeBoxes.map((box) => (
-                          <li key={box.url}>
-                            <a href={box.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-80">
-                              {box.name}
-                            </a>
+                          <li key={box.name}>
+                            {box.url ? (
+                              <a href={box.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-80" data-testid="kt-detail-store-link-warhammer">
+                                {box.name}
+                              </a>
+                            ) : (
+                              <span data-testid="kt-detail-store-name">{box.name}</span>
+                            )}
+                            {STORE_ICONS.map((store) => box[store.field] && (
+                              <a
+                                key={store.id}
+                                href={box[store.field]}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title={store.name}
+                                className="inline-flex align-middle ml-2.5 xl:ml-1.5 p-1 xl:p-0.5 -my-1 xl:-my-0.5 rounded-sm bg-white hover:opacity-80"
+                                data-testid={`kt-detail-store-icon-${store.id}`}
+                              >
+                                <Image src={store.icon} alt={store.name} width={16} height={16} className="w-6 h-6 xl:w-3.5 xl:h-3.5" unoptimized />
+                              </a>
+                            ))}
                           </li>
                         ))}
                       </ul>

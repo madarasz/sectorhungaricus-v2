@@ -12,10 +12,16 @@ box_type: wh40k
 store_boxes:
   - name: "Chaos Cultists"
     url: https://www.warhammer.com/en-WW/shop/chaos-space-marines-chaos-cultists-2022
+    contrastphase_url: https://contrastphase.hu/Chaos-Cultists
+    epicarium_url: https://epicarium.eu/products/chaos-space-marines-chaos-cultists
   - name: "Accursed Cultists"
     url: https://www.warhammer.com/en-WW/shop/chaos-space-marines-accursed-cultists-2022
+    contrastphase_url: https://contrastphase.hu/Accursed-Cultists
+    epicarium_url: https://epicarium.eu/products/chaos-space-marine-accursed-cultists
   - name: "Dark Commune"
     url: https://www.warhammer.com/en-WW/shop/chaos-space-marines-dark-commune-2022
+    contrastphase_url: https://contrastphase.hu/Dark-Commune
+    epicarium_url: https://epicarium.eu/products/chaos-space-marines-dark-commune
 tier: S
 skill: pro-only
 style:

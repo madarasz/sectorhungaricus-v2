@@ -114,7 +114,9 @@ export type KillTeamSkill = 'beginner-friendly' | 'normal' | 'pro-only'
 
 export interface KillTeamStoreBox {
   name: string
-  url: string
+  url?: string
+  contrastphase_url?: string
+  epicarium_url?: string
 }
 
 export interface KillTeam {
