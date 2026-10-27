@@ -69,7 +69,7 @@ export interface ArtistContent {
 export interface ContentBlock {
   type: 'text_block' | 'hero_block' | 'two_column_block' | 'gallery_block' | 'page_reference_block' | 'artist_block' | 'kill_team_chooser'
   content?: string
-  style?: 'normal' | 'bordered'
+  style?: 'normal' | 'bordered' | 'small-print'
   block_title?: string
   hide_title?: boolean
   left_content?: string

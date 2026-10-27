@@ -95,4 +95,8 @@ content_blocks:
       rotates_soon_label: Ez a csapat hamarosan kikerül a versenyjátékból.
       not_legal_label: Legtöbb versenyen nem használható (non-classified)
       close_label: Csapat részleteinek bezárása
+  - type: text_block
+    style: small-print
+    content: >-
+      Nem hivatalos rajongói oldal, a Games Workshop nem támogatja. A Warhammer, a Kill Team és a kapcsolódó jelölések a Games Workshop Ltd. védjegyei. A csapatképek © Games Workshop Ltd.
 ---

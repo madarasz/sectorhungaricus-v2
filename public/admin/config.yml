@@ -204,7 +204,7 @@ collections:
               - label: "Style"
                 name: "style"
                 widget: "select"
-                options: ["normal", "bordered"]
+                options: ["normal", "bordered", "small-print"]
                 default: "normal"
           - label: "Hero Block"
             name: "hero_block"

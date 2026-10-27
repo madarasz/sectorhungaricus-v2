@@ -95,4 +95,8 @@ content_blocks:
       rotates_soon_label: This team rotates out of tournament play soon.
       not_legal_label: Not legal on most tournaments (non-classified)
       close_label: Close team details
+  - type: text_block
+    style: small-print
+    content: >-
+      Unofficial fan site, not endorsed by Games Workshop. Warhammer, Kill Team and related marks are trademarks of Games Workshop Ltd. Team images © Games Workshop Ltd.
 ---
