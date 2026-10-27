@@ -8,6 +8,9 @@ operatives_min: 10
 operatives_max: 11
 boxes: 1
 box_type: wh40k
+store_boxes:
+  - name: "Kommandos"
+    url: https://www.warhammer.com/en-WW/shop/orks-kommandos-2025
 tier: C
 skill: normal
 style:

@@ -229,7 +229,7 @@ function optionalNumber(value: unknown): number | undefined {
 }
 
 // Kill team fields that are stored only in the default locale file
-const KILL_TEAM_SHARED_FIELDS = ['factions', 'operatives', 'operatives_min', 'operatives_max', 'boxes', 'box_type', 'tier', 'skill', 'style', 'legal_until', 'image', 'second_image']
+const KILL_TEAM_SHARED_FIELDS = ['factions', 'operatives', 'operatives_min', 'operatives_max', 'boxes', 'box_type', 'store_boxes', 'tier', 'skill', 'style', 'legal_until', 'image', 'second_image']
 const KILL_TEAM_DEFAULT_LOCALE = 'en'
 
 export async function getKillTeams(locale?: string): Promise<KillTeam[]> {
@@ -256,6 +256,7 @@ export async function getKillTeams(locale?: string): Promise<KillTeam[]> {
         operatives_max: optionalNumber(team.operatives_max),
         legal_until: optionalNumber(team.legal_until),
         boxes_note: team.boxes_note || undefined,
+        store_boxes: team.store_boxes?.length ? team.store_boxes : undefined,
         image: team.image || undefined,
         // Remote images have no generated size variants
         imageVariants: team.image && !/^https?:\/\//.test(team.image) ? generateImageVariants(team.image) : undefined,

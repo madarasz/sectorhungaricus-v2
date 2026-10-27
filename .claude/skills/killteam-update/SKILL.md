@@ -1,6 +1,6 @@
 ---
 name: killteam-update
-description: Update Kill Team entries in content/killteams/ (English and Hungarian) from official sources - play style text, operative numbers, "Tournament legal until" year, boxes to buy, boxes note and the two team images from the warhammer.com webshop. Use this skill whenever the user wants to refresh, rewrite, fill in, check or correct any Kill Team team entry or one of these fields, even if they only say "update the killteams", "fix Battleclade's operatives", "rewrite the playstyles", "which teams are still legal", "update the team photos" or name a team and a field.
+description: Update Kill Team entries in content/killteams/ (English and Hungarian) from official sources - play style text, operative numbers, "Tournament legal until" year, boxes to buy, boxes note, the Warhammer Store boxes (product names and URLs) and the two team images from the warhammer.com webshop. Use this skill whenever the user wants to refresh, rewrite, fill in, check or correct any Kill Team team entry or one of these fields, even if they only say "update the killteams", "fix Battleclade's operatives", "rewrite the playstyles", "which teams are still legal", "update the team photos", "add the store links" or name a team and a field.
 ---
 
 # Kill Team entry update
@@ -28,6 +28,7 @@ Teams with a non-empty `reviewed` field were checked by a person. Change them on
 | `boxes` | Reddit "Number of boxes per team super guide" | [references/boxes.md](references/boxes.md) |
 | `box_type` | Reddit wiki "one-box-teams", explanation column, and warhammer.com Kill Team list | [references/boxes.md](references/boxes.md) |
 | `boxes_note` | Reddit wiki "one-box-teams", explanation column | [references/boxes.md](references/boxes.md) |
+| `store_boxes` | warhammer.com webshop product pages (names and URLs), Reddit wiki for the Warhammer 40,000 kits | [references/store-boxes.md](references/store-boxes.md) |
 | `image`, `second_image` | warhammer.com webshop product page, 2x2 gallery photos | [references/images.md](references/images.md) |
 
 Read only the reference files for the fields that the user asked for.
@@ -35,7 +36,7 @@ Read only the reference files for the fields that the user asked for.
 ## Languages
 
 Fields have different i18n modes in `config.yml`:
-- **Shared** (no `i18n` key, listed in `KILL_TEAM_SHARED_FIELDS` in `src/lib/markdown.ts`): `factions`, `operatives`, `operatives_min`, `operatives_max`, `boxes`, `box_type`, `tier`, `skill`, `style`, `legal_until`, `image`, `second_image`. Write them only to the `.en.md` file. The Hungarian page reads them from there. Do not add them to the `.hu.md` file.
+- **Shared** (no `i18n` key, listed in `KILL_TEAM_SHARED_FIELDS` in `src/lib/markdown.ts`): `factions`, `operatives`, `operatives_min`, `operatives_max`, `boxes`, `box_type`, `store_boxes`, `tier`, `skill`, `style`, `legal_until`, `image`, `second_image`. Write them only to the `.en.md` file. The Hungarian page reads them from there. Do not add them to the `.hu.md` file.
 - **Translated** (`i18n: true`): body (play style) and `boxes_note`. Write an English text and a Hungarian text with the same content.
 
 Capitalization (all languages, all texts): write general words for factions, races and armies in lowercase, for example "chaos", "space marines", "humans", also as an adjective ("a chaos team", "egy káosz csapat"). Capitalize them only inside a proper name (team, unit, operative or rule name, for example Chaos Cult).
@@ -101,7 +102,7 @@ For more than one team, start one subagent per team (or per small group of teams
 
 Shared sources (the Tournament Companion PDF and the Reddit tables) are the same for all teams. Read them once yourself, and give each subagent only the values for its team.
 
-Do all warhammer.com requests yourself, one after the other with 10 seconds between them (see "Web pages: Playwright CLI"). Give each subagent the product URL and the list of gallery image file names. Subagents must not open warhammer.com pages.
+Do all warhammer.com requests yourself, one after the other with 10 seconds between them (see "Web pages: Playwright CLI"). Give each subagent the product URL, the product name and the list of gallery image file names. Subagents must not open warhammer.com pages.
 
 When the subagents are finished, review each result against references/playstyle.md before you report to the user. Look especially for:
 - texts that are too long,

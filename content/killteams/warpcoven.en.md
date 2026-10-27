@@ -9,6 +9,13 @@ operatives_max: 9
 boxes: 3
 boxes_note: "The Rubric Marines, Tzaangors and Exalted Sorcerer WH40k boxes."
 box_type: wh40k
+store_boxes:
+  - name: "Rubric Marines"
+    url: https://www.warhammer.com/en-WW/shop/rubric-marines
+  - name: "Tzaangors"
+    url: https://www.warhammer.com/en-WW/shop/Tzaangors-AoS
+  - name: "Exalted Sorcerers"
+    url: https://www.warhammer.com/en-WW/shop/exalted-sorcerers
 tier: C
 skill: pro-only
 style:

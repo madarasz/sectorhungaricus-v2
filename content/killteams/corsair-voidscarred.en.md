@@ -8,6 +8,9 @@ operatives: 9
 boxes: 1
 box_type: wh40k
 box_notes: "Corsair Voidreavers WH40k box"
+store_boxes:
+  - name: "Corsair Voidreavers"
+    url: https://www.warhammer.com/en-WW/shop/aeldari-corsair-voidreavers-2026
 tier: B
 skill: normal
 style:

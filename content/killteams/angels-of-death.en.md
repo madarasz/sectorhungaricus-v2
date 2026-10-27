@@ -9,6 +9,9 @@ boxes: 2
 boxes_note: No dedicated Kill Team box. The Starter Set has this team, but a few
   model options are missing. You can probably get them from WH40k players.
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Starter Set"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-starter-set-2024-eng
 tier: B
 skill: beginner-friendly
 style:

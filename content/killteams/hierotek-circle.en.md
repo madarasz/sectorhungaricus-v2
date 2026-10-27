@@ -8,6 +8,17 @@ operatives: 8
 boxes: 4
 boxes_note: You need at least one Cryptek box (Chromomancer, Technomancer, Psyhomancer), Immortals, Deathmarks and the Skorpekh Destroyers box has the Plasmacytes.
 box_type: wh40k
+store_boxes:
+  - name: "Chronomancer"
+    url: https://www.warhammer.com/en-WW/shop/Necrons-Chronomancer-2021
+  - name: "Psychomancer"
+    url: https://www.warhammer.com/en-WW/shop/Necrons-Psychomancer-2020
+  - name: "Immortals"
+    url: https://www.warhammer.com/en-WW/shop/Necron-Immortals-2020
+  - name: "Deathmarks"
+    url: https://www.warhammer.com/en-WW/shop/Necron-Deathmarks-2020
+  - name: "Skorpekh Destroyers"
+    url: https://www.warhammer.com/en-WW/shop/Skorpekh-Destroyers-2020
 tier: C
 skill: normal
 style:

@@ -10,6 +10,9 @@ boxes: 1
 boxes_note: One box builds every specialist at the same time, plus one extra
   warrior. The only choice is the leader's weapon.
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Celestian Insidiants"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-celestian-insidiants-2026
 tier: S
 skill: normal
 style:

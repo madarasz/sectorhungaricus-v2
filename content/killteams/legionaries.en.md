@@ -8,6 +8,9 @@ operatives: 6
 boxes: 1
 boxes_note: "One box builds a full team, some magnetizing is required to build all the options. The Kill Team upgrade sprue is not available anymore, so you have to kitbash some of the weapons."
 box_type: discontinued
+store_boxes:
+  - name: "Legionaries"
+    url: https://www.warhammer.com/en-WW/shop/chaos-space-marines-legionaries-2025
 tier: B
 skill: normal
 style:

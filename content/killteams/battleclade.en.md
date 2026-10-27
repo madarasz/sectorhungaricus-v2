@@ -7,6 +7,9 @@ factions:
 operatives: 10
 boxes: 1
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Battleclade"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-battleclade-2025
 tier: B
 skill: pro-only
 style:

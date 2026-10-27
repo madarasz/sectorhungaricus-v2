@@ -10,6 +10,11 @@ operatives_max: 14
 boxes: 2
 boxes_note: "You will need an additional Broodcoven WH40k box for the leaders"
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Brood Brothers"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-brood-brothers-2024
+  - name: "Broodcoven"
+    url: https://www.warhammer.com/en-WW/shop/Genestealer-Cults-Broodcoven
 tier: S
 skill: normal
 style:

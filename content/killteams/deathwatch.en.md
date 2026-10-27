@@ -11,6 +11,9 @@ operatives_max: ""
 boxes: 2
 boxes_note: 11 operative options, you can build 5 from each box. You can proxy or magnetize the third gravis operative.
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Deathwatch"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-deathwatch-2025
 tier: B
 skill: beginner-friendly
 style:

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBan, faBoxOpen, faHourglassHalf, faShieldHalved, faTrophy, faUsers, faXmark } from '@fortawesome/free-solid-svg-icons'
-import { KillTeam, KillTeamChooserLabels, KillTeamTier } from '@/types/content'
+import { KillTeam, KillTeamChooserLabels, KillTeamStoreBox, KillTeamTier } from '@/types/content'
 import { StylePills } from './StyleIcons'
 import TeamImage from './TeamImage'
 import { BOX_TYPE_STYLES, SkillTag, boxTypeTexts } from './TeamCard'
@@ -69,9 +69,9 @@ export default function TeamDetail({ team, labels, factionLabels, locale, now, o
   const operatives = operativesText(team)
   const legality = getLegality(team.legal_until, now)
   const boxTypeNote = boxTypeTexts(team.box_type, labels)?.note
-  const rows = [
-    ...(operatives ? [{ icon: faUsers, label: labels.operatives_label, value: operatives, note: undefined }] : []),
-    { icon: faBoxOpen, label: labels.boxes_label, value: String(team.boxes), note: team.boxes_note },
+  const rows: { icon: typeof faUsers; label: string; value: string; note?: string; storeBoxes?: KillTeamStoreBox[] }[] = [
+    ...(operatives ? [{ icon: faUsers, label: labels.operatives_label, value: operatives }] : []),
+    { icon: faBoxOpen, label: labels.boxes_label, value: String(team.boxes), note: team.boxes_note, storeBoxes: team.store_boxes },
   ]
 
   return (
@@ -143,6 +143,19 @@ export default function TeamDetail({ team, labels, factionLabels, locale, now, o
                   <dt className="opacity-80">{row.label}</dt>
                   <dd className="text-right font-medium">{row.value}</dd>
                   {row.note && <dd className="col-start-2 col-span-2 text-xs opacity-75 -mt-1">{row.note}</dd>}
+                  {row.storeBoxes && (
+                    <dd className="col-start-2 col-span-2 -mt-1">
+                      <ul className="list-disc pl-4 text-xs space-y-0.5" data-testid="kt-detail-store-boxes">
+                        {row.storeBoxes.map((box) => (
+                          <li key={box.url}>
+                            <a href={box.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-80">
+                              {box.name}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </dd>
+                  )}
                 </div>
               ))}
               {team.tier && (

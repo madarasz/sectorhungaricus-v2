@@ -7,6 +7,9 @@ factions:
 operatives: 8
 boxes: 1
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Canoptek Circle"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-canoptek-circle-2025
 tier: A
 skill: pro-only
 style:

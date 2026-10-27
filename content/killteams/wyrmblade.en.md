@@ -12,6 +12,15 @@ boxes_note: "Two Neophyte Hybrids boxes build a full team. For every option you 
   need the Kelermorph and Locus kits and two Sanctus boxes, one for the Sniper and
   one for the Talon."
 box_type: wh40k
+store_boxes:
+  - name: "Neophyte Hybrids"
+    url: https://www.warhammer.com/en-WW/shop/neophite-hybrids-2016
+  - name: "Kelermorph"
+    url: https://www.warhammer.com/en-WW/shop/Genestealer-Cults-Kelermorph-2020
+  - name: "Locus"
+    url: https://www.warhammer.com/en-WW/shop/Genestealer-Cults-Locus-2019
+  - name: "Sanctus"
+    url: https://www.warhammer.com/en-WW/shop/Genestealer-Cults-Sanctus-2019
 tier: C
 skill: normal
 style:

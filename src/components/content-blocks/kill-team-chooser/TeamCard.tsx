@@ -66,6 +66,8 @@ export function BoxTypeBadge({ boxType, labels }: { boxType: KillTeamBoxType; la
 
 export default function TeamCard({ team, labels, factionNames, selected, onSelect }: TeamCardProps) {
   const operatives = operativesText(team)
+  // The tooltip names the store boxes, or shows the boxes note without them
+  const boxesInfo = team.store_boxes?.map((box) => box.name).join(', ') ?? team.boxes_note
   // Main factions are shown as icons, so the faction text has the sub factions only
   const mainFactions = team.factions.filter((faction) => faction in FACTION_TREE)
   const subFactions = team.factions.filter((faction) => !(faction in FACTION_TREE))
@@ -116,9 +118,9 @@ export default function TeamCard({ team, labels, factionNames, selected, onSelec
             <FontAwesomeIcon icon={faBoxOpen} className="w-[1em] h-[1em]" aria-hidden="true" />
             <span className="sr-only">{labels.boxes_label}:</span>
             {team.boxes}
-            <CardTooltip label={labels.boxes_label}>
+            <CardTooltip label={labels.boxes_label} testId="kt-card-boxes-tooltip">
               {team.boxes}
-              {team.boxes_note && <span className="block mt-0.5 opacity-85">{team.boxes_note}</span>}
+              {boxesInfo && <span className="block mt-0.5 opacity-85" data-testid="kt-card-boxes-info">{boxesInfo}</span>}
             </CardTooltip>
           </span>
           <StyleIcons style={team.style} styles={labels.styles} />

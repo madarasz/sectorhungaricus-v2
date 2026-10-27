@@ -9,6 +9,9 @@ boxes: 1
 boxes_note: One box has enough models for every specialist. Only the Warriors have
   various weapon options.
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Hernkyn Yaegirs"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-hernkyn-yaegirs-2024
 tier: B
 skill: normal
 style:

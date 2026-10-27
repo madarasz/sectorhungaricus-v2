@@ -8,6 +8,13 @@ operatives: 8
 boxes: 3
 boxes_note: "The Kill Team box only contains Striking Scorpions. You need additional Howling Banshees and Dire Avengers WH40k boxes."
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Blades of Khaine"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-blades-of-khaine-2024
+  - name: "Howling Banshees"
+    url: https://www.warhammer.com/en-WW/shop/Craftworlds-Howling-Banshees-2020
+  - name: "Dire Avengers"
+    url: https://www.warhammer.com/en-WW/shop/Eldar-Dire-Avengers-2017
 tier: A
 skill: pro-only
 style:

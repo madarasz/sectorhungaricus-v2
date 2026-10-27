@@ -8,6 +8,9 @@ operatives: 6
 boxes: 1
 boxes_note: Some operatives have several weapon options which you can magnetize.
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Nemesis Claw"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-nemesis-claw-2024
 tier: B
 skill: beginner-friendly
 style:

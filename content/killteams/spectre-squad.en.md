@@ -7,6 +7,9 @@ factions:
 operatives: 11
 boxes: 1
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Spectre Squad"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-spectre-squad-2026
 tier: B
 skill: normal
 style:

@@ -8,6 +8,9 @@ operatives: 10
 boxes: 1
 boxes_note: "Fellgor Beastmen WH40k box"
 box_type: wh40k
+store_boxes:
+  - name: "Fellgor Beastmen"
+    url: https://www.warhammer.com/en-WW/shop/chaos-space-marines-fellgor-beastmen-2026
 tier: C
 skill: normal
 style:

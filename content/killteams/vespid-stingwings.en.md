@@ -7,6 +7,9 @@ factions:
 operatives: 11
 boxes: 1
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Vespid Stingwings"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-tau-empire-vespid-stingwings-2024
 tier: A
 skill: normal
 style:

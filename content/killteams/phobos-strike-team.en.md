@@ -9,6 +9,13 @@ boxes: 3
 boxes_note: "You build the team from
   space marine kits such as Incursors, Infiltrators and Reivers."
 box_type: wh40k
+store_boxes:
+  - name: "Incursor Squad"
+    url: https://www.warhammer.com/en-WW/shop/Space-Marines-Primaris-Incursors-2020
+  - name: "Infiltrator Squad"
+    url: https://www.warhammer.com/en-WW/shop/Space-Marines-Primaris-Infiltrators-2020
+  - name: "Reiver Squad"
+    url: https://www.warhammer.com/en-WW/shop/Space-Marines-Primaris-Reivers-2020
 tier: A
 skill: pro-only
 style:

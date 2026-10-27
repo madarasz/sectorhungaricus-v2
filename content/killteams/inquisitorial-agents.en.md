@@ -10,6 +10,13 @@ boxes: 4
 boxes_note: "Two Inquisitorial Agents boxes build every option except the
   third Gun Servitor weapon, which you can proxy or magnetize. Inquisitorial Requisition needs additional boxes: Kasrkin and Exaction Squad are usually enough."
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Inquisitorial Agents"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-inquisitorial-agents-2024
+  - name: "Kasrkin"
+    url: https://www.warhammer.com/en-WW/shop/astra-militarum-kasrkin-2026
+  - name: "Exaction Squad"
+    url: https://www.warhammer.com/en-WW/shop/imperial-agents-exaction-squad-2026
 tier: S
 skill: pro-only
 style:

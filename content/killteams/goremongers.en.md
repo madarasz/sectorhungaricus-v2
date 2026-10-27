@@ -7,6 +7,9 @@ factions:
 operatives: 8
 boxes: 1
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Goremongers"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-goremongers-2025
 tier: S
 skill: normal
 style:

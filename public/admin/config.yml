@@ -130,6 +130,15 @@ collections:
           - {label: "Kill Team box", value: "kill-team"}
           - {label: "Warhammer 40,000 boxes", value: "wh40k"}
           - {label: "Discontinued", value: "discontinued"}
+      - label: "Store boxes"
+        name: "store_boxes"
+        widget: "list"
+        required: false
+        summary: "{{fields.name}}"
+        hint: "Products to buy in the Warhammer Store for the team. Leave empty if the models cannot be bought."
+        fields:
+          - {label: "Name", name: "name", widget: "string", hint: "Product name as shown in the Warhammer Store"}
+          - {label: "Warhammer Store URL", name: "url", widget: "string", pattern: ["^https://www\\.warhammer\\.com/", "Must be a warhammer.com URL"]}
       - label: "Power tier"
         name: "tier"
         widget: "select"

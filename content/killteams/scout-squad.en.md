@@ -8,6 +8,9 @@ operatives: 9
 boxes: 1
 boxes_note: "One box builds the whole team. You need a second box only if you want every weapon option for the Sergeant and the Warriors."
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Scout Squad"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-scout-squad-2024
 tier: C
 skill: normal
 style:

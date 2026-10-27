@@ -10,6 +10,9 @@ boxes_note: One box has enough bodies for every specialist and the Missionary's
   weapon options. Preachers (up to four) can only be built instead of some
   specialists, so you need a second box to build both.
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Sanctifiers"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-sanctifiers-2025
 tier: A
 skill: pro-only
 style:

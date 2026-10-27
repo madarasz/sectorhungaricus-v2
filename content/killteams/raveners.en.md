@@ -8,6 +8,9 @@ operatives: 5
 boxes: 1
 boxes_note: One box builds every specialist. The Warrior is not needed
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Raveners"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-raveners-2025
 tier: A
 skill: normal
 style:

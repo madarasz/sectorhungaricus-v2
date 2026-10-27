@@ -90,8 +90,8 @@ test.describe('Kill Team chooser', () => {
     await expect(chooser).toBeVisible();
 
     const cards = page.locator('[data-testid^="kt-card-"]').filter({ has: page.getByTestId('kt-card-name') });
+    await expect(cards).toHaveCount(killTeams().length);
     const total = await cards.count();
-    expect(total).toBe(killTeams().length);
     await expect(page.getByTestId('kt-result-count')).toHaveText(fillTemplate(EN.result_count, { shown: total, total }));
 
     // Power tier is only visible in the detail view
@@ -125,6 +125,8 @@ test.describe('Kill Team chooser', () => {
     await page.goto(`${PAGE_URL}?legal=declassified`);
 
     const cards = page.locator('[data-testid^="kt-card-"]').filter({ has: page.getByTestId('kt-card-name') });
+    // Wait until the URL answers are applied, so all teams are visible
+    await expect(cards).toHaveCount(killTeams().length);
     const total = await cards.count();
 
     const answer = page.getByTestId('kt-answer-exp-new');
@@ -206,6 +208,40 @@ test.describe('Kill Team chooser', () => {
     const boxType = page.getByTestId('kt-detail').getByTestId('kt-detail-box-type');
     await expect(boxType).toHaveAttribute('data-box-type', 'wh40k');
     await expect(boxType).toContainText(EN.wh40k_note);
+  });
+
+  test('details list the store boxes with links that open in a new tab', async ({ page }) => {
+    const team = killTeams().find((t) => t.store_boxes?.length);
+    test.skip(!team, 'No reviewed kill team with store boxes');
+
+    await page.goto(`${PAGE_URL}?legal=declassified&team=${team!.slug}`);
+    const links = page.getByTestId('kt-detail').getByTestId('kt-detail-store-boxes').getByRole('link');
+    await expect(links).toHaveText(team!.store_boxes!.map((box) => box.name));
+    for (const [i, box] of team!.store_boxes!.entries()) {
+      await expect(links.nth(i)).toHaveAttribute('href', box.url);
+      await expect(links.nth(i)).toHaveAttribute('target', '_blank');
+    }
+  });
+
+  test('card tooltip shows the store box names, or the boxes note without store boxes', async ({ page }) => {
+    const storeTeam = findKillTeam('legal with store boxes', (t) => isLegal(t) && !!t.store_boxes?.length);
+    await page.goto(PAGE_URL);
+    const storeBoxes = page.getByTestId(`kt-card-${storeTeam.slug}`).getByTestId('kt-card-boxes');
+    await storeBoxes.hover();
+    await expect(storeBoxes.getByTestId('kt-card-boxes-info')).toHaveText(storeTeam.store_boxes!.map((box) => box.name).join(', '));
+
+    const noteTeam = findKillTeam('legal with boxes note and without store boxes', (t) => isLegal(t) && !!t.boxes_note && !t.store_boxes?.length);
+    const noteBoxes = page.getByTestId(`kt-card-${noteTeam.slug}`).getByTestId('kt-card-boxes');
+    await noteBoxes.hover();
+    await expect(noteBoxes.getByTestId('kt-card-boxes-info')).toHaveText(noteTeam.boxes_note!);
+  });
+
+  test('team without store boxes has no store box list in the details', async ({ page }) => {
+    const team = findKillTeam('legal without store boxes', (t) => isLegal(t) && !t.store_boxes?.length);
+    await page.goto(`${PAGE_URL}?team=${team.slug}`);
+
+    await expect(page.getByTestId('kt-detail')).toBeVisible();
+    await expect(page.getByTestId('kt-detail-store-boxes')).toHaveCount(0);
   });
 
   test('team sold in a Kill Team box has no box type note in the details', async ({ page }) => {

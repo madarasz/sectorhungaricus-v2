@@ -10,6 +10,9 @@ boxes_note: The Kill Team box is discontinued, but the same Kasrkin kit is sold 
   Warhammer 40,000. One box is enough, though you have to choose which specialists
   and gunners to build.
 box_type: wh40k
+store_boxes:
+  - name: "Kasrkin"
+    url: https://www.warhammer.com/en-WW/shop/astra-militarum-kasrkin-2026
 tier: A
 skill: normal
 style:

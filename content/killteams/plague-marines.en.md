@@ -9,6 +9,9 @@ boxes: 1
 boxes_note: No dedicated Kill Team box. The Kill Team Starter Set has all the
   models that the team needs.
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Starter Set"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-starter-set-2024-eng
 tier: B
 skill: beginner-friendly
 style:

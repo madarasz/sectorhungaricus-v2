@@ -11,6 +11,11 @@ boxes_note: You build the team from the
   you take several Warriors, and a second box of Sicarian Infiltrators gives you
   one of every operative.
 box_type: wh40k
+store_boxes:
+  - name: "Skitarii Rangers"
+    url: https://www.warhammer.com/en-WW/shop/Skitarii-Rangers-2017
+  - name: "Sicarian Infiltrators"
+    url: https://www.warhammer.com/en-WW/shop/Sicarian-Infiltrators-2017
 tier: A
 skill: normal
 style:

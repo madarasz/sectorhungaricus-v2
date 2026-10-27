@@ -8,6 +8,9 @@ operatives: 10
 boxes: 1
 boxes_note: "One WH40k box called Rogue Trader Entourage and Voidsmen-at-Arms"
 box_type: wh40k
+store_boxes:
+  - name: "Rogue Trader Entourage and Voidsmen-at-Arms"
+    url: https://www.warhammer.com/en-WW/shop/imperial-agents-rogue-trader-entourage-and-voidsmen-at-arm-2024
 tier: A
 skill: normal
 style:

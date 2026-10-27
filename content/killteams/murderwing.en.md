@@ -9,6 +9,9 @@ boxes: 2
 boxes_note: "All options are in the box, but besides the Chaos Lord you can build
   only 5 models from the 8 options. To build every option, you need a second box."
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Murderwing"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-murderwing-2026
 tier: B
 skill: normal
 style:

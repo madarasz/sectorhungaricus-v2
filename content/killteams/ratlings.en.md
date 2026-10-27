@@ -11,6 +11,11 @@ boxes_note: One box gives a playable team, but without the Ogryn and Bullgryn
   options. These come from the Warhammer 40,000 Ogryns box, where you have to
   choose between the two builds.
 box_type: kill-team
+store_boxes:
+  - name: "Kill Team: Ratlings"
+    url: https://www.warhammer.com/en-WW/shop/kill-team-ratlings-2025
+  - name: "Ogryns"
+    url: https://www.warhammer.com/en-WW/shop/Militarum-Auxilla-Ogryns
 tier: A
 skill: normal
 style:

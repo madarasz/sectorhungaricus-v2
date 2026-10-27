@@ -119,14 +119,14 @@ export function chooserFactionLabels(locale: Locale, factions: string[]): string
 }
 
 // Kill team fields that are stored only in the default locale file, the same as in src/lib/markdown.ts
-const KILL_TEAM_SHARED_FIELDS = ['factions', 'operatives', 'operatives_min', 'operatives_max', 'boxes', 'box_type', 'tier', 'skill', 'style', 'legal_until', 'image', 'second_image'];
+const KILL_TEAM_SHARED_FIELDS = ['factions', 'operatives', 'operatives_min', 'operatives_max', 'boxes', 'box_type', 'store_boxes', 'tier', 'skill', 'style', 'legal_until', 'image', 'second_image'];
 const KILL_TEAM_DEFAULT_LOCALE: Locale = 'en';
 
 function optionalNumber(value: unknown): number | undefined {
   return typeof value === 'number' ? value : undefined;
 }
 
-export type TestKillTeam = Pick<KillTeam, 'slug' | 'name' | 'factions' | 'boxes' | 'box_type' | 'skill' | 'style' | 'operatives' | 'operatives_min' | 'operatives_max' | 'legal_until'>;
+export type TestKillTeam = Pick<KillTeam, 'slug' | 'name' | 'factions' | 'boxes' | 'box_type' | 'skill' | 'style' | 'operatives' | 'operatives_min' | 'operatives_max' | 'legal_until' | 'boxes_note' | 'store_boxes'>;
 
 // Reviewed teams, the same set that the chooser shows
 export function killTeams(locale: Locale = KILL_TEAM_DEFAULT_LOCALE): TestKillTeam[] {
@@ -149,6 +149,8 @@ export function killTeams(locale: Locale = KILL_TEAM_DEFAULT_LOCALE): TestKillTe
         operatives_min: optionalNumber(team.operatives_min),
         operatives_max: optionalNumber(team.operatives_max),
         legal_until: optionalNumber(team.legal_until),
+        boxes_note: (team.boxes_note as string) || undefined,
+        store_boxes: (team.store_boxes as KillTeam['store_boxes']) || undefined,
       };
     });
 }

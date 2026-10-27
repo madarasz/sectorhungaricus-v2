@@ -9,6 +9,13 @@ operatives: 14
 boxes: 3
 boxes_note: "You need three WH40k boxes: Chaos Cultists, Accursed Cultists and Dark Commune."
 box_type: wh40k
+store_boxes:
+  - name: "Chaos Cultists"
+    url: https://www.warhammer.com/en-WW/shop/chaos-space-marines-chaos-cultists-2022
+  - name: "Accursed Cultists"
+    url: https://www.warhammer.com/en-WW/shop/chaos-space-marines-accursed-cultists-2022
+  - name: "Dark Commune"
+    url: https://www.warhammer.com/en-WW/shop/chaos-space-marines-dark-commune-2022
 tier: S
 skill: pro-only
 style:

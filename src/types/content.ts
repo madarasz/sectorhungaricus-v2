@@ -112,6 +112,11 @@ export type KillTeamTier = 'S' | 'A' | 'B' | 'C' | 'D' | 'E'
 export type KillTeamBoxType = 'kill-team' | 'wh40k' | 'discontinued'
 export type KillTeamSkill = 'beginner-friendly' | 'normal' | 'pro-only'
 
+export interface KillTeamStoreBox {
+  name: string
+  url: string
+}
+
 export interface KillTeam {
   slug: string
   name: string
@@ -122,6 +127,7 @@ export interface KillTeam {
   boxes: number
   boxes_note?: string
   box_type: KillTeamBoxType
+  store_boxes?: KillTeamStoreBox[]
   tier?: KillTeamTier
   reviewed: boolean
   skill: KillTeamSkill

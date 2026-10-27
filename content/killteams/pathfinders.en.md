@@ -9,6 +9,9 @@ operatives_max: 12
 boxes: 2
 boxes_note: "The WH40k Pathfinders box does not have the upgrade sprue, but the T’au Combat Patrol box still includes it. One box builds the team, two are recommended, and you need three to build every drone."
 box_type: wh40k
+store_boxes:
+  - name: "Pathfinder Team"
+    url: https://www.warhammer.com/en-WW/shop/Pathfinder-Team-2017
 tier: A
 skill: pro-only
 style:
