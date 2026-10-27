@@ -11,7 +11,13 @@ interface CardTooltipProps {
 export default function CardTooltip({ label, children, testId }: CardTooltipProps) {
   return (
     <span className="pointer-events-none absolute inset-x-2 bottom-full z-10 mb-1 hidden group-hover/tip:block rounded-md bg-[#1A1251] text-[#EAE9E9] px-2.5 py-1.5 text-xs font-normal text-left shadow-[0_2px_8px_rgba(0,0,0,0.4)]" aria-hidden="true" data-testid={testId}>
-      <span className="font-semibold">{label}:</span> {children}
+      {children ? (
+        <>
+          <span className="font-semibold">{label}:</span> {children}
+        </>
+      ) : (
+        <span className="font-semibold">{label}</span>
+      )}
     </span>
   )
 }

@@ -101,6 +101,25 @@ test.describe('Kill Team chooser', () => {
     await expect(page.getByTestId(`kt-card-${nonProTeam.slug}`).getByTestId('kt-pro-tag')).toHaveCount(0);
   });
 
+  test('cards show the main faction as an icon and the sub factions as text', async ({ page }) => {
+    // Shows the non-classified teams too
+    await page.goto(`${PAGE_URL}?legal=declassified`);
+
+    for (const team of killTeams()) {
+      const card = page.getByTestId(`kt-card-${team.slug}`);
+      const mains = team.factions.filter((f) => f in FACTION_TREE);
+      const subs = team.factions.filter((f) => !(f in FACTION_TREE));
+
+      const icons = card.getByTestId('kt-card-faction-icon');
+      await expect(icons).toHaveCount(mains.length);
+      for (let i = 0; i < mains.length; i++) {
+        await expect(icons.nth(i)).toHaveAttribute('data-faction', mains[i]);
+        await expect(icons.nth(i)).toContainText(chooserFactionLabel('en', mains[i]));
+      }
+      await expect(card.getByTestId('kt-card-factions')).toHaveText(chooserFactionLabels('en', subs).join(', '));
+    }
+  });
+
   test('answers filter the teams and update the URL', async ({ page }) => {
     // Shows the non-classified teams too
     await page.goto(`${PAGE_URL}?legal=declassified`);

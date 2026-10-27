@@ -17,6 +17,7 @@
   --card-background: #DFDFDF;
   --card-text: #1A1A1A;
   --card-title: #EAE9E9;
+  --card-icon: #1A1A1A;
   --card-shadow: rgba(0, 0, 0, 0.25);
   --language-switch-background: #D1D5DB;
   --language-switch-active: #FFFFFF;
@@ -45,6 +46,7 @@
   --card-background: #DFDFDF;
   --card-text: #1A1251;
   --card-title: #EAE9E9;
+  --card-icon: #1A1A1A;
   --card-shadow: rgba(0, 0, 0, 0.5);
   --language-switch-background: #374151;
   --language-switch-active: #1F2937;

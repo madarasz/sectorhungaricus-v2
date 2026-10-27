@@ -2,9 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBan, faBoxOpen, faCrown, faCubes, faSeedling, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { KillTeam, KillTeamBoxType, KillTeamChooserLabels } from '@/types/content'
 import CardTooltip from './CardTooltip'
+import FactionIcon from './FactionIcon'
 import StyleIcons from './StyleIcons'
 import TeamImage from './TeamImage'
-import { operativesText } from './filters'
+import { FACTION_TREE, operativesText } from './filters'
 
 interface TeamCardProps {
   team: KillTeam
@@ -65,6 +66,9 @@ export function BoxTypeBadge({ boxType, labels }: { boxType: KillTeamBoxType; la
 
 export default function TeamCard({ team, labels, factionNames, selected, onSelect }: TeamCardProps) {
   const operatives = operativesText(team)
+  // Main factions are shown as icons, so the faction text has the sub factions only
+  const mainFactions = team.factions.filter((faction) => faction in FACTION_TREE)
+  const subFactions = team.factions.filter((faction) => !(faction in FACTION_TREE))
 
   return (
     <button
@@ -85,10 +89,20 @@ export default function TeamCard({ team, labels, factionNames, selected, onSelec
       </TeamImage>
 
       <div className="relative flex-1 flex flex-col p-[0.75em] font-poppins">
-        <h3 className="font-namdhinggo text-base md:text-lg font-semibold leading-tight" data-testid="kt-card-name">
-          {team.name}
-        </h3>
-        <p className="text-xs opacity-75 mt-0.5 mb-2">{factionNames(team.factions)}</p>
+        <div className="flex items-start gap-2">
+          <h3 className="flex-1 min-w-0 font-namdhinggo text-base md:text-lg font-semibold leading-tight" data-testid="kt-card-name">
+            {team.name}
+          </h3>
+          {mainFactions.map((faction) => (
+            // Same font size and line height as the name: the icon stays centered on the first name line
+            <span key={faction} className="group/tip shrink-0 flex items-center h-[1lh] text-base md:text-lg leading-tight text-[var(--card-icon)]" data-faction={faction} data-testid="kt-card-faction-icon">
+              <FactionIcon faction={faction} className="h-6 w-auto" />
+              <span className="sr-only">{factionNames([faction])}</span>
+              <CardTooltip label={factionNames([faction])} />
+            </span>
+          ))}
+        </div>
+        <p className="text-xs opacity-75 mt-0.5 mb-2" data-testid="kt-card-factions">{factionNames(subFactions)}</p>
         <div className="mt-auto flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm">
           {operatives && (
             <span className="group/tip inline-flex items-center gap-1" data-testid="kt-card-operatives">
