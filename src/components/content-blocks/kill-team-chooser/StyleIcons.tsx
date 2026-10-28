@@ -86,7 +86,8 @@ export default function StyleIcons({ style, styles }: StyleIconsProps) {
   )
 }
 
-export function StylePills({ style, styles, label }: StyleIconsProps & { label: string }) {
+// children: the team header (name and faction tags) shown above the pills
+export function StylePills({ style, styles, label, children }: StyleIconsProps & { label: string; children: ReactNode }) {
   const options = orderedStyles(style, styles)
   const [selected, setSelected] = useState<KillTeamStyle>()
   // Mouse hover previews a description without changing the selection
@@ -94,27 +95,31 @@ export function StylePills({ style, styles, label }: StyleIconsProps & { label: 
   const shown = options.find((o) => o.value === (hovered ?? selected))
 
   return (
-    <div className="xl:col-span-2 mt-2" data-testid="kt-detail-styles">
-      <ul className="flex flex-wrap gap-1.5" aria-label={label}>
-        {options.map((option) => (
-          <li key={option.value}>
-            <button
-              type="button"
-              onClick={() => setSelected(selected === option.value ? undefined : option.value)}
-              onPointerEnter={(e) => e.pointerType === 'mouse' && setHovered(option.value)}
-              onPointerLeave={() => setHovered(undefined)}
-              aria-pressed={selected === option.value}
-              aria-controls="kt-style-description"
-              className={`inline-flex items-center gap-1.5 min-h-11 xl:min-h-8 px-3 rounded-full text-xs font-medium border border-[var(--hero-secondary-background)] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--hero-secondary-background)] ${selected === option.value ? 'bg-[var(--hero-secondary-background)] text-[var(--hero-text)]' : 'hover:bg-[var(--hero-secondary-background)]/15'}`}
-              data-testid={`kt-style-${option.value}`}
-            >
-              <span className="text-sm leading-none">{STYLE_ICONS[option.value]()}</span>
-              {option.label}
-            </button>
-          </li>
-        ))}
-      </ul>
-      <p id="kt-style-description" aria-live="polite" className="text-sm empty:hidden mt-2 rounded-lg px-3 py-2 bg-[var(--hero-secondary-background)]/10" data-testid="kt-style-description">
+    // Tablet and desktop show the description next to the header and the pills, so the sections below do not move
+    <div className="xl:col-span-2 md:flex md:gap-x-6" data-testid="kt-detail-styles">
+      <div>
+        {children}
+        <ul className="flex flex-wrap gap-1.5 mt-2" aria-label={label}>
+          {options.map((option) => (
+            <li key={option.value}>
+              <button
+                type="button"
+                onClick={() => setSelected(selected === option.value ? undefined : option.value)}
+                onPointerEnter={(e) => e.pointerType === 'mouse' && setHovered(option.value)}
+                onPointerLeave={() => setHovered(undefined)}
+                aria-pressed={selected === option.value}
+                aria-controls="kt-style-description"
+                className={`inline-flex items-center gap-1.5 min-h-11 xl:min-h-8 px-3 rounded-full text-xs font-medium border border-[var(--hero-secondary-background)] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--hero-secondary-background)] ${selected === option.value ? 'bg-[var(--hero-secondary-background)] text-[var(--hero-text)]' : 'hover:bg-[var(--hero-secondary-background)]/15'}`}
+                data-testid={`kt-style-${option.value}`}
+              >
+                <span className="text-sm leading-none">{STYLE_ICONS[option.value]()}</span>
+                {option.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <p id="kt-style-description" aria-live="polite" className="text-sm empty:hidden mt-2 md:mt-0 md:flex-1 md:min-w-0 md:content-center rounded-lg px-3 py-2 bg-[var(--hero-secondary-background)]/10" data-testid="kt-style-description">
         {shown && (
           <>
             <span className="font-semibold">{shown.label}:</span> {shown.description}

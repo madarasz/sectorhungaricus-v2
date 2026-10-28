@@ -114,19 +114,20 @@ export default function TeamDetail({ team, labels, factionLabels, locale, now, o
         </TeamImage>
 
         <div className="p-4 md:p-5 xl:p-6 xl:grid xl:grid-cols-2 xl:gap-x-8 xl:content-start">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 xl:col-span-2">
-            <h2 id="kt-detail-title" className="font-namdhinggo text-xl md:text-2xl font-semibold leading-tight" data-testid="kt-detail-name">
-              {team.name}
-            </h2>
-            <ul className="flex flex-wrap gap-1.5" data-testid="kt-detail-factions">
-              {factionLabels(team.factions).map((label) => (
-                <li key={label} className="px-2.5 py-0.5 rounded-full border border-[var(--card-text)]/25 bg-[var(--hero-secondary-background)]/15 text-xs font-medium">
-                  {label}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <StylePills key={team.slug} style={team.style} styles={labels.styles} label={labels.styles_label} />
+          <StylePills key={team.slug} style={team.style} styles={labels.styles} label={labels.styles_label}>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <h2 id="kt-detail-title" className="font-namdhinggo text-xl md:text-2xl font-semibold leading-tight" data-testid="kt-detail-name">
+                {team.name}
+              </h2>
+              <ul className="flex flex-wrap gap-1.5" data-testid="kt-detail-factions">
+                {factionLabels(team.factions).map((label) => (
+                  <li key={label} className="px-2.5 py-0.5 rounded-full border border-[var(--card-text)]/25 bg-[var(--hero-secondary-background)]/15 text-xs font-medium">
+                    {label}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </StylePills>
 
           {/* First column on desktop: play style and where to buy the team */}
           <div>
@@ -144,7 +145,7 @@ export default function TeamDetail({ team, labels, factionLabels, locale, now, o
           </div>
 
           {/* Second column on desktop: team facts and tournament legality */}
-          <div className="xl:col-start-2 xl:row-start-3 xl:self-start">
+          <div className="xl:col-start-2 xl:row-start-2 xl:self-start">
             <dl className="grid grid-cols-[1.25rem_1fr_auto] gap-x-2 gap-y-2 items-center text-sm mt-2 xl:mt-3">
               {rows.map((row) => (
                 <div key={row.label} className="contents">
