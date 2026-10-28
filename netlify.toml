@@ -10,4 +10,4 @@
 
 [build.environment]
   NODE_VERSION = "18"
-  NEXT_PUBLIC_BASE_URL = "https://sectorhungaricus.com"
+  NEXT_PUBLIC_BASE_URL = "https://sectorhungaricus.hu"
