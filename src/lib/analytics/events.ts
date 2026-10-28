@@ -14,6 +14,8 @@ export type AnalyticsEventData = Record<string, string | number | boolean | unde
 // Values for the data-analytics-link-type attribute of outgoing links
 export const LINK_TYPES = {
   warhammerStore: 'warhammer_store',
+  contrastPhase: 'contrastphase_store',
+  epicarium: 'epicarium_store',
 } as const
 
 // Outgoing links send all their data-analytics-* attributes as event data

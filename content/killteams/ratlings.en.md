@@ -14,8 +14,12 @@ box_type: kill-team
 store_boxes:
   - name: "Kill Team: Ratlings"
     url: https://www.warhammer.com/en-WW/shop/kill-team-ratlings-2025
+    contrastphase_url: https://contrastphase.hu/Kill-Team-Ratlings
+    epicarium_url: https://epicarium.eu/products/kill-team-ratlings
   - name: "Ogryns"
     url: https://www.warhammer.com/en-WW/shop/Militarum-Auxilla-Ogryns
+    contrastphase_url: https://contrastphase.hu/Auxilla-Bullgryns
+    epicarium_url: https://epicarium.eu/products/militarum-auxilla-bullgryns
 tier: A
 skill: normal
 style:

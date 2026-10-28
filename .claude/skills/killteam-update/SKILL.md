@@ -1,6 +1,6 @@
 ---
 name: killteam-update
-description: Update Kill Team entries in content/killteams/ (English and Hungarian) from official sources - play style text, operative numbers, "Tournament legal until" year, boxes to buy, boxes note, the Warhammer Store boxes (product names and URLs) and the two team images from the warhammer.com webshop. Use this skill whenever the user wants to refresh, rewrite, fill in, check or correct any Kill Team team entry or one of these fields, even if they only say "update the killteams", "fix Battleclade's operatives", "rewrite the playstyles", "which teams are still legal", "update the team photos", "add the store links" or name a team and a field.
+description: Update Kill Team entries in content/killteams/ (English and Hungarian) from official sources - play style text, operative numbers, "Tournament legal until" year, boxes to buy, boxes note, the Warhammer Store boxes (product names and URLs, with the same products in the ContrastPhase and Epicarium webstores) and the two team images from the warhammer.com webshop. Use this skill whenever the user wants to refresh, rewrite, fill in, check or correct any Kill Team team entry or one of these fields, even if they only say "update the killteams", "fix Battleclade's operatives", "rewrite the playstyles", "which teams are still legal", "update the team photos", "add the store links", "add the ContrastPhase / Epicarium links" or name a team and a field.
 ---
 
 # Kill Team entry update
@@ -28,7 +28,7 @@ Teams with a non-empty `reviewed` field were checked by a person. Change them on
 | `boxes` | Reddit "Number of boxes per team super guide" | [references/boxes.md](references/boxes.md) |
 | `box_type` | Reddit wiki "one-box-teams", explanation column, and warhammer.com Kill Team list | [references/boxes.md](references/boxes.md) |
 | `boxes_note` | Reddit wiki "one-box-teams", explanation column | [references/boxes.md](references/boxes.md) |
-| `store_boxes` | warhammer.com webshop product pages (names and URLs), Reddit wiki for the Warhammer 40,000 kits | [references/store-boxes.md](references/store-boxes.md) |
+| `store_boxes` | warhammer.com webshop product pages (names and URLs), Reddit wiki for the Warhammer 40,000 kits, contrastphase.hu and epicarium.eu search (`contrastphase_url`, `epicarium_url`) | [references/store-boxes.md](references/store-boxes.md) |
 | `image`, `second_image` | warhammer.com webshop product page, 2x2 gallery photos | [references/images.md](references/images.md) |
 
 Read only the reference files for the fields that the user asked for.
@@ -71,7 +71,7 @@ The link text is the team name (for example "Battleclade"). The file names chang
 
 ## Web pages: Playwright CLI
 
-Use the Playwright CLI (`playwright-cli`) for the Reddit pages and the warhammer.com webshop pages. Do not use WebFetch, curl, the built-in browser or Claude in Chrome for these pages. curl can download the warhammer.com image files only (see references/images.md).
+Use the Playwright CLI (`playwright-cli`) for the Reddit pages, the warhammer.com webshop pages and the ContrastPhase and Epicarium webstores. Do not use WebFetch, curl, the built-in browser or Claude in Chrome for these pages. curl can download the warhammer.com image files only (see references/images.md).
 
 Use one named session and a headed Chrome with a persistent profile. Run the commands from the scratchpad directory, because the CLI writes snapshot files into `.playwright-cli/` in the current folder.
 
@@ -88,6 +88,8 @@ playwright-cli -s=killteam close
 - Close the session when you are finished.
 
 **Warhammer store: wait 10 seconds between requests.** warhammer.com has a web application firewall (WAF). Run `sleep 10` before each `goto` or `fetch()` to warhammer.com, including the first request after the team list. Do not send requests in parallel, and do not start more than one session or subagent that opens warhammer.com at the same time. If the page shows "Human Verification" or an access-denied page, stop. Do not retry in a loop. Tell the user.
+
+**ContrastPhase and Epicarium: no wait.** These stores do not have a WAF. Do not add `sleep 10` before their requests.
 
 **Reddit.** reddit.com can show a "Prove your humanity" page or a login page (old.reddit.com) to automated browsers. Do not try to solve or bypass the challenge. Leave the headed window open, ask the user to complete the challenge in that window, and continue when the user says it is done. If this does not work, ask the user to paste the relevant table rows.
 

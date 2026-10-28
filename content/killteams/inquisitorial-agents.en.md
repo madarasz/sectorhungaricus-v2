@@ -8,15 +8,25 @@ operatives_min: 12
 operatives_max: 13
 boxes: 4
 boxes_note: "Two Inquisitorial Agents boxes build every option except the
-  third Gun Servitor weapon, which you can proxy or magnetize. Inquisitorial Requisition needs additional boxes: Kasrkin and Exaction Squad are usually enough."
+  third Gun Servitor weapon, which you can proxy or magnetize. Hive Scum box can provides additonal cheap bodies. Inquisitorial Requisition needs additional boxes: Kasrkin and Exaction Squad are usually enough."
 box_type: kill-team
 store_boxes:
   - name: "Kill Team: Inquisitorial Agents"
     url: https://www.warhammer.com/en-WW/shop/kill-team-inquisitorial-agents-2024
+    contrastphase_url: https://contrastphase.hu/Kill-Team-Inquisitorial-Agents
+    epicarium_url: https://epicarium.eu/products/kill-team-inquisitorial-agents
+  - name: "Hive Scum"
+    url: https://www.warhammer.com/en-WW/shop/necromunda-hive-scum-2022
+    contrastphase_url: https://contrastphase.hu/Hive-Scum
+    epicarium_url: https://epicarium.eu/products/necromunda-hive-scum
   - name: "Kasrkin"
     url: https://www.warhammer.com/en-WW/shop/astra-militarum-kasrkin-2026
+    contrastphase_url: https://contrastphase.hu/Kasrkin
+    epicarium_url: https://epicarium.eu/products/astra-militarum-kasrkin
   - name: "Exaction Squad"
     url: https://www.warhammer.com/en-WW/shop/imperial-agents-exaction-squad-2026
+    contrastphase_url: https://contrastphase.hu/Exaction-Squad
+    epicarium_url: https://epicarium.eu/products/imperial-agents-exaction-squad
 tier: S
 skill: pro-only
 style:

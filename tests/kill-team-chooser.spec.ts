@@ -211,17 +211,43 @@ test.describe('Kill Team chooser', () => {
   });
 
   test('details list the store boxes with links that open in a new tab', async ({ page }) => {
-    const team = killTeams().find((t) => t.store_boxes?.length);
-    test.skip(!team, 'No reviewed kill team with store boxes');
+    const team = killTeams().find((t) => t.store_boxes?.some((box) => box.url));
+    test.skip(!team, 'No reviewed kill team with Warhammer Store boxes');
 
     await page.goto(`${PAGE_URL}?legal=declassified&team=${team!.slug}`);
-    const links = page.getByTestId('kt-detail').getByTestId('kt-detail-store-boxes').getByRole('link');
-    await expect(links).toHaveText(team!.store_boxes!.map((box) => box.name));
-    for (const [i, box] of team!.store_boxes!.entries()) {
-      await expect(links.nth(i)).toHaveAttribute('href', box.url);
+    const links = page.getByTestId('kt-detail').getByTestId('kt-detail-store-boxes').getByTestId('kt-detail-store-link-warhammer');
+    const storeBoxes = team!.store_boxes!.filter((box) => box.url);
+    await expect(links).toHaveText(storeBoxes.map((box) => box.name));
+    for (const [i, box] of storeBoxes.entries()) {
+      await expect(links.nth(i)).toHaveAttribute('href', box.url!);
       await expect(links.nth(i)).toHaveAttribute('target', '_blank');
     }
   });
+
+  for (const store of [
+    { id: 'contrastphase', field: 'contrastphase_url' },
+    { id: 'epicarium', field: 'epicarium_url' },
+    { id: 'warhammer', field: 'url' },
+  ] as const) {
+    test(`store boxes have a ${store.id} icon link only when the box has a ${store.field}`, async ({ page }) => {
+      const team = killTeams().find((t) => t.store_boxes?.some((box) => box[store.field]));
+      test.skip(!team, `No reviewed kill team with ${store.field}`);
+
+      await page.goto(`${PAGE_URL}?legal=declassified&team=${team!.slug}`);
+      const items = page.getByTestId('kt-detail').getByTestId('kt-detail-store-boxes').getByRole('listitem');
+      await expect(items).toHaveCount(team!.store_boxes!.length);
+      for (const [i, box] of team!.store_boxes!.entries()) {
+        const link = items.nth(i).getByTestId(`kt-detail-store-icon-${store.id}`);
+        if (box[store.field]) {
+          await expect(link).toHaveAttribute('href', box[store.field]!);
+          await expect(link).toHaveAttribute('target', '_blank');
+          await expect(link.getByRole('img')).toBeVisible();
+        } else {
+          await expect(link).toHaveCount(0);
+        }
+      }
+    });
+  }
 
   test('card tooltip shows the store box names, or the boxes note without store boxes', async ({ page }) => {
     const storeTeam = findKillTeam('legal with store boxes', (t) => isLegal(t) && !!t.store_boxes?.length);

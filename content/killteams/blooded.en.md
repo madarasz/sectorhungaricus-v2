@@ -12,8 +12,12 @@ box_type: discontinued
 store_boxes:
   - name: "Traitor Guardsmen Squad"
     url: https://www.warhammer.com/en-WW/shop/chaos-space-marines-traitor-guardsmen-squad-2025
+    contrastphase_url: https://contrastphase.hu/Traitor-Guardsmen-Squad
+    epicarium_url: https://epicarium.eu/products/chaos-smarines-traitor-guardsmen-squad
   - name: "Traitor Enforcer"
     url: https://www.warhammer.com/en-WW/shop/chaos-space-marines-traitor-enforcer-2025
+    contrastphase_url: https://contrastphase.hu/Traitor-Enforcer
+    epicarium_url: https://epicarium.eu/products/chaos-space-marines-traitor-enforcer
 tier: B
 skill: normal
 style:

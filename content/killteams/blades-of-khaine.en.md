@@ -11,10 +11,16 @@ box_type: kill-team
 store_boxes:
   - name: "Kill Team: Blades of Khaine"
     url: https://www.warhammer.com/en-WW/shop/kill-team-blades-of-khaine-2024
+    contrastphase_url: https://contrastphase.hu/Kill-Team-Blades-Of-Khaine
+    epicarium_url: https://epicarium.eu/products/kill-team-blades-of-khaine
   - name: "Howling Banshees"
     url: https://www.warhammer.com/en-WW/shop/Craftworlds-Howling-Banshees-2020
+    contrastphase_url: https://contrastphase.hu/Howling-Banshees
+    epicarium_url: https://epicarium.eu/products/craftworlds-howling-banshees
   - name: "Dire Avengers"
     url: https://www.warhammer.com/en-WW/shop/Eldar-Dire-Avengers-2017
+    contrastphase_url: https://contrastphase.hu/Dire-Avengers
+    epicarium_url: https://epicarium.eu/products/aeldari-dire-avengers
 tier: A
 skill: pro-only
 style:

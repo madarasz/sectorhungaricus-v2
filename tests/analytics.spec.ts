@@ -17,7 +17,6 @@ const resourcesLink = subpageExternalLinks('kill-team-resources', 'en')[0];
 const galleryBlocks = subpageData('kill-team-what-is-kill-team', 'hu').content_blocks as Array<{ type: string; gallery?: string }>;
 const gallerySlug = galleryBlocks.find((block) => block.type === 'gallery_block' && block.gallery && galleryImageCount(block.gallery) > 0)!.gallery!;
 
-const storeTeam = killTeams().find((t) => t.store_boxes?.length);
 // Team that the chooser shows without the declassified answer today
 const cardTeam = findKillTeam('legal', (t) => getLegality(t.legal_until, new Date()) !== 'declassified');
 
@@ -116,23 +115,33 @@ test.describe('Analytics', () => {
     ]);
   });
 
-  test('Warhammer Store link sends the store link type', async ({ page }) => {
-    test.skip(!storeTeam, 'No reviewed kill team with store boxes');
+  // Store link of each webstore, by the store box field that holds its URL
+  for (const store of [
+    { testId: 'kt-detail-store-link-warhammer', field: 'url', linkType: LINK_TYPES.warhammerStore },
+    { testId: 'kt-detail-store-icon-warhammer', field: 'url', linkType: LINK_TYPES.warhammerStore },
+    { testId: 'kt-detail-store-icon-contrastphase', field: 'contrastphase_url', linkType: LINK_TYPES.contrastPhase },
+    { testId: 'kt-detail-store-icon-epicarium', field: 'epicarium_url', linkType: LINK_TYPES.epicarium },
+  ] as const) {
+    test(`${store.testId} link sends the ${store.linkType} link type`, async ({ page }) => {
+      const team = killTeams().find((t) => t.store_boxes?.some((box) => box[store.field]));
+      test.skip(!team, `No reviewed kill team with ${store.field}`);
+      const box = team!.store_boxes!.find((b) => b[store.field])!;
 
-    await page.goto(`${CHOOSER_URL}?legal=declassified&team=${storeTeam!.slug}`);
-    await waitForTracker(page);
-    await blockLinkNavigation(page);
+      await page.goto(`${CHOOSER_URL}?legal=declassified&team=${team!.slug}`);
+      await waitForTracker(page);
+      await blockLinkNavigation(page);
 
-    await page.getByTestId('kt-detail-store-boxes').getByRole('link').first().click();
+      await page.getByTestId('kt-detail-store-boxes').getByTestId(store.testId).first().click();
 
-    await expect.poll(() => trackedEvents(page)).toContainEqual({
-      name: 'outbound_link_click',
-      data: {
-        url: new URL(storeTeam!.store_boxes![0].url).href,
-        page: CHOOSER_URL,
-        link_type: LINK_TYPES.warhammerStore,
-        team: storeTeam!.slug,
-      },
+      await expect.poll(() => trackedEvents(page)).toContainEqual({
+        name: 'outbound_link_click',
+        data: {
+          url: new URL(box[store.field]!).href,
+          page: CHOOSER_URL,
+          link_type: store.linkType,
+          team: team!.slug,
+        },
+      });
     });
-  });
+  }
 });
