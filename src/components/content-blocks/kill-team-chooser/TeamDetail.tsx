@@ -10,6 +10,7 @@ import TeamImage from './TeamImage'
 import { BOX_TYPE_STYLES, SkillTag, boxTypeTexts } from './TeamCard'
 import { operativesText } from './filters'
 import { Legality, formatLegalUntil, getLegality } from './legality'
+import { LINK_TYPES } from '@/lib/analytics/events'
 
 interface TeamDetailProps {
   team: KillTeam
@@ -22,9 +23,9 @@ interface TeamDetailProps {
 
 // Webstores of a store box, shown as favicon links after the product name (which links to the Warhammer Store)
 const STORE_ICONS = [
-  { id: 'contrastphase', name: 'ContrastPhase', field: 'contrastphase_url', icon: '/images/stores/contrastphase.png' },
-  { id: 'epicarium', name: 'Epicarium', field: 'epicarium_url', icon: '/images/stores/epicarium.svg' },
-  { id: 'warhammer', name: 'Warhammer Store', field: 'url', icon: '/images/stores/warhammer.png' },
+  { id: 'contrastphase', name: 'ContrastPhase', field: 'contrastphase_url', icon: '/images/stores/contrastphase.png', linkType: LINK_TYPES.contrastPhase },
+  { id: 'epicarium', name: 'Epicarium', field: 'epicarium_url', icon: '/images/stores/epicarium.svg', linkType: LINK_TYPES.epicarium },
+  { id: 'warhammer', name: 'Warhammer Store', field: 'url', icon: '/images/stores/warhammer.png', linkType: LINK_TYPES.warhammerStore },
 ] as const
 
 // Strongest tiers have the hottest colors
@@ -157,7 +158,7 @@ export default function TeamDetail({ team, labels, factionLabels, locale, now, o
                         {row.storeBoxes.map((box) => (
                           <li key={box.name}>
                             {box.url ? (
-                              <a href={box.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-80" data-testid="kt-detail-store-link-warhammer">
+                              <a href={box.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-80" data-testid="kt-detail-store-link-warhammer" data-analytics-link-type={LINK_TYPES.warhammerStore} data-analytics-team={team.slug}>
                                 {box.name}
                               </a>
                             ) : (
@@ -172,6 +173,8 @@ export default function TeamDetail({ team, labels, factionLabels, locale, now, o
                                 title={store.name}
                                 className="inline-flex align-middle ml-2.5 xl:ml-1.5 p-1 xl:p-0.5 -my-1 xl:-my-0.5 rounded-sm bg-white hover:opacity-80"
                                 data-testid={`kt-detail-store-icon-${store.id}`}
+                                data-analytics-link-type={store.linkType}
+                                data-analytics-team={team.slug}
                               >
                                 <Image src={store.icon} alt={store.name} width={16} height={16} className="w-6 h-6 xl:w-3.5 xl:h-3.5" unoptimized />
                               </a>
