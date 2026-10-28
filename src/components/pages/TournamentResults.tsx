@@ -123,7 +123,7 @@ export default function TournamentResults() {
       {/* Concluded Tournaments Card */}
       <div className="bg-white rounded-lg overflow-hidden shadow">
         <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
-          <h3 className="text-lg font-medium text-gray-900">{t.concludedTournaments}</h3>
+          <h3 className="text-lg font-medium text-gray-900">{t.concludedTournaments} ({tournamentsData.tournaments.length})</h3>
         </div>
         <div className="px-6 py-4">
           <ul className="list-disc list-inside space-y-2">
