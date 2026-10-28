@@ -18,7 +18,7 @@ export default function ArtistBlock({ block, locale }: ArtistBlockProps) {
     return null
   }
 
-  const { name, portfolio, does_commission, galleryData } = block.artistData
+  const { name, portfolio, does_commission, gallery, galleryData } = block.artistData
   const images = galleryData?.images || []
   const commissionLabel = commissionLabels[locale] || commissionLabels.en
 
@@ -52,7 +52,7 @@ export default function ArtistBlock({ block, locale }: ArtistBlockProps) {
       </div>
 
       {images.length > 0 && (
-        <GalleryBlock images={images} />
+        <GalleryBlock images={images} galleryId={gallery} />
       )}
     </div>
   )

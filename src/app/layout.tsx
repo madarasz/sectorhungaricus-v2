@@ -5,6 +5,8 @@ import "./globals.css";
 import "../lib/fontawesome";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { BASE_URL } from "@/lib/seo";
+import AnalyticsScripts from "@/components/analytics/AnalyticsScripts";
+import OutboundLinkTracker from "@/components/analytics/OutboundLinkTracker";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -110,7 +112,8 @@ export default function RootLayout({
         <ThemeProvider>
           {children}
         </ThemeProvider>
-        <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+        <OutboundLinkTracker />
+        <AnalyticsScripts />
       </body>
     </html>
   );

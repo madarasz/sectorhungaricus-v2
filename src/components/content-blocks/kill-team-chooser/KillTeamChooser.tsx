@@ -6,6 +6,7 @@ import { faRotateLeft } from '@fortawesome/free-solid-svg-icons'
 import { ContentBlock, KillTeam, KillTeamStyle } from '@/types/content'
 import { Answers, FACTION_TREE, SingleAnswerKey, TEAM_PARAM, answersFromSearch, buildSearch, matchesAnswers, subFactionsOf } from './filters'
 import { getLegality } from './legality'
+import { trackEvent } from '@/lib/analytics/track'
 import FilterSheet from './FilterSheet'
 import QuestionFilters, { Question } from './QuestionFilters'
 import TeamCard from './TeamCard'
@@ -88,7 +89,13 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
   // Each selected faction counts as one answer
   const answerCount = Object.values(answers).reduce((count, value) => count + (Array.isArray(value) ? value.length : 1), 0)
 
+  const resetAnswers = () => {
+    setAnswers({})
+    trackEvent('kt_filter_reset', {})
+  }
+
   const toggleAnswer = (key: SingleAnswerKey, value: string) => {
+    trackEvent('kt_filter_change', { filter: key, value, selected: answers[key] !== value })
     setAnswers((prev) => {
       const next = { ...prev }
       if (next[key] === value) {
@@ -101,6 +108,7 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
   }
 
   const toggleFaction = (main: string) => {
+    trackEvent('kt_filter_change', { filter: 'faction', value: main, selected: !(answers.faction ?? []).includes(main) })
     setAnswers((prev) => {
       const next = { ...prev }
       const factions = prev.faction ?? []
@@ -119,6 +127,7 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
   }
 
   const toggleSub = (sub: string) => {
+    trackEvent('kt_filter_change', { filter: 'sub', value: sub, selected: !(answers.sub ?? []).includes(sub) })
     setAnswers((prev) => {
       const subs = prev.sub ?? []
       const next: Answers = { ...prev, sub: subs.includes(sub) ? subs.filter((s) => s !== sub) : [...subs, sub] }
@@ -128,6 +137,7 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
   }
 
   const toggleStyle = (style: KillTeamStyle) => {
+    trackEvent('kt_filter_change', { filter: 'style', value: style, selected: !(answers.style ?? []).includes(style) })
     setAnswers((prev) => {
       const styles = prev.style ?? []
       const next: Answers = { ...prev, style: styles.includes(style) ? styles.filter((s) => s !== style) : [...styles, style] }
@@ -146,6 +156,12 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
     <TeamDetail team={selectedTeam} labels={labels} locale={locale} now={now} factionLabels={factionLabels} onClose={closeDetail} />
   )
 
+  // Only opening a team is tracked, closing is not
+  const selectTeam = (slug: string) => {
+    if (slug !== selectedSlug) trackEvent('kt_team_select', { team: slug })
+    setSelectedSlug((current) => (current === slug ? null : slug))
+  }
+
   const renderCard = (team: KillTeam) => (
     <TeamCard
       key={team.slug}
@@ -153,7 +169,7 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
       labels={labels}
       factionNames={factionNames}
       selected={team.slug === selectedSlug}
-      onSelect={(slug) => setSelectedSlug((current) => (current === slug ? null : slug))}
+      onSelect={selectTeam}
     />
   )
 
@@ -165,7 +181,7 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
         resetLabel={labels.reset}
         showResultsLabel={showResults}
         activeCount={answerCount}
-        onReset={() => setAnswers({})}
+        onReset={resetAnswers}
       >
         <QuestionFilters columns={questionColumns} answers={answers} onAnswer={toggleAnswer} onFaction={toggleFaction} onSub={toggleSub} onStyle={toggleStyle} />
       </FilterSheet>
@@ -174,7 +190,7 @@ export default function KillTeamChooser({ block, locale }: KillTeamChooserProps)
         {hasAnswers && (
           <button
             type="button"
-            onClick={() => setAnswers({})}
+            onClick={resetAnswers}
             className="hidden md:inline-flex items-center gap-2 min-h-11 px-3 rounded-lg underline underline-offset-4 hover:no-underline focus-visible:outline-3 focus-visible:outline-[var(--hero-secondary-background)]"
             data-testid="kt-reset"
           >

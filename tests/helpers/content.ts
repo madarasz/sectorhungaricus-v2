@@ -63,6 +63,13 @@ export function firstParagraphText(body: string): string {
     .trim();
 }
 
+// Absolute http(s) link targets in the markdown fields of the subpage content blocks
+export function subpageExternalLinks(slug: string, locale: Locale): string[] {
+  const blocks = (subpageData(slug, locale).content_blocks as Array<Record<string, unknown>>) ?? [];
+  const texts = blocks.flatMap((block) => [block.content, block.left_content, block.right_content]).filter((text): text is string => typeof text === 'string');
+  return texts.flatMap((text) => [...text.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)].map((match) => match[1]));
+}
+
 export function galleryImageCount(slug: string): number {
   const images = readContent('galleries', slug).data.images as unknown[] | undefined;
   return images?.length ?? 0;

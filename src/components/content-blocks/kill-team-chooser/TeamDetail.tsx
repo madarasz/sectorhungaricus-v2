@@ -9,6 +9,7 @@ import TeamImage from './TeamImage'
 import { BOX_TYPE_STYLES, SkillTag, boxTypeTexts } from './TeamCard'
 import { operativesText } from './filters'
 import { Legality, formatLegalUntil, getLegality } from './legality'
+import { LINK_TYPES } from '@/lib/analytics/events'
 
 interface TeamDetailProps {
   team: KillTeam
@@ -148,7 +149,7 @@ export default function TeamDetail({ team, labels, factionLabels, locale, now, o
                       <ul className="list-disc pl-4 text-xs space-y-0.5" data-testid="kt-detail-store-boxes">
                         {row.storeBoxes.map((box) => (
                           <li key={box.url}>
-                            <a href={box.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-80">
+                            <a href={box.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-80" data-analytics-link-type={LINK_TYPES.warhammerStore} data-analytics-team={team.slug}>
                               {box.name}
                             </a>
                           </li>

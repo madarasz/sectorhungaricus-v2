@@ -4,6 +4,7 @@ import { ContentBlock, ImageVariants } from '@/types/content'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { getBestImageVariant } from '@/lib/imageVariants'
+import { trackEvent } from '@/lib/analytics/track'
 
 interface GalleryImage {
   src: string
@@ -15,6 +16,8 @@ interface GalleryImage {
 interface GalleryBlockProps {
   block?: ContentBlock & { type: 'gallery_block' }
   images?: GalleryImage[]
+  // Gallery slug for analytics, when the images do not come from the block
+  galleryId?: string
   testIdPrefix?: string
 }
 
@@ -175,7 +178,7 @@ function ImageOverlay({ images, currentIndex, isOpen, onClose, onPrevious, onNex
   )
 }
 
-export default function GalleryBlock({ block, images: imagesProp, testIdPrefix = 'gallery' }: GalleryBlockProps) {
+export default function GalleryBlock({ block, images: imagesProp, galleryId, testIdPrefix = 'gallery' }: GalleryBlockProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null)
 
   // Use images from props if provided, otherwise from block
@@ -187,6 +190,7 @@ export default function GalleryBlock({ block, images: imagesProp, testIdPrefix =
 
   const openOverlay = (index: number) => {
     setSelectedImageIndex(index)
+    trackEvent('gallery_open', { page: window.location.pathname, gallery: galleryId ?? block?.gallery, image_index: index })
   }
 
   const closeOverlay = () => {
