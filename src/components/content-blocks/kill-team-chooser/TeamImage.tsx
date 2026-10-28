@@ -7,15 +7,49 @@ const CATALOG_PHOTO = /^https:\/\/www\.warhammer\.com\/app\/resources\/catalog\/
 // 360° spin frames show one small model with much empty space around it, so zoom in
 const SPIN_PHOTO = /^https:\/\/www\.warhammer\.com\/app\/resources\/catalog\/product\/threeSixty\//
 const SPIN_ZOOM_CLASS_NAME = 'scale-[1.35] origin-[50%_55%]'
-// Teams (slugs) whose spin frame shows an even smaller model, with their own zoom.
+// Per team zoom: the base of the model touches the bottom of the card and no part of the model is cut off.
 // Write full class names: Tailwind only finds classes that appear literally in the code.
-const STRONG_SPIN_ZOOM = 'scale-[1.6] origin-[50%_55%]'
 const TEAM_SPIN_ZOOM_CLASS_NAMES: Record<string, string> = {
-  'deathwatch': 'scale-[2.1] origin-[60%_68%]',
-  'hearthkyn-salvagers': STRONG_SPIN_ZOOM,
-  'tempestus-aquilons': STRONG_SPIN_ZOOM,
-  'wolf-scouts': STRONG_SPIN_ZOOM,
-  'xv26-stealth-battlesuits': STRONG_SPIN_ZOOM,
+  'angels-of-death': 'scale-[1.39] origin-[60.8%_63.3%]',
+  'battleclade': 'scale-[1.30] origin-[69.7%_58.9%]',
+  'blooded': 'scale-[1.69] origin-[45.1%_61.0%]',
+  'brood-brothers': 'scale-[1.34] origin-[71.3%_30.1%]',
+  'canoptek-circle': 'scale-[1.38] origin-[49.6%_63.5%]',
+  'celestian-insidiants': 'scale-[1.53] origin-[16.4%_54.2%]',
+  'chaos-cult': 'scale-[1.03] origin-[-50.3%_-78.9%]',
+  'corsair-voidscarred': 'scale-[1.17] origin-[39.1%_56.5%]',
+  'death-korps': 'scale-[1.38] origin-[39.6%_88.3%]',
+  'deathwatch': 'scale-[2.07] origin-[61.6%_67.3%]',
+  'elucidian-starstriders': 'scale-[1.55] origin-[50.6%_44.8%]',
+  'exaction-squad': 'scale-[1.29] origin-[48.9%_42.4%]',
+  'farstalker-kinband': 'scale-[1.20] origin-[29.5%_53.6%]',
+  'fellgor-ravagers': 'scale-[1.11] origin-[67.0%_16.0%]',
+  'goremongers': 'scale-[1.37] origin-[81.2%_75.7%]',
+  'hearthkyn-salvagers': 'scale-[1.48] origin-[59.0%_35.4%]',
+  'hernkyn-yaegirs': 'scale-[1.28] origin-[9.5%_27.6%]',
+  'hierotek-circle': 'scale-[1.33] origin-[35.6%_51.6%]',
+  'hunter-clade': 'scale-[1.63] origin-[51.8%_41.8%]',
+  'imperial-navy-breachers': 'scale-[1.45] origin-[38.8%_46.0%]',
+  'inquisitorial-agents': 'scale-[1.22] origin-[39.0%_17.7%]',
+  'kasrkin': 'scale-[1.52] origin-[40.6%_53.0%]',
+  'legionaries': 'scale-[1.53] origin-[45.7%_38.7%]',
+  'mandrakes': 'scale-[1.25] origin-[50.2%_30.6%]',
+  'murderwing': 'scale-[1.24] origin-[64.3%_63.7%]',
+  'nemesis-claw': 'scale-[1.53] origin-[70.6%_31.9%]',
+  'pathfinders': 'scale-[1.44] origin-[55.3%_42.6%]',
+  'phobos-strike-team': 'scale-[1.08] origin-[-40.2%_37.0%]',
+  'plague-marines': 'scale-[1.20] origin-[-6.1%_63.0%]',
+  'ratlings': 'scale-[1.42] origin-[43.0%_73.8%]',
+  'raveners': 'scale-[1.11] origin-[42.0%_64.6%]',
+  'sanctifiers': 'scale-[1.13] origin-[48.7%_39.9%]',
+  'scout-squad': 'scale-[1.43] origin-[49.3%_36.5%]',
+  'spectre-squad': 'scale-[1.47] origin-[42.7%_45.4%]',
+  'tempestus-aquilons': 'scale-[1.44] origin-[53.6%_43.7%]',
+  'vespid-stingwings': 'scale-[1.28] origin-[47.1%_37.3%]',
+  'warpcoven': 'scale-[1.14] origin-[30.6%_30.8%]',
+  'wolf-scouts': 'scale-[1.94] origin-[37.3%_57.9%]',
+  'wrecka-krew': 'scale-[1.47] origin-[49.2%_72.7%]',
+  'xv26-stealth-battlesuits': 'scale-[2.37] origin-[40.7%_57.5%]',
 }
 
 type ImageContext = 'thumbnail' | 'mobile'
