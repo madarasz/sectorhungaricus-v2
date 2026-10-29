@@ -7,7 +7,7 @@ factions:
 operatives_min: 10
 operatives_max: 11
 boxes: 1
-boxes_note: One box builds only one of the three Gunner options, so convert one Armsman. The Kill Team upgrade sprue is not available anymore, so you have to kitbash.
+boxes_note: One box builds only one of the three Gunner options, so convert one Armsman.
 box_type: discontinued
 store_boxes:
   - imperial-navy-breachers

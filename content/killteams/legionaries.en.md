@@ -6,7 +6,7 @@ factions:
   - space-marine
 operatives: 6
 boxes: 1
-boxes_note: "One box builds a full team, some magnetizing is required to build all the options. The Kill Team upgrade sprue is not available anymore, so you have to kitbash some of the weapons."
+boxes_note: "One box builds a full team, some magnetizing is required to build all the options."
 box_type: discontinued
 store_boxes:
   - legionaries

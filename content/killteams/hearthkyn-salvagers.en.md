@@ -6,7 +6,7 @@ factions:
   - votann
 operatives: 10
 boxes: 1
-boxes_note: "One box is enough, but you have to choose which Gunner operatives to build. The Kill Team upgrade sprue is not available anymore, so you have to kitbash."
+boxes_note: "One box is enough, but you have to choose which Gunner operatives to build."
 box_type: discontinued
 store_boxes:
   - hearthkyn-warriors

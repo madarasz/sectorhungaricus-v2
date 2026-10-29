@@ -60,7 +60,7 @@ content_blocks:
       wh40k_badge: WH40k doboz
       wh40k_note: Ezt a csapatot már nem árulják Kill Team dobozként. A figurái Warhammer 40,000 dobozokban kaphatók, de a Kill Team tokeneket nem tartalmazzák.
       discontinued_badge: Megszűnt
-      discontinued_note: Ennek a csapatnak a doboza már nem kapható, mert megszűnt a gyártása.
+      discontinued_note: Ennek a csapatnak a Kill Team doboza már nem kapható, mert megszűnt a gyártása. Még ha van is WH40k doboz, abból hiányzik a Kill Team upgrade keret. Néhány specialistát nem fogsz tudni megépíteni, kitbashelned kell őket.
       styles_label: Játékstílus
       styles:
         - value: melee

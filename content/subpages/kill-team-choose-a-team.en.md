@@ -60,7 +60,7 @@ content_blocks:
       wh40k_badge: WH40k box
       wh40k_note: This team is no longer sold as a Kill Team box. You can buy its models in Warhammer 40,000 boxes, but they do not contain Kill Team specific tokens.
       discontinued_badge: Discontinued
-      discontinued_note: You cannot buy the box of this team anymore, because it is discontinued.
+      discontinued_note: You cannot buy the Kill Team box of this team anymore, because it is discontinued. If there is a WH40k box, it's missing the Kill Team upgrade sprue. You cannot build some of the specialists, you have to kitbash them.
       styles_label: Play style
       styles:
         - value: melee

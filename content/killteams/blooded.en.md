@@ -7,7 +7,6 @@ factions:
 operatives_min: 12
 operatives_max: 14
 boxes: 2
-boxes_note: "Traitor Guardsmen Squad and Traitor Enforcer WH40k boxes. The Kill Team upgrade sprue is not available, so you will have to kitbash some of the specialists."
 box_type: discontinued
 store_boxes:
   - traitor-guardsmen-squad
