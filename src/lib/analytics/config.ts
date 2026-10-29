@@ -2,7 +2,7 @@ import { BASE_URL } from '@/lib/seo'
 
 // Central switches: set a provider to false to stop loading its script and sending its events
 export const ANALYTICS_PROVIDERS = {
-  simpleAnalytics: true,
+  simpleAnalytics: false,
   umami: true,
 } as const
 
