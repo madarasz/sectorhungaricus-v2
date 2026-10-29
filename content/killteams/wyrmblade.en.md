@@ -13,17 +13,10 @@ boxes_note: "Two Neophyte Hybrids boxes build a full team. For every option you 
   one for the Talon."
 box_type: wh40k
 store_boxes:
-  - name: "Neophyte Hybrids"
-    url: https://www.warhammer.com/en-WW/shop/neophite-hybrids-2016
-    contrastphase_url: https://contrastphase.hu/Neophyte-Hybrids
-    epicarium_url: https://epicarium.eu/products/genestealer-cults-neophyte-hybrids
-  - name: "Kelermorph"
-    url: https://www.warhammer.com/en-WW/shop/Genestealer-Cults-Kelermorph-2020
-    contrastphase_url: https://contrastphase.hu/Kelermorph
-  - name: "Locus"
-    url: https://www.warhammer.com/en-WW/shop/Genestealer-Cults-Locus-2019
-  - name: "Sanctus"
-    url: https://www.warhammer.com/en-WW/shop/Genestealer-Cults-Sanctus-2019
+  - neophyte-hybrids
+  - kelermorph
+  - locus
+  - sanctus
 tier: C
 skill: normal
 style:

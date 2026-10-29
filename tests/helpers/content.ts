@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import type { KillTeam, KillTeamChooserLabels, KillTeamStyle } from '@/types/content';
+import type { KillTeam, KillTeamChooserLabels, KillTeamStoreBox, KillTeamStyle } from '@/types/content';
 
 // Tests read the expected texts from the CMS content, so content and translation changes do not break them
 
@@ -70,6 +70,17 @@ export function subpageExternalLinks(slug: string, locale: Locale): string[] {
   return texts.flatMap((text) => [...text.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)].map((match) => match[1]));
 }
 
+// Store boxes that the markdown fields of the subpages refer to with "{store-box-slug}", with the subpage URL
+export function subpageStoreBoxes(locale: Locale): Array<{ url: string; box: KillTeamStoreBox }> {
+  const boxes = storeBoxes();
+  return readCollection('subpages', locale).flatMap(({ data }) => {
+    const blocks = (data.content_blocks as Array<Record<string, unknown>>) ?? [];
+    const texts = blocks.flatMap((block) => [block.content, block.left_content, block.right_content]).filter((text): text is string => typeof text === 'string');
+    const slugs = texts.flatMap((text) => [...text.matchAll(/\{([a-z0-9]+(?:-[a-z0-9]+)*)\}/g)].map((match) => match[1]));
+    return slugs.filter((slug) => boxes.has(slug)).map((slug) => ({ url: `/${locale}/${data.game}/${data.slug}/`, box: boxes.get(slug)! }));
+  });
+}
+
 export function galleryImageCount(slug: string): number {
   const images = readContent('galleries', slug).data.images as unknown[] | undefined;
   return images?.length ?? 0;
@@ -133,11 +144,26 @@ function optionalNumber(value: unknown): number | undefined {
   return typeof value === 'number' ? value : undefined;
 }
 
+// Store boxes are separate entries that kill teams refer to by slug, the same as in src/lib/markdown.ts
+function storeBoxes(): Map<string, KillTeamStoreBox> {
+  return new Map(readCollection('storeboxes').map(({ slug, data }) => [slug, { ...data, slug } as KillTeamStoreBox]));
+}
+
+function resolveStoreBoxes(slugs: unknown, boxes: Map<string, KillTeamStoreBox>): KillTeamStoreBox[] | undefined {
+  if (!Array.isArray(slugs) || !slugs.length) return undefined;
+  return slugs.map((slug) => {
+    const box = boxes.get(slug);
+    if (!box) throw new Error(`Unknown store box "${slug}"`);
+    return box;
+  });
+}
+
 export type TestKillTeam = Pick<KillTeam, 'slug' | 'name' | 'factions' | 'boxes' | 'box_type' | 'skill' | 'style' | 'operatives' | 'operatives_min' | 'operatives_max' | 'legal_until' | 'boxes_note' | 'store_boxes'>;
 
 // Reviewed teams, the same set that the chooser shows
 export function killTeams(locale: Locale = KILL_TEAM_DEFAULT_LOCALE): TestKillTeam[] {
   const defaults = readCollection('killteams', KILL_TEAM_DEFAULT_LOCALE);
+  const boxes = storeBoxes();
   return readCollection('killteams', locale)
     .filter(({ data }) => typeof data.reviewed === 'string' && data.reviewed.trim() !== '')
     .map(({ slug, data }) => {
@@ -157,7 +183,7 @@ export function killTeams(locale: Locale = KILL_TEAM_DEFAULT_LOCALE): TestKillTe
         operatives_max: optionalNumber(team.operatives_max),
         legal_until: optionalNumber(team.legal_until),
         boxes_note: (team.boxes_note as string) || undefined,
-        store_boxes: (team.store_boxes as KillTeam['store_boxes']) || undefined,
+        store_boxes: resolveStoreBoxes(team.store_boxes, boxes),
       };
     });
 }

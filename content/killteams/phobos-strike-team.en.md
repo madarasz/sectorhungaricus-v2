@@ -5,23 +5,13 @@ factions:
   - imperium
   - space-marine
 operatives: 6
-boxes: 3
+boxes: 2
 boxes_note: "You build the team from
   space marine kits such as Incursors, Infiltrators and Reivers."
 box_type: wh40k
 store_boxes:
-  - name: "Incursor Squad"
-    url: https://www.warhammer.com/en-WW/shop/Space-Marines-Primaris-Incursors-2020
-    contrastphase_url: https://contrastphase.hu/Primaris-Infiltrators-/-Primaris-Incursors
-    epicarium_url: https://epicarium.eu/products/space-marines-primaris-infiltrators
-  - name: "Infiltrator Squad"
-    url: https://www.warhammer.com/en-WW/shop/Space-Marines-Primaris-Infiltrators-2020
-    contrastphase_url: https://contrastphase.hu/Primaris-Infiltrators-/-Primaris-Incursors
-    epicarium_url: https://epicarium.eu/products/space-marines-primaris-infiltrators
-  - name: "Reiver Squad"
-    url: https://www.warhammer.com/en-WW/shop/Space-Marines-Primaris-Reivers-2020
-    contrastphase_url: https://contrastphase.hu/Primaris-Reivers
-    epicarium_url: https://epicarium.eu/products/space-marines-primaris-reivers
+  - infiltrator-squad-incursor-squad
+  - reiver-squad
 tier: A
 skill: pro-only
 style:

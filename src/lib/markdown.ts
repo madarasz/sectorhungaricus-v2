@@ -3,8 +3,9 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
-import { ContentBlock, KillTeam } from '@/types/content'
+import { ContentBlock, KillTeam, KillTeamStoreBox } from '@/types/content'
 import { generateImageVariants } from './imageVariants'
+import { STORE_BOX_ATTRIBUTE } from './storeBoxes'
 
 const contentDirectory = path.join(process.cwd(), 'content')
 
@@ -20,20 +21,37 @@ async function processMarkdownString(content: string): Promise<string> {
   return processedContent.toString()
 }
 
+// "{store-box-slug}" in CMS text shows the store box with its store links (see RichText)
+const STORE_BOX_TOKEN = /\{([a-z0-9]+(?:-[a-z0-9]+)*)\}/g
+
+function insertStoreBoxes(html: string, storeBoxes: Map<string, KillTeamStoreBox>, used: Record<string, KillTeamStoreBox>): string {
+  return html.replace(STORE_BOX_TOKEN, (_, slug: string) => {
+    const box = storeBoxes.get(slug)
+    if (!box) throw new Error(`Content refers to unknown store box "{${slug}}"`)
+    used[slug] = box
+    return `<span ${STORE_BOX_ATTRIBUTE}="${slug}"></span>`
+  })
+}
+
 async function processContentBlocks(blocks: ContentBlock[], locale?: string): Promise<ContentBlock[]> {
   const processedBlocks = []
+  const storeBoxes = await getStoreBoxes()
   
   for (const block of blocks) {
     const processedBlock = { ...block }
+    const usedStoreBoxes: Record<string, KillTeamStoreBox> = {}
     
     if (block.content) {
-      processedBlock.content = await processMarkdownString(block.content)
+      processedBlock.content = insertStoreBoxes(await processMarkdownString(block.content), storeBoxes, usedStoreBoxes)
     }
     if (block.left_content) {
-      processedBlock.left_content = await processMarkdownString(block.left_content)
+      processedBlock.left_content = insertStoreBoxes(await processMarkdownString(block.left_content), storeBoxes, usedStoreBoxes)
     }
     if (block.right_content) {
-      processedBlock.right_content = await processMarkdownString(block.right_content)
+      processedBlock.right_content = insertStoreBoxes(await processMarkdownString(block.right_content), storeBoxes, usedStoreBoxes)
+    }
+    if (Object.keys(usedStoreBoxes).length) {
+      processedBlock.storeBoxes = usedStoreBoxes
     }
     
     // Load gallery data for gallery blocks
@@ -232,11 +250,36 @@ function optionalNumber(value: unknown): number | undefined {
 const KILL_TEAM_SHARED_FIELDS = ['factions', 'operatives', 'operatives_min', 'operatives_max', 'boxes', 'box_type', 'store_boxes', 'tier', 'skill', 'style', 'legal_until', 'image', 'second_image']
 const KILL_TEAM_DEFAULT_LOCALE = 'en'
 
+// Store boxes are separate entries that kill teams refer to by slug
+async function getStoreBoxes(): Promise<Map<string, KillTeamStoreBox>> {
+  const boxes = await getAllContent('storeboxes')
+  return new Map(boxes.map(({ slug, data }) => {
+    const box = data as unknown as KillTeamStoreBox
+    return [slug, {
+      slug,
+      name: box.name,
+      url: box.url || undefined,
+      contrastphase_url: box.contrastphase_url || undefined,
+      epicarium_url: box.epicarium_url || undefined,
+    }]
+  }))
+}
+
+function resolveStoreBoxes(teamSlug: string, slugs: unknown, storeBoxes: Map<string, KillTeamStoreBox>): KillTeamStoreBox[] | undefined {
+  if (!Array.isArray(slugs) || !slugs.length) return undefined
+  return slugs.map((slug) => {
+    const box = storeBoxes.get(slug)
+    if (!box) throw new Error(`Kill team "${teamSlug}" refers to unknown store box "${slug}"`)
+    return box
+  })
+}
+
 export async function getKillTeams(locale?: string): Promise<KillTeam[]> {
   const teams = await getAllContent('killteams', locale)
   const defaultTeams = locale && locale !== KILL_TEAM_DEFAULT_LOCALE
     ? await getAllContent('killteams', KILL_TEAM_DEFAULT_LOCALE)
     : teams
+  const storeBoxes = await getStoreBoxes()
 
   return teams
     .map(({ slug, data, contentHtml }) => {
@@ -245,7 +288,7 @@ export async function getKillTeams(locale?: string): Promise<KillTeam[]> {
       const { content_blocks, reviewed, ...rest } = data
       const defaultData = defaultTeams.find((t) => t.slug === slug)?.data ?? {}
       const shared = Object.fromEntries(KILL_TEAM_SHARED_FIELDS.map((field) => [field, defaultData[field]]))
-      const team = { ...rest, ...shared } as unknown as Omit<KillTeam, 'slug' | 'playstyleHtml' | 'imageVariants' | 'secondImageVariants'>
+      const team = { ...rest, ...shared } as unknown as Omit<KillTeam, 'slug' | 'store_boxes' | 'playstyleHtml' | 'imageVariants' | 'secondImageVariants'> & { store_boxes?: string[] }
       return {
         ...team,
         slug,
@@ -256,7 +299,7 @@ export async function getKillTeams(locale?: string): Promise<KillTeam[]> {
         operatives_max: optionalNumber(team.operatives_max),
         legal_until: optionalNumber(team.legal_until),
         boxes_note: team.boxes_note || undefined,
-        store_boxes: team.store_boxes?.length ? team.store_boxes : undefined,
+        store_boxes: resolveStoreBoxes(slug, team.store_boxes, storeBoxes),
         image: team.image || undefined,
         // Remote images have no generated size variants
         imageVariants: team.image && !/^https?:\/\//.test(team.image) ? generateImageVariants(team.image) : undefined,

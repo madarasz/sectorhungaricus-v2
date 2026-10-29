@@ -1,6 +1,6 @@
 // Event names use snake_case, which every provider accepts
 export type AnalyticsEventMap = {
-  outbound_link_click: { url: string; page: string; link_type?: string; team?: string }
+  outbound_link_click: { url: string; page: string; link_type?: string; team?: string; box?: string }
   gallery_open: { page: string; gallery?: string; image_index: number }
   kt_filter_change: { filter: string; value: string; selected: boolean }
   kt_filter_reset: Record<string, never>

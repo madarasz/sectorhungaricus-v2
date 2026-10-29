@@ -9,10 +9,7 @@ boxes: 2
 boxes_note: "One box forces a fixed build because the Chirurgant and the Leashmaster share a body and the dog becomes mandatory, so a second box is recommended for more operative choices."
 box_type: wh40k
 store_boxes:
-  - name: "Exaction Squad"
-    url: https://www.warhammer.com/en-WW/shop/imperial-agents-exaction-squad-2026
-    contrastphase_url: https://contrastphase.hu/Exaction-Squad
-    epicarium_url: https://epicarium.eu/products/imperial-agents-exaction-squad
+  - exaction-squad
 tier: A
 skill: normal
 style:

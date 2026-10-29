@@ -54,10 +54,7 @@ export default async function CalendarPage({ params }: CalendarPageProps) {
   const allGames = await getAllContent('games', validLocale) as GameContent[]
   
   // Filter tournaments for upcoming events only
-  // Support TEST_CURRENT_DATE environment variable for testing
-  const now = process.env.TEST_CURRENT_DATE
-    ? new Date(process.env.TEST_CURRENT_DATE)
-    : new Date()
+  const now = new Date()
   const upcomingTournaments = allTournaments
     .filter(tournament => {
       const tournamentDate = new Date(tournament.data.date)

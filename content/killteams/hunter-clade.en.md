@@ -12,14 +12,8 @@ boxes_note: You build the team from the
   one of every operative.
 box_type: wh40k
 store_boxes:
-  - name: "Skitarii Rangers"
-    url: https://www.warhammer.com/en-WW/shop/Skitarii-Rangers-2017
-    contrastphase_url: https://contrastphase.hu/Skitarii-Rangers-/-Vanguard
-    epicarium_url: https://epicarium.eu/products/adeptus-mechanicus-skitarii-repack17
-  - name: "Sicarian Infiltrators"
-    url: https://www.warhammer.com/en-WW/shop/Sicarian-Infiltrators-2017
-    contrastphase_url: https://contrastphase.hu/Sicarian-Ruststalkers-/-Infiltrators
-    epicarium_url: https://epicarium.eu/products/adeptus-mechanicus-sicarians
+  - skitarii-rangers
+  - sicarian-infiltrators
 tier: A
 skill: normal
 style:

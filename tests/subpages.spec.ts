@@ -1,5 +1,6 @@
 import { test, expect, Page } from '@playwright/test';
-import { subpageData } from './helpers/content';
+import { NAME_LINK_STORE, STORES } from '@/lib/storeBoxes';
+import { Locale, subpageData, subpageStoreBoxes } from './helpers/content';
 
 test.describe('Subpages Navigation Tests', () => {
   // Pages excluded from content length check
@@ -116,4 +117,35 @@ test.describe('Subpages Navigation Tests', () => {
     await page.setViewportSize({ width: 1280, height: 720 });
     expect((await title.boundingBox())?.height ?? 0).toBeGreaterThan(1);
   });
+});
+
+test.describe('Store boxes in subpage text', () => {
+  for (const locale of ['en', 'hu'] as Locale[]) {
+    test(`store box reference shows the store links (${locale})`, async ({ page }) => {
+      const [ref] = subpageStoreBoxes(locale);
+      test.skip(!ref, `No ${locale} subpage refers to a store box`);
+
+      await page.goto(ref.url);
+      const box = page.getByTestId('text-block').getByTestId('store-box').filter({ hasText: ref.box.name }).first();
+      await expect(box).toBeVisible();
+      // The reference text is replaced
+      await expect(page.getByTestId('text-block').filter({ hasText: /\{[a-z0-9-]+\}/ })).toHaveCount(0);
+
+      const nameUrl = ref.box[NAME_LINK_STORE.field];
+      if (nameUrl) {
+        await expect(box.getByTestId('store-box-name-link')).toHaveAttribute('href', nameUrl);
+      } else {
+        await expect(box.getByTestId('store-box-name')).toHaveText(ref.box.name);
+      }
+      for (const store of STORES) {
+        const link = box.getByTestId(`store-box-icon-${store.id}`);
+        if (ref.box[store.field]) {
+          await expect(link).toHaveAttribute('href', ref.box[store.field]!);
+          await expect(link).toHaveAttribute('target', '_blank');
+        } else {
+          await expect(link).toHaveCount(0);
+        }
+      }
+    });
+  }
 });

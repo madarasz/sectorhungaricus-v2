@@ -5,7 +5,7 @@ description: Update Kill Team entries in content/killteams/ (English and Hungari
 
 # Kill Team entry update
 
-This skill updates the Kill Team entries of the site. Each team has two files in `content/killteams/`: `<slug>.en.md` and `<slug>.hu.md`. The CMS config for the collection is in `public/admin/config.yml` (collection `killteams`).
+This skill updates the Kill Team entries of the site. Each team has two files in `content/killteams/`: `<slug>.en.md` and `<slug>.hu.md`. The store boxes are separate entries in `content/storeboxes/<slug>.md`, and teams refer to them by slug. The CMS config is in `public/admin/config.yml` (collections `killteams` and `storeboxes`).
 
 ## Step 1: Get the scope from the user. Do not change files before that.
 
@@ -28,7 +28,7 @@ Teams with a non-empty `reviewed` field were checked by a person. Change them on
 | `boxes` | Reddit "Number of boxes per team super guide" | [references/boxes.md](references/boxes.md) |
 | `box_type` | Reddit wiki "one-box-teams", explanation column, and warhammer.com Kill Team list | [references/boxes.md](references/boxes.md) |
 | `boxes_note` | Reddit wiki "one-box-teams", explanation column | [references/boxes.md](references/boxes.md) |
-| `store_boxes` | warhammer.com webshop product pages (names and URLs), Reddit wiki for the Warhammer 40,000 kits, contrastphase.hu and epicarium.eu search (`contrastphase_url`, `epicarium_url`) | [references/store-boxes.md](references/store-boxes.md) |
+| `store_boxes` (and the entries in `content/storeboxes/`) | warhammer.com webshop product pages (names and URLs), Reddit wiki for the Warhammer 40,000 kits, contrastphase.hu and epicarium.eu search (`contrastphase_url`, `epicarium_url`) | [references/store-boxes.md](references/store-boxes.md) |
 | `image`, `second_image` | warhammer.com webshop product page, 2x2 gallery photos | [references/images.md](references/images.md) |
 
 Read only the reference files for the fields that the user asked for.

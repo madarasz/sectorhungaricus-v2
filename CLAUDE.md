@@ -76,6 +76,17 @@ The `src/lib/markdown.ts` utilities handle:
 - Frontmatter parsing
 - Locale-specific content retrieval
 
+### Kill Team Chooser (`/[locale]/kill-team/choose-a-team/`)
+- **Page**: subpage `content/subpages/kill-team-choose-a-team.{en,hu}.md` with a `kill_team_chooser` content block. All UI labels come from the block `labels` (CMS).
+- **Code**: `src/components/content-blocks/kill-team-chooser/` (client component `KillTeamChooser.tsx`)
+  - `filters.ts` - `Answers` type, `FACTION_TREE` (main → sub factions), `matchesAnswers()`, URL sync (`answersFromSearch`, `buildSearch`, `team` param)
+  - `legality.ts` - `getLegality()`: legal until 30 Nov of `legal_until`; `rotates_soon` in the last year; `declassified` hidden unless `legal=declassified`
+- **Data**: `getKillTeams(locale)` in `src/lib/markdown.ts` reads `content/killteams/`, keeps only `reviewed` teams, and takes `KILL_TEAM_SHARED_FIELDS` from the `en` file. `store_boxes` is a list of slugs of `content/storeboxes/` entries (CMS relation); `getKillTeams` resolves them to `KillTeamStoreBox` objects and fails the build on an unknown slug. Types: `KillTeam`, `KillTeamStoreBox` in `src/types/content.ts`.
+- **Store links**: shared `src/components/StoreBoxLinks.tsx` (product name + webstore icons). Store list `STORES` and `NAME_LINK_STORE_ID` (store that the product name links to, now `warhammer`) are in `src/lib/storeBoxes.ts`. In CMS text fields (`content`, `left_content`, `right_content`), `{store-box-slug}` becomes a store box: `processContentBlocks` in `src/lib/markdown.ts` replaces it with a `data-store-box` placeholder and adds `block.storeBoxes`; `src/components/RichText.tsx` renders the placeholders. An unknown slug fails the build.
+- **Analytics**: `trackEvent` events `kt_filter_change`, `kt_filter_reset`, `kt_team_select`
+- **Tests**: `tests/kill-team-chooser.spec.ts`, content helpers in `tests/helpers/content.ts`
+- **Content updates**: `killteam-update` skill
+
 ## Responsive Design Guidelines
 
 ### Screen Breakpoints

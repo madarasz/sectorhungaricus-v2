@@ -1,6 +1,8 @@
 # Warhammer Store boxes (`store_boxes`)
 
-The list of products that a player buys in the Warhammer Store to play the team. Each item has these fields:
+The products that a player buys in the Warhammer Store to play the team. Each product is a separate entry in `content/storeboxes/<slug>.md` (CMS collection `storeboxes`, not translated). The team refers to the products by slug in its `store_boxes` list. More than one team can refer to the same product, for example "Kill Team: Starter Set".
+
+Store box entry fields:
 
 | Field | Value |
 |---|---|
@@ -9,19 +11,31 @@ The list of products that a player buys in the Warhammer Store to play the team.
 | `contrastphase_url` | Optional. The same product in the ContrastPhase webstore, for example `https://contrastphase.hu/Kill-Team-Battleclade`. See "Other webstores". |
 | `epicarium_url` | Optional. The same product in the Epicarium webstore, for example `https://epicarium.eu/products/kill-team-battleclade`. See "Other webstores". |
 
-Example (`.en.md` only):
+Example store box entry, `content/storeboxes/kill-team-battleclade.md`:
+
+```yaml
+---
+name: "Kill Team: Battleclade"
+url: https://www.warhammer.com/en-WW/shop/kill-team-battleclade-2025
+contrastphase_url: https://contrastphase.hu/Kill-Team-Battleclade
+epicarium_url: https://epicarium.eu/products/kill-team-battleclade
+---
+```
+
+Write the fields in this order: `name`, `url`, `contrastphase_url`, `epicarium_url`. Write only the fields that have a value.
+
+The slug (file name) is the `name` in lowercase, with each group of other characters than letters and digits changed to one `-`, for example "Kill Team: Battleclade" becomes `kill-team-battleclade`.
+
+Before you add a product, look for an entry with the same product in `content/storeboxes/` (same `name` or same `url`). If it exists, refer to it. Do not make a second entry. If you change an existing entry, tell the user which other teams refer to it.
+
+Example team reference (`.en.md` only):
 
 ```yaml
 store_boxes:
-  - name: "Kill Team: Battleclade"
-    url: https://www.warhammer.com/en-WW/shop/kill-team-battleclade-2025
-    contrastphase_url: https://contrastphase.hu/Kill-Team-Battleclade
-    epicarium_url: https://epicarium.eu/products/kill-team-battleclade
+  - kill-team-battleclade
 ```
 
-Write the fields in this order: `name`, `url`, `contrastphase_url`, `epicarium_url`.
-
-Put `store_boxes` on the line after `box_type`. The field is shared: write it only to the `.en.md` file. The `.hu.md` file does not have it.
+Put `store_boxes` on the line after `box_type`. The field is shared: write it only to the `.en.md` file. The `.hu.md` file does not have it. Each slug must have an entry in `content/storeboxes/`, else the build fails.
 
 ## Which products
 
@@ -124,20 +138,25 @@ Write the product URL, for example `https://epicarium.eu/products/kill-team-star
 
 ### Old Kill Team boxes (teams with `box_type` `wh40k` or `discontinued`)
 
-ContrastPhase and Epicarium can still sell a Kill Team box that the Warhammer Store does not sell. Search both stores with the team name. If a store has the Kill Team box of the team, and the product page shows that it can be ordered, add it as the first item of `store_boxes`, without `url`:
+ContrastPhase and Epicarium can still sell a Kill Team box that the Warhammer Store does not sell. Search both stores with the team name. If a store has the Kill Team box of the team, and the product page shows that it can be ordered, add it as the first item of `store_boxes`. Its store box entry has no `url`:
 
 ```yaml
+# content/storeboxes/kill-team-exaction-squad.md
+---
+name: "Kill Team: Exaction Squad"
+contrastphase_url: https://contrastphase.hu/Kill-Team-Exaction-Squad
+---
+
+# content/killteams/<slug>.en.md
 store_boxes:
-  - name: "Kill Team: Exaction Squad"
-    contrastphase_url: https://contrastphase.hu/Kill-Team-Exaction-Squad
-  - name: "Exaction Squad"
-    url: https://www.warhammer.com/en-WW/shop/imperial-agents-exaction-squad-2026
+  - kill-team-exaction-squad
+  - exaction-squad
 ```
 
 Do not add a box that cannot be ordered: ContrastPhase shows "Nem rendelhető", Epicarium shows that it is not in stock and cannot be ordered.
 
 ## Parallel work
 
-Do all warhammer.com requests yourself (see "Parallel work" in SKILL.md). Subagents get the final `store_boxes` values and do not open warhammer.com.
+Do all warhammer.com requests yourself (see "Parallel work" in SKILL.md). Subagents get the final store box entries and `store_boxes` values and do not open warhammer.com.
 
 You can also do the ContrastPhase and Epicarium searches yourself, because they are fast. If you give them to subagents, give each subagent its own Playwright CLI session name (for example `-s=killteam-<slug>`).

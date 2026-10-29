@@ -1,4 +1,5 @@
 import { ContentBlock } from '@/types/content'
+import RichText from '@/components/RichText'
 
 interface TextBlockProps {
   block: ContentBlock & { type: 'text_block' }
@@ -14,11 +15,12 @@ export default function TextBlock({ block }: TextBlockProps) {
   const style = block.style ?? 'normal'
 
   return (
-    <div
+    <RichText
       className={STYLE_CLASSES[style]}
       data-testid="text-block"
       data-style={style}
-      dangerouslySetInnerHTML={{ __html: block.content || '' }}
+      html={block.content || ''}
+      storeBoxes={block.storeBoxes}
     />
   )
 }

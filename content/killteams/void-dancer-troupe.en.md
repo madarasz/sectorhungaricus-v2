@@ -9,18 +9,9 @@ boxes: 3
 boxes_note: "There was never a Kill Team box for this team; all models come from the WH40k range. To cover all options you need three boxes: Harlequin Troupe, Death Jester and Shadowseer."
 box_type: wh40k
 store_boxes:
-  - name: "Harlequin Troupe"
-    url: https://www.warhammer.com/en-WW/shop/Harlequin-Troupe-Troop-2017
-    contrastphase_url: https://contrastphase.hu/Troupe
-    epicarium_url: https://epicarium.eu/products/harlequin-troupe-repack17
-  - name: "Death Jester"
-    url: https://www.warhammer.com/en-WW/shop/Harlequin-Death-Jester
-    contrastphase_url: https://contrastphase.hu/Death-Jester
-    epicarium_url: https://epicarium.eu/products/aeldari-death-jester
-  - name: "Shadowseer"
-    url: https://www.warhammer.com/en-WW/shop/Harlequin-Shadowseer
-    contrastphase_url: https://contrastphase.hu/Shadowseer
-    epicarium_url: https://epicarium.eu/products/aeldari-shadowseer
+  - harlequin-troupe
+  - death-jester
+  - shadowseer
 tier: A
 skill: pro-only
 style:

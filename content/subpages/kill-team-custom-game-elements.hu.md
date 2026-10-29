@@ -45,13 +45,13 @@ content_blocks:
       A hivatalos terep drága (~30e Ft), de nagyon szép és részletes. A közösség térképcsomagokat is készít ezekhez, így "kiegyensúlyozott és fair" elrendezéseket kapsz. A legnépszerűbbek:
 
 
-      - **Tomb World** - A Gallowdark-hoz nagyon hasonló, de teleportálókkal és elszórt terep elemekkel
+      - {killzone-tomb-world} - A Gallowdark-hoz nagyon hasonló, de teleportálókkal és elszórt terep elemekkel
 
-      - **Volkus** (a *Hivestorm* dobozban)
+      - {killzone-volkus} (a *Hivestorm* dobozban is benne van)
 
       - **Octarius**
 
-      - **Gallowdark** (gyakran "Into the Dark" vagy "ItD" néven is említik) - Ez a terep kiegészítő "zsúfolt környezet" szabályokat használ. Több nagy doboz is tartalmazta két csapattal együtt. Úgy is beszerezheted, ha veszel egy fél doboz *WH40k Boarding Actions* terepet.
+      - **Gallowdark** (gyakran "Into the Dark" vagy "ItD" néven is említik) - Ez a terep kiegészítő "zsúfolt környezet" szabályokat használ. Több nagy doboz is tartalmazta két csapattal együtt. Úgy is beszerezheted, ha megveszed a {warhammer-40-000-boarding-actions-terrain-set} felét.
 
 
 
@@ -67,7 +67,7 @@ content_blocks:
       - Elszórt kisebb elemek (pl. barikádok, hordók, ládák)
 
 
-      Lehetséges a terep 3D nyomtatása is, de hacsak nem saját nyomtatód van, valószínűleg ugyanolyan drága lesz, mint egy hivatalos készlet megvásárlása.
+      Lehetséges a terep 3D nyomtatása is, a hivatalos termékeknek szinte teljesen azonos másolatai is léteznek, valamivel olcsóbban.
   - type: text_block
     style: normal
     content: >-

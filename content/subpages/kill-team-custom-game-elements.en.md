@@ -45,13 +45,13 @@ content_blocks:
       Official terrain is expensive (~30k Ft), but very nice and detailed. The community also makes map packs for these sets, so you will have "balanced and fair" layouts. The most popular ones are:
 
 
-      - **Tomb World** - Very similar to Gallowdark, but with teleporters and scatter terrain
+      - {killzone-tomb-world} - Very similar to Gallowdark, but with teleporters and scatter terrain
 
-      - **Volkus** (in *Hivestorm* box)
+      - {killzone-volkus} (also in the *Hivestorm* box)
 
       - **Octarius**
 
-      - **Gallowdark** (often referred to as "Into the Dark" or "ItD") - This terrain uses additional "condensed environments" rules. There were several big boxes including it with two teams. You can also get it by buying half a box of *WH40k Boarding Actions* terrain.
+      - **Gallowdark** (often referred to as "Into the Dark" or "ItD") - This terrain uses additional "condensed environments" rules. There were several big boxes including it with two teams. You can also get it by buying half a box of {warhammer-40-000-boarding-actions-terrain-set}.
 
 
 
@@ -67,7 +67,7 @@ content_blocks:
       - Scattered minor elements (e.g., barricades, barrels, crates)
 
 
-      3D printing terrain is possible, but unless you own the printer, it will likely be as expensive as buying an official set.
+      You can also 3D print terrain: there are near-identical replicas of official products that cost a bit less.
   - type: text_block
     style: normal
     content: >-

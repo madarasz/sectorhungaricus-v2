@@ -11,10 +11,7 @@ boxes_note: The Kill Team box is discontinued, but the same Kasrkin kit is sold 
   and gunners to build.
 box_type: wh40k
 store_boxes:
-  - name: "Kasrkin"
-    url: https://www.warhammer.com/en-WW/shop/astra-militarum-kasrkin-2026
-    contrastphase_url: https://contrastphase.hu/Kasrkin
-    epicarium_url: https://epicarium.eu/products/astra-militarum-kasrkin
+  - kasrkin
 tier: A
 skill: normal
 style:

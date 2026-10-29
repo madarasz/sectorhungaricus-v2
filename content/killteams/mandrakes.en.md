@@ -10,10 +10,7 @@ boxes_note: One box has enough models for every specialist, and there are no
   weapon options.
 box_type: kill-team
 store_boxes:
-  - name: "Kill Team: Mandrakes"
-    url: https://www.warhammer.com/en-WW/shop/kill-team-mandrakes-2024
-    contrastphase_url: https://contrastphase.hu/Kill-Team-Mandrakes
-    epicarium_url: https://epicarium.eu/products/kill-team-mandrakes
+  - kill-team-mandrakes
 tier: B
 skill: normal
 style:

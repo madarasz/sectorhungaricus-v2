@@ -74,6 +74,8 @@ export interface ContentBlock {
   hide_title?: boolean
   left_content?: string
   right_content?: string
+  // Store boxes that the text fields refer to, by slug
+  storeBoxes?: Record<string, KillTeamStoreBox>
   gallery?: string
   galleryData?: {
     title: string
@@ -113,6 +115,8 @@ export type KillTeamBoxType = 'kill-team' | 'wh40k' | 'discontinued'
 export type KillTeamSkill = 'beginner-friendly' | 'normal' | 'pro-only'
 
 export interface KillTeamStoreBox {
+  // File name in content/storeboxes/
+  slug: string
   name: string
   url?: string
   contrastphase_url?: string

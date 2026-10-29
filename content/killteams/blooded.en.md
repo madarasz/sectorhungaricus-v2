@@ -10,14 +10,8 @@ boxes: 2
 boxes_note: "Traitor Guardsmen Squad and Traitor Enforcer WH40k boxes. The Kill Team upgrade sprue is not available, so you will have to kitbash some of the specialists."
 box_type: discontinued
 store_boxes:
-  - name: "Traitor Guardsmen Squad"
-    url: https://www.warhammer.com/en-WW/shop/chaos-space-marines-traitor-guardsmen-squad-2025
-    contrastphase_url: https://contrastphase.hu/Traitor-Guardsmen-Squad
-    epicarium_url: https://epicarium.eu/products/chaos-smarines-traitor-guardsmen-squad
-  - name: "Traitor Enforcer"
-    url: https://www.warhammer.com/en-WW/shop/chaos-space-marines-traitor-enforcer-2025
-    contrastphase_url: https://contrastphase.hu/Traitor-Enforcer
-    epicarium_url: https://epicarium.eu/products/chaos-space-marines-traitor-enforcer
+  - traitor-guardsmen-squad
+  - traitor-enforcer
 tier: B
 skill: normal
 style:

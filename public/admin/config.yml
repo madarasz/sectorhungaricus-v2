@@ -132,15 +132,14 @@ collections:
           - {label: "Discontinued", value: "discontinued"}
       - label: "Store boxes"
         name: "store_boxes"
-        widget: "list"
+        widget: "relation"
+        collection: "storeboxes"
+        search_fields: ["name"]
+        value_field: "{{slug}}"
+        display_fields: ["name"]
+        multiple: true
         required: false
-        summary: "{{fields.name}}"
-        hint: "Products to buy for the team. Leave empty if the models cannot be bought."
-        fields:
-          - {label: "Name", name: "name", widget: "string", hint: "Product name as shown in the Warhammer Store"}
-          - {label: "Warhammer Store URL", name: "url", widget: "string", required: false, hint: "Leave empty if the Warhammer Store does not sell the product, for example an old Kill Team box that other stores still have.", pattern: ["^https://www\\.warhammer\\.com/", "Must be a warhammer.com URL"]}
-          - {label: "ContrastPhase URL", name: "contrastphase_url", widget: "string", required: false, pattern: ["^https://contrastphase\\.hu/", "Must be a contrastphase.hu URL"], hint: "Same product in the ContrastPhase webstore. Leave empty if not sold there."}
-          - {label: "Epicarium URL", name: "epicarium_url", widget: "string", required: false, pattern: ["^https://epicarium\\.eu/", "Must be an epicarium.eu URL"], hint: "Same product in the Epicarium webstore. Leave empty if not sold there."}
+        hint: "Products to buy for the team. Leave empty if the models cannot be bought. Add new products in the Store boxes collection."
       - label: "Power tier"
         name: "tier"
         widget: "select"
@@ -181,6 +180,19 @@ collections:
       - {label: "Image", name: "image", widget: "image", required: false}
       - {label: "Second image", name: "second_image", widget: "image", required: false, hint: "Shown next to the first image in the team details."}
       - {label: "Play style", name: "body", widget: "markdown", i18n: true}
+
+  - name: "storeboxes"
+    label: "Store boxes"
+    folder: "content/storeboxes"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "name"
+    summary: "{{name}}"
+    fields:
+      - {label: "Name", name: "name", widget: "string", hint: "Product name as shown in the Warhammer Store"}
+      - {label: "Warhammer Store URL", name: "url", widget: "string", required: false, hint: "Leave empty if the Warhammer Store does not sell the product, for example an old Kill Team box that other stores still have.", pattern: ["^https://www\\.warhammer\\.com/", "Must be a warhammer.com URL"]}
+      - {label: "ContrastPhase URL", name: "contrastphase_url", widget: "string", required: false, pattern: ["^https://contrastphase\\.hu/", "Must be a contrastphase.hu URL"], hint: "Same product in the ContrastPhase webstore. Leave empty if not sold there."}
+      - {label: "Epicarium URL", name: "epicarium_url", widget: "string", required: false, pattern: ["^https://epicarium\\.eu/", "Must be an epicarium.eu URL"], hint: "Same product in the Epicarium webstore. Leave empty if not sold there."}
 
   - name: "subpages"
     label: "Subpages"

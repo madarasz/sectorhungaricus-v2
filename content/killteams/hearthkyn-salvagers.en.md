@@ -9,10 +9,7 @@ boxes: 1
 boxes_note: "One box is enough, but you have to choose which Gunner operatives to build. The Kill Team upgrade sprue is not available anymore, so you have to kitbash."
 box_type: discontinued
 store_boxes:
-  - name: "Hearthkyn Warriors"
-    url: https://www.warhammer.com/en-WW/shop/lov-hearthkyn-warriors-2022
-    contrastphase_url: https://contrastphase.hu/Hearthkyn-Warriors
-    epicarium_url: https://epicarium.eu/products/leagues-of-votann-hearthkyn-warriors
+  - hearthkyn-warriors
 tier: C
 skill: normal
 style:

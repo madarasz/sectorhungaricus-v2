@@ -11,10 +11,7 @@ boxes_note: One box has enough bodies for every specialist and the Missionary's
   specialists, so you need a second box to build both.
 box_type: kill-team
 store_boxes:
-  - name: "Kill Team: Sanctifiers"
-    url: https://www.warhammer.com/en-WW/shop/kill-team-sanctifiers-2025
-    contrastphase_url: https://contrastphase.hu/Kill-Team-Sanctifiers
-    epicarium_url: https://epicarium.eu/products/kill-team-sanctifiers
+  - kill-team-sanctifiers
 tier: A
 skill: pro-only
 style:

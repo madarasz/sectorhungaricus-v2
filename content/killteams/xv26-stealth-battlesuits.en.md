@@ -12,10 +12,7 @@ boxes_note: They have flexible weapon loadouts. Fusion blasters are ideally on
   Lodestar and Neutraliser, but you can magnetize if you want to change it.
 box_type: kill-team
 store_boxes:
-  - name: "Kill Team: XV26 Stealth Battlesuits"
-    url: https://www.warhammer.com/en-WW/shop/kill-team-xv26-stealth-battlesuits-2026
-    contrastphase_url: https://contrastphase.hu/Kill-Team-XV26-Stealth-Battlesuits
-    epicarium_url: https://epicarium.eu/products/kill-team-xv26-stealth-battlesuits
+  - kill-team-xv26-stealth-battlesuits
 tier: B
 skill: pro-only
 style:

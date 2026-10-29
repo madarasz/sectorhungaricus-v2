@@ -10,18 +10,9 @@ boxes: 3
 boxes_note: "The Rubric Marines, Tzaangors and Exalted Sorcerer WH40k boxes."
 box_type: wh40k
 store_boxes:
-  - name: "Rubric Marines"
-    url: https://www.warhammer.com/en-WW/shop/rubric-marines
-    contrastphase_url: https://contrastphase.hu/Rubric-Marines
-    epicarium_url: https://epicarium.eu/products/thousand-sons-rubric-marines
-  - name: "Tzaangors"
-    url: https://www.warhammer.com/en-WW/shop/Tzaangors-AoS
-    contrastphase_url: https://contrastphase.hu/Tzaangors
-    epicarium_url: https://epicarium.eu/products/tzeentch-arcanites-tzaangors
-  - name: "Exalted Sorcerers"
-    url: https://www.warhammer.com/en-WW/shop/exalted-sorcerers
-    contrastphase_url: https://contrastphase.hu/Exalted-Sorcerers
-    epicarium_url: https://epicarium.eu/products/thousand-sons-exalted-sorcerers
+  - rubric-marines
+  - tzaangors
+  - exalted-sorcerers
 tier: C
 skill: pro-only
 style:

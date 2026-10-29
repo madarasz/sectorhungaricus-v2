@@ -10,10 +10,7 @@ boxes: 1
 boxes_note: One box builds only one of the three Gunner options, so convert one Armsman. The Kill Team upgrade sprue is not available anymore, so you have to kitbash.
 box_type: discontinued
 store_boxes:
-  - name: "Imperial Navy Breachers"
-    url: https://www.warhammer.com/en-WW/shop/imperial-agents-imperial-navy-breachers-2026
-    contrastphase_url: https://contrastphase.hu/Imperial-Navy-Breachers
-    epicarium_url: https://epicarium.eu/products/imperial-agents-imperial-navy-breachers
+  - imperial-navy-breachers
 tier: B
 skill: normal
 style:

@@ -175,6 +175,18 @@ npm run process-images
 
 **Generated files are ignored by Git** - they're created during each build, keeping the repository clean while ensuring optimal performance.
 
+### Kill Team chooser
+The `/kill-team/choose-a-team/` page helps new players find a Kill Team. Players answer questions (experience, play style, team size, boxes, faction, tournament legality) and see the matching teams. Click a team to see its details and store links. The page URL keeps the answers and the selected team, so you can share a filtered view.
+
+**Content:**
+- **Kill Teams** (`content/killteams/`) - One entry per team. Only teams with a **Reviewed** value show on the page. Faction, operatives, boxes, tier, skill, style, legality year, images and store boxes are set in the English entry only. The Hungarian entry holds only the translated text.
+- **Store boxes** (`content/storeboxes/`) - One entry per product, with its Warhammer Store, ContrastPhase and Epicarium links. Kill Teams select their store boxes from this collection, so more than one team can use the same product.
+- **Store boxes in text** - In the text of a subpage block, write `{store-box-slug}` (the file name in `content/storeboxes/` without `.md`), for example `{kill-team-starter-set}`. The page shows the product name with its store links and icons.
+- **Questions and labels** - Set in the "Choose a Kill Team" subpage, in the Kill Team chooser block.
+- **Tournament legality** - A team is legal until 30 November of its "Tournament legal until" year. Declassified teams are hidden by default.
+
+Use the `killteam-update` skill to update team entries from official sources.
+
 ## Customization
 
 ### Styling

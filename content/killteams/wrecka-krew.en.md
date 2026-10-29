@@ -9,10 +9,7 @@ boxes: 1
 boxes_note: "One box builds every specialist, and the Boss Nob weapons can be magnetized. Optional extra models let you add more Gunners or Fighters."
 box_type: kill-team
 store_boxes:
-  - name: "Kill Team: Wrecka Krew"
-    url: https://www.warhammer.com/en-WW/shop/kill-team-wrecka-krew-2025
-    contrastphase_url: https://contrastphase.hu/Kill-Team-Wrecka-Krew
-    epicarium_url: https://epicarium.eu/products/kill-team-wrecka-krew
+  - kill-team-wrecka-krew
 tier: B
 skill: beginner-friendly
 style:

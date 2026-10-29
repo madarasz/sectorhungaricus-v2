@@ -1,4 +1,5 @@
 import { ContentBlock } from '@/types/content'
+import RichText from '@/components/RichText'
 
 interface HeroBlockProps {
   block: ContentBlock & { type: 'hero_block' }
@@ -13,10 +14,11 @@ export default function HeroBlock({ block }: HeroBlockProps) {
         color: 'var(--hero-text)'
       }}
     >
-      <div 
+      <RichText
         className="prose prose-lg max-w-none"
         style={{ color: 'var(--hero-text)' }}
-        dangerouslySetInnerHTML={{ __html: block.content || '' }} 
+        html={block.content || ''}
+        storeBoxes={block.storeBoxes}
       />
     </div>
   )

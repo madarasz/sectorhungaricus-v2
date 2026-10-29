@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { FACTION_TREE, subFactionsOf } from '@/components/content-blocks/kill-team-chooser/filters';
 import { formatLegalUntil, getLegality } from '@/components/content-blocks/kill-team-chooser/legality';
+import { NAME_LINK_STORE, STORES } from '@/lib/storeBoxes';
 import type { KillTeamStyle } from '@/types/content';
 import {
   TestKillTeam,
@@ -210,25 +211,22 @@ test.describe('Kill Team chooser', () => {
     await expect(boxType).toContainText(EN.wh40k_note);
   });
 
-  test('details list the store boxes with links that open in a new tab', async ({ page }) => {
-    const team = killTeams().find((t) => t.store_boxes?.some((box) => box.url));
-    test.skip(!team, 'No reviewed kill team with Warhammer Store boxes');
+  test('details list the store boxes with name links to the name link store that open in a new tab', async ({ page }) => {
+    const field = NAME_LINK_STORE.field;
+    const team = killTeams().find((t) => t.store_boxes?.some((box) => box[field]));
+    test.skip(!team, `No reviewed kill team with ${field}`);
 
     await page.goto(`${PAGE_URL}?legal=declassified&team=${team!.slug}`);
-    const links = page.getByTestId('kt-detail').getByTestId('kt-detail-store-boxes').getByTestId('kt-detail-store-link-warhammer');
-    const storeBoxes = team!.store_boxes!.filter((box) => box.url);
+    const links = page.getByTestId('kt-detail').getByTestId('kt-detail-store-boxes').getByTestId('store-box-name-link');
+    const storeBoxes = team!.store_boxes!.filter((box) => box[field]);
     await expect(links).toHaveText(storeBoxes.map((box) => box.name));
     for (const [i, box] of storeBoxes.entries()) {
-      await expect(links.nth(i)).toHaveAttribute('href', box.url!);
+      await expect(links.nth(i)).toHaveAttribute('href', box[field]!);
       await expect(links.nth(i)).toHaveAttribute('target', '_blank');
     }
   });
 
-  for (const store of [
-    { id: 'contrastphase', field: 'contrastphase_url' },
-    { id: 'epicarium', field: 'epicarium_url' },
-    { id: 'warhammer', field: 'url' },
-  ] as const) {
+  for (const store of STORES) {
     test(`store boxes have a ${store.id} icon link only when the box has a ${store.field}`, async ({ page }) => {
       const team = killTeams().find((t) => t.store_boxes?.some((box) => box[store.field]));
       test.skip(!team, `No reviewed kill team with ${store.field}`);
@@ -237,7 +235,7 @@ test.describe('Kill Team chooser', () => {
       const items = page.getByTestId('kt-detail').getByTestId('kt-detail-store-boxes').getByRole('listitem');
       await expect(items).toHaveCount(team!.store_boxes!.length);
       for (const [i, box] of team!.store_boxes!.entries()) {
-        const link = items.nth(i).getByTestId(`kt-detail-store-icon-${store.id}`);
+        const link = items.nth(i).getByTestId(`store-box-icon-${store.id}`);
         if (box[store.field]) {
           await expect(link).toHaveAttribute('href', box[store.field]!);
           await expect(link).toHaveAttribute('target', '_blank');

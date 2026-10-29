@@ -9,10 +9,7 @@ boxes: 2
 boxes_note: "One box builds a full team, but you must choose between the Pack Leader and the Frosteye. You need a second box or a spare phobos body to build every operative."
 box_type: kill-team
 store_boxes:
-  - name: "Kill Team: Wolf Scouts"
-    url: https://www.warhammer.com/en-WW/shop/kill-team-wolf-scouts-2026
-    contrastphase_url: https://contrastphase.hu/Kill-Team-Wolf-Scouts
-    epicarium_url: https://epicarium.eu/products/kill-team-wolf-scouts
+  - kill-team-wolf-scouts
 tier: B
 skill: normal
 style:
