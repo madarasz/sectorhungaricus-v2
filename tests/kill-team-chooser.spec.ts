@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { FACTION_TREE, subFactionsOf } from '@/components/content-blocks/kill-team-chooser/filters';
 import { formatLegalUntil, getLegality } from '@/components/content-blocks/kill-team-chooser/legality';
-import { NAME_LINK_STORE, STORES } from '@/lib/storeBoxes';
+import { NAME_LINK_STORE, STORES, storeLinkUrl } from '@/lib/storeBoxes';
 import type { KillTeamStyle } from '@/types/content';
 import {
   TestKillTeam,
@@ -221,7 +221,7 @@ test.describe('Kill Team chooser', () => {
     const storeBoxes = team!.store_boxes!.filter((box) => box[field]);
     await expect(links).toHaveText(storeBoxes.map((box) => box.name));
     for (const [i, box] of storeBoxes.entries()) {
-      await expect(links.nth(i)).toHaveAttribute('href', box[field]!);
+      await expect(links.nth(i)).toHaveAttribute('href', storeLinkUrl(NAME_LINK_STORE, box[field]!));
       await expect(links.nth(i)).toHaveAttribute('target', '_blank');
     }
   });
@@ -237,7 +237,7 @@ test.describe('Kill Team chooser', () => {
       for (const [i, box] of team!.store_boxes!.entries()) {
         const link = items.nth(i).getByTestId(`store-box-icon-${store.id}`);
         if (box[store.field]) {
-          await expect(link).toHaveAttribute('href', box[store.field]!);
+          await expect(link).toHaveAttribute('href', storeLinkUrl(store, box[store.field]!));
           await expect(link).toHaveAttribute('target', '_blank');
           await expect(link.getByRole('img')).toBeVisible();
         } else {

@@ -1,7 +1,7 @@
 import { test, expect, Page } from '@playwright/test';
 import { ANALYTICS_PROVIDERS, SIMPLE_ANALYTICS_SCRIPT_URL, UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from '@/lib/analytics/config';
 import { LINK_TYPES } from '@/lib/analytics/events';
-import { NAME_LINK_STORE, STORES } from '@/lib/storeBoxes';
+import { NAME_LINK_STORE, STORES, storeLinkUrl } from '@/lib/storeBoxes';
 import { getLegality } from '@/components/content-blocks/kill-team-chooser/legality';
 import { findKillTeam, galleryImageCount, killTeams, subpageData, subpageExternalLinks, subpageStoreBoxes } from './helpers/content';
 
@@ -118,8 +118,8 @@ test.describe('Analytics', () => {
 
   // Store link of each webstore, by the store box field that holds its URL
   for (const store of [
-    { testId: 'store-box-name-link', field: NAME_LINK_STORE.field, linkType: NAME_LINK_STORE.linkType },
-    ...STORES.map((s) => ({ testId: `store-box-icon-${s.id}`, field: s.field, linkType: s.linkType })),
+    { testId: 'store-box-name-link', store: NAME_LINK_STORE, field: NAME_LINK_STORE.field, linkType: NAME_LINK_STORE.linkType },
+    ...STORES.map((s) => ({ testId: `store-box-icon-${s.id}`, store: s, field: s.field, linkType: s.linkType })),
   ]) {
     test(`${store.testId} link sends the ${store.linkType} link type`, async ({ page }) => {
       const team = killTeams().find((t) => t.store_boxes?.some((box) => box[store.field]));
@@ -135,7 +135,7 @@ test.describe('Analytics', () => {
       await expect.poll(() => trackedEvents(page)).toContainEqual({
         name: 'outbound_link_click',
         data: {
-          url: new URL(box[store.field]!).href,
+          url: new URL(storeLinkUrl(store.store, box[store.field]!)).href,
           page: CHOOSER_URL,
           link_type: store.linkType,
           team: team!.slug,
@@ -158,7 +158,7 @@ test.describe('Analytics', () => {
     await expect.poll(() => trackedEvents(page)).toContainEqual({
       name: 'outbound_link_click',
       data: {
-        url: new URL(ref!.box.contrastphase_url!).href,
+        url: new URL(storeLinkUrl(STORES.find((s) => s.id === 'contrastphase')!, ref!.box.contrastphase_url!)).href,
         page: ref!.url,
         link_type: LINK_TYPES.contrastPhase,
         box: ref!.box.slug,

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { KillTeamStoreBox } from '@/types/content'
-import { NAME_LINK_STORE, STORES } from '@/lib/storeBoxes'
+import { NAME_LINK_STORE, STORES, storeLinkUrl } from '@/lib/storeBoxes'
 
 // "detail" is the small text of the team details, "text" is the body text of CMS content
 const VARIANT_STYLES = {
@@ -30,7 +30,7 @@ export default function StoreBoxLinks({ box, variant, team }: StoreBoxLinksProps
   return (
     <span data-testid="store-box">
       {nameUrl ? (
-        <a href={nameUrl} target="_blank" rel="noopener noreferrer" className={styles.nameLink} data-testid="store-box-name-link" data-analytics-link-type={NAME_LINK_STORE.linkType} data-analytics-team={team} data-analytics-box={box.slug}>
+        <a href={storeLinkUrl(NAME_LINK_STORE, nameUrl)} target="_blank" rel="noopener" className={styles.nameLink} data-testid="store-box-name-link" data-analytics-link-type={NAME_LINK_STORE.linkType} data-analytics-team={team} data-analytics-box={box.slug}>
           {box.name}
         </a>
       ) : (
@@ -39,9 +39,9 @@ export default function StoreBoxLinks({ box, variant, team }: StoreBoxLinksProps
       {STORES.map((store) => box[store.field] && (
         <a
           key={store.id}
-          href={box[store.field]}
+          href={storeLinkUrl(store, box[store.field]!)}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           title={store.name}
           // not-prose: the CMS text styles must not add image margins
           className={`not-prose inline-flex align-middle rounded-sm bg-white hover:opacity-80 ${styles.iconLink}`}
