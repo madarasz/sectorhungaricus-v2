@@ -15,6 +15,7 @@ export interface TournamentResultsTranslations {
     showing: (shown: number, total: number) => string
   }
   concludedTournaments: string
+  tournamentPlayers: (count: number) => string
   topFactions: string
 }
 
@@ -34,6 +35,7 @@ export const tournamentResultsTranslations: Record<Locale, TournamentResultsTran
       showing: (shown, total) => `Showing ${shown} of ${total} players`
     },
     concludedTournaments: 'Concluded Tournaments',
+    tournamentPlayers: (count) => `(${count} players)`,
     topFactions: 'Most Played Factions'
   },
   hu: {
@@ -51,6 +53,7 @@ export const tournamentResultsTranslations: Record<Locale, TournamentResultsTran
       showing: (shown, total) => `${total} játékosból ${shown} látható`
     },
     concludedTournaments: 'Lezárult versenyek',
+    tournamentPlayers: (count) => `(${count} játékos)`,
     topFactions: 'Legtöbbet játszott frakciók'
   }
 }

@@ -7,7 +7,7 @@ factions:
 operatives: 6
 boxes: 1
 boxes_note: "One box builds a full team, some magnetizing is required to build all the options."
-box_type: discontinued
+box_type: wh40k
 store_boxes:
   - legionaries
 tier: B

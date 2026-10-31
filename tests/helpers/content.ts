@@ -200,3 +200,13 @@ export function findKillTeam(description: string, predicate: (team: TestKillTeam
   if (!team) throw new Error(`No reviewed kill team: ${description}`);
   return team;
 }
+
+export function concludedTournamentPlayerCounts(): Array<{ name: string; players: number }> {
+  const read = (file: string) => JSON.parse(fs.readFileSync(path.join(process.cwd(), 'scripts', file), 'utf8'));
+  const { tournaments } = read('tournaments-2026.json') as { tournaments: Array<{ name: string }> };
+  const { players } = read('results-2026.json') as { players: Array<{ tournaments: Array<{ name: string }> }> };
+  return tournaments.map(({ name }) => ({
+    name,
+    players: players.filter(player => player.tournaments.some(t => t.name === name)).length,
+  }));
+}

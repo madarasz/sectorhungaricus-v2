@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { concludedTournamentPlayerCounts } from './helpers/content';
 
 test.describe('Tournament Results Player Limit', () => {
   for (const locale of ['en', 'hu']) {
@@ -25,6 +26,24 @@ test.describe('Tournament Results Player Limit', () => {
       // Switch back to top 16
       await select.selectOption('top');
       await expect(rows).toHaveCount(16);
+    });
+  }
+});
+
+test.describe('Concluded Tournaments player counts', () => {
+  for (const locale of ['en', 'hu']) {
+    test(`Each concluded tournament shows its player count (${locale})`, async ({ page }) => {
+      await page.goto(`/${locale}/kill-team/tournament-results/`);
+
+      const expected = concludedTournamentPlayerCounts();
+      const counts = page.getByTestId('tournament-players');
+      await expect(counts).toHaveCount(expected.length);
+
+      for (const [index, { name, players }] of expected.entries()) {
+        const item = counts.nth(index).locator('..');
+        await expect(item.getByRole('link')).toHaveText(name);
+        await expect(counts.nth(index)).toContainText(String(players));
+      }
     });
   }
 });

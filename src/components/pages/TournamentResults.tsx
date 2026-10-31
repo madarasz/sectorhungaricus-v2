@@ -32,6 +32,14 @@ export default function TournamentResults() {
       return acc
     }, {} as Record<string, number>)
 
+  // Count players per tournament
+  const tournamentPlayerCounts = resultsData.players
+    .flatMap(player => player.tournaments)
+    .reduce((acc, tournament) => {
+      acc[tournament.name] = (acc[tournament.name] || 0) + 1
+      return acc
+    }, {} as Record<string, number>)
+
   // Sort factions, filter out those with less than FACTION_MIN_TIMES_PLAYED
   const sortedFactions = Object.entries(factionCounts)
     .filter(([, count]) => count >= FACTION_MIN_TIMES_PLAYED)
@@ -137,6 +145,10 @@ export default function TournamentResults() {
                 >
                   {tournament.name}
                 </a>
+                {' '}
+                <span className="text-gray-700" data-testid="tournament-players">
+                  {t.tournamentPlayers(tournamentPlayerCounts[tournament.name])}
+                </span>
               </li>
             ))}
           </ul>
