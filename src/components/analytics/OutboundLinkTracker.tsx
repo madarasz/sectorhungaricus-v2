@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { LINK_DATA_ATTRIBUTE_PREFIX } from '@/lib/analytics/events'
-import { trackEvent } from '@/lib/analytics/track'
+import { analyticsPage, trackEvent } from '@/lib/analytics/track'
 
 // data-analytics-link-type becomes link_type in the event data
 function linkData(link: HTMLAnchorElement) {
@@ -25,7 +25,7 @@ export default function OutboundLinkTracker() {
       if (!(link instanceof HTMLAnchorElement)) return
       const url = new URL(link.href, window.location.href)
       if (!url.protocol.startsWith('http') || url.origin === window.location.origin) return
-      trackEvent('outbound_link_click', { ...linkData(link), url: url.href, page: window.location.pathname })
+      trackEvent('outbound_link_click', { ...linkData(link), url: url.href, page: analyticsPage() })
     }
 
     document.addEventListener('click', handleClick, true)

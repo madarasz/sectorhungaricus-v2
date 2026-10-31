@@ -1,5 +1,6 @@
 import { test, expect, Page } from '@playwright/test';
-import { ANALYTICS_PROVIDERS, SIMPLE_ANALYTICS_SCRIPT_URL, UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from '@/lib/analytics/config';
+import { ANALYTICS_PROVIDERS, SIMPLE_ANALYTICS_SCRIPT_URL, UMAMI_BEFORE_SEND, UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from '@/lib/analytics/config';
+import { removeLocalePrefix } from '@/lib/locale-utils';
 import { LINK_TYPES } from '@/lib/analytics/events';
 import { NAME_LINK_STORE, STORES, storeLinkUrl } from '@/lib/storeBoxes';
 import { getLegality } from '@/components/content-blocks/kill-team-chooser/legality';
@@ -11,6 +12,7 @@ interface TrackedEvent {
 }
 
 const CHOOSER_URL = '/en/kill-team/choose-a-team/';
+const CHOOSER_PAGE = removeLocalePrefix(CHOOSER_URL);
 
 const resourcesSlug = subpageData('kill-team-resources', 'en').slug as string;
 const resourcesLink = subpageExternalLinks('kill-team-resources', 'en')[0];
@@ -25,7 +27,8 @@ const cardTeam = findKillTeam('legal', (t) => getLegality(t.legal_until, new Dat
 async function stubAnalytics(page: Page) {
   await page.route(UMAMI_SCRIPT_URL, (route) => route.fulfill({
     contentType: 'application/javascript',
-    body: 'window.__events = []; window.umami = { track: (name, data) => window.__events.push({ name, data }) };',
+    // Like the real tracker, the stub sends the page view through the data-before-send function
+    body: 'window.__events = []; window.__pageviews = []; window.__identities = []; window.umami = { track: (name, data) => window.__events.push({ name, data }), identify: (data) => window.__identities.push(data) }; var beforeSend = window[document.currentScript.getAttribute("data-before-send")]; window.__pageviews.push(beforeSend ? beforeSend("event", { url: window.location.href, referrer: "" }) : { url: window.location.href });',
   }));
   await page.route(SIMPLE_ANALYTICS_SCRIPT_URL, (route) => route.abort());
 }
@@ -55,6 +58,36 @@ test.describe('Analytics', () => {
     await expect(page.locator(`script[src="${SIMPLE_ANALYTICS_SCRIPT_URL}"]`)).toHaveCount(ANALYTICS_PROVIDERS.simpleAnalytics ? 1 : 0);
   });
 
+  test('Umami gets the URL and the in-site referrer without the locale prefix, and the locale as session data', async ({ page }) => {
+    await page.goto(CHOOSER_URL);
+    await waitForTracker(page);
+    const origin = new URL(page.url()).origin;
+
+    await expect(page.locator(`script[src="${UMAMI_SCRIPT_URL}"]`)).toHaveAttribute('data-before-send', UMAMI_BEFORE_SEND);
+    expect(await page.evaluate(() => (window as unknown as { __pageviews: { url: string }[] }).__pageviews)).toEqual([
+      { url: `${origin}${CHOOSER_PAGE}`, referrer: '' },
+    ]);
+
+    const payloads = await page.evaluate(({ name, chooserUrl }) => {
+      const beforeSend = (window as unknown as Record<string, (type: string, payload: { url: string; referrer?: string }) => { url: string; referrer?: string }>)[name];
+      return [
+        beforeSend('event', { url: chooserUrl }),
+        beforeSend('event', { url: `${window.location.origin}/hu/kill-team/?a=1`, referrer: `${window.location.origin}/hu/` }),
+        beforeSend('event', { url: '/en', referrer: 'https://example.com/en/page' }),
+        beforeSend('event', { url: '/english/' }),
+      ];
+    }, { name: UMAMI_BEFORE_SEND, chooserUrl: CHOOSER_URL });
+    expect(payloads).toEqual([
+      { url: CHOOSER_PAGE },
+      { url: `${origin}/kill-team/?a=1`, referrer: `${origin}/` },
+      { url: '/', referrer: 'https://example.com/en/page' },
+      { url: '/english/' },
+    ]);
+
+    // One identify for the locale of the page, the next events on the same locale do not send it again
+    await expect.poll(() => page.evaluate(() => (window as unknown as { __identities?: unknown[] }).__identities)).toEqual([{ locale: 'en' }]);
+  });
+
   test('outgoing link in CMS content sends an outbound link event', async ({ page }) => {
     await page.goto(`/en/kill-team/${resourcesSlug}/`);
     await waitForTracker(page);
@@ -65,7 +98,7 @@ test.describe('Analytics', () => {
 
     await expect.poll(() => trackedEvents(page)).toContainEqual({
       name: 'outbound_link_click',
-      data: { url, page: `/en/kill-team/${resourcesSlug}/` },
+      data: { url, page: `/kill-team/${resourcesSlug}/`, locale: 'en' },
     });
   });
 
@@ -87,7 +120,7 @@ test.describe('Analytics', () => {
 
     await expect.poll(() => trackedEvents(page)).toContainEqual({
       name: 'gallery_open',
-      data: { page: '/hu/kill-team/what-is-kill-team/', gallery: gallerySlug, image_index: 1 },
+      data: { page: '/kill-team/what-is-kill-team/', gallery: gallerySlug, image_index: 1, locale: 'hu' },
     });
   });
 
@@ -101,10 +134,10 @@ test.describe('Analytics', () => {
     await page.getByTestId('kt-reset').click();
 
     await expect.poll(() => trackedEvents(page)).toEqual([
-      { name: 'kt_filter_change', data: { filter: 'exp', value: 'new', selected: true } },
-      { name: 'kt_filter_change', data: { filter: 'exp', value: 'new', selected: false } },
-      { name: 'kt_filter_change', data: { filter: 'style', value: 'melee', selected: true } },
-      { name: 'kt_filter_reset', data: {} },
+      { name: 'kt_filter_change', data: { filter: 'exp', value: 'new', selected: true, locale: 'en' } },
+      { name: 'kt_filter_change', data: { filter: 'exp', value: 'new', selected: false, locale: 'en' } },
+      { name: 'kt_filter_change', data: { filter: 'style', value: 'melee', selected: true, locale: 'en' } },
+      { name: 'kt_filter_reset', data: { locale: 'en' } },
     ]);
 
     // Closing the selected team sends nothing
@@ -112,7 +145,7 @@ test.describe('Analytics', () => {
     await page.getByTestId(`kt-card-${cardTeam.slug}`).click();
 
     await expect.poll(async () => (await trackedEvents(page)).filter((e) => e.name === 'kt_team_select')).toEqual([
-      { name: 'kt_team_select', data: { team: cardTeam.slug } },
+      { name: 'kt_team_select', data: { team: cardTeam.slug, locale: 'en' } },
     ]);
   });
 
@@ -136,10 +169,11 @@ test.describe('Analytics', () => {
         name: 'outbound_link_click',
         data: {
           url: new URL(storeLinkUrl(store.store, box[store.field]!)).href,
-          page: CHOOSER_URL,
+          page: CHOOSER_PAGE,
           link_type: store.linkType,
           team: team!.slug,
           box: box.slug,
+          locale: 'en',
         },
       });
     });
@@ -159,9 +193,10 @@ test.describe('Analytics', () => {
       name: 'outbound_link_click',
       data: {
         url: new URL(storeLinkUrl(STORES.find((s) => s.id === 'contrastphase')!, ref!.box.contrastphase_url!)).href,
-        page: ref!.url,
+        page: removeLocalePrefix(ref!.url),
         link_type: LINK_TYPES.contrastPhase,
         box: ref!.box.slug,
+        locale: 'en',
       },
     });
   });

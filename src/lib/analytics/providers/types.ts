@@ -3,6 +3,8 @@ import { AnalyticsEventData } from '../events'
 export interface AnalyticsScript {
   src: string
   attributes?: Record<string, string>
+  // Inline code that runs before the script loads
+  setup?: string
 }
 
 export interface AnalyticsProvider {

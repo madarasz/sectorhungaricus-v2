@@ -4,7 +4,7 @@ import { ContentBlock, ImageVariants } from '@/types/content'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { getBestImageVariant } from '@/lib/imageVariants'
-import { trackEvent } from '@/lib/analytics/track'
+import { analyticsPage, trackEvent } from '@/lib/analytics/track'
 
 interface GalleryImage {
   src: string
@@ -190,7 +190,7 @@ export default function GalleryBlock({ block, images: imagesProp, galleryId, tes
 
   const openOverlay = (index: number) => {
     setSelectedImageIndex(index)
-    trackEvent('gallery_open', { page: window.location.pathname, gallery: galleryId ?? block?.gallery, image_index: index })
+    trackEvent('gallery_open', { page: analyticsPage(), gallery: galleryId ?? block?.gallery, image_index: index })
   }
 
   const closeOverlay = () => {
