@@ -9,7 +9,7 @@ boxes: 1
 box_type: kill-team
 store_boxes:
   - kill-team-battleclade
-tier: B
+tier: A
 skill: pro-only
 style:
   - shooting

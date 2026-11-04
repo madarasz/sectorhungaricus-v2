@@ -13,7 +13,7 @@ boxes_note: They have flexible weapon loadouts. Fusion blasters are ideally on
 box_type: kill-team
 store_boxes:
   - kill-team-xv26-stealth-battlesuits
-tier: B
+tier: A
 skill: pro-only
 style:
   - shooting

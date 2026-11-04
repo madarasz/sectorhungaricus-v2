@@ -25,7 +25,7 @@ content_blocks:
       q_boxes: Hány dobozt vagy hajlandó megvenni?
       a_boxes_one: Csak egy dobozt
       q_legal: Versenylegalitás
-      a_legal_declassified: A declassified csapatokat is mutasd - a legtöbb versenyen nem használhatók
+      a_legal_declassified: Declassified csapatokat is mutasd - a legtöbb versenyen nem használhatóak
       q_faction: Melyik frakció tetszik?
       factions:
         - {value: imperium, label: Imperium}
@@ -52,7 +52,7 @@ content_blocks:
       filters_close_label: Szűrők bezárása
       show_results: "{shown} csapat megjelenítése"
       empty_state: Egyik csapat sem felel meg minden válasznak. Változtass meg egy választ, hogy több csapatot láss.
-      declassified_separator: Non-classified csapatok – a legtöbb versenyen nem használhatók
+      declassified_separator: Declassified csapatok – a legtöbb versenyen nem használhatóak
       beginner_tag: Kezdőbarát
       pro_tag: Profiknak
       operatives_label: Operatívok
@@ -93,7 +93,7 @@ content_blocks:
       tier_label: Erősség
       legal_until_label: "Classified {year}. {month} végéig"
       rotates_soon_label: Ez a csapat hamarosan kikerül a versenyjátékból.
-      not_legal_label: Legtöbb versenyen nem használható (non-classified)
+      not_legal_label: Legtöbb versenyen nem használható (ndeclassified)
       close_label: Csapat részleteinek bezárása
   - type: text_block
     style: small-print

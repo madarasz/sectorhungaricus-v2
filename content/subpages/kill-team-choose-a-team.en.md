@@ -52,7 +52,7 @@ content_blocks:
       filters_close_label: Close filters
       show_results: "Show {shown} teams"
       empty_state: No team fits every answer. Change one answer to see more teams.
-      declassified_separator: Non-classified teams – not legal on most tournaments
+      declassified_separator: Declassified teams – not legal on most tournaments
       beginner_tag: Beginner-friendly
       pro_tag: For Pros
       operatives_label: Operatives
@@ -93,7 +93,7 @@ content_blocks:
       tier_label: Power level
       legal_until_label: "Classified until {month}, {year}"
       rotates_soon_label: This team rotates out of tournament play soon.
-      not_legal_label: Not legal on most tournaments (non-classified)
+      not_legal_label: Not legal on most tournaments (declassified)
       close_label: Close team details
   - type: text_block
     style: small-print

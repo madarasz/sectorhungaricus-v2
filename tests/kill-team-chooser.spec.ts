@@ -505,7 +505,7 @@ test.describe('Kill Team chooser', () => {
     await expect(page.getByTestId(`kt-card-${smallTeam.slug}`)).toHaveCount(0);
   });
 
-  test('non-classified teams are at the end of the list after a separator', async ({ page }) => {
+  test('declassified teams are at the end of the list after a separator', async ({ page }) => {
     const now = new Date('2026-03-01T12:00:00');
     const classifiedTeam = findKillTeam('legal on the fixed date', (t) => isLegal(t, now));
     const declassifiedTeam = findKillTeam('not legal on the fixed date', (t) => !isLegal(t, now));
@@ -654,7 +654,7 @@ test.describe('Kill Team chooser', () => {
       await expect(legal).toContainText(EN.rotates_soon_label);
     });
 
-    test('is non-classified after the legal until date', async ({ page }) => {
+    test('is declassified after the legal until date', async ({ page }) => {
       await page.clock.setFixedTime(new Date(`${legalUntil}-12-01T12:00:00`));
       await page.goto(teamUrl);
       const legal = page.getByTestId('kt-detail-legal');
@@ -662,7 +662,7 @@ test.describe('Kill Team chooser', () => {
       await expect(legal).toContainText(EN.not_legal_label);
     });
 
-    test('non-classified teams are hidden until the declassified checkbox is checked', async ({ page }) => {
+    test('declassified teams are hidden until the declassified checkbox is checked', async ({ page }) => {
       await page.clock.setFixedTime(new Date(`${legalUntil}-12-01T12:00:00`));
       await page.goto(PAGE_URL);
       await expect(page.getByTestId('kt-question-legal')).toContainText(EN.q_legal);

@@ -9,7 +9,7 @@ boxes: 1
 box_type: kill-team
 store_boxes:
   - kill-team-goremongers
-tier: S
+tier: A
 skill: normal
 style:
   - melee

@@ -14,7 +14,7 @@ store_boxes:
   - accursed-cultists
   - dark-commune
 tier: S
-skill: pro-only
+skill: normal
 style:
   - melee
   - fragile

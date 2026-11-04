@@ -7,7 +7,7 @@ factions:
 operatives: 5
 boxes: 1
 box_type: kill-team
-tier: A
+tier: S
 skill: pro-only
 style:
   - melee

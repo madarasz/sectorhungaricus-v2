@@ -176,7 +176,7 @@ collections:
           - {label: "Tough", value: "tough"}
           - {label: "High damage", value: "high-damage"}
           - {label: "Control", value: "control"}
-      - {label: "Tournament legal until (year)", name: "legal_until", widget: "number", value_type: "int", required: false, hint: "The team is tournament legal until 30 November of this year. Empty means not tournament legal (non-classified)."}
+      - {label: "Tournament legal until (year)", name: "legal_until", widget: "number", value_type: "int", required: false, hint: "The team is tournament legal until 30 November of this year. Empty means not tournament legal (declassified)."}
       - {label: "Image", name: "image", widget: "image", required: false}
       - {label: "Second image", name: "second_image", widget: "image", required: false, hint: "Shown next to the first image in the team details."}
       - {label: "Play style", name: "body", widget: "markdown", i18n: true}
@@ -296,7 +296,7 @@ collections:
                   - {label: "Question: boxes", name: "q_boxes", widget: "string"}
                   - {label: "Checkbox: only one box", name: "a_boxes_one", widget: "string"}
                   - {label: "Question: tournament legality", name: "q_legal", widget: "string"}
-                  - {label: "Checkbox: show non-classified teams", name: "a_legal_declassified", widget: "string", hint: "Non-classified teams are hidden while this is not checked"}
+                  - {label: "Checkbox: show declassified teams", name: "a_legal_declassified", widget: "string", hint: "declassified teams are hidden while this is not checked"}
                   - {label: "Question: faction", name: "q_faction", widget: "string"}
                   - label: "Factions"
                     name: "factions"
@@ -311,7 +311,7 @@ collections:
                   - {label: "Close filters label (mobile)", name: "filters_close_label", widget: "string"}
                   - {label: "Show results button (mobile)", name: "show_results", widget: "string", hint: "Use {shown}"}
                   - {label: "Empty state", name: "empty_state", widget: "string"}
-                  - {label: "Non-classified teams separator", name: "declassified_separator", widget: "string"}
+                  - {label: "Declassified teams separator", name: "declassified_separator", widget: "string"}
                   - {label: "Beginner tag", name: "beginner_tag", widget: "string"}
                   - {label: "Pro-only tag", name: "pro_tag", widget: "string"}
                   - {label: "Operatives label", name: "operatives_label", widget: "string"}
