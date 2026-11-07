@@ -3,9 +3,9 @@
         {
             "name": "Wojciech Ogrodowczyk",
             "rank": 1,
-            "elo": 1683,
-            "wins": 17,
-            "draws": 0,
+            "elo": 1700,
+            "wins": 19,
+            "draws": 2,
             "losses": 5,
             "tournaments": [
                 {
@@ -42,16 +42,56 @@
                     "name": "Contrast Clash - October 2026",
                     "faction": "Ratlings",
                     "elo_change": 53
+                },
+                {
+                    "name": "2026 Invitational",
+                    "faction": "Ratlings",
+                    "elo_change": 17
+                }
+            ]
+        },
+        {
+            "name": "Omar Bandar",
+            "rank": 2,
+            "elo": 1687,
+            "wins": 12,
+            "draws": 1,
+            "losses": 3,
+            "tournaments": [
+                {
+                    "name": "Contrast Clash - March 2026",
+                    "faction": "Murderwing",
+                    "elo_change": 23
+                },
+                {
+                    "name": "Contrast Clash - June 2026",
+                    "faction": "Fellgor Ravagers",
+                    "elo_change": 82
+                },
+                {
+                    "name": "Contrast Clash - September 2026",
+                    "faction": "Goremongers",
+                    "elo_change": 14
+                },
+                {
+                    "name": "Contrast Clash - October 2026",
+                    "faction": "Goremongers",
+                    "elo_change": 0
+                },
+                {
+                    "name": "2026 Invitational",
+                    "faction": "Exodite Dragon Masters",
+                    "elo_change": 68
                 }
             ]
         },
         {
             "name": "Dávid Gunst",
-            "rank": 2,
-            "elo": 1658,
-            "wins": 7,
+            "rank": 3,
+            "elo": 1678,
+            "wins": 10,
             "draws": 0,
-            "losses": 0,
+            "losses": 1,
             "tournaments": [
                 {
                     "name": "Contrast Phase Liga - Season 4",
@@ -62,136 +102,21 @@
                     "name": "Contrast Clash - February 2026",
                     "faction": "Wolf Scouts",
                     "elo_change": 60
-                }
-            ]
-        },
-        {
-            "name": "Dominik Szarvas",
-            "rank": 3,
-            "elo": 1646,
-            "wins": 10,
-            "draws": 0,
-            "losses": 3,
-            "tournaments": [
-                {
-                    "name": "Contrast Phase Liga - Season 4",
-                    "faction": "Tempestus Aquilons",
-                    "elo_change": 60
                 },
                 {
-                    "name": "Contrast Clash - January 2026",
-                    "faction": "Tempestus Aquilons",
-                    "elo_change": 9
-                },
-                {
-                    "name": "Contrast Clash - February 2026",
-                    "faction": "Celestian Insidiants",
-                    "elo_change": 12
-                },
-                {
-                    "name": "HTC Kísérleti verseny",
-                    "faction": "Hunter Clade",
-                    "elo_change": 65
-                }
-            ]
-        },
-        {
-            "name": "Gergely Papp \"Watapi\"",
-            "rank": 4,
-            "elo": 1635,
-            "wins": 8,
-            "draws": 1,
-            "losses": 1,
-            "tournaments": [
-                {
-                    "name": "Contrast Double Clash - November 2025",
-                    "faction": "Tempestus Aquilons",
-                    "elo_change": 68
-                },
-                {
-                    "name": "Contrast Phase Liga - Season 4",
-                    "faction": "Brood Brothers",
-                    "elo_change": 5
-                },
-                {
-                    "name": "Contrast Clash - February 2026",
-                    "faction": "XV26 Stealth Battlesuits",
-                    "elo_change": 62
-                }
-            ]
-        },
-        {
-            "name": "Sándor Ágota",
-            "rank": 5,
-            "elo": 1634,
-            "wins": 14,
-            "draws": 0,
-            "losses": 5,
-            "tournaments": [
-                {
-                    "name": "Contrast Double Clash - November 2025",
-                    "faction": "Deathwatch",
-                    "elo_change": 30
-                },
-                {
-                    "name": "Contrast Phase Liga - Season 4",
-                    "faction": "Wrecka Krew",
-                    "elo_change": 43
-                },
-                {
-                    "name": "Contrast Clash - February 2026",
-                    "faction": "Hand of the Archon",
-                    "elo_change": 17
-                },
-                {
-                    "name": "Contrast Clash - May 2026",
-                    "faction": "Murderwing",
-                    "elo_change": 60
-                },
-                {
-                    "name": "Contrast Clash - August 2026",
-                    "faction": "Angels of Death",
-                    "elo_change": 42
-                },
-                {
-                    "name": "Contrast Clash - October 2026",
-                    "faction": "Inquisitorial Agents",
-                    "elo_change": -58
-                }
-            ]
-        },
-        {
-            "name": "Lóránd “Clostry” Papp",
-            "rank": 6,
-            "elo": 1630,
-            "wins": 8,
-            "draws": 0,
-            "losses": 2,
-            "tournaments": [
-                {
-                    "name": "Contrast Double Clash - November 2025",
-                    "faction": "Nemesis Claw",
-                    "elo_change": 75
-                },
-                {
-                    "name": "Contrast Clash - January 2026",
-                    "faction": "Murderwing",
-                    "elo_change": 19
-                },
-                {
-                    "name": "TTS Liga",
-                    "faction": "Hand of the Archon",
-                    "elo_change": 36
+                    "name": "2026 Invitational",
+                    "faction": "Kasrkin",
+                    "elo_change": 20
                 }
             ]
         },
         {
             "name": "Lőrinc Soós",
-            "rank": 7,
-            "elo": 1624,
-            "wins": 15,
+            "rank": 4,
+            "elo": 1656,
+            "wins": 18,
             "draws": 1,
-            "losses": 8,
+            "losses": 9,
             "tournaments": [
                 {
                     "name": "Contrast Clash - February 2026",
@@ -232,36 +157,131 @@
                     "name": "Contrast Clash - October 2026",
                     "faction": "Celestian Insidiants",
                     "elo_change": -2
+                },
+                {
+                    "name": "2026 Invitational",
+                    "faction": "Celestian Insidiants",
+                    "elo_change": 32
                 }
             ]
         },
         {
-            "name": "Omar Bandar",
-            "rank": 8,
-            "elo": 1619,
-            "wins": 9,
+            "name": "Dominik Szarvas",
+            "rank": 5,
+            "elo": 1646,
+            "wins": 10,
             "draws": 0,
             "losses": 3,
             "tournaments": [
                 {
-                    "name": "Contrast Clash - March 2026",
+                    "name": "Contrast Phase Liga - Season 4",
+                    "faction": "Tempestus Aquilons",
+                    "elo_change": 60
+                },
+                {
+                    "name": "Contrast Clash - January 2026",
+                    "faction": "Tempestus Aquilons",
+                    "elo_change": 9
+                },
+                {
+                    "name": "Contrast Clash - February 2026",
+                    "faction": "Celestian Insidiants",
+                    "elo_change": 12
+                },
+                {
+                    "name": "HTC Kísérleti verseny",
+                    "faction": "Hunter Clade",
+                    "elo_change": 65
+                }
+            ]
+        },
+        {
+            "name": "Gergely Papp \"Watapi\"",
+            "rank": 6,
+            "elo": 1635,
+            "wins": 8,
+            "draws": 1,
+            "losses": 1,
+            "tournaments": [
+                {
+                    "name": "Contrast Double Clash - November 2025",
+                    "faction": "Tempestus Aquilons",
+                    "elo_change": 68
+                },
+                {
+                    "name": "Contrast Phase Liga - Season 4",
+                    "faction": "Brood Brothers",
+                    "elo_change": 5
+                },
+                {
+                    "name": "Contrast Clash - February 2026",
+                    "faction": "XV26 Stealth Battlesuits",
+                    "elo_change": 62
+                }
+            ]
+        },
+        {
+            "name": "Sándor Ágota",
+            "rank": 7,
+            "elo": 1634,
+            "wins": 14,
+            "draws": 0,
+            "losses": 5,
+            "tournaments": [
+                {
+                    "name": "Contrast Double Clash - November 2025",
+                    "faction": "Deathwatch",
+                    "elo_change": 30
+                },
+                {
+                    "name": "Contrast Phase Liga - Season 4",
+                    "faction": "Wrecka Krew",
+                    "elo_change": 43
+                },
+                {
+                    "name": "Contrast Clash - February 2026",
+                    "faction": "Hand of the Archon",
+                    "elo_change": 17
+                },
+                {
+                    "name": "Contrast Clash - May 2026",
                     "faction": "Murderwing",
-                    "elo_change": 23
+                    "elo_change": 60
                 },
                 {
-                    "name": "Contrast Clash - June 2026",
-                    "faction": "Fellgor Ravagers",
-                    "elo_change": 82
-                },
-                {
-                    "name": "Contrast Clash - September 2026",
-                    "faction": "Goremongers",
-                    "elo_change": 14
+                    "name": "Contrast Clash - August 2026",
+                    "faction": "Angels of Death",
+                    "elo_change": 42
                 },
                 {
                     "name": "Contrast Clash - October 2026",
-                    "faction": "Goremongers",
-                    "elo_change": 0
+                    "faction": "Inquisitorial Agents",
+                    "elo_change": -58
+                }
+            ]
+        },
+        {
+            "name": "Lóránd “Clostry” Papp",
+            "rank": 8,
+            "elo": 1630,
+            "wins": 8,
+            "draws": 0,
+            "losses": 2,
+            "tournaments": [
+                {
+                    "name": "Contrast Double Clash - November 2025",
+                    "faction": "Nemesis Claw",
+                    "elo_change": 75
+                },
+                {
+                    "name": "Contrast Clash - January 2026",
+                    "faction": "Murderwing",
+                    "elo_change": 19
+                },
+                {
+                    "name": "TTS Liga",
+                    "faction": "Hand of the Archon",
+                    "elo_change": 36
                 }
             ]
         },
@@ -356,26 +376,6 @@
             ]
         },
         {
-            "name": "Gábor Mervó",
-            "rank": 12,
-            "elo": 1570,
-            "wins": 5,
-            "draws": 0,
-            "losses": 2,
-            "tournaments": [
-                {
-                    "name": "Meta Liga 2025",
-                    "faction": "Goremongers",
-                    "elo_change": 50
-                },
-                {
-                    "name": "HTC Kísérleti verseny",
-                    "faction": "Corsair Voidscarred",
-                    "elo_change": 20
-                }
-            ]
-        },
-        {
             "name": "Misi Szabolcs",
             "rank": 12,
             "elo": 1570,
@@ -402,7 +402,7 @@
         },
         {
             "name": "Kristóf Haász",
-            "rank": 14,
+            "rank": 13,
             "elo": 1569,
             "wins": 5,
             "draws": 0,
@@ -417,6 +417,61 @@
                     "name": "HTC Kísérleti verseny",
                     "faction": "Wrecka Krew",
                     "elo_change": 21
+                }
+            ]
+        },
+        {
+            "name": "Barnabás László",
+            "rank": 14,
+            "elo": 1560,
+            "wins": 17,
+            "draws": 2,
+            "losses": 11,
+            "tournaments": [
+                {
+                    "name": "Meta Liga 2025",
+                    "faction": "Imperial Navy Breachers",
+                    "elo_change": 52
+                },
+                {
+                    "name": "Contrast Phase Liga - Season 4",
+                    "faction": "Farstalker Kinband",
+                    "elo_change": 34
+                },
+                {
+                    "name": "Contrast Clash - January 2026",
+                    "faction": "Farstalker Kinband",
+                    "elo_change": 2
+                },
+                {
+                    "name": "Contrast Clash - April 2026",
+                    "faction": "Imperial Navy Breachers",
+                    "elo_change": 26
+                },
+                {
+                    "name": "Contrast Clash - May 2026",
+                    "faction": "Imperial Navy Breachers",
+                    "elo_change": 3
+                },
+                {
+                    "name": "Contrast Clash - August 2026",
+                    "faction": "Imperial Navy Breachers",
+                    "elo_change": -70
+                },
+                {
+                    "name": "Contrast Clash - September 2026",
+                    "faction": "Farstalker Kinband",
+                    "elo_change": -75
+                },
+                {
+                    "name": "Contrast Clash - October 2026",
+                    "faction": "Farstalker Kinband",
+                    "elo_change": 25
+                },
+                {
+                    "name": "2026 Invitational",
+                    "faction": "Farstalker Kinband",
+                    "elo_change": 63
                 }
             ]
         },
@@ -478,10 +533,10 @@
         {
             "name": "Gábor Kiss",
             "rank": 18,
-            "elo": 1546,
-            "wins": 7,
+            "elo": 1541,
+            "wins": 9,
             "draws": 0,
-            "losses": 6,
+            "losses": 8,
             "tournaments": [
                 {
                     "name": "Contrast Clash - January 2026",
@@ -502,6 +557,11 @@
                     "name": "Contrast Clash - August 2026",
                     "faction": "Battleclade",
                     "elo_change": 32
+                },
+                {
+                    "name": "2026 Invitational",
+                    "faction": "Battleclade",
+                    "elo_change": -5
                 }
             ]
         },
@@ -527,11 +587,11 @@
         },
         {
             "name": "Ádám Kriza",
-            "rank": 19,
-            "elo": 1538,
-            "wins": 3,
+            "rank": 20,
+            "elo": 1534,
+            "wins": 5,
             "draws": 1,
-            "losses": 2,
+            "losses": 4,
             "tournaments": [
                 {
                     "name": "Contrast Clash - September 2026",
@@ -542,37 +602,17 @@
                     "name": "Contrast Clash - October 2026",
                     "faction": "Plague Marines",
                     "elo_change": 34
-                }
-            ]
-        },
-        {
-            "name": "Gergely Darmos",
-            "rank": 21,
-            "elo": 1537,
-            "wins": 5,
-            "draws": 2,
-            "losses": 3,
-            "tournaments": [
-                {
-                    "name": "Contrast Double Clash - November 2025",
-                    "faction": "Deathwatch",
-                    "elo_change": -1
                 },
                 {
-                    "name": "Contrast Phase Liga - Season 4",
-                    "faction": "Wolf Scouts",
-                    "elo_change": 0
-                },
-                {
-                    "name": "Contrast Clash - May 2026",
-                    "faction": "Angels of Death",
-                    "elo_change": 38
+                    "name": "2026 Invitational",
+                    "faction": "Plague Marines",
+                    "elo_change": -4
                 }
             ]
         },
         {
             "name": "Péter Borsányi",
-            "rank": 22,
+            "rank": 21,
             "elo": 1531,
             "wins": 2,
             "draws": 0,
@@ -587,7 +627,7 @@
         },
         {
             "name": "Dániel Károly",
-            "rank": 23,
+            "rank": 22,
             "elo": 1529,
             "wins": 7,
             "draws": 0,
@@ -617,7 +657,7 @@
         },
         {
             "name": "Federico Berluskony",
-            "rank": 24,
+            "rank": 23,
             "elo": 1527,
             "wins": 2,
             "draws": 0,
@@ -632,7 +672,7 @@
         },
         {
             "name": "Radovan Gallai",
-            "rank": 25,
+            "rank": 24,
             "elo": 1525,
             "wins": 2,
             "draws": 0,
@@ -647,7 +687,7 @@
         },
         {
             "name": "Zsolt Sáfrányos",
-            "rank": 26,
+            "rank": 25,
             "elo": 1522,
             "wins": 2,
             "draws": 0,
@@ -661,52 +701,12 @@
             ]
         },
         {
-            "name": "Csaba Toth",
-            "rank": 27,
-            "elo": 1520,
-            "wins": 4,
-            "draws": 0,
-            "losses": 3,
-            "tournaments": [
-                {
-                    "name": "Meta Liga 2025",
-                    "faction": "Tempestus Aquilons",
-                    "elo_change": 2
-                },
-                {
-                    "name": "Contrast Double Clash - November 2025",
-                    "faction": "Tempestus Aquilons",
-                    "elo_change": 18
-                }
-            ]
-        },
-        {
-            "name": "Attila Pulger",
-            "rank": 28,
-            "elo": 1519,
-            "wins": 4,
-            "draws": 1,
-            "losses": 3,
-            "tournaments": [
-                {
-                    "name": "Contrast Phase Liga - Season 4",
-                    "faction": "Canoptek Circle",
-                    "elo_change": 48
-                },
-                {
-                    "name": "TTS Liga",
-                    "faction": "Exaction Squad",
-                    "elo_change": -29
-                }
-            ]
-        },
-        {
             "name": "Gombás Bence",
-            "rank": 29,
-            "elo": 1516,
-            "wins": 9,
+            "rank": 26,
+            "elo": 1521,
+            "wins": 11,
             "draws": 2,
-            "losses": 7,
+            "losses": 9,
             "tournaments": [
                 {
                     "name": "Contrast Double Clash - November 2025",
@@ -737,16 +737,86 @@
                     "name": "Contrast Clash - October 2026",
                     "faction": "Celestian Insidiants",
                     "elo_change": -41
+                },
+                {
+                    "name": "2026 Invitational",
+                    "faction": "Tempestus Aquilons",
+                    "elo_change": 5
+                }
+            ]
+        },
+        {
+            "name": "Csaba Toth",
+            "rank": 27,
+            "elo": 1520,
+            "wins": 4,
+            "draws": 0,
+            "losses": 3,
+            "tournaments": [
+                {
+                    "name": "Meta Liga 2025",
+                    "faction": "Tempestus Aquilons",
+                    "elo_change": 2
+                },
+                {
+                    "name": "Contrast Double Clash - November 2025",
+                    "faction": "Tempestus Aquilons",
+                    "elo_change": 18
+                }
+            ]
+        },
+        {
+            "name": "Gábor Mervó",
+            "rank": 28,
+            "elo": 1519,
+            "wins": 6,
+            "draws": 0,
+            "losses": 5,
+            "tournaments": [
+                {
+                    "name": "Meta Liga 2025",
+                    "faction": "Goremongers",
+                    "elo_change": 50
+                },
+                {
+                    "name": "HTC Kísérleti verseny",
+                    "faction": "Corsair Voidscarred",
+                    "elo_change": 20
+                },
+                {
+                    "name": "2026 Invitational",
+                    "faction": "Mandrakes",
+                    "elo_change": -51
+                }
+            ]
+        },
+        {
+            "name": "Attila Pulger",
+            "rank": 28,
+            "elo": 1519,
+            "wins": 4,
+            "draws": 1,
+            "losses": 3,
+            "tournaments": [
+                {
+                    "name": "Contrast Phase Liga - Season 4",
+                    "faction": "Canoptek Circle",
+                    "elo_change": 48
+                },
+                {
+                    "name": "TTS Liga",
+                    "faction": "Exaction Squad",
+                    "elo_change": -29
                 }
             ]
         },
         {
             "name": "Gaspar Nemeth",
-            "rank": 30,
-            "elo": 1513,
-            "wins": 6,
+            "rank": 28,
+            "elo": 1519,
+            "wins": 8,
             "draws": 0,
-            "losses": 8,
+            "losses": 10,
             "tournaments": [
                 {
                     "name": "Contrast Clash - April 2026",
@@ -772,6 +842,11 @@
                     "name": "Contrast Clash - October 2026",
                     "faction": "Angels of Death",
                     "elo_change": 25
+                },
+                {
+                    "name": "2026 Invitational",
+                    "faction": "Angels of Death",
+                    "elo_change": 6
                 }
             ]
         },
@@ -856,58 +931,8 @@
             ]
         },
         {
-            "name": "Barnabás László",
-            "rank": 36,
-            "elo": 1497,
-            "wins": 14,
-            "draws": 2,
-            "losses": 10,
-            "tournaments": [
-                {
-                    "name": "Meta Liga 2025",
-                    "faction": "Imperial Navy Breachers",
-                    "elo_change": 52
-                },
-                {
-                    "name": "Contrast Phase Liga - Season 4",
-                    "faction": "Farstalker Kinband",
-                    "elo_change": 34
-                },
-                {
-                    "name": "Contrast Clash - January 2026",
-                    "faction": "Farstalker Kinband",
-                    "elo_change": 2
-                },
-                {
-                    "name": "Contrast Clash - April 2026",
-                    "faction": "Imperial Navy Breachers",
-                    "elo_change": 26
-                },
-                {
-                    "name": "Contrast Clash - May 2026",
-                    "faction": "Imperial Navy Breachers",
-                    "elo_change": 3
-                },
-                {
-                    "name": "Contrast Clash - August 2026",
-                    "faction": "Imperial Navy Breachers",
-                    "elo_change": -70
-                },
-                {
-                    "name": "Contrast Clash - September 2026",
-                    "faction": "Farstalker Kinband",
-                    "elo_change": -75
-                },
-                {
-                    "name": "Contrast Clash - October 2026",
-                    "faction": "Farstalker Kinband",
-                    "elo_change": 25
-                }
-            ]
-        },
-        {
             "name": "Gergő Disznósi",
-            "rank": 37,
+            "rank": 36,
             "elo": 1482,
             "wins": 1,
             "draws": 0,
@@ -922,7 +947,7 @@
         },
         {
             "name": "Máté Bujdosó",
-            "rank": 38,
+            "rank": 37,
             "elo": 1478,
             "wins": 1,
             "draws": 0,
@@ -937,7 +962,7 @@
         },
         {
             "name": "Miklos Stemler",
-            "rank": 38,
+            "rank": 37,
             "elo": 1478,
             "wins": 1,
             "draws": 0,
@@ -947,6 +972,46 @@
                     "name": "HTC Kísérleti verseny",
                     "faction": "Ratlings",
                     "elo_change": -22
+                }
+            ]
+        },
+        {
+            "name": "Dávid Viniczay",
+            "rank": 39,
+            "elo": 1477,
+            "wins": 7,
+            "draws": 3,
+            "losses": 10,
+            "tournaments": [
+                {
+                    "name": "Contrast Clash - February 2026",
+                    "faction": "Raveners",
+                    "elo_change": 31
+                },
+                {
+                    "name": "TTS Liga",
+                    "faction": "Raveners",
+                    "elo_change": -20
+                },
+                {
+                    "name": "Contrast Clash - June 2026",
+                    "faction": "Raveners",
+                    "elo_change": -23
+                },
+                {
+                    "name": "Contrast Clash - August 2026",
+                    "faction": "Raveners",
+                    "elo_change": 9
+                },
+                {
+                    "name": "Contrast Clash - October 2026",
+                    "faction": "Raveners",
+                    "elo_change": -26
+                },
+                {
+                    "name": "2026 Invitational",
+                    "faction": "Raveners",
+                    "elo_change": 6
                 }
             ]
         },
@@ -1016,26 +1081,6 @@
             ]
         },
         {
-            "name": "Báder Péter",
-            "rank": 43,
-            "elo": 1472,
-            "wins": 2,
-            "draws": 1,
-            "losses": 3,
-            "tournaments": [
-                {
-                    "name": "Contrast Clash - May 2026",
-                    "faction": "Nemesis Claw",
-                    "elo_change": -29
-                },
-                {
-                    "name": "Contrast Clash - June 2026",
-                    "faction": "Nemesis Claw",
-                    "elo_change": 1
-                }
-            ]
-        },
-        {
             "name": "Dénes Csóka",
             "rank": 43,
             "elo": 1472,
@@ -1051,43 +1096,8 @@
             ]
         },
         {
-            "name": "Dávid Viniczay",
-            "rank": 46,
-            "elo": 1471,
-            "wins": 6,
-            "draws": 2,
-            "losses": 8,
-            "tournaments": [
-                {
-                    "name": "Contrast Clash - February 2026",
-                    "faction": "Raveners",
-                    "elo_change": 31
-                },
-                {
-                    "name": "TTS Liga",
-                    "faction": "Raveners",
-                    "elo_change": -20
-                },
-                {
-                    "name": "Contrast Clash - June 2026",
-                    "faction": "Raveners",
-                    "elo_change": -23
-                },
-                {
-                    "name": "Contrast Clash - August 2026",
-                    "faction": "Raveners",
-                    "elo_change": 9
-                },
-                {
-                    "name": "Contrast Clash - October 2026",
-                    "faction": "Raveners",
-                    "elo_change": -26
-                }
-            ]
-        },
-        {
             "name": "András Benedek",
-            "rank": 47,
+            "rank": 45,
             "elo": 1469,
             "wins": 1,
             "draws": 0,
@@ -1102,7 +1112,7 @@
         },
         {
             "name": "Balázs Schunder",
-            "rank": 48,
+            "rank": 46,
             "elo": 1462,
             "wins": 2,
             "draws": 1,
@@ -1122,7 +1132,7 @@
         },
         {
             "name": "Martin Szalontai",
-            "rank": 48,
+            "rank": 46,
             "elo": 1462,
             "wins": 1,
             "draws": 0,
@@ -1137,7 +1147,7 @@
         },
         {
             "name": "Grónás Máté László",
-            "rank": 48,
+            "rank": 46,
             "elo": 1462,
             "wins": 0,
             "draws": 0,
@@ -1152,7 +1162,7 @@
         },
         {
             "name": "Szabolcs Berényi",
-            "rank": 51,
+            "rank": 49,
             "elo": 1461,
             "wins": 3,
             "draws": 3,
@@ -1177,7 +1187,7 @@
         },
         {
             "name": "Péter Oláh",
-            "rank": 51,
+            "rank": 49,
             "elo": 1461,
             "wins": 8,
             "draws": 0,
@@ -1222,7 +1232,7 @@
         },
         {
             "name": "Gergely Szabó",
-            "rank": 53,
+            "rank": 51,
             "elo": 1458,
             "wins": 4,
             "draws": 0,
@@ -1247,7 +1257,7 @@
         },
         {
             "name": "Federico Marcon",
-            "rank": 53,
+            "rank": 51,
             "elo": 1458,
             "wins": 2,
             "draws": 0,
@@ -1267,7 +1277,7 @@
         },
         {
             "name": "Laszlo Balatincz",
-            "rank": 55,
+            "rank": 53,
             "elo": 1453,
             "wins": 1,
             "draws": 0,
@@ -1282,7 +1292,7 @@
         },
         {
             "name": "Flóra Farkas",
-            "rank": 56,
+            "rank": 54,
             "elo": 1452,
             "wins": 1,
             "draws": 0,
@@ -1297,7 +1307,7 @@
         },
         {
             "name": "Szimeiszter Ákos",
-            "rank": 57,
+            "rank": 55,
             "elo": 1451,
             "wins": 0,
             "draws": 1,
@@ -1312,7 +1322,7 @@
         },
         {
             "name": "Harsán Tamás",
-            "rank": 58,
+            "rank": 56,
             "elo": 1450,
             "wins": 1,
             "draws": 0,
@@ -1327,7 +1337,7 @@
         },
         {
             "name": "Márton Szabó",
-            "rank": 58,
+            "rank": 56,
             "elo": 1450,
             "wins": 1,
             "draws": 0,
@@ -1341,12 +1351,332 @@
             ]
         },
         {
-            "name": "Márton Mati",
+            "name": "Istvan Losonczi",
             "rank": 58,
-            "elo": 1450,
-            "wins": 10,
+            "elo": 1444,
+            "wins": 1,
             "draws": 0,
-            "losses": 18,
+            "losses": 3,
+            "tournaments": [
+                {
+                    "name": "Contrast Phase Liga - Season 4",
+                    "faction": "Wolf Scouts",
+                    "elo_change": -56
+                }
+            ]
+        },
+        {
+            "name": "Báder Péter",
+            "rank": 58,
+            "elo": 1444,
+            "wins": 3,
+            "draws": 1,
+            "losses": 6,
+            "tournaments": [
+                {
+                    "name": "Contrast Clash - May 2026",
+                    "faction": "Nemesis Claw",
+                    "elo_change": -29
+                },
+                {
+                    "name": "Contrast Clash - June 2026",
+                    "faction": "Nemesis Claw",
+                    "elo_change": 1
+                },
+                {
+                    "name": "2026 Invitational",
+                    "faction": "Vespid Stingwings",
+                    "elo_change": -28
+                }
+            ]
+        },
+        {
+            "name": "Gergely Darmos",
+            "rank": 60,
+            "elo": 1438,
+            "wins": 5,
+            "draws": 2,
+            "losses": 7,
+            "tournaments": [
+                {
+                    "name": "Contrast Double Clash - November 2025",
+                    "faction": "Deathwatch",
+                    "elo_change": -1
+                },
+                {
+                    "name": "Contrast Phase Liga - Season 4",
+                    "faction": "Wolf Scouts",
+                    "elo_change": 0
+                },
+                {
+                    "name": "Contrast Clash - May 2026",
+                    "faction": "Angels of Death",
+                    "elo_change": 38
+                },
+                {
+                    "name": "2026 Invitational",
+                    "faction": "Angels of Death",
+                    "elo_change": -99
+                }
+            ]
+        },
+        {
+            "name": "Szalai Mátyás",
+            "rank": 60,
+            "elo": 1438,
+            "wins": 0,
+            "draws": 0,
+            "losses": 3,
+            "tournaments": [
+                {
+                    "name": "Contrast Clash - October 2026",
+                    "faction": "Raveners",
+                    "elo_change": -62
+                }
+            ]
+        },
+        {
+            "name": "Báder Máté",
+            "rank": 62,
+            "elo": 1437,
+            "wins": 0,
+            "draws": 0,
+            "losses": 3,
+            "tournaments": [
+                {
+                    "name": "Contrast Clash - May 2026",
+                    "faction": "Mandrakes",
+                    "elo_change": -63
+                }
+            ]
+        },
+        {
+            "name": "Levente Horváth",
+            "rank": 63,
+            "elo": 1432,
+            "wins": 0,
+            "draws": 0,
+            "losses": 3,
+            "tournaments": [
+                {
+                    "name": "Contrast Clash - October 2026",
+                    "faction": "Canoptek Circle",
+                    "elo_change": -68
+                }
+            ]
+        },
+        {
+            "name": "József Márton Bíró",
+            "rank": 64,
+            "elo": 1430,
+            "wins": 2,
+            "draws": 0,
+            "losses": 5,
+            "tournaments": [
+                {
+                    "name": "Contrast Phase Liga - Season 4",
+                    "faction": "Murderwing",
+                    "elo_change": 9
+                },
+                {
+                    "name": "Contrast Clash - February 2026",
+                    "faction": "Wrecka Krew",
+                    "elo_change": -79
+                }
+            ]
+        },
+        {
+            "name": "Tamás Horváth",
+            "rank": 65,
+            "elo": 1429,
+            "wins": 0,
+            "draws": 0,
+            "losses": 3,
+            "tournaments": [
+                {
+                    "name": "Contrast Clash - February 2026",
+                    "faction": "Blades of Khaine",
+                    "elo_change": -71
+                }
+            ]
+        },
+        {
+            "name": "Péter Kóbor",
+            "rank": 65,
+            "elo": 1429,
+            "wins": 0,
+            "draws": 0,
+            "losses": 3,
+            "tournaments": [
+                {
+                    "name": "Contrast Clash - September 2026",
+                    "faction": "Hierotek Circle",
+                    "elo_change": -71
+                }
+            ]
+        },
+        {
+            "name": "Alex Horvai",
+            "rank": 67,
+            "elo": 1428,
+            "wins": 2,
+            "draws": 0,
+            "losses": 6,
+            "tournaments": [
+                {
+                    "name": "Contrast Clash - January 2026",
+                    "faction": "XV26 Stealth Battlesuits",
+                    "elo_change": -73
+                },
+                {
+                    "name": "Contrast Clash - February 2026",
+                    "faction": "Wolf Scouts",
+                    "elo_change": -13
+                },
+                {
+                    "name": "Contrast Clash - May 2026",
+                    "faction": "Hearthkyn Salvagers",
+                    "elo_change": 14
+                }
+            ]
+        },
+        {
+            "name": "Novak Botond",
+            "rank": 67,
+            "elo": 1428,
+            "wins": 0,
+            "draws": 0,
+            "losses": 3,
+            "tournaments": [
+                {
+                    "name": "HTC Kísérleti verseny",
+                    "faction": "Corsair Voidscarred",
+                    "elo_change": -72
+                }
+            ]
+        },
+        {
+            "name": "Milán Józing",
+            "rank": 69,
+            "elo": 1425,
+            "wins": 2,
+            "draws": 2,
+            "losses": 6,
+            "tournaments": [
+                {
+                    "name": "Contrast Double Clash - November 2025",
+                    "faction": "Legionary",
+                    "elo_change": -27
+                },
+                {
+                    "name": "Contrast Phase Liga - Season 4",
+                    "faction": "Deathwatch",
+                    "elo_change": -74
+                },
+                {
+                    "name": "Contrast Clash - January 2026",
+                    "faction": "Deathwatch",
+                    "elo_change": 26
+                }
+            ]
+        },
+        {
+            "name": "Vince Soós",
+            "rank": 69,
+            "elo": 1425,
+            "wins": 4,
+            "draws": 0,
+            "losses": 9,
+            "tournaments": [
+                {
+                    "name": "Contrast Clash - January 2026",
+                    "faction": "Goremongers",
+                    "elo_change": -43
+                },
+                {
+                    "name": "Contrast Clash - February 2026",
+                    "faction": "Murderwing",
+                    "elo_change": -16
+                },
+                {
+                    "name": "Contrast Clash - March 2026",
+                    "faction": "Murderwing",
+                    "elo_change": -10
+                },
+                {
+                    "name": "Contrast Clash - April 2026",
+                    "faction": "Murderwing",
+                    "elo_change": 41
+                },
+                {
+                    "name": "Contrast Clash - May 2026",
+                    "faction": "Fellgor Ravagers",
+                    "elo_change": -47
+                }
+            ]
+        },
+        {
+            "name": "Ariel Kormos",
+            "rank": 71,
+            "elo": 1424,
+            "wins": 1,
+            "draws": 0,
+            "losses": 5,
+            "tournaments": [
+                {
+                    "name": "Contrast Clash - June 2026",
+                    "faction": "Canoptek Circle",
+                    "elo_change": -71
+                },
+                {
+                    "name": "Contrast Clash - October 2026",
+                    "faction": "Canoptek Circle",
+                    "elo_change": -5
+                }
+            ]
+        },
+        {
+            "name": "Tamás Szücs",
+            "rank": 72,
+            "elo": 1423,
+            "wins": 1,
+            "draws": 1,
+            "losses": 5,
+            "tournaments": [
+                {
+                    "name": "Contrast Clash - February 2026",
+                    "faction": "Wrecka Krew",
+                    "elo_change": -24
+                },
+                {
+                    "name": "TTS Liga",
+                    "faction": "Inquisitorial Agents",
+                    "elo_change": -53
+                }
+            ]
+        },
+        {
+            "name": "Mark Lukovics",
+            "rank": 72,
+            "elo": 1423,
+            "wins": 0,
+            "draws": 0,
+            "losses": 3,
+            "tournaments": [
+                {
+                    "name": "Contrast Clash - August 2026",
+                    "faction": "Wrecka Krew",
+                    "elo_change": -77
+                }
+            ]
+        },
+        {
+            "name": "Márton Mati",
+            "rank": 74,
+            "elo": 1420,
+            "wins": 11,
+            "draws": 0,
+            "losses": 21,
             "tournaments": [
                 {
                     "name": "Contrast Double Clash - November 2025",
@@ -1392,271 +1722,11 @@
                     "name": "Contrast Clash - October 2026",
                     "faction": "Hearthkyn Salvagers",
                     "elo_change": -1
-                }
-            ]
-        },
-        {
-            "name": "Istvan Losonczi",
-            "rank": 61,
-            "elo": 1444,
-            "wins": 1,
-            "draws": 0,
-            "losses": 3,
-            "tournaments": [
-                {
-                    "name": "Contrast Phase Liga - Season 4",
-                    "faction": "Wolf Scouts",
-                    "elo_change": -56
-                }
-            ]
-        },
-        {
-            "name": "Szalai Mátyás",
-            "rank": 62,
-            "elo": 1438,
-            "wins": 0,
-            "draws": 0,
-            "losses": 3,
-            "tournaments": [
-                {
-                    "name": "Contrast Clash - October 2026",
-                    "faction": "Raveners",
-                    "elo_change": -62
-                }
-            ]
-        },
-        {
-            "name": "Báder Máté",
-            "rank": 63,
-            "elo": 1437,
-            "wins": 0,
-            "draws": 0,
-            "losses": 3,
-            "tournaments": [
-                {
-                    "name": "Contrast Clash - May 2026",
-                    "faction": "Mandrakes",
-                    "elo_change": -63
-                }
-            ]
-        },
-        {
-            "name": "Levente Horváth",
-            "rank": 64,
-            "elo": 1432,
-            "wins": 0,
-            "draws": 0,
-            "losses": 3,
-            "tournaments": [
-                {
-                    "name": "Contrast Clash - October 2026",
-                    "faction": "Canoptek Circle",
-                    "elo_change": -68
-                }
-            ]
-        },
-        {
-            "name": "József Márton Bíró",
-            "rank": 65,
-            "elo": 1430,
-            "wins": 2,
-            "draws": 0,
-            "losses": 5,
-            "tournaments": [
-                {
-                    "name": "Contrast Phase Liga - Season 4",
-                    "faction": "Murderwing",
-                    "elo_change": 9
                 },
                 {
-                    "name": "Contrast Clash - February 2026",
-                    "faction": "Wrecka Krew",
-                    "elo_change": -79
-                }
-            ]
-        },
-        {
-            "name": "Tamás Horváth",
-            "rank": 66,
-            "elo": 1429,
-            "wins": 0,
-            "draws": 0,
-            "losses": 3,
-            "tournaments": [
-                {
-                    "name": "Contrast Clash - February 2026",
-                    "faction": "Blades of Khaine",
-                    "elo_change": -71
-                }
-            ]
-        },
-        {
-            "name": "Péter Kóbor",
-            "rank": 66,
-            "elo": 1429,
-            "wins": 0,
-            "draws": 0,
-            "losses": 3,
-            "tournaments": [
-                {
-                    "name": "Contrast Clash - September 2026",
-                    "faction": "Hierotek Circle",
-                    "elo_change": -71
-                }
-            ]
-        },
-        {
-            "name": "Alex Horvai",
-            "rank": 68,
-            "elo": 1428,
-            "wins": 2,
-            "draws": 0,
-            "losses": 6,
-            "tournaments": [
-                {
-                    "name": "Contrast Clash - January 2026",
-                    "faction": "XV26 Stealth Battlesuits",
-                    "elo_change": -73
-                },
-                {
-                    "name": "Contrast Clash - February 2026",
-                    "faction": "Wolf Scouts",
-                    "elo_change": -13
-                },
-                {
-                    "name": "Contrast Clash - May 2026",
-                    "faction": "Hearthkyn Salvagers",
-                    "elo_change": 14
-                }
-            ]
-        },
-        {
-            "name": "Novak Botond",
-            "rank": 68,
-            "elo": 1428,
-            "wins": 0,
-            "draws": 0,
-            "losses": 3,
-            "tournaments": [
-                {
-                    "name": "HTC Kísérleti verseny",
-                    "faction": "Corsair Voidscarred",
-                    "elo_change": -72
-                }
-            ]
-        },
-        {
-            "name": "Milán Józing",
-            "rank": 70,
-            "elo": 1425,
-            "wins": 2,
-            "draws": 2,
-            "losses": 6,
-            "tournaments": [
-                {
-                    "name": "Contrast Double Clash - November 2025",
-                    "faction": "Legionary",
-                    "elo_change": -27
-                },
-                {
-                    "name": "Contrast Phase Liga - Season 4",
-                    "faction": "Deathwatch",
-                    "elo_change": -74
-                },
-                {
-                    "name": "Contrast Clash - January 2026",
-                    "faction": "Deathwatch",
-                    "elo_change": 26
-                }
-            ]
-        },
-        {
-            "name": "Vince Soós",
-            "rank": 70,
-            "elo": 1425,
-            "wins": 4,
-            "draws": 0,
-            "losses": 9,
-            "tournaments": [
-                {
-                    "name": "Contrast Clash - January 2026",
-                    "faction": "Goremongers",
-                    "elo_change": -43
-                },
-                {
-                    "name": "Contrast Clash - February 2026",
-                    "faction": "Murderwing",
-                    "elo_change": -16
-                },
-                {
-                    "name": "Contrast Clash - March 2026",
-                    "faction": "Murderwing",
-                    "elo_change": -10
-                },
-                {
-                    "name": "Contrast Clash - April 2026",
-                    "faction": "Murderwing",
-                    "elo_change": 41
-                },
-                {
-                    "name": "Contrast Clash - May 2026",
-                    "faction": "Fellgor Ravagers",
-                    "elo_change": -47
-                }
-            ]
-        },
-        {
-            "name": "Ariel Kormos",
-            "rank": 72,
-            "elo": 1424,
-            "wins": 1,
-            "draws": 0,
-            "losses": 5,
-            "tournaments": [
-                {
-                    "name": "Contrast Clash - June 2026",
-                    "faction": "Canoptek Circle",
-                    "elo_change": -71
-                },
-                {
-                    "name": "Contrast Clash - October 2026",
-                    "faction": "Canoptek Circle",
-                    "elo_change": -5
-                }
-            ]
-        },
-        {
-            "name": "Tamás Szücs",
-            "rank": 73,
-            "elo": 1423,
-            "wins": 1,
-            "draws": 1,
-            "losses": 5,
-            "tournaments": [
-                {
-                    "name": "Contrast Clash - February 2026",
-                    "faction": "Wrecka Krew",
-                    "elo_change": -24
-                },
-                {
-                    "name": "TTS Liga",
-                    "faction": "Inquisitorial Agents",
-                    "elo_change": -53
-                }
-            ]
-        },
-        {
-            "name": "Mark Lukovics",
-            "rank": 73,
-            "elo": 1423,
-            "wins": 0,
-            "draws": 0,
-            "losses": 3,
-            "tournaments": [
-                {
-                    "name": "Contrast Clash - August 2026",
-                    "faction": "Wrecka Krew",
-                    "elo_change": -77
+                    "name": "2026 Invitational",
+                    "faction": "Nemesis Claw",
+                    "elo_change": -30
                 }
             ]
         },
