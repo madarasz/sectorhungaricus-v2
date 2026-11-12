@@ -54,11 +54,14 @@ async function load() {
   const chart = document.getElementById('chart');
   let data;
   try {
-    const res = await fetch('results-2026.json?t=' + Date.now()); // cache-bust => always fresh
+    const res = await fetch('results.json?t=' + Date.now()); // cache-bust => always fresh
     if (!res.ok) throw new Error('HTTP ' + res.status);
-    data = await res.json();
+    const { seasons } = await res.json();
+    // ?season=2026 or ?season=all-time, newest season by default
+    const seasonId = new URLSearchParams(location.search).get('season');
+    data = seasons.find(s => s.id === seasonId) || seasons[0];
   } catch (e) {
-    meta.innerHTML = '<span class="err">Failed to load results-2026.json: ' + e.message +
+    meta.innerHTML = '<span class="err">Failed to load results.json: ' + e.message +
       '<br>Serve this folder over HTTP (fetch is blocked on file://). E.g. <code>npx serve scripts</code></span>';
     return;
   }

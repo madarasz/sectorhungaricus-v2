@@ -1,5 +1,6 @@
 {
     "name": "Tournaments 2026",
+    "min_tournaments": 2,
     "tournaments": [
         {
             "name": "2026 Invitational",

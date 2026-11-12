@@ -201,12 +201,27 @@ export function findKillTeam(description: string, predicate: (team: TestKillTeam
   return team;
 }
 
-export function concludedTournamentPlayerCounts(): Array<{ name: string; players: number }> {
-  const read = (file: string) => JSON.parse(fs.readFileSync(path.join(process.cwd(), 'scripts', file), 'utf8'));
-  const { tournaments } = read('tournaments-2026.json') as { tournaments: Array<{ name: string }> };
-  const { players } = read('results-2026.json') as { players: Array<{ tournaments: Array<{ name: string }> }> };
-  return tournaments.map(({ name }) => ({
-    name,
-    players: players.filter(player => player.tournaments.some(t => t.name === name)).length,
+interface TestSeasonResult {
+  id: string;
+  min_tournaments: number;
+  tournaments: Array<{ name: string }>;
+  players: Array<{ tournaments: Array<{ name: string }> }>;
+}
+
+// ELO results of each season (newest first, all-time last), from scripts/results.json
+export function tournamentSeasons(): Array<{
+  id: string;
+  eligiblePlayers: number;
+  tournaments: Array<{ name: string; players: number }>;
+}> {
+  const file = path.join(process.cwd(), 'scripts', 'results.json');
+  const { seasons } = JSON.parse(fs.readFileSync(file, 'utf8')) as { seasons: TestSeasonResult[] };
+  return seasons.map(season => ({
+    id: season.id,
+    eligiblePlayers: season.players.filter(player => player.tournaments.length >= season.min_tournaments).length,
+    tournaments: season.tournaments.map(({ name }) => ({
+      name,
+      players: season.players.filter(player => player.tournaments.some(t => t.name === name)).length,
+    })),
   }));
 }

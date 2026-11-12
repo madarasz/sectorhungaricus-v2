@@ -14,7 +14,8 @@ interface Tournament {
 interface TournamentsConfig {
   name: string;
   tournaments: Tournament[];
-  scoring: number[];
+  // Minimum number of tournaments to get into the ranking table
+  min_tournaments?: number;
 }
 
 interface PlayerTournamentResult {
@@ -33,8 +34,15 @@ interface PlayerResult {
   tournaments: PlayerTournamentResult[];
 }
 
-interface ResultsOutput {
+interface SeasonResult {
+  id: string;
+  min_tournaments: number;
+  tournaments: Tournament[];
   players: PlayerResult[];
+}
+
+interface ResultsOutput {
+  seasons: SeasonResult[];
 }
 
 interface BCPUser {
@@ -60,6 +68,7 @@ interface BCPPairing {
   round?: number;
   isDone?: boolean;
   created_at?: string;
+  updated_at?: string;
   player1?: BCPPairingPlayer;
   player2?: BCPPairingPlayer;
   player1Game?: BCPGame;
@@ -77,6 +86,8 @@ interface PairingsCache {
 
 const STARTING_ELO = 1500;
 const K_FACTOR = 50;
+const DEFAULT_MIN_TOURNAMENTS = 3;
+const ALL_TIME_SEASON_ID = "all-time";
 
 async function fetchPairingsForRound(
   bcpId: string,
@@ -183,31 +194,34 @@ function getEarliestPairingDate(cache: PairingsCache): string {
   return dates.length ? dates.sort()[0] : "9999";
 }
 
-async function main(): Promise<void> {
-  const scriptsDir = path.dirname(__filename);
-  const tournamentsPath = path.join(scriptsDir, "tournaments-2026.json");
-  const resultsPath = path.join(scriptsDir, "results-2026.json");
-  const cacheDir = path.join(scriptsDir, "cache", "pairings");
+interface Season {
+  id: string;
+  tournaments: Tournament[];
+  min_tournaments: number;
+}
 
-  fs.mkdirSync(cacheDir, { recursive: true });
+function loadSeasons(scriptsDir: string): Season[] {
+  return fs
+    .readdirSync(scriptsDir)
+    .map((file) => file.match(/^tournaments-(\d{4})\.json$/))
+    .filter((match): match is RegExpMatchArray => match !== null)
+    .map((match) => {
+      const config: TournamentsConfig = JSON.parse(
+        fs.readFileSync(path.join(scriptsDir, match[0]), "utf-8")
+      );
+      return {
+        id: match[1],
+        tournaments: config.tournaments,
+        min_tournaments: config.min_tournaments ?? DEFAULT_MIN_TOURNAMENTS,
+      };
+    })
+    .sort((a, b) => b.id.localeCompare(a.id));
+}
 
-  const tournamentsConfig: TournamentsConfig = JSON.parse(
-    fs.readFileSync(tournamentsPath, "utf-8")
-  );
-
-  // Build cache map and sort tournaments by earliest pairing timestamp
-  const cacheMap = new Map<string, PairingsCache>();
-  for (const t of tournamentsConfig.tournaments) {
-    await loadFactionCache(t.bcp_id, cacheDir);
-    cacheMap.set(t.bcp_id, await fetchAndCachePairings(t, cacheDir));
-  }
-
-  const tournaments = [...tournamentsConfig.tournaments].sort((a, b) =>
-    getEarliestPairingDate(cacheMap.get(a.bcp_id)!).localeCompare(
-      getEarliestPairingDate(cacheMap.get(b.bcp_id)!)
-    )
-  );
-
+function calculateElo(
+  tournaments: Tournament[],
+  cacheMap: Map<string, PairingsCache>
+): PlayerResult[] {
   const eloMap = new Map<string, number>();
   const playerMap = new Map<string, PlayerResult>();
 
@@ -228,15 +242,13 @@ async function main(): Promise<void> {
   }
 
   for (const tournament of tournaments) {
-    console.log(`\nProcessing: ${tournament.name}`);
-
     const cache = cacheMap.get(tournament.bcp_id)!;
     const roundNumbers = Object.keys(cache.rounds)
       .map(Number)
       .sort((a, b) => a - b);
 
     if (roundNumbers.length === 0) {
-      console.log(`  No pairing data available, skipping.`);
+      console.log(`  No pairing data for ${tournament.name}, skipping.`);
       continue;
     }
 
@@ -349,25 +361,107 @@ async function main(): Promise<void> {
     playersArray[i].rank = rankCounter;
   }
 
+  return playersArray;
+}
+
+function buildSeasonResult(
+  id: string,
+  minTournaments: number,
+  tournaments: Tournament[],
+  cacheMap: Map<string, PairingsCache>
+): SeasonResult {
+  const earliestDate = (t: Tournament) =>
+    getEarliestPairingDate(cacheMap.get(t.bcp_id)!);
+  // ELO is calculated in chronological order
+  const chronological = [...tournaments].sort((a, b) =>
+    earliestDate(a).localeCompare(earliestDate(b))
+  );
+
+  console.log(`\nSeason ${id}: ${tournaments.length} tournaments`);
+  const players = calculateElo(chronological, cacheMap);
+
+  return {
+    id,
+    min_tournaments: minTournaments,
+    // Tournament with the most recent last match first
+    tournaments: [...tournaments]
+      .sort((a, b) =>
+        getLastMatchDate(cacheMap.get(b.bcp_id)!).localeCompare(
+          getLastMatchDate(cacheMap.get(a.bcp_id)!)
+        )
+      )
+      .map(({ name, bcp_id }) => ({ name, bcp_id })),
+    players,
+  };
+}
+
+// Time of the last played match: the last result update of a finished pairing
+function getLastMatchDate(cache: PairingsCache): string {
+  const dates = Object.values(cache.rounds)
+    .flat()
+    .filter((p) => p.isDone)
+    .map((p) => p.updated_at || p.created_at)
+    .filter(Boolean) as string[];
+  return dates.length ? dates.sort()[dates.length - 1] : "";
+}
+
+async function main(): Promise<void> {
+  const scriptsDir = path.dirname(__filename);
+  const resultsPath = path.join(scriptsDir, "results.json");
+  const cacheDir = path.join(scriptsDir, "cache", "pairings");
+
+  fs.mkdirSync(cacheDir, { recursive: true });
+
+  const seasons = loadSeasons(scriptsDir);
+  const allTournaments = seasons.flatMap((season) => season.tournaments);
+
+  const cacheMap = new Map<string, PairingsCache>();
+  for (const t of allTournaments) {
+    if (cacheMap.has(t.bcp_id)) continue;
+    await loadFactionCache(t.bcp_id, cacheDir);
+    cacheMap.set(t.bcp_id, await fetchAndCachePairings(t, cacheDir));
+  }
+
   const results: ResultsOutput = {
-    players: playersArray,
+    seasons: [
+      ...seasons.map((season) =>
+        buildSeasonResult(
+          season.id,
+          season.min_tournaments,
+          season.tournaments,
+          cacheMap
+        )
+      ),
+      buildSeasonResult(
+        ALL_TIME_SEASON_ID,
+        DEFAULT_MIN_TOURNAMENTS,
+        allTournaments,
+        cacheMap
+      ),
+    ],
   };
 
   fs.writeFileSync(resultsPath, JSON.stringify(results, null, 4));
 
   console.log(`\nResults written to ${resultsPath}`);
-  console.log(`Total players: ${playersArray.length}`);
+  for (const season of results.seasons) {
+    const eligible = season.players.filter(
+      (p) => p.tournaments.length >= season.min_tournaments
+    ).length;
+    console.log(
+      `  ${season.id}: ${season.players.length} players, ${eligible} with at least ${season.min_tournaments} tournaments`
+    );
+  }
 
-  console.log("\nAll players:");
-  let rank = 0;
-  let prevElo = -1;
-  playersArray.forEach((player, index) => {
-    if (player.elo !== prevElo) { rank = index + 1; prevElo = player.elo; }
+  // All-time list contains every player: use it to find duplicate names
+  const allTime = results.seasons[results.seasons.length - 1];
+  console.log("\nAll players (all-time):");
+  for (const player of allTime.players) {
     const record = `${player.wins}W/${player.draws}D/${player.losses}L`;
     console.log(
-      `  ${rank}. ${player.name}: ${player.elo} ELO (${record}, ${player.tournaments.length} tournaments)`
+      `  ${player.rank}. ${player.name}: ${player.elo} ELO (${record}, ${player.tournaments.length} tournaments)`
     );
-  });
+  }
 }
 
 main().catch(console.error);

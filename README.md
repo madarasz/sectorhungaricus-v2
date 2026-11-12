@@ -205,8 +205,9 @@ Edit `public/admin/config.yml` to modify:
 - Workflow settings
 
 ## Tournament results, best players
-Add tournaments to `scripts/tournaments-2026.json`.
-Run script to update tournament scores:
+Each season has a `scripts/tournaments-<year>.json` file. Add tournaments to the file of the season. To start a new season, add a new file. `min_tournaments` sets the minimum number of tournaments to get into the ranking table (default: 3, also used for all-time).
+
+Run script to update the ELO points of each season and the all-time ELO points (all seasons) in `scripts/results.json`:
 ```
 npm run points
 ```

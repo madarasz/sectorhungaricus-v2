@@ -1,7 +1,12 @@
 import { Locale } from './locale-utils'
 
 export interface TournamentResultsTranslations {
-  title: string
+  title: (season: string, minTournaments: number) => string
+  allTimeTitle: (minTournaments: number) => string
+  season: {
+    label: string
+    allTime: string
+  }
   tableHeaders: {
     position: string
     player: string
@@ -19,9 +24,27 @@ export interface TournamentResultsTranslations {
   topFactions: string
 }
 
+// Hungarian adjective suffix of a year number, for example 2026-os, 2027-es, 2028-as
+function hungarianYearSuffix(year: string): string {
+  const lastDigitSuffixes = ['', 'es', 'es', 'as', 'es', 'ös', 'os', 'es', 'as', 'es']
+  const tensSuffixes = ['es', 'es', 'as', 'as', 'es', 'es', 'as', 'es', 'as', 'es']
+  const lastDigit = Number(year.slice(-1))
+  if (lastDigit !== 0) return lastDigitSuffixes[lastDigit]
+  const tens = Number(year.slice(-2, -1))
+  if (tens !== 0) return tensSuffixes[tens]
+  return year.slice(-3, -2) === '0' ? 'es' : 'as'
+}
+
 export const tournamentResultsTranslations: Record<Locale, TournamentResultsTranslations> = {
   en: {
-    title: 'Best tournament players in the 2026 season (at least 2 tournaments)',
+    title: (season, minTournaments) =>
+      `Best tournament players in the ${season} season (at least ${minTournaments} ${minTournaments === 1 ? 'tournament' : 'tournaments'})`,
+    allTimeTitle: (minTournaments) =>
+      `Best tournament players of all time (at least ${minTournaments} ${minTournaments === 1 ? 'tournament' : 'tournaments'})`,
+    season: {
+      label: 'Season',
+      allTime: 'All-time'
+    },
     tableHeaders: {
       position: '#',
       player: 'Player',
@@ -39,7 +62,14 @@ export const tournamentResultsTranslations: Record<Locale, TournamentResultsTran
     topFactions: 'Most Played Factions'
   },
   hu: {
-    title: 'Legjobb versenyzők a 2026-os szezonban (legalább 2 verseny)',
+    title: (season, minTournaments) =>
+      `Legjobb versenyzők a ${season}-${hungarianYearSuffix(season)} szezonban (legalább ${minTournaments} verseny)`,
+    allTimeTitle: (minTournaments) =>
+      `Minden idők legjobb versenyzői (legalább ${minTournaments} verseny)`,
+    season: {
+      label: 'Szezon',
+      allTime: 'Összesített'
+    },
     tableHeaders: {
       position: '#',
       player: 'Játékos',

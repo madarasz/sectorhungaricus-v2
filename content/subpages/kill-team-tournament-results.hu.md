@@ -8,12 +8,12 @@ metaDescription: A Sector Hungaricus Kill Team versenyeinek eredményei és ELO
   rangsora, beleértve a szezonzáró Invitational versenyt.
 game: kill-team
 content_blocks:
-  - type: page_reference_block
-    page_reference: pages/TournamentResults
   - type: hero_block
     content: |-
       #### 🏆 2026 "Invitational" győztese: Omar
       #### 🏆 2025 "Invitational" győztese: Clostry
+  - type: page_reference_block
+    page_reference: pages/TournamentResults
   - type: text_block
     style: normal
     content: >-

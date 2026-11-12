@@ -1,0 +1,10 @@
+{
+    "name": "Tournaments 2027",
+    "min_tournaments": 1,
+    "tournaments": [
+        {
+            "name": "Contrast Phase Liga - Season 5",
+            "bcp_id": "FhhcGzzVCEb4"
+        }
+    ]
+}
