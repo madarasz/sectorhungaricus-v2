@@ -1,5 +1,5 @@
-import { test, expect } from '@playwright/test';
-import { Locale, firstParagraphText, pageData, readContent } from './helpers/content';
+import { test, expect } from './fixtures';
+import { Locale, firstParagraphText, pageData, readCollection, readContent } from './helpers/content';
 
 test.describe('Language Tests', () => {
   for (const locale of ['hu', 'en'] as Locale[]) {
@@ -16,6 +16,13 @@ test.describe('Language Tests', () => {
       const home = readContent('pages', 'welcome-to-sector-hungaricus', locale);
       await expect(page.getByText(home.data.title as string, { exact: true }).first()).toBeVisible();
       await expect(page.locator('body')).toContainText(firstParagraphText(home.body));
+
+      // Game titles as headings
+      const games = readCollection('games', locale);
+      expect(games.length).toBeGreaterThan(0);
+      for (const game of games) {
+        await expect(page.locator('h3').filter({ hasText: game.data.title as string }).first()).toBeVisible();
+      }
     });
   }
 });

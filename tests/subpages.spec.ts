@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect, Page } from './fixtures';
 import { NAME_LINK_STORE, STORES, storeLinkUrl } from '@/lib/storeBoxes';
 import { Locale, subpageData, subpageStoreBoxes } from './helpers/content';
 
@@ -44,8 +44,6 @@ test.describe('Subpages Navigation Tests', () => {
       const href = await link.getAttribute('href');
       const title = await link.textContent();
       
-      console.log(`Navigating to subpage: ${title} (${href})`);
-      
       // Click the link
       await link.click();
       
@@ -67,13 +65,7 @@ test.describe('Subpages Navigation Tests', () => {
     return linkCount;
   }
 
-  test('Hungarian subpages navigation - Kill Team', async ({ page }) => {
-    const linkCount = await navigateSubpages(page, 'hu', 'kill-team', 'what-is-kill-team');
-    
-    // Verify we navigated through multiple subpages
-    expect(linkCount).toBeGreaterThan(1);
-  });
-
+  // Both locales use the same navigation code, so one locale is enough
   test('English subpages navigation - Kill Team', async ({ page }) => {
     const linkCount = await navigateSubpages(page, 'en', 'kill-team', 'what-is-kill-team');
 
@@ -120,7 +112,8 @@ test.describe('Subpages Navigation Tests', () => {
 });
 
 test.describe('Store boxes in subpage text', () => {
-  for (const locale of ['en', 'hu'] as Locale[]) {
+  // store-links.spec.ts checks the en page
+  for (const locale of ['hu'] as Locale[]) {
     test(`store box reference shows the store links (${locale})`, async ({ page }) => {
       const [ref] = subpageStoreBoxes(locale);
       test.skip(!ref, `No ${locale} subpage refers to a store box`);

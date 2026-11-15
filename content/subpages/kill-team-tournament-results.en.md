@@ -17,7 +17,7 @@ content_blocks:
   - type: text_block
     style: normal
     content: >-
-      Each season is concluded with an Invitational tournament for the top 8
+      Each season is concluded with an Invitational tournament for the top
       players. The 2026 season ended with the 2026 Invitational tournament in
       November. The 2027 season started afterwards.
 

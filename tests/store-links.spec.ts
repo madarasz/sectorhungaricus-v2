@@ -1,4 +1,4 @@
-import { test, expect, Locator } from '@playwright/test';
+import { test, expect, Locator } from './fixtures';
 import { NAME_LINK_STORE, STORES, STORE_LINK_UTM_PARAMS, Store, storeLinkUrl } from '@/lib/storeBoxes';
 import type { KillTeamStoreBox } from '@/types/content';
 import { killTeams, subpageStoreBoxes } from './helpers/content';
@@ -38,6 +38,21 @@ async function expectPartnerLinks(container: Locator, box: KillTeamStoreBox) {
     const rel = (await link.getAttribute('rel'))!.split(' ');
     expect(rel).toContain('noopener');
     expect(rel).not.toContain('noreferrer');
+    expect(await link.getAttribute('target')).toBe('_blank');
+    if (testId !== 'store-box-name-link') {
+      await expect(link.getByRole('img')).toBeVisible();
+    }
+  }
+  // No icon link for a store that the box has no URL for
+  for (const store of STORES.filter((s) => !box[s.field])) {
+    await expect(container.getByTestId(`store-box-icon-${store.id}`)).toHaveCount(0);
+  }
+  // Product name links to the name link store, or is plain text without its URL
+  if (!box[NAME_LINK_STORE.field]) {
+    await expect(container.getByTestId('store-box-name-link')).toHaveCount(0);
+    await expect(container.getByTestId('store-box-name')).toHaveText(box.name);
+  } else {
+    await expect(container.getByTestId('store-box-name-link')).toHaveText(box.name);
   }
 }
 
@@ -77,14 +92,22 @@ test.describe('Store link URL', () => {
 
 test.describe('Store links to partners', () => {
   test('kill team details link to the stores with the UTM parameters of the store and the referrer', async ({ page }) => {
-    const team = killTeams().find((t) => t.store_boxes?.length);
-    test.skip(!team, 'No reviewed kill team with store boxes');
+    // Teams that together have a link to each store
+    const withBoxes = killTeams().filter((t) => t.store_boxes?.length);
+    test.skip(!withBoxes.length, 'No reviewed kill team with store boxes');
+    const fields = [NAME_LINK_STORE.field, ...STORES.map((store) => store.field)];
+    const teams = [...new Set([
+      withBoxes[0],
+      ...fields.flatMap((field) => withBoxes.find((t) => t.store_boxes!.some((box) => box[field])) ?? []),
+    ])];
 
-    await page.goto(`${CHOOSER_URL}?legal=declassified&team=${team!.slug}`);
-    const boxes = page.getByTestId('kt-detail').getByTestId('kt-detail-store-boxes').getByTestId('store-box');
-    await expect(boxes).toHaveCount(team!.store_boxes!.length);
-    for (const [i, box] of team!.store_boxes!.entries()) {
-      await expectPartnerLinks(boxes.nth(i), box);
+    for (const team of teams) {
+      await page.goto(`${CHOOSER_URL}?legal=declassified&team=${team.slug}`);
+      const boxes = page.getByTestId('kt-detail').getByTestId('kt-detail-store-boxes').getByTestId('store-box');
+      await expect(boxes).toHaveCount(team.store_boxes!.length);
+      for (const [i, box] of team.store_boxes!.entries()) {
+        await expectPartnerLinks(boxes.nth(i), box);
+      }
     }
   });
 

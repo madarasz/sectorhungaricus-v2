@@ -17,13 +17,13 @@ content_blocks:
   - type: text_block
     style: normal
     content: >-
-      Minden szezonban a 8 legjobb játékost meghívjuk az "Invitational"
+      Minden szezonban a legjobb játékosokat meghívjuk az "Invitational"
       versenyre. A 2026-os szezon a novemberi "Invitational" versennyel zárult.
       Ez után elkezdődött a 2027-os szezon. 
 
 
-      *A játékosok ELO pontokat kapnak verseny meccseik alapján. Legalább két versenyen részt kell venni, hogy a "legjobb játékos" címért indulhass. Az ELO pontokat töröljük szezon elején.*
+      *A játékosok ELO pontokat kapnak verseny meccseik alapján. Legalább **három** versenyen részt kell venni, hogy a "legjobb játékos" címért indulhass. Az ELO pontokat töröljük szezon elején.*
 
 
-      A Sector Hungaricus ranglistájába beszámító versenyeken és ligákban való részvétellel hozzájárulsz ahhoz, hogy az eredményeidet rögzítsük és ezen az oldalon megjelenítsük. Ha szeretnéd, hogy töröljük a bejegyzésedet, keresd a verseny szervezőjét, vagy írj nekünk Discordon.
+      A Sector Hungaricus ranglistájába beszámító versenyeken és ligákban való részvétellel hozzájárulsz ahhoz, hogy az eredményeidet rögzítsük és ezen az oldalon megjelenítsük. Ha szeretnéd, hogy töröljük a bejegyzésedet, keresd a verseny szervezőjét, vagy írj nekünk Discordon!
 ---

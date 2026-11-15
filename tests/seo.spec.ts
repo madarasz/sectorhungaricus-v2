@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures';
 import { composeTitle } from '@/lib/seo';
 import { pageData, subpageData } from './helpers/content';
 

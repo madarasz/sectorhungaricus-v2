@@ -1,99 +1,35 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures';
 
 test.describe('Theme Switching Tests', () => {
-  test.beforeEach(async ({ page }) => {
-    // Clear cookies to start fresh
-    await page.context().clearCookies();
-  });
-
-  test('should toggle theme when clicking theme button', async ({ page }) => {
+  test('theme button toggles the theme, and the theme stays after reload and on other pages', async ({ page }) => {
     await page.goto('/hu/');
-
-    // Get the theme toggle button
+    const html = page.locator('html');
     const themeToggle = page.getByTestId('theme-toggle');
+    // Sun icon shows in dark mode
+    const themeIcon = themeToggle.locator('svg');
+
+    // Light theme by default
     await expect(themeToggle).toBeVisible();
-
-    // Check initial state (should be light theme by default)
-    const initialHtmlClass = await page.locator('html').getAttribute('class');
-    expect(initialHtmlClass).toContain('light');
-
-    // Check navigation background color is light theme
+    await expect(html).toHaveClass(/light/);
     const nav = page.locator('nav');
-    const initialNavBgColor = await nav.evaluate((el) => 
-      getComputedStyle(el).backgroundColor
-    );
+    const initialNavBgColor = await nav.evaluate((el) => getComputedStyle(el).backgroundColor);
 
-    // Click theme toggle to switch to dark theme
     await themeToggle.click();
-    
-    // Wait for theme change
-    await page.waitForTimeout(500);
+    await expect(html).toHaveClass(/dark/);
+    await expect(themeIcon).toHaveAttribute('data-icon', 'sun');
+    await expect.poll(() => nav.evaluate((el) => getComputedStyle(el).backgroundColor)).not.toBe(initialNavBgColor);
 
-    // Verify HTML class changed to dark
-    const updatedHtmlClass = await page.locator('html').getAttribute('class');
-    expect(updatedHtmlClass).toContain('dark');
+    // Preference is saved in localStorage
+    expect(await page.evaluate(() => localStorage.getItem('preferred-theme'))).toBe('dark');
 
-    // Check navigation background color changed
-    const updatedNavBgColor = await nav.evaluate((el) => 
-      getComputedStyle(el).backgroundColor
-    );
-    expect(updatedNavBgColor).not.toBe(initialNavBgColor);
-
-    // Verify theme icon changed (should show sun when in dark mode)
-    const themeIcon = themeToggle.locator('svg');
-    const iconClass = await themeIcon.getAttribute('data-icon');
-    expect(iconClass).toBe('sun');
-  });
-
-  test('should persist theme preference in localStorage', async ({ page }) => {
-    await page.goto('/hu/');
-
-    // Switch to dark theme
-    const themeToggle = page.getByTestId('theme-toggle');
-    await themeToggle.click();
-    await page.waitForTimeout(500);
-
-    // Check localStorage
-    const savedTheme = await page.evaluate(() => {
-      try {
-        return localStorage.getItem('preferred-theme');
-      } catch {
-        return null;
-      }
-    });
-    expect(savedTheme).toBe('dark');
-
-    // Reload page and verify theme is still dark
+    // Theme stays after reload
     await page.reload();
-    
-    const htmlClass = await page.locator('html').getAttribute('class');
-    expect(htmlClass).toContain('dark');
+    await expect(html).toHaveClass(/dark/);
+    await expect(themeIcon).toHaveAttribute('data-icon', 'sun');
 
-    // Verify icon is still sun (dark mode)
-    const themeIcon = themeToggle.locator('svg');
-    const iconClass = await themeIcon.getAttribute('data-icon');
-    expect(iconClass).toBe('sun');
-  });
-
-  test('should maintain theme across different pages', async ({ page }) => {
-    await page.goto('/hu/');
-
-    // Switch to dark theme
-    const themeToggle = page.getByTestId('theme-toggle');
-    await themeToggle.click();
-    await page.waitForTimeout(500);
-
-    // Navigate to English page
+    // Theme stays on another page
     await page.goto('/en/');
-
-    // Verify theme is still dark
-    const htmlClass = await page.locator('html').getAttribute('class');
-    expect(htmlClass).toContain('dark');
-
-    // Verify theme toggle still shows sun icon (dark mode)
-    const englishThemeToggle = page.getByTestId('theme-toggle');
-    const themeIcon = englishThemeToggle.locator('svg');
-    const iconClass = await themeIcon.getAttribute('data-icon');
-    expect(iconClass).toBe('sun');
+    await expect(html).toHaveClass(/dark/);
+    await expect(themeIcon).toHaveAttribute('data-icon', 'sun');
   });
 });

@@ -12,7 +12,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run lint` - Run ESLint
 
 ### Testing
-- `npm run test` - Run Playwright e2e tests (headless, Chromium only)
+- `npm run test` - Run Playwright e2e tests (headless, Chromium only). Builds the static site into `.next-test/` and serves it on port 3100 with `tests/static-server.mjs` (a running `next dev` is not affected)
+- `npm run test:dev` - Run the e2e tests against `next dev` on port 3000 (slower)
+- Specs import `test`/`expect` from `tests/fixtures.ts` (blocks warhammer.com images). Pure logic (filters, legality, store URLs) is tested without a page, for example `tests/kill-team-chooser-logic.spec.ts`. Prefer such tests and merging checks into one page load over new page-level tests
 
 ### CMS Access
 - Local development: http://localhost:3000/admin/index.html (no authentication)

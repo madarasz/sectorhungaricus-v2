@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect, Page } from './fixtures';
 import { ANALYTICS_PROVIDERS, SIMPLE_ANALYTICS_SCRIPT_URL, UMAMI_BEFORE_SEND, UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from '@/lib/analytics/config';
 import { removeLocalePrefix } from '@/lib/locale-utils';
 import { LINK_TYPES } from '@/lib/analytics/events';
@@ -51,19 +51,16 @@ test.describe('Analytics', () => {
     await stubAnalytics(page);
   });
 
-  test('loads the script of each enabled provider', async ({ page }) => {
-    await page.goto('/en/');
-
-    await expect(page.locator(`script[src="${UMAMI_SCRIPT_URL}"]`)).toHaveAttribute('data-website-id', UMAMI_WEBSITE_ID);
-    await expect(page.locator(`script[src="${SIMPLE_ANALYTICS_SCRIPT_URL}"]`)).toHaveCount(ANALYTICS_PROVIDERS.simpleAnalytics ? 1 : 0);
-  });
-
-  test('Umami gets the URL and the in-site referrer without the locale prefix, and the locale as session data', async ({ page }) => {
+  test('loads the enabled scripts, and Umami gets the URL and the in-site referrer without the locale prefix, and the locale as session data', async ({ page }) => {
     await page.goto(CHOOSER_URL);
     await waitForTracker(page);
     const origin = new URL(page.url()).origin;
 
-    await expect(page.locator(`script[src="${UMAMI_SCRIPT_URL}"]`)).toHaveAttribute('data-before-send', UMAMI_BEFORE_SEND);
+    // Script of each enabled provider
+    const umamiScript = page.locator(`script[src="${UMAMI_SCRIPT_URL}"]`);
+    await expect(umamiScript).toHaveAttribute('data-website-id', UMAMI_WEBSITE_ID);
+    await expect(umamiScript).toHaveAttribute('data-before-send', UMAMI_BEFORE_SEND);
+    await expect(page.locator(`script[src="${SIMPLE_ANALYTICS_SCRIPT_URL}"]`)).toHaveCount(ANALYTICS_PROVIDERS.simpleAnalytics ? 1 : 0);
     expect(await page.evaluate(() => (window as unknown as { __pageviews: { url: string }[] }).__pageviews)).toEqual([
       { url: `${origin}${CHOOSER_PAGE}`, referrer: '' },
     ]);
@@ -149,35 +146,40 @@ test.describe('Analytics', () => {
     ]);
   });
 
-  // Store link of each webstore, by the store box field that holds its URL
-  for (const store of [
-    { testId: 'store-box-name-link', store: NAME_LINK_STORE, field: NAME_LINK_STORE.field, linkType: NAME_LINK_STORE.linkType },
-    ...STORES.map((s) => ({ testId: `store-box-icon-${s.id}`, store: s, field: s.field, linkType: s.linkType })),
-  ]) {
-    test(`${store.testId} link sends the ${store.linkType} link type`, async ({ page }) => {
-      const team = killTeams().find((t) => t.store_boxes?.some((box) => box[store.field]));
-      test.skip(!team, `No reviewed kill team with ${store.field}`);
-      const box = team!.store_boxes!.find((b) => b[store.field])!;
+  test('store links send the link type of their store', async ({ page }) => {
+    // Store link of each webstore, by the store box field that holds its URL
+    const links = [
+      { testId: 'store-box-name-link', store: NAME_LINK_STORE },
+      ...STORES.map((s) => ({ testId: `store-box-icon-${s.id}`, store: s })),
+    ].flatMap((link) => {
+      const team = killTeams().find((t) => t.store_boxes?.some((box) => box[link.store.field]));
+      return team ? [{ ...link, team, box: team.store_boxes!.find((b) => b[link.store.field])! }] : [];
+    });
+    test.skip(!links.length, 'No reviewed kill team with a store link');
 
-      await page.goto(`${CHOOSER_URL}?legal=declassified&team=${team!.slug}`);
+    // Links of the same team are clicked on one page load
+    for (const team of [...new Set(links.map((link) => link.team))]) {
+      await page.goto(`${CHOOSER_URL}?legal=declassified&team=${team.slug}`);
       await waitForTracker(page);
       await blockLinkNavigation(page);
 
-      await page.getByTestId('kt-detail-store-boxes').getByTestId(store.testId).first().click();
+      for (const { testId, store, box } of links.filter((link) => link.team === team)) {
+        await page.getByTestId('kt-detail-store-boxes').getByTestId(testId).first().click();
 
-      await expect.poll(() => trackedEvents(page)).toContainEqual({
-        name: 'outbound_link_click',
-        data: {
-          url: new URL(storeLinkUrl(store.store, box[store.field]!)).href,
-          page: CHOOSER_PAGE,
-          link_type: store.linkType,
-          team: team!.slug,
-          box: box.slug,
-          locale: 'en',
-        },
-      });
-    });
-  }
+        await expect.poll(() => trackedEvents(page)).toContainEqual({
+          name: 'outbound_link_click',
+          data: {
+            url: new URL(storeLinkUrl(store, box[store.field]!)).href,
+            page: CHOOSER_PAGE,
+            link_type: store.linkType,
+            team: team.slug,
+            box: box.slug,
+            locale: 'en',
+          },
+        });
+      }
+    }
+  });
 
   test('store box link in subpage text sends the store link type and the box without a team', async ({ page }) => {
     const ref = subpageStoreBoxes('en').find(({ box }) => box.contrastphase_url);

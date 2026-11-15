@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect, Page } from './fixtures';
 import { tournamentSeasons } from './helpers/content';
 import { getTournamentResultsTranslations } from '@/lib/translations';
 
@@ -15,8 +15,10 @@ async function expectConcludedTournaments(page: Page, tournaments: Array<{ name:
   }
 }
 
+// Locale does not change the filter logic, so the filter tests use one locale.
+// The checkbox test checks both locales, because its title texts are translated.
 test.describe('Tournament Results Player Limit', () => {
-  for (const locale of ['en', 'hu']) {
+  for (const locale of ['en']) {
     test(`Player limit dropdown switches between top 16 and all players (${locale})`, async ({ page }) => {
       await page.goto(`/${locale}/kill-team/tournament-results/`);
 
@@ -46,7 +48,8 @@ test.describe('Tournament Results Player Limit', () => {
 });
 
 test.describe('Tournament Results Season filter', () => {
-  for (const locale of ['en', 'hu']) {
+  // Also checks the concluded tournaments of each season
+  for (const locale of ['en']) {
     test(`Season dropdown changes players and concluded tournaments (${locale})`, async ({ page }) => {
       await page.goto(`/${locale}/kill-team/tournament-results/`);
 
@@ -72,15 +75,6 @@ test.describe('Tournament Results Season filter', () => {
 
       // Each season has its own table title
       expect(titles.size).toBe(seasons.length);
-    });
-  }
-});
-
-test.describe('Concluded Tournaments player counts', () => {
-  for (const locale of ['en', 'hu']) {
-    test(`Each concluded tournament shows its player count (${locale})`, async ({ page }) => {
-      await page.goto(`/${locale}/kill-team/tournament-results/`);
-      await expectConcludedTournaments(page, tournamentSeasons()[0].tournaments);
     });
   }
 });

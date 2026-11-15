@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures';
 import { galleryImageCount, subpageData } from './helpers/content';
 
 // Gallery of the first gallery block on the page
