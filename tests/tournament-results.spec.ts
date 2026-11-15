@@ -1,5 +1,6 @@
 import { test, expect, Page } from '@playwright/test';
 import { tournamentSeasons } from './helpers/content';
+import { getTournamentResultsTranslations } from '@/lib/translations';
 
 const TOP_PLAYERS_COUNT = 16;
 
@@ -80,6 +81,53 @@ test.describe('Concluded Tournaments player counts', () => {
     test(`Each concluded tournament shows its player count (${locale})`, async ({ page }) => {
       await page.goto(`/${locale}/kill-team/tournament-results/`);
       await expectConcludedTournaments(page, tournamentSeasons()[0].tournaments);
+    });
+  }
+});
+
+test.describe('Tournament Results Show all players filter', () => {
+  for (const locale of ['en', 'hu'] as const) {
+    test(`Checkbox removes the minimum tournaments rule (${locale})`, async ({ page }) => {
+      await page.goto(`/${locale}/kill-team/tournament-results/`);
+
+      const t = getTournamentResultsTranslations(locale);
+      const seasons = tournamentSeasons();
+      const seasonSelect = page.locator('#season-select');
+      const checkbox = page.locator('#show-all-players');
+      const rows = page.locator('#tournament-results-table tbody tr');
+      const title = page.locator('#tournament-results-title');
+      const minScope = (season: { minTournaments: number }) =>
+        `(${t.playerScope.minTournaments(season.minTournaments)})`;
+      const allScope = `(${t.playerScope.allPlayers})`;
+
+      await page.locator('#player-limit-select').selectOption('all');
+
+      for (const season of seasons) {
+        await seasonSelect.selectOption(season.id);
+
+        if (season.minTournaments <= 1) {
+          // Minimum of 1 tournament: always checked and disabled
+          await expect(checkbox).toBeChecked();
+          await expect(checkbox).toBeDisabled();
+          await expect(title).toContainText(allScope);
+          await expect(rows).toHaveCount(season.allPlayers);
+          continue;
+        }
+
+        // Unchecked by default
+        await expect(checkbox).toBeEnabled();
+        await expect(checkbox).not.toBeChecked();
+        await expect(title).toContainText(minScope(season));
+        await expect(rows).toHaveCount(season.eligiblePlayers);
+
+        await checkbox.check();
+        await expect(title).toContainText(allScope);
+        await expect(title).not.toContainText(minScope(season));
+        await expect(rows).toHaveCount(season.allPlayers);
+
+        await checkbox.uncheck();
+        await expect(rows).toHaveCount(season.eligiblePlayers);
+      }
     });
   }
 });

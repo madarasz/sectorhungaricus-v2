@@ -1,8 +1,14 @@
 import { Locale } from './locale-utils'
 
 export interface TournamentResultsTranslations {
-  title: (season: string, minTournaments: number) => string
-  allTimeTitle: (minTournaments: number) => string
+  // scope: playerScope.minTournaments(...) or playerScope.allPlayers
+  title: (season: string, scope: string) => string
+  allTimeTitle: (scope: string) => string
+  playerScope: {
+    minTournaments: (minTournaments: number) => string
+    allPlayers: string
+  }
+  showAllPlayers: string
   season: {
     label: string
     allTime: string
@@ -37,10 +43,14 @@ function hungarianYearSuffix(year: string): string {
 
 export const tournamentResultsTranslations: Record<Locale, TournamentResultsTranslations> = {
   en: {
-    title: (season, minTournaments) =>
-      `Best tournament players in the ${season} season (at least ${minTournaments} ${minTournaments === 1 ? 'tournament' : 'tournaments'})`,
-    allTimeTitle: (minTournaments) =>
-      `Best tournament players of all time (at least ${minTournaments} ${minTournaments === 1 ? 'tournament' : 'tournaments'})`,
+    title: (season, scope) => `Best tournament players in the ${season} season (${scope})`,
+    allTimeTitle: (scope) => `Best tournament players of all time (${scope})`,
+    playerScope: {
+      minTournaments: (minTournaments) =>
+        `at least ${minTournaments} ${minTournaments === 1 ? 'tournament' : 'tournaments'}`,
+      allPlayers: 'all players'
+    },
+    showAllPlayers: 'Include players with fewer tournaments',
     season: {
       label: 'Season',
       allTime: 'All-time'
@@ -52,9 +62,9 @@ export const tournamentResultsTranslations: Record<Locale, TournamentResultsTran
       tournaments: 'Tournaments'
     },
     playerLimit: {
-      label: 'Show',
+      label: 'List',
       top: 'Top 16',
-      all: 'All players',
+      all: 'Full list',
       showing: (shown, total) => `Showing ${shown} of ${total} players`
     },
     concludedTournaments: 'Concluded Tournaments',
@@ -62,10 +72,14 @@ export const tournamentResultsTranslations: Record<Locale, TournamentResultsTran
     topFactions: 'Most Played Factions'
   },
   hu: {
-    title: (season, minTournaments) =>
-      `Legjobb versenyzők a ${season}-${hungarianYearSuffix(season)} szezonban (legalább ${minTournaments} verseny)`,
-    allTimeTitle: (minTournaments) =>
-      `Minden idők legjobb versenyzői (legalább ${minTournaments} verseny)`,
+    title: (season, scope) =>
+      `Legjobb versenyzők a ${season}-${hungarianYearSuffix(season)} szezonban (${scope})`,
+    allTimeTitle: (scope) => `Minden idők legjobb versenyzői (${scope})`,
+    playerScope: {
+      minTournaments: (minTournaments) => `legalább ${minTournaments} verseny`,
+      allPlayers: 'összes játékos'
+    },
+    showAllPlayers: 'Kevesebb versenyt játszók is',
     season: {
       label: 'Szezon',
       allTime: 'Összesített'
@@ -77,9 +91,9 @@ export const tournamentResultsTranslations: Record<Locale, TournamentResultsTran
       tournaments: 'Versenyek'
     },
     playerLimit: {
-      label: 'Mutat',
-      top: 'Legjobb 16',
-      all: 'Minden játékos',
+      label: 'Lista',
+      top: 'Top 16',
+      all: 'Teljes lista',
       showing: (shown, total) => `${total} játékosból ${shown} látható`
     },
     concludedTournaments: 'Lezárult versenyek',

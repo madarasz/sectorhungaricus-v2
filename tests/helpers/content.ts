@@ -211,13 +211,17 @@ interface TestSeasonResult {
 // ELO results of each season (newest first, all-time last), from scripts/results.json
 export function tournamentSeasons(): Array<{
   id: string;
+  minTournaments: number;
   eligiblePlayers: number;
+  allPlayers: number;
   tournaments: Array<{ name: string; players: number }>;
 }> {
   const file = path.join(process.cwd(), 'scripts', 'results.json');
   const { seasons } = JSON.parse(fs.readFileSync(file, 'utf8')) as { seasons: TestSeasonResult[] };
   return seasons.map(season => ({
     id: season.id,
+    minTournaments: season.min_tournaments,
+    allPlayers: season.players.length,
     eligiblePlayers: season.players.filter(player => player.tournaments.length >= season.min_tournaments).length,
     tournaments: season.tournaments.map(({ name }) => ({
       name,

@@ -22,5 +22,8 @@ content_blocks:
       November. The 2027 season started afterwards.
 
 
-      *Players get ELO points based on their tournament matches. You have to play at least two tournaments to qualify for "best player". We reset ELO points at every season start.*
+      *Players get ELO points based on their tournament matches. You have to play at least **three** tournaments to qualify for "best player". We reset ELO points at every season start.*
+
+
+      By taking part in a tournament or league that counts toward the Sector Hungaricus ranking, you agree that we record your results and show them on this page. To have your entry removed, contact the tournament organizer or message us on Discord.
 ---

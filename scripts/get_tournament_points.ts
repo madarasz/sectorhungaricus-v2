@@ -25,6 +25,8 @@ interface PlayerTournamentResult {
 }
 
 interface PlayerResult {
+  // BCP user ID (after ID_ALIASES)
+  id: string;
   name: string;
   rank: number;
   elo: number;
@@ -46,6 +48,8 @@ interface ResultsOutput {
 }
 
 interface BCPUser {
+  // BCP account ID: stable across events and name changes
+  id?: string;
   firstName?: string;
   lastName?: string;
 }
@@ -158,24 +162,34 @@ async function fetchAndCachePairings(
 function getPlayerName(player: BCPPairingPlayer): string {
   const firstName = player.user?.firstName || "";
   const lastName = player.user?.lastName || "";
-  return `${firstName} ${lastName}`.trim();
+  return `${firstName} ${lastName}`.replace(/\s+/g, " ").trim();
 }
 
-// Workaround for swapped player names in BCP (e.g. "John Doe" vs "Doe John")
-function sanitizePlayerName(rawName: string): string {
-  const name = rawName.replace(/\s+/g, " ").trim();
-  if (name === "Vince Balázs Soós") return "Vince Soós";
-  if (name === "Marton Mati") return "Márton Mati";
-  if (name === "David Viniczay") return "Dávid Viniczay";
-  if (name === "Gabor Kiss") return "Gábor Kiss";
-  if (name === "SANDOR TAMAS BALOGH") return "Sándor Tamás Balogh";
-  if (name === "Szarvas Dominik") return "Dominik Szarvas";
-  if (name === "Bence Gombás") return "Gombás Bence";
-  if (name === "LÃ³rÃ¡nd “Clostry” Papp") return "Lóránd “Clostry” Papp";
-  if (name === "Balogh Sándor Tamás") return "Sándor Tamás Balogh";
-  if (name === "Adam Kriza") return "Ádám Kriza";
-  if (name === "Gábor Mervo") return "Gábor Mervó";
-  return name;
+// One person with more than one BCP account: old user ID -> kept user ID
+const ID_ALIASES: Record<string, string> = {
+  MEY0buOmpcFb: "8CNWfK1ydjAc", // Lőrinc Soós
+};
+
+// Display name override per BCP user ID. Without an override, the name from
+// the player's most recent tournament is shown.
+const DISPLAY_NAMES: Record<string, string> = {
+  "5lJp3NUIc67s": "Vince Soós",
+  "7BA37A23AG": "Márton Mati",
+  cOHk4iYN1y4p: "Dávid Viniczay",
+  vE9a72A3rk: "Gábor Kiss",
+  "28GpmgXa6K3d": "Sándor Tamás Balogh",
+  LAkP193dbQ4s: "Dominik Szarvas",
+  M60FB4YA4K: "Gombás Bence",
+  xhzwId2YZ7: "Lóránd “Clostry” Papp",
+  Z1jtDyM2tgib: "Ádám Kriza",
+  LF2VQKJL82: "Gábor Mervó",
+  // Two "Dávid Nagy" accounts (both in zW3xj5MBgRl8): this one plays Canoptek Circle
+  QBBHPWYKDP: 'Dávid "Shurama" Nagy',
+};
+
+function getPlayerId(player: BCPPairingPlayer): string {
+  const id = player.user?.id || "";
+  return ID_ALIASES[id] ?? id;
 }
 
 function expectedScore(ratingA: number, ratingB: number): number {
@@ -218,17 +232,59 @@ function loadSeasons(scriptsDir: string): Season[] {
     .sort((a, b) => b.id.localeCompare(a.id));
 }
 
+// Valid pairings of a tournament: finished, both players and results known.
+// Both results zero means the match did not actually happen (there is no
+// such thing as a double-loss), so it is skipped.
+function getPlayedPairings(cache: PairingsCache): BCPPairing[] {
+  return Object.keys(cache.rounds)
+    .map(Number)
+    .sort((a, b) => a - b)
+    .flatMap((round) => cache.rounds[String(round)])
+    .filter(
+      (p) =>
+        p.isDone &&
+        p.player1 &&
+        p.player2 &&
+        getPlayerId(p.player1) &&
+        getPlayerId(p.player2) &&
+        p.player1Game?.result !== undefined &&
+        p.player2Game?.result !== undefined &&
+        !(p.player1Game.result === 0 && p.player2Game.result === 0)
+    );
+}
+
+// Display name per player ID: override, else name in the most recent tournament
+function buildDisplayNames(
+  chronological: Tournament[],
+  cacheMap: Map<string, PairingsCache>
+): Map<string, string> {
+  const names = new Map<string, string>();
+  for (const t of chronological) {
+    for (const p of getPlayedPairings(cacheMap.get(t.bcp_id)!)) {
+      for (const player of [p.player1!, p.player2!]) {
+        names.set(getPlayerId(player), getPlayerName(player));
+      }
+    }
+  }
+  for (const [id, name] of Object.entries(DISPLAY_NAMES)) {
+    names.set(ID_ALIASES[id] ?? id, name);
+  }
+  return names;
+}
+
 function calculateElo(
   tournaments: Tournament[],
-  cacheMap: Map<string, PairingsCache>
+  cacheMap: Map<string, PairingsCache>,
+  displayNames: Map<string, string>
 ): PlayerResult[] {
   const eloMap = new Map<string, number>();
   const playerMap = new Map<string, PlayerResult>();
 
-  function getOrInitPlayer(name: string): PlayerResult {
-    if (!playerMap.has(name)) {
-      playerMap.set(name, {
-        name,
+  function getOrInitPlayer(id: string): PlayerResult {
+    if (!playerMap.has(id)) {
+      playerMap.set(id, {
+        id,
+        name: displayNames.get(id)!,
         rank: 0,
         elo: STARTING_ELO,
         wins: 0,
@@ -236,18 +292,15 @@ function calculateElo(
         losses: 0,
         tournaments: [],
       });
-      eloMap.set(name, STARTING_ELO);
+      eloMap.set(id, STARTING_ELO);
     }
-    return playerMap.get(name)!;
+    return playerMap.get(id)!;
   }
 
   for (const tournament of tournaments) {
-    const cache = cacheMap.get(tournament.bcp_id)!;
-    const roundNumbers = Object.keys(cache.rounds)
-      .map(Number)
-      .sort((a, b) => a - b);
+    const pairings = getPlayedPairings(cacheMap.get(tournament.bcp_id)!);
 
-    if (roundNumbers.length === 0) {
+    if (pairings.length === 0) {
       console.log(`  No pairing data for ${tournament.name}, skipping.`);
       continue;
     }
@@ -256,92 +309,86 @@ function calculateElo(
     const tournamentEloChange = new Map<string, number>();
     const tournamentFaction = new Map<string, string>();
 
-    for (const round of roundNumbers) {
-      const pairings = cache.rounds[String(round)];
+    for (const pairing of pairings) {
+      const id1 = getPlayerId(pairing.player1!);
+      const id2 = getPlayerId(pairing.player2!);
+      const result1 = pairing.player1Game!.result!;
+      const result2 = pairing.player2Game!.result!;
 
-      for (const pairing of pairings) {
-        if (!pairing.isDone) continue;
-        if (!pairing.player1 || !pairing.player2) continue;
-        if (!pairing.player1Game || !pairing.player2Game) continue;
+      getOrInitPlayer(id1);
+      getOrInitPlayer(id2);
 
-        const name1 = sanitizePlayerName(getPlayerName(pairing.player1));
-        const name2 = sanitizePlayerName(getPlayerName(pairing.player2));
-        if (!name1 || !name2) continue;
+      // Players API faction cache is keyed by the raw BCP name of the event
+      const faction1 = sanitizeFactionName(
+        getFactionName(
+          pairing.player1!.faction,
+          getPlayerName(pairing.player1!),
+          tournament.bcp_id
+        ),
+        tournament.name
+      );
+      const faction2 = sanitizeFactionName(
+        getFactionName(
+          pairing.player2!.faction,
+          getPlayerName(pairing.player2!),
+          tournament.bcp_id
+        ),
+        tournament.name
+      );
 
-        const result1 = pairing.player1Game.result;
-        const result2 = pairing.player2Game.result;
-        if (result1 === undefined || result2 === undefined) continue;
+      // Update faction (last seen per tournament)
+      tournamentFaction.set(id1, faction1);
+      tournamentFaction.set(id2, faction2);
 
-        // Both scores zero means the match did not actually happen
-        // (there is no such thing as a double-loss), so skip it entirely.
-        if (result1 === 0 && result2 === 0) continue;
+      const elo1 = eloMap.get(id1)!;
+      const elo2 = eloMap.get(id2)!;
 
-        getOrInitPlayer(name1);
-        getOrInitPlayer(name2);
+      const exp1 = expectedScore(elo1, elo2);
+      const exp2 = expectedScore(elo2, elo1);
 
-        const faction1 = sanitizeFactionName(
-          getFactionName(pairing.player1.faction, name1, tournament.bcp_id),
-          tournament.name
-        );
-        const faction2 = sanitizeFactionName(
-          getFactionName(pairing.player2.faction, name2, tournament.bcp_id),
-          tournament.name
-        );
+      // result: 2=Win, 1=Draw, 0=Loss
+      const score1 = result1 === 2 ? 1 : result1 === 1 ? 0.5 : 0;
+      const score2 = result2 === 2 ? 1 : result2 === 1 ? 0.5 : 0;
 
-        // Update faction (last seen per tournament)
-        tournamentFaction.set(name1, faction1);
-        tournamentFaction.set(name2, faction2);
+      const newElo1 = updateElo(elo1, exp1, score1);
+      const newElo2 = updateElo(elo2, exp2, score2);
 
-        const elo1 = eloMap.get(name1)!;
-        const elo2 = eloMap.get(name2)!;
+      eloMap.set(id1, newElo1);
+      eloMap.set(id2, newElo2);
 
-        const exp1 = expectedScore(elo1, elo2);
-        const exp2 = expectedScore(elo2, elo1);
+      tournamentEloChange.set(
+        id1,
+        (tournamentEloChange.get(id1) || 0) + (newElo1 - elo1)
+      );
+      tournamentEloChange.set(
+        id2,
+        (tournamentEloChange.get(id2) || 0) + (newElo2 - elo2)
+      );
 
-        // result: 2=Win, 1=Draw, 0=Loss
-        const score1 = result1 === 2 ? 1 : result1 === 1 ? 0.5 : 0;
-        const score2 = result2 === 2 ? 1 : result2 === 1 ? 0.5 : 0;
+      // Record wins/draws/losses
+      const p1 = playerMap.get(id1)!;
+      const p2 = playerMap.get(id2)!;
 
-        const newElo1 = updateElo(elo1, exp1, score1);
-        const newElo2 = updateElo(elo2, exp2, score2);
-
-        eloMap.set(name1, newElo1);
-        eloMap.set(name2, newElo2);
-
-        tournamentEloChange.set(
-          name1,
-          (tournamentEloChange.get(name1) || 0) + (newElo1 - elo1)
-        );
-        tournamentEloChange.set(
-          name2,
-          (tournamentEloChange.get(name2) || 0) + (newElo2 - elo2)
-        );
-
-        // Record wins/draws/losses
-        const p1 = playerMap.get(name1)!;
-        const p2 = playerMap.get(name2)!;
-
-        if (result1 === 2) {
-          p1.wins++;
-          p2.losses++;
-        } else if (result1 === 1) {
-          p1.draws++;
-          p2.draws++;
-        } else {
-          p1.losses++;
-          p2.wins++;
-        }
+      if (result1 === 2) {
+        p1.wins++;
+        p2.losses++;
+      } else if (result1 === 1) {
+        p1.draws++;
+        p2.draws++;
+      } else {
+        p1.losses++;
+        p2.wins++;
       }
     }
 
     // Commit ELO to player results and record tournament
-    for (const [name] of tournamentEloChange) {
-      const player = playerMap.get(name)!;
-      player.elo = eloMap.get(name)!;
+    for (const [id] of tournamentEloChange) {
+      const player = playerMap.get(id)!;
+      player.elo = eloMap.get(id)!;
       player.tournaments.push({
         name: tournament.name,
-        faction: tournamentFaction.get(name) || "Unknown",
-        elo_change: tournamentEloChange.get(name) || 0,
+        faction: tournamentFaction.get(id) || "Unknown",
+        elo_change: tournamentEloChange.get(id) || 0,
       });
     }
   }
@@ -364,21 +411,29 @@ function calculateElo(
   return playersArray;
 }
 
+// ELO is calculated in chronological order
+function sortChronologically(
+  tournaments: Tournament[],
+  cacheMap: Map<string, PairingsCache>
+): Tournament[] {
+  const earliestDate = (t: Tournament) =>
+    getEarliestPairingDate(cacheMap.get(t.bcp_id)!);
+  return [...tournaments].sort((a, b) =>
+    earliestDate(a).localeCompare(earliestDate(b))
+  );
+}
+
 function buildSeasonResult(
   id: string,
   minTournaments: number,
   tournaments: Tournament[],
-  cacheMap: Map<string, PairingsCache>
+  cacheMap: Map<string, PairingsCache>,
+  displayNames: Map<string, string>
 ): SeasonResult {
-  const earliestDate = (t: Tournament) =>
-    getEarliestPairingDate(cacheMap.get(t.bcp_id)!);
-  // ELO is calculated in chronological order
-  const chronological = [...tournaments].sort((a, b) =>
-    earliestDate(a).localeCompare(earliestDate(b))
-  );
+  const chronological = sortChronologically(tournaments, cacheMap);
 
   console.log(`\nSeason ${id}: ${tournaments.length} tournaments`);
-  const players = calculateElo(chronological, cacheMap);
+  const players = calculateElo(chronological, cacheMap, displayNames);
 
   return {
     id,
@@ -422,6 +477,12 @@ async function main(): Promise<void> {
     cacheMap.set(t.bcp_id, await fetchAndCachePairings(t, cacheDir));
   }
 
+  // Same display name in every season: name in the most recent tournament
+  const displayNames = buildDisplayNames(
+    sortChronologically(allTournaments, cacheMap),
+    cacheMap
+  );
+
   const results: ResultsOutput = {
     seasons: [
       ...seasons.map((season) =>
@@ -429,14 +490,16 @@ async function main(): Promise<void> {
           season.id,
           season.min_tournaments,
           season.tournaments,
-          cacheMap
+          cacheMap,
+          displayNames
         )
       ),
       buildSeasonResult(
         ALL_TIME_SEASON_ID,
         DEFAULT_MIN_TOURNAMENTS,
         allTournaments,
-        cacheMap
+        cacheMap,
+        displayNames
       ),
     ],
   };
@@ -459,7 +522,7 @@ async function main(): Promise<void> {
   for (const player of allTime.players) {
     const record = `${player.wins}W/${player.draws}D/${player.losses}L`;
     console.log(
-      `  ${player.rank}. ${player.name}: ${player.elo} ELO (${record}, ${player.tournaments.length} tournaments)`
+      `  ${player.rank}. ${player.name} [${player.id}]: ${player.elo} ELO (${record}, ${player.tournaments.length} tournaments)`
     );
   }
 }

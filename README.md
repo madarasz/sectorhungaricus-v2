@@ -211,7 +211,7 @@ Run script to update the ELO points of each season and the all-time ELO points (
 ```
 npm run points
 ```
-If the same player appears twice with different name spellings, use the `data-deduplication-normalization` skill to add a rule to `sanitizePlayerName()` in `scripts/get_tournament_points.ts`.
+The script identifies players by their BCP user ID, so name changes and different spellings do not create duplicates. The shown name is the name from the most recent tournament. To set a different name, add it to `DISPLAY_NAMES` in `scripts/get_tournament_points.ts`. If one person plays with more than one BCP account, use the `data-deduplication-normalization` skill to add the accounts to `ID_ALIASES`.
 
 ## License
 

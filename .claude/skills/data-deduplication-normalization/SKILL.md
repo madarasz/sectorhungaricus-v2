@@ -1,45 +1,41 @@
 ---
 name: data-deduplication-normalization
-description: Use when user asks to fix duplicate player names, deduplicate names, or update sanitizePlayerName() in scripts/get_tournament_points.ts. Triggered by: same player appearing twice in `npm run points` output with different BCP spellings (missing accents, third name, surname-first, double space).
+description: Use when user asks to fix duplicate players, deduplicate names, merge BCP accounts, fix a shown player name, or update ID_ALIASES / DISPLAY_NAMES in scripts/get_tournament_points.ts. Triggered by: same person appearing twice in `npm run points` output (two BCP accounts), or a player name shown with missing accents, broken encoding, surname-first or other bad spelling.
 ---
 
-# Player Name Deduplication (sector-hungaricus-v2)
+# Player Deduplication (sector-hungaricus-v2)
 
-## Workflow
+`scripts/get_tournament_points.ts` identifies players by BCP user ID (`player.user.id` in the pairings), not by name. Name changes and different spellings of one BCP account do not make duplicates.
 
-1. Run `npm run points` — look at "All players:" output
-2. Identify candidate duplicates: pairs of entries that look like the same person with different name spellings
-3. Present candidates to the user — **do not edit code yet**
-4. User confirms which pairs are the same person
-5. For each confirmed pair, find the raw BCP form: `grep -r "NameVariant" scripts/cache/pairings/`
-6. Add rule(s) to `sanitizePlayerName()` in `scripts/get_tournament_points.ts`
-7. Re-run `npm run points` — verify unified entry's tournament count equals the sum of the two split entries
+Two maps in the script:
 
-## Core Rule
+- `ID_ALIASES`: old BCP user ID → kept BCP user ID. Use when one person has more than one BCP account. Merges ELO, record and tournaments.
+- `DISPLAY_NAMES`: BCP user ID → shown name. Cosmetic only. Without an entry, the name from the player's most recent tournament is shown.
 
-Every rule must collapse two separate entries into one. There are no cosmetic renames — if a name appears only once in the output, there is nothing to fix.
+## Workflow: one person, two accounts
 
-Real dedup signal: `4 tournaments + 1 tournament → 5 tournaments (unified)`.
+1. Run `npm run points`. The "All players (all-time)" output shows `Name [userId]`.
+2. Find candidates: the same or similar names with different IDs.
+3. Check the tournaments of each ID (pairings in `scripts/cache/pairings/<bcp_id>.json`, search for the ID). **Two IDs in the same tournament are two different people. Do not merge them** (example: the two "Dávid Nagy" accounts both played in Liga Season 4).
+4. Present candidates to the user. **Do not edit code yet.**
+5. After the user confirms, add `oldId: "keptId"` to `ID_ALIASES`. Keep the ID of the most recent account.
+6. Run `npm run points` again. The merged entry's tournament count must equal the sum of the two split entries.
 
-**Never edit `sanitizePlayerName()` without user confirmation of the pair.**
+## Workflow: bad shown name
 
-## sanitizePlayerName() Location
+1. Find the player's ID in the `npm run points` output.
+2. Add `id: "Correct Name"` to `DISPLAY_NAMES`. Use the kept ID, not an alias.
 
-`scripts/get_tournament_points.ts:152`
+## Known BCP Name Quirks (DISPLAY_NAMES candidates)
 
-Maps FROM BCP raw name → TO canonical display name. BCP is the source of truth for raw names; cache files under `scripts/cache/pairings/` contain them verbatim.
-
-## Known BCP Name Quirks
-
-- **Third/middle name**: `"Vince Balázs Soós"` → `"Vince Soós"`
-- **Trailing space in firstName**: produces `"Vince  Soós"` (double space in output) → `"Vince Soós"`
-- **ALL CAPS**: `"SANDOR TAMAS BALOGH"` → `"Sándor Tamás Balogh"`
-- **Surname-first**: `"Szarvas Dominik"` → `"Dominik Szarvas"`
-- **No accents**: `"Marton Mati"` → `"Márton Mati"`, `"Gabor Kiss"` → `"Gábor Kiss"`
-- **First/last swapped with accents**: `"Bence Gombás"` → `"Gombás Bence"`
+- Third/middle name: `"Vince Balázs Soós"` → `"Vince Soós"`
+- ALL CAPS: `"SANDOR TAMAS BALOGH"` → `"Sándor Tamás Balogh"`
+- Surname-first: `"Szarvas Dominik"` → `"Dominik Szarvas"`
+- No accents: `"Marton Mati"` → `"Márton Mati"`
+- Broken encoding: `"LÃ³rÃ¡nd"` → `"Lóránd"`
 
 ## What NOT to Do
 
-- Do not edit `sanitizePlayerName()` before user confirms the pair
-- Do not add rules for names that appear only once — no dedup needed
-- Do not correct spelling/accents/ordering without a matching duplicate entry to collapse into
+- Do not add to `ID_ALIASES` before the user confirms the pair.
+- Do not merge IDs that played in the same tournament.
+- Do not key players by name again.

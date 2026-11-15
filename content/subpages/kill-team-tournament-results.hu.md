@@ -23,4 +23,7 @@ content_blocks:
 
 
       *A játékosok ELO pontokat kapnak verseny meccseik alapján. Legalább két versenyen részt kell venni, hogy a "legjobb játékos" címért indulhass. Az ELO pontokat töröljük szezon elején.*
+
+
+      A Sector Hungaricus ranglistájába beszámító versenyeken és ligákban való részvétellel hozzájárulsz ahhoz, hogy az eredményeidet rögzítsük és ezen az oldalon megjelenítsük. Ha szeretnéd, hogy töröljük a bejegyzésedet, keresd a verseny szervezőjét, vagy írj nekünk Discordon.
 ---
