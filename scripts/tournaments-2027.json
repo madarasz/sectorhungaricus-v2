@@ -3,6 +3,10 @@
     "min_tournaments": 1,
     "tournaments": [
         {
+            "name": "TTS Liga #2",
+            "bcp_id": "o0R3SmfUqj8Y"
+        },
+        {
             "name": "Ordo Arrabona #2",
             "bcp_id": "jVPiD6AvB86L"
         },
